@@ -53,6 +53,8 @@ def send_email(send_user: str = str(), send_to: str = str(), title: str = "hi th
                   opacity: 0.7;
                 }
         """
+    # <img src="https://i.ibb.co/5MF1CDy/image-search-1700584447540.png" alt="John" style="width:100%">
+
     html = f"""\
         <!DOCTYPE html>
         <html>
@@ -69,7 +71,7 @@ def send_email(send_user: str = str(), send_to: str = str(), title: str = "hi th
             Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditionsThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
                 </h6>
                 <div class="card">
-                  <img src="https://i.ibb.co/5MF1CDy/image-search-1700584447540.png" alt="John" style="width:100%">
+                  <img src="https://i.ibb.co/8NkT8Fj/logo.png" alt="John" alt="John" style="width:100%">
                     <h1>{user_name}</h1>
                     <p class="title">Never share your personal password</p>
                     <p><h2><b>{personal_code}</b></h2></p>
