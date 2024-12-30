@@ -120,7 +120,9 @@ class lite_screen_manager(ft.Container):
 
     def update_drop_items(self):
         self.list_user_screen()
-        self.drop_down.options = [ft.dropdown.Option(key=f"Screen number: {_}") for _ in self.obtion_list]
+        self.drop_down.options = [
+            ft.dropdown.Option(key=f"Screen number: {_}") for _ in self.obtion_list
+        ]
         self.drop_down.update()
 
     def list_user_screen(self):
@@ -243,7 +245,7 @@ class lite_screen_manager(ft.Container):
         exec(string_code, module.__dict__)
         # sys.modules['dynamic_module'] = module
         globals()['dynamic_module'] = module
-        tmp_module = dynamic_module.load_module_str()
+        tmp_module = dynamic_module.load_module_str() # type: ignore
         return tmp_module
 
 
@@ -390,25 +392,21 @@ class projects_made(ft.Container):
 
 class project_manager(ft.Container):
     TABS_PROJECTS: list = {
-        # 'Login',
-        # 'Menu',
-        # 'Profile',
-        # 'Slider Image',
-        # 'Splash',
-        # 'Time Line',
-        'About': ft.Icons('account_box'),
-        'Article': ft.Icons('article'),
-        'Chat': ft.Icons('chat'),
+        'Splash': ft.Icons('do_not_touch'),
+        'Introduction': ft.Icons('start'),
+        'Login': ft.Icons('login'),
+        'Register': ft.Icons('how_to_reg'),
+        'Lock': ft.Icons('block'),
+        'MixViews': ft.Icons('dashboard'),
+        'GridView': ft.Icons('grid_view_rounded'),
+        'ListView': ft.Icons('grading'),
         'DashBoard': ft.Icons('dashboard'),
-        'Grid View': ft.Icons('grid_view_rounded'),
-        'List': ft.Icons('grading'),
-        'Music': ft.Icons('speaker_group_rounded'),
-        'No Item Page': ft.Icons('do_not_touch'),
         'Payment': ft.Icons('account_balance_wallet'),
-        'Search Page': ft.Icons('find_in_page'),
-        'Settings': ft.Icons('settings'),
         'Shopping': ft.Icons('shopping_bag'),
-        'Verification': ft.Icons('verified'),
+        'Music': ft.Icons('speaker_group_rounded'),
+        'SettingsView': ft.Icons('settings'),
+        # 'Verification': ft.Icons('verified'),
+        'About': ft.Icons('account_box'),
     }
 
     def __init__(self, page: object = None, visible: bool = True):

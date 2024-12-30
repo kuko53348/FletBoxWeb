@@ -291,18 +291,6 @@ class flet_box:
                         ],
                     )
                 )
-            # if self.page.route == "/screen_manager":
-            #     self.page.views.append(
-            #         ft.View(
-            #             horizontal_alignment=ft.CrossAxisAlignment.CENTER,
-            #             vertical_alignment=ft.MainAxisAlignment.CENTER,
-            #             padding=0,
-            #             route="/screen_manager",
-            #             controls=[
-            #                 screen_manager(page=self.page),
-            #             ],
-            #         )
-            #     )
 
             self.page.update()
 

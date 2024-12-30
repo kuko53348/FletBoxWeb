@@ -8,7 +8,7 @@ import flet as ft
 #: STYLE TO MAIN SCREEN WIDGET
 phone_style_widget: dict = {
     "main_container":  {
-        "image":  None,
+        "image":  {"src": "designer_8.jpeg", "fit": "cover"},
         "gradient":  None
     },
     "second_container":  {
@@ -28,7 +28,7 @@ phone_style_widget: dict = {
 
 #: STYLES IN SCREEN_STYLE
 styles = {
-    "Container_638":  {
+    "Container_2924":  {
         "alignment":  {"x": 0, "y": 0},
         "bgcolor":  "transparent",
         "border":  {"l": {"w": 2, "c": "transparent"},
@@ -41,7 +41,7 @@ styles = {
         "padding":  {"l": 6, "t": 6, "r": 6, "b": 6},
         "ink_color":  "red"
     },
-    "Text_639":  {
+    "Text_2925":  {
         "size":  25.0,
         "value":  "Welcome to Flet-Box"
     }
@@ -69,17 +69,17 @@ class main_screen(ft.DragTarget):
         #: DRAGG_CONTROLS
         list_controls: list = [
             
-            #: DRAG-BOX-CONTENT [ID: 637]
+            #: DRAG-BOX-CONTENT [ID: 2923]
             self.draggin_framework(
                 content=ft.Container(
-                    **self.dict_style("Container_638"),
+                    **self.dict_style("Container_2924"),
                     on_click=lambda dragg_item: self.dragg_event(
                                      selected_widget=dragg_item,),
 
                     content=ft.Text(
-                        **self.dict_style("Text_639"),
-                        # on_click= lambda tmp_widget: event_639(
-                        #        payload="Text_639",
+                        **self.dict_style("Text_2925"),
+                        # on_click= lambda tmp_widget: event_2925(
+                        #        payload="Text_2925",
                         #        page= self.page ),
                     ),
                 ),),

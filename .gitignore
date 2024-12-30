@@ -1,6 +1,8 @@
 bump_upgrade_pypi.sh
 env_python.py
 making_wheel.py
+flet_box/extra_utils/external_library/flet_box_database.db
+flet_box_database.db
 /made
 /testing
 /temp

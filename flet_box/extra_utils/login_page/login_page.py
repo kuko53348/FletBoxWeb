@@ -1,8 +1,9 @@
 import re
 import flet as ft
 from datetime import datetime
-from ..external_library.library_email import send_email
 from ..external_library.sqlite_db import sqlite_db
+from ..external_library.library_email import send_email
+
 
 TEXT_PRESENTATION: str = """
 Fletbox is an intuitive GUI builder interface designed for creating cross-platform applications with ease.
@@ -579,12 +580,12 @@ class formulary_login(ft.Container):
                 print(f"user_name: {user_name},pasword: {pasword}")
                 self.page.session.set(
                     'user_name', {'user_name': user_name, 'pasword': pasword})
+
+                print(self.page,"<<<<<<<<<<<<<")
                 self.page.go('/home')
         else:
-            # print('intent 1')
             # self.open_dialog = self.page.session.get('on_dev')
             on_developing(self=self,
-                          page=self.page,
                           name_seccion='Wrong validation data',
                           body_string=f"Pleasse insert correct email or password"
                           )
