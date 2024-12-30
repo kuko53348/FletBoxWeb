@@ -306,6 +306,10 @@ class flet_box:
 
             self.page.update()
 
+        # NEVER ERASE THIS INVITED PERSON
+        # self.page.session.set('user_name', {'user_name': 'invited'})
+
+        # print(self.page.overlay)
         self.page.on_route_change = route_change
         self.page.theme_mode = ft.ThemeMode.DARK
 

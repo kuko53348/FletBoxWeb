@@ -8,12 +8,12 @@ import flet as ft
 #: STYLE TO MAIN SCREEN WIDGET
 phone_style_widget: dict = {
     "main_container":  {
-        "image":  {"src": "designer_6.jpeg", "fit": "cover"},
+        "image":  None,
         "gradient":  None
     },
     "second_container":  {
         "padding":  None,
-        "blur":  {"sigma_x": 20, "sigma_y": 20, "tile_mode": "mirror"},
+        "blur":  None,
         "bgcolor":  None
     },
     "column_attributes":  {
@@ -27,7 +27,25 @@ phone_style_widget: dict = {
 }
 
 #: STYLES IN SCREEN_STYLE
-styles = {}
+styles = {
+    "Container_638":  {
+        "alignment":  {"x": 0, "y": 0},
+        "bgcolor":  "transparent",
+        "border":  {"l": {"w": 2, "c": "transparent"},
+                    "t": {"w": 2, "c": "transparent"},
+                    "r": {"w": 2, "c": "transparent"},
+                    "b": {"w": 2, "c": "transparent"}
+                    },
+        "ink":  True,
+        "margin":  {"l": 0, "t": 0, "r": 0, "b": 0},
+        "padding":  {"l": 6, "t": 6, "r": 6, "b": 6},
+        "ink_color":  "red"
+    },
+    "Text_639":  {
+        "size":  25.0,
+        "value":  "Welcome to Flet-Box"
+    }
+}
 
 
 class main_screen(ft.DragTarget):
@@ -51,6 +69,20 @@ class main_screen(ft.DragTarget):
         #: DRAGG_CONTROLS
         list_controls: list = [
             
+            #: DRAG-BOX-CONTENT [ID: 637]
+            self.draggin_framework(
+                content=ft.Container(
+                    **self.dict_style("Container_638"),
+                    on_click=lambda dragg_item: self.dragg_event(
+                                     selected_widget=dragg_item,),
+
+                    content=ft.Text(
+                        **self.dict_style("Text_639"),
+                        # on_click= lambda tmp_widget: event_639(
+                        #        payload="Text_639",
+                        #        page= self.page ),
+                    ),
+                ),),
         ]
 
         #: DRAGGIN CONTENT WIDGETS

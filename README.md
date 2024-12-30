@@ -73,7 +73,7 @@ If you're passionate about shaping the future of frameworks and contributing to 
 
 ## Activate virtual env
 ```bash
-
+>>> pip install secure-smtplib mime
 >>> source .venv/bin/activate
 >>> pip install --upgrade pip
 >>> pip install -r requirements.txt

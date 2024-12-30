@@ -14,9 +14,8 @@ CONGRATULATION: str = """
 """
 
 
-def on_developing(self, name_seccion: str = str(), body_string: str = str(), page: object = None):
+def on_developing(self, name_seccion: str = str(), body_string: str = str()):
     # NEED IMPLEMENT YET
-    self.page = page
     if body_string == "":
         self.data = f"""Hello, User!\n\n{name_seccion.upper()}\n{body_string}"""
     else:
@@ -24,14 +23,19 @@ def on_developing(self, name_seccion: str = str(), body_string: str = str(), pag
         self.data = f"""Hello, User!\n\n{name_seccion.upper()}\n\n{body_string}"""
 
     self.dialog_alert = ft.AlertDialog(
-        title=ft.Text(value=self.data, size=15),
         on_dismiss=lambda e: print("Dialog dismissed!"),
+        title=ft.Text(
+            value=self.data,
+            size=15
+        ),
     )
-    # self.page.dialog = self.dialog_alert
-    self.page.overlay.append(self.dialog_alert)
+    if self.page.overlay:
+        self.page.overlay.pop()
+
+    self.page.overlay.insert(0, self.dialog_alert)
     self.page.overlay[0].open = True
     self.page.update()
-    self.page.overlay.pop()
+    # print(self.page.overlay)
 
 
 class congratulation_menu(ft.Container):
@@ -100,7 +104,7 @@ class congratulation_menu(ft.Container):
                     margin=ft.margin.all(0),
                     alignment=ft.alignment.center,
                     border_radius=ft.border_radius.all(30),
-                    on_click=lambda _:self.show_login_menu(),
+                    on_click=lambda _: self.show_login_menu(),
                     content=ft.Row(
                         alignment=ft.MainAxisAlignment.CENTER,
                         vertical_alignment=ft.CrossAxisAlignment.CENTER,
@@ -133,7 +137,8 @@ class congratulation_menu(ft.Container):
     def show_login_menu(self):
         self.middle_box.content.controls.pop()
         self.middle_box.content.controls.append(
-            formulary_login(middle_box=self.middle_box))
+            formulary_login(middle_box=self.middle_box)
+        )
         self.page.update()
 
 
@@ -151,6 +156,7 @@ class recover_login(ft.Container):
         self.alignment = ft.alignment.top_center
         self.middle_box = middle_box
         self.border = ft.border.all(2, "white,0.01")
+        # print(self.page,"<<<<<<")
 
     def build(self):
         self.column_data = ft.Column(
@@ -190,7 +196,7 @@ class recover_login(ft.Container):
                             height=50,
                             width=50,
                             bgcolor="teal,0.5",
-                            on_click=lambda _: self.show_register_menu_email(),
+                            on_click=lambda _: self.show_register_menu_email(only_return=True),
                             content=ft.Icon(
                                         name='supervised_user_circle')
                         ),
@@ -198,7 +204,7 @@ class recover_login(ft.Container):
                 ft.Container(
                     padding=8,
                     alignment=ft.alignment.center_left,
-                    on_click=lambda _:self.recover_password(),
+                    # on_click=lambda _: self.recover_password(),
                     content=ft.Text(
                         spans=[
                             ft.TextSpan("Recover password by email",
@@ -227,13 +233,12 @@ class recover_login(ft.Container):
                         label="Write register email",
                         border_color=ft.colors('white12'),
                         border_radius=30,
-                        on_change=lambda submit_data:self.update_data(
+                        on_change=lambda submit_data: self.update_data(
                             payload=submit_data),
                     ),
                 ),
                 ft.Container(height=16),
                 ft.Container(
-
                     ink=False,
                     bgcolor="teal,0.5",
                     padding=ft.padding.all(12),
@@ -285,30 +290,37 @@ class recover_login(ft.Container):
                     title='Flet-Box ',
                     personal_code=pasword,
                 )
+                # print(user_name, email, pasword, register_time,email_returned)
+
+                email_returned = True
                 if email_returned:
-                    self.show_register_menu_email()
                     on_developing(
                         self=self,
-                        page=self.page,
                         name_seccion='Email was sent',
                         body_string=f"Mensage was sent sucessfully check your spam email: {email}"
                     )
+                    self.show_register_menu_email()
+                    self.page.update()
 
             except Exception as e:
                 on_developing(self=self,
-                              page=self.page,
                               name_seccion='Email error',
                               body_string=f"Error: {e}"
                               )
 
-    def update_data(self, payload: str = str()) ->str:
+    def update_data(self, payload: str = str()) -> str:
         self.payload_textfield = payload.data
 
-    def show_register_menu_email(self):
+    def show_register_menu_email(self, page: object = None,only_return: bool=False):
         self.middle_box.content.controls.pop()
         self.middle_box.content.controls.append(
-            formulary_login(middle_box=self.middle_box))
-        self.page.update()
+            formulary_login(
+                middle_box=self.middle_box,
+                page=page
+            )
+        )
+        if only_return:
+            self.page.update()
 
 
 class formulary_login(ft.Container):
@@ -325,6 +337,7 @@ class formulary_login(ft.Container):
         self.border = ft.border.all(2, "white,0.01")
         self.user_textfield = str()
         self.pasword_textfield = str()
+        # print(self.page)
 
     def build(self):
         self.column_data = ft.Column(
@@ -525,19 +538,25 @@ class formulary_login(ft.Container):
     def go_recover_menu(self):
         self.middle_box.content.controls.pop()
         self.middle_box.content.controls.append(
-            recover_login(middle_box=self.middle_box))
+            recover_login(
+                middle_box=self.middle_box,
+                page=self.page
+            ))
         self.page.update()
 
     def show_register_menu(self):
         self.middle_box.content.controls.pop()
         self.middle_box.content.controls.append(
-            formulary_register(middle_box=self.middle_box))
+            formulary_register(
+                middle_box=self.middle_box,
+                page=self.page
+            ))
         self.page.update()
 
-    def user_update_data(self, payload: str = str()) ->str:
+    def user_update_data(self, payload: str = str()) -> str:
         self.user_textfield = payload.data
 
-    def password_update_data(self, payload: str = str()) ->str:
+    def password_update_data(self, payload: str = str()) -> str:
         self.pasword_textfield = payload.data
 
     def start_flet_box(self):
@@ -546,12 +565,12 @@ class formulary_login(ft.Container):
         self.pasword = self.pasword_textfield
 
         sqlite_obj = sqlite_db()
-        data_returned = sqlite_obj.find_name(table_name='register',
-                                             column='user_name',
-                                             name=self.user,
-                                             match=['user_password',
-                                                    self.pasword]
-                                             )
+        data_returned = sqlite_obj.find_name(
+            table_name='register',
+            column='user_name',
+            name=self.user,
+            match=['user_password',
+                   self.pasword])
 
         if data_returned:
             user_name, email, pasword, register_time = data_returned[0]
@@ -762,7 +781,7 @@ class formulary_register(ft.Container):
                         label="exemple_name@gmail.com",
                         border_color=ft.colors('white12'),
                         border_radius=30,
-                        on_change=lambda submit_data:self.email_register(
+                        on_change=lambda submit_data: self.email_register(
                             payload=submit_data),
                     ),
                 ),
@@ -784,7 +803,7 @@ class formulary_register(ft.Container):
                     margin=ft.margin.all(0),
                     alignment=ft.alignment.center,
                     border_radius=ft.border_radius.all(30),
-                    on_click=lambda _:self.open_register_succesfully(),
+                    on_click=lambda _: self.open_register_succesfully(),
                     content=ft.Row(
                         alignment=ft.MainAxisAlignment.CENTER,
                         vertical_alignment=ft.CrossAxisAlignment.CENTER,
@@ -840,14 +859,12 @@ class formulary_register(ft.Container):
                 if user_name:
                     on_developing(
                         self=self,
-                        page=self.page,
                         name_seccion='Duplicate validation username',
                         body_string="Pleasse username exist in database take another account"
                     )
                 elif user_email:
                     on_developing(
                         self=self,
-                        page=self.page,
                         name_seccion='Duplicate validation email',
                         body_string="Pleasse email exist in database take another account"
                     )
@@ -897,13 +914,11 @@ class formulary_register(ft.Container):
                     self.page.update()
             else:
                 on_developing(self=self,
-                              page=self.page,
                               name_seccion='Wrong typing email',
                               body_string="Pleasse check email most be real email"
                               )
         else:
             on_developing(self=self,
-                          page=self.page,
                           name_seccion='Wrong validation password',
                           body_string="Pleasse both password need be same"
                           )
@@ -928,7 +943,7 @@ class formulary_register(ft.Container):
     def show_login_menu(self):
         self.middle_box.content.controls.pop()
         self.middle_box.content.controls.append(
-            formulary_login(middle_box=self.middle_box)
+            formulary_login(middle_box=self.middle_box, page=self.page)
         )
         self.page.update()
 
@@ -944,6 +959,7 @@ class about_flet_box(ft.Container):
         self.alignment = ft.alignment.top_center
         self.middle_box = middle_box
         self.border = ft.border.all(2, "white,0.01")
+        # print(self.page)
 
     def build(self):
         self.content = ft.Container(
@@ -1001,7 +1017,7 @@ class about_flet_box(ft.Container):
                         margin=ft.margin.all(8),
                         alignment=ft.alignment.center,
                         border_radius=ft.border_radius.all(30),
-                        on_click=lambda _:self.start_formulary_loggin(),
+                        on_click=lambda _: self.start_formulary_loggin(),
                         shadow=ft.BoxShadow(
                             spread_radius=1,
                             blur_radius=15,
@@ -1022,26 +1038,27 @@ class about_flet_box(ft.Container):
     def start_formulary_loggin(self):
         self.middle_box.content.controls.pop()
         self.middle_box.content.controls.append(
-            formulary_login(middle_box=self.middle_box))
+            formulary_login(middle_box=self.middle_box, page=self.page))
         self.page.update()
 
 
 class middle_body(ft.Container):
 
-    def __init__(self, data='Erase this test'):
+    def __init__(self, page: object = None):
         super().__init__()
-        self.title = data
+        self.page = page
 
         self.expand = True
         self.ink = False
         self.padding = ft.padding.all(0)
         self.margin = ft.margin.all(0)
         self.alignment = ft.alignment.center
+        # print(self.page)
 
     def build(self):
         self.content = ft.Row(
             controls=[
-                about_flet_box(middle_box=self),
+                about_flet_box(middle_box=self, page=self.page),
                 # formulary_login(middle_box=self),
                 # formulary_register(middle_box=self),
                 # recover_login(middle_box=self),
@@ -1064,13 +1081,14 @@ class login_page(ft.Container):
             fit=ft.ImageFit.COVER,
             opacity=0.5 if self.page.window.width <= 620 else 0.5,
         )
+        # print(self.page)
 
     def build(self):
         self.content = ft.Column(
             scroll="ALWAYS",
             horizontal_alignment=ft.CrossAxisAlignment.CENTER,
             controls=[
-                middle_body(),
+                middle_body(page=self.page),
             ]
         )
 

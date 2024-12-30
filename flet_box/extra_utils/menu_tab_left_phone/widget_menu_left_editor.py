@@ -270,7 +270,7 @@ class MenuLeftContainer(ft.Stack):
         # self.page.update()
 
     def show_widgets(self, show_widget: str = str(),):
-        print(self.page.session.get('user_name'))
+        print(self.page.session.get('user_name'),'function show_widget in widget_menu_left_editor.py')
         # return
 
         if show_widget == "save_project":
@@ -400,11 +400,14 @@ class MenuLeftContainer(ft.Stack):
             title=ft.Text(value=self.data, size=15),
             on_dismiss=lambda e: print("Dialog dismissed!"),
         )
-        # self.page.dialog = self.dialog_alert
-        self.page.overlay.append(self.dialog_alert)
+
+        if self.page.overlay:
+            self.page.overlay.pop()
+
+        self.page.overlay.insert(0, self.dialog_alert)
         self.page.overlay[0].open = True
         self.page.update()
-        self.page.overlay.pop()
+        # print(self.page.overlay)
 
     def action_windows(self, action):
         if action == "Close":
