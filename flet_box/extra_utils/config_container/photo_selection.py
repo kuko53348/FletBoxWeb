@@ -64,15 +64,25 @@ class PhotoSelection(ft.Container):
         if attribute_name_image == "image_src ":
             self.phone_image = self.page.session.get('SELECTED_SCREEN')
 
-            if self.phone_image.content.content.content.image:
-                self.phone_image.image = None
-                self.phone_image.content.content.content.image = None
-                self.phone_image.update()
+            # if self.phone_image.content.content.content.image:
+            #     self.phone_image.image = None
+            #     self.phone_image.content.content.content.image = None
+            #     self.phone_image.update()
 
-            else:
-                # self.phone_image.content.content.content.image = None
+            # else:
+            #     # self.phone_image.content.content.content.image = None
 
-                self.phone_image.image = ft.DecorationImage(
+            #     self.phone_image.image = ft.DecorationImage(
+            #        src=self.photo_selection.split('/')[2],
+            #         fit=ft.ImageFit.COVER,  #: CONTAIN, FILL, FIT_WIDTH, SCALE_DOWN, COVER, FIT_HEIGHT, NONE
+            #         # opacity=0.06,
+            #     )
+
+            self.phone_image.image = None
+            self.phone_image.content.content.content.image = None
+            self.phone_image.update()
+            
+            self.phone_image.image = ft.DecorationImage(
                    src=self.photo_selection.split('/')[2],
                     fit=ft.ImageFit.COVER,  #: CONTAIN, FILL, FIT_WIDTH, SCALE_DOWN, COVER, FIT_HEIGHT, NONE
                     # opacity=0.06,

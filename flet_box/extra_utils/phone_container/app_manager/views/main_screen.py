@@ -8,13 +8,15 @@ import flet as ft
 #: STYLE TO MAIN SCREEN WIDGET
 phone_style_widget: dict = {
     "main_container":  {
-        "image":  {"src": "designer_8.jpeg", "fit": "cover"},
-        "gradient":  None
+        "image":  {"src": "designer_2.jpeg", "fit": "cover", "opacity": 0.10999999999999999},
+        "gradient":  {"colors": ["black", "black12"], "tile_mode": "clamp", "begin": {"x": 0, "y": 1},
+                    "end": {"x": 0, "y": -1},
+                    "type": "linear"}
     },
     "second_container":  {
         "padding":  None,
-        "blur":  None,
-        "bgcolor":  None
+        "blur":  {"sigma_x": 20, "sigma_y": 20, "tile_mode": "mirror"},
+        "bgcolor":  "transparent"
     },
     "column_attributes":  {
         "scroll":  None,
@@ -28,7 +30,7 @@ phone_style_widget: dict = {
 
 #: STYLES IN SCREEN_STYLE
 styles = {
-    "Container_2924":  {
+    "Container_2879":  {
         "alignment":  {"x": 0, "y": 0},
         "bgcolor":  "transparent",
         "border":  {"l": {"w": 2, "c": "transparent"},
@@ -41,7 +43,7 @@ styles = {
         "padding":  {"l": 6, "t": 6, "r": 6, "b": 6},
         "ink_color":  "red"
     },
-    "Text_2925":  {
+    "Text_2880":  {
         "size":  25.0,
         "value":  "Welcome to Flet-Box"
     }
@@ -69,17 +71,17 @@ class main_screen(ft.DragTarget):
         #: DRAGG_CONTROLS
         list_controls: list = [
             
-            #: DRAG-BOX-CONTENT [ID: 2923]
+            #: DRAG-BOX-CONTENT [ID: 2878]
             self.draggin_framework(
                 content=ft.Container(
-                    **self.dict_style("Container_2924"),
+                    **self.dict_style("Container_2879"),
                     on_click=lambda dragg_item: self.dragg_event(
                                      selected_widget=dragg_item,),
 
                     content=ft.Text(
-                        **self.dict_style("Text_2925"),
-                        # on_click= lambda tmp_widget: event_2925(
-                        #        payload="Text_2925",
+                        **self.dict_style("Text_2880"),
+                        # on_click= lambda tmp_widget: event_2880(
+                        #        payload="Text_2880",
                         #        page= self.page ),
                     ),
                 ),),

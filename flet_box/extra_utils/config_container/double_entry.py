@@ -221,7 +221,23 @@ class DoubleEntry(ft.Stack):
             )
 
         if config_widget == "blur":
-            self.widget_tmp = self.page.session.get("SELECTED_SCREEN")  # <== SELECTED PHONE SCREEN
+            print('blur image')
+            self.widget_tmp = self.page.session.get('SELECTED_SCREEN')
+            
+            # ERASE BLUR 
+            self.widget_tmp.content.content.content.content.blur = ft.Blur(
+                int(value.content.controls[1].content.controls[0].content.value)
+                if value.content.controls[1].content.controls[0].content.value
+                else 0,
+                int(value.content.controls[1].content.controls[1].content.value)
+                if value.content.controls[1].content.controls[1].content.value
+                else 0,
+                ft.BlurTileMode.MIRROR,
+            )
+            # self.widget_tmp.update()
+            # self.page.update()
+        
+            # self.widget_tmp = self.page.session.get("SELECTED_SCREEN")  # <== SELECTED PHONE SCREEN
             self.widget_tmp.content.content.content.blur = ft.Blur(
                 int(value.content.controls[1].content.controls[0].content.value)
                 if value.content.controls[1].content.controls[0].content.value

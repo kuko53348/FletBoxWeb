@@ -28,10 +28,10 @@ class GradientEntry(ft.Stack):
     # "#ec4899",
     # "#db2777",
     # "#be185d",
-    color_1 = "Blue"
-    color_2 = "Purple"
-    color_3 = "Red"
-    color_4 = "Orange"
+    color_1 = "Purple"
+    color_2 = "Black12"
+    color_3 = None
+    color_4 = None
 
     main_gradient = None
     start_gradient = " bottom_center "
@@ -384,7 +384,7 @@ class GradientEntry(ft.Stack):
         #:                 end gradient:   {self.end_gradient}
         #:                         """
         #: all_x = [self.color_1]
-        # print(self.main_gradient)
+        print(self.main_gradient)
         if self.main_gradient == " Linear ":
             if self.color_1 and self.color_2:
                 if self.color_1 and self.color_2 and self.color_3 and self.color_4:
@@ -421,6 +421,7 @@ class GradientEntry(ft.Stack):
                     )
                     print(self.widget)
 
+        # elif self.main_gradient == " Linear ":
         elif self.main_gradient == " Radial ":
             if self.color_1 and self.color_2:
                 if self.color_1 and self.color_2 and self.color_3 and self.color_4:
@@ -495,7 +496,7 @@ class GradientEntry(ft.Stack):
             widget.content.update()
 
             self.phone_image = self.page.session.get('SELECTED_SCREEN')
-            self.phone_image.gradient = ft.LinearGradient( begin=ft.alignment.top_center,end=ft.alignment.bottom_center,colors=[ft.colors.BLUE, ft.colors.YELLOW],)
+            self.phone_image.gradient = None
             self.phone_image.update()
 
         elif config_widget == " Linear ":
@@ -564,5 +565,6 @@ class GradientEntry(ft.Stack):
                 self.start_gradient = config_widget
             if value == "end gradient":
                 self.end_gradient = config_widget
+
         # print(self.widget)
         # self.widget.update()

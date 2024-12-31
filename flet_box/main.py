@@ -292,6 +292,25 @@ class flet_box:
                     )
                 )
 
+            if self.page.route == "/admind/database":
+                self.page.views.append(
+                    ft.View(
+                        horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+                        vertical_alignment=ft.MainAxisAlignment.CENTER,
+                        padding=0,
+                        route="/admind/database",
+                        controls=[
+                            ft.Container(
+                                content=ft.Text(
+                                    value='welcome to admin menu',
+                                )
+                            )
+                            # column_container(page=self.page),
+                            # project_manager(page=self.page, visible=False),
+                        ],
+                    )
+                )
+
             self.page.update()
 
         # NEVER ERASE THIS INVITED PERSON
@@ -302,12 +321,13 @@ class flet_box:
         self.page.theme_mode = ft.ThemeMode.DARK
 
         # FIRST SCREEN
-        self.page.go('/')
+        # self.page.go('/')
         # self.page.go('/screen_manager')
+        # self.page.go('/admind/database')
 
         # JUMP TO DEV ACCOUNT
-        # self.page.go('/home')
-        # self.page.session.set('user_name', {'user_name': 'kuko53348'})
+        self.page.go('/home')
+        self.page.session.set('user_name', {'user_name': 'kuko53348'})
 
     def setting_only_append_controls(self):
         self.widgetFilter = [_.lower()
