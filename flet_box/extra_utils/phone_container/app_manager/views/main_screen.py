@@ -8,10 +8,8 @@ import flet as ft
 #: STYLE TO MAIN SCREEN WIDGET
 phone_style_widget: dict = {
     "main_container":  {
-        "image":  {"src": "designer_3.jpeg", "fit": "cover", "opacity": 0.61},
-        "gradient":  {"colors": ["black", "Black12"], "tile_mode": "clamp", "begin": {"x": 0, "y": 1},
-                    "end": {"x": 0, "y": -1},
-                    "type": "linear"}
+        "image":  None,
+        "gradient":  None
     },
     "second_container":  {
         "padding":  None,
@@ -29,7 +27,59 @@ phone_style_widget: dict = {
 }
 
 #: STYLES IN SCREEN_STYLE
-styles = {}
+styles = {
+    "Container_2873":  {
+        "alignment":  {"x": 0, "y": 0},
+        "bgcolor":  "transparent",
+        "border":  {"l": {"w": 2, "c": "transparent", "sa": None},
+                    "t": {"w": 2, "c": "transparent", "sa": None},
+                    "r": {"w": 2, "c": "transparent", "sa": None},
+                    "b": {"w": 2, "c": "transparent", "sa": None}
+                    },
+        "ink":  True,
+        "margin":  {"l": 0, "t": 0, "r": 0, "b": 0},
+        "padding":  {"l": 6, "t": 6, "r": 6, "b": 6},
+        "ink_color":  "red"
+    },
+    "Text_2874":  {
+        "size":  25.0,
+        "value":  "Welcome to Flet-Box"
+    },
+    "Container_2876":  {
+        "alignment":  {"x": 0, "y": 0},
+        "bgcolor":  "transparent",
+        "border":  {"l": {"w": 2, "c": "transparent", "sa": None},
+                    "t": {"w": 2, "c": "transparent", "sa": None},
+                    "r": {"w": 2, "c": "transparent", "sa": None},
+                    "b": {"w": 2, "c": "transparent", "sa": None}
+                    },
+        "ink":  True,
+        "margin":  {"l": 0, "t": 0, "r": 0, "b": 0},
+        "padding":  {"l": 6, "t": 6, "r": 6, "b": 6},
+        "ink_color":  "red"
+    },
+    "Text_2877":  {
+        "size":  10,
+        "value":  "Ready to make your first app!!"
+    },
+    "Container_2879":  {
+        "alignment":  {"x": 0, "y": 0},
+        "border":  {"l": {"w": 0, "c": "transparent", "sa": None},
+                    "t": {"w": 0, "c": "transparent", "sa": None},
+                    "r": {"w": 0, "c": "transparent", "sa": None},
+                    "b": {"w": 0, "c": "transparent", "sa": None}
+                    },
+        "height":  148,
+        "ink":  True,
+        "margin":  {"l": 0, "t": 0, "r": 0, "b": 0},
+        "padding":  {"l": 6, "t": 6, "r": 6, "b": 6},
+        "ink_color":  "red"
+    },
+    "Text_2899":  {
+        "size":  10,
+        "value":  "Ready to make your first app!!"
+    }
+}
 
 
 class main_screen(ft.DragTarget):
@@ -53,6 +103,48 @@ class main_screen(ft.DragTarget):
         #: DRAGG_CONTROLS
         list_controls: list = [
             
+            #: DRAG-BOX-CONTENT [ID: 2872]
+            self.draggin_framework(
+                content=ft.Container(
+                    **self.dict_style("Container_2873"),
+                    on_click=lambda dragg_item: self.dragg_event(
+                                     selected_widget=dragg_item,),
+
+                    content=ft.Text(
+                        **self.dict_style("Text_2874"),
+                        # on_click= lambda tmp_widget: event_2874(
+                        #        payload="Text_2874",
+                        #        page= self.page ),
+                    ),
+                ),),
+            #: DRAG-BOX-CONTENT [ID: 2875]
+            self.draggin_framework(
+                content=ft.Container(
+                    **self.dict_style("Container_2876"),
+                    on_click=lambda dragg_item: self.dragg_event(
+                                     selected_widget=dragg_item,),
+
+                    content=ft.Text(
+                        **self.dict_style("Text_2877"),
+                        # on_click= lambda tmp_widget: event_2877(
+                        #        payload="Text_2877",
+                        #        page= self.page ),
+                    ),
+                ),),
+            #: DRAG-BOX-CONTENT [ID: 2878]
+            self.draggin_framework(
+                content=ft.Container(
+                    **self.dict_style("Container_2879"),
+                    on_click=lambda dragg_item: self.dragg_event(
+                                     selected_widget=dragg_item,),
+
+                    content=ft.Text(
+                        **self.dict_style("Text_2899"),
+                        # on_click= lambda tmp_widget: event_2899(
+                        #        payload="Text_2899",
+                        #        page= self.page ),
+                    ),
+                ),),
         ]
 
         #: DRAGGIN CONTENT WIDGETS

@@ -282,6 +282,8 @@ class go_home_screen(ft.Container):
 
     def go_main_screen(self):
         # print('go_main_screen <<<<<')
+        self.page.session.set("SELECTED_CONTAINER", None)
+        
         self.page.views[1].controls[1].visible = False
         self.page.views[1].controls[0].visible = True
         self.page.views[1].update()

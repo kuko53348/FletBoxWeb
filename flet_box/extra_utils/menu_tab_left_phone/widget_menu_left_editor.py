@@ -273,7 +273,12 @@ class MenuLeftContainer(ft.Stack):
         print(self.page.session.get('user_name'),'function show_widget in widget_menu_left_editor.py')
         # return
 
+
+
         if show_widget == "save_project":
+            # RESET BORDER COLOR
+            self.reset_border_select_widget()
+
             # MAIN SCREEN PHONE
             self.screen_phone = self.page.session.get("SELECTED_SCREEN")
 
@@ -418,4 +423,29 @@ class MenuLeftContainer(ft.Stack):
 
         elif action == "Resize":
             self.page.window_maximizable = True
+        self.page.update()
+
+    def reset_border_select_widget(self) -> None:
+        """
+        Note:
+            remove clean all editro tab and selected widget before save data in database
+        """
+        self.widget_selected = self.page.session.get("SELECTED_CONTAINER")
+        
+        # REMOVE BORDER COLOR BEFORE SAVE
+        if not self.widget_selected == None:
+            self.widget_selected.border = ft.border.all(
+                2, ft.colors('transparent'))
+
+        self.config_tab_container = self.page.session.get(
+            "CONFIG_TABS_CONTAINERS")
+        self.config_tab_container_content = self.page.session.get(
+            "CONFIG_TABS_CONTAINERS_CONTENT")
+
+        # REMOVE VISIBLE TAB EDITOR BEFORE SAVE
+        self.config_tab_container.visible=False
+        self.config_tab_container_content.visible=False
+        
+        # RESET TO NONE TOUCH WIDGET
+        self.page.session.set("SELECTED_CONTAINER", None)
         self.page.update()

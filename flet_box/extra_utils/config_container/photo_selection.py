@@ -101,13 +101,13 @@ class PhotoSelection(ft.Container):
             # )
             edit_widget_image.src = self.photo_selection.split('/')[2]
             self.page.session.set('image_fit',edit_widget_image)
-            
+
             # edit_widget_image.fit = ft.ImageFit.CONTAIN
             edit_widget_image.update()
         self.page.update()
 
         #  ONLY IN PRODUCTION
-        print(f"'{attribute_name_image}'",'<<<, HELLO')
+        # print(f"'{attribute_name_image}'",'<<<, HELLO')
 
 
 class ScreenPhotoSelection(ft.Container):
