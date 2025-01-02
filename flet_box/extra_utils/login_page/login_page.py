@@ -1078,7 +1078,7 @@ class login_page(ft.Container):
         self.margin = ft.margin.all(0)
         self.alignment = ft.alignment.center
         self.image = ft.DecorationImage(
-            src='designer_2.jpeg',
+            src='login.jpeg',
             fit=ft.ImageFit.COVER,
             opacity=0.5 if self.page.window.width <= 620 else 0.5,
         )

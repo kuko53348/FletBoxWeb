@@ -213,11 +213,11 @@ class MenuLeftContainer(ft.Stack):
                     # ),
                     ft.Container(
                         alignment=ft.alignment.center,
-                        tooltip="LOAD SCREEN",
+                        tooltip="MARKET PLACE",
                         content=ft.IconButton(
-                            icon=ft.icons('screenshot_rounded'),
+                            icon=ft.icons('local_grocery_store_rounded'),
                             on_click=lambda _: self.show_widgets(
-                                show_widget="load screen"
+                                show_widget="MARKET PLACE"
                             ),
                         ),
                         border=ft.border.all(1, ft.colors('cyan200')),
@@ -342,7 +342,7 @@ class MenuLeftContainer(ft.Stack):
 
             self.icon_browser.update()
 
-        if show_widget == "load screen":
+        if show_widget == "MARKET PLACE":
             # NEED IMPLEMENT YET
             # self.page.go('/screen_manager')
             self.page.views[1].controls[0].visible=False

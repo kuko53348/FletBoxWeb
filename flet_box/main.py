@@ -186,7 +186,7 @@ class column_container(ft.Container):
         self.page = page
         self.alignment = ft.alignment.center
         self.image = ft.DecorationImage(
-            src='theme_2.jpeg',
+            src='backend.webp',
             fit=ft.ImageFit.COVER,  #: CONTAIN, FILL, FIT_WIDTH, SCALE_DOWN, COVER, FIT_HEIGHT, NONE
             # opacity=0.1 if self.page.window.width <= 620 else 0.1,
         )
@@ -321,12 +321,12 @@ class flet_box:
         self.page.theme_mode = ft.ThemeMode.DARK
 
         # FIRST SCREEN
-        # self.page.go('/')
+        self.page.go('/')
         # self.page.go('/screen_manager')
         # self.page.go('/admind/database')
 
         # JUMP TO DEV ACCOUNT
-        self.page.go('/home')
+        # self.page.go('/home')
         self.page.session.set('user_name', {'user_name': 'kuko53348'})
 
     def setting_only_append_controls(self):

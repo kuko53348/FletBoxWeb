@@ -281,12 +281,37 @@ class go_home_screen(ft.Container):
         )
 
     def go_main_screen(self):
-        # print('go_main_screen <<<<<')
-        self.page.session.set("SELECTED_CONTAINER", None)
-        
+        # RESET SELECTED WIDGET TO EVOIT ISSUES
+        self.reset_border_select_widget()
+
         self.page.views[1].controls[1].visible = False
         self.page.views[1].controls[0].visible = True
         self.page.views[1].update()
+
+    def reset_border_select_widget(self) -> None:
+        """
+        Note:
+            remove clean all editro tab and selected widget before save data in database
+        """
+        self.widget_selected = self.page.session.get("SELECTED_CONTAINER")
+
+        # REMOVE BORDER COLOR BEFORE SAVE
+        if not self.widget_selected == None:
+            self.widget_selected.border = ft.border.all(
+                2, ft.colors('transparent'))
+
+        self.config_tab_container = self.page.session.get(
+            "CONFIG_TABS_CONTAINERS")
+        self.config_tab_container_content = self.page.session.get(
+            "CONFIG_TABS_CONTAINERS_CONTENT")
+
+        # REMOVE VISIBLE TAB EDITOR BEFORE SAVE
+        self.config_tab_container.visible=False
+        self.config_tab_container_content.visible=False
+
+        # RESET TO NONE TOUCH WIDGET
+        self.page.session.set("SELECTED_CONTAINER", None)
+        self.page.update()
 
 class screen_manager(ft.Container):
 
@@ -504,19 +529,19 @@ class project_manager(ft.Container):
     TABS_PROJECTS: list = {
         'Splash': ft.Icons('do_not_touch'),
         'Introduction': ft.Icons('start'),
-        'Login': ft.Icons('login'),
-        # 'Register': ft.Icons('how_to_reg'),
-        'Lock': ft.Icons('block'),
-        'MixViews': ft.Icons('dashboard'),
-        'GridView': ft.Icons('grid_view_rounded'),
-        'ListView': ft.Icons('grading'),
-        'DashBoard': ft.Icons('dashboard'),
-        'Payment': ft.Icons('account_balance_wallet'),
-        'Shopping': ft.Icons('shopping_bag'),
-        'Music': ft.Icons('speaker_group_rounded'),
-        'SettingsView': ft.Icons('settings'),
-        'Verification': ft.Icons('verified'),
-        'About': ft.Icons('account_box'),
+        # 'Login': ft.Icons('login'),
+        # 'LoginRegister': ft.Icons('how_to_reg'),
+        # 'Lock': ft.Icons('block'),
+        # 'MixViews': ft.Icons('dashboard'),
+        # 'GridView': ft.Icons('grid_view_rounded'),
+        # 'ListView': ft.Icons('grading'),
+        # 'DashBoard': ft.Icons('dashboard'),
+        # 'Payment': ft.Icons('account_balance_wallet'),
+        # 'Shopping': ft.Icons('shopping_bag'),
+        # 'Music': ft.Icons('speaker_group_rounded'),
+        # 'SettingsView': ft.Icons('settings'),
+        # 'Verification': ft.Icons('verified'),
+        # 'About': ft.Icons('account_box'),
     }
 
     def __init__(self, page: object = None, visible: bool = True):
@@ -615,36 +640,39 @@ class project_manager(ft.Container):
                 self.list_projects_tabs(table_name='Login')
 
             case 3:
-                self.list_projects_tabs(table_name='Lock')
+                self.list_projects_tabs(table_name='LoginRegister')
 
             case 4:
-                self.list_projects_tabs(table_name='MixViews')
+                self.list_projects_tabs(table_name='Lock')
 
             case 5:
-                self.list_projects_tabs(table_name='GridView')
+                self.list_projects_tabs(table_name='MixViews')
 
             case 6:
-                self.list_projects_tabs(table_name='ListView')
+                self.list_projects_tabs(table_name='GridView')
 
             case 7:
-                self.list_projects_tabs(table_name='DashBoard')
+                self.list_projects_tabs(table_name='ListView')
 
             case 8:
-                self.list_projects_tabs(table_name='Payment')
+                self.list_projects_tabs(table_name='DashBoard')
 
             case 9:
-                self.list_projects_tabs(table_name='Shopping')
+                self.list_projects_tabs(table_name='Payment')
 
             case 10:
-                self.list_projects_tabs(table_name='Music')
+                self.list_projects_tabs(table_name='Shopping')
 
             case 11:
-                self.list_projects_tabs(table_name='SettingsView')
+                self.list_projects_tabs(table_name='Music')
 
             case 12:
-                self.list_projects_tabs(table_name='Verification')
+                self.list_projects_tabs(table_name='SettingsView')
 
             case 13:
+                self.list_projects_tabs(table_name='Verification')
+
+            case 14:
                 self.list_projects_tabs(table_name='About')
 
         self.grid_widget.update()
