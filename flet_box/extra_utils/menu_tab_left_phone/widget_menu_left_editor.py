@@ -24,10 +24,6 @@ class MenuLeftContainer(ft.Stack):
 
         self.phone_container = phone_container
         self.menu_right_container = menu_right_container
-        # self.icon_browser = GLOBAL_VAR(get_global_var="ICON_BROWSER_CONTAINER")
-        # self.color_browser = GLOBAL_VAR(get_global_var="COLOR_BROWSER_CONTAINER")
-        # self.gpt_browser   = GLOBAL_VAR(get_global_var='GPT_BROWSER_CONTAINER')
-        # self.text_editor = GLOBAL_VAR(get_global_var="TEXT_EDITOR_CONTAINER")
         # self.data_view = WrapWidgetNode()
         self.page.session.set('on_dev', self.on_developing)
 
@@ -273,57 +269,10 @@ class MenuLeftContainer(ft.Stack):
         print(self.page.session.get('user_name'),'function show_widget in widget_menu_left_editor.py')
         # return
 
-
-
         if show_widget == "save_project":
-            # RESET BORDER COLOR
+            # will save in database
             self.reset_border_select_widget()
-
-            # MAIN SCREEN PHONE
-            self.screen_phone = self.page.session.get("SELECTED_SCREEN")
-
-            # PHONE CONTENT CONTENT
-            self.screen_widget = self.screen_phone.content.content
-
-            # ATTRIBUTES COLUMN PHONE
-            # self.column_atributes = self.screen_widget.content.content
-            self.column_atributes = self.screen_widget.content.content.content.content.content
-
-            # COLUMN CONTROLS OF PHONR
-            # controls_widgets = self.screen_widget.content.content.controls
-            controls_widgets = self.screen_widget.content.content.content.content.content.controls
-
-            self.dict_attributes = {
-                "container": self.screen_phone,
-                "effect_container": self.screen_widget.content,
-                "column_attributes":self.column_atributes
-            }
-
-            # SAVING DATA
-            code_returned = refactory_flet_box(page=self.page)
-
-            for widgets_recursion in controls_widgets:
-                code_returned.get_widget_attributes(widget=widgets_recursion)
-
-            # WRITE DATA IN FILES
-            # code_returned.save_all_data(
-            #             screen_name='main_screen',
-            #             container_attributes=self.dict_attributes,
-            #             one_file=True,
-            #     )
-            # WRITE DATA IN FILES
-            code_returned.save_all_data(
-                        screen_name='main_screen',
-                        container_attributes=self.dict_attributes,
-                        one_file=True,
-                )
-            # ATTRIBUTES CONTAINER PHONE
-            # self.container_image = self.screen_phone.image
-            # self.container_gradient = self.screen_phone.gradient
-
-            # self.container_padding = self.screen_widget.content.padding
-            # self.container_blur = self.screen_widget.content.blur
-            # self.container_bgcolor = self.screen_widget.content.bgcolor
+            self.page.go('/save_menu')
 
         if show_widget == "icon_browser":
             # NEED IMPLEMENT YET

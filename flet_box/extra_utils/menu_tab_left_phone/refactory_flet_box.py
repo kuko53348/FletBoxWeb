@@ -942,11 +942,11 @@ class refactory_flet_box:
                                     data_to_write=f"{widgets_events}\n",
                 )
         # OPEN ALL DATATA WAS SAVE
-        self.open_dialog = self.page.session.get('on_dev')
-        self.open_dialog(
-                        name_seccion='your project have been saved',
-                        body_string=f"Thank your contribution with Flet-Box\nAnd all dev with Flet thanks make posible this App\n\n"
-        )
+        # self.open_dialog = self.page.session.get('on_dev')
+        # self.open_dialog(
+        #                 name_seccion='your project have been saved',
+        #                 body_string=f"Thank your contribution with Flet-Box\nAnd all dev with Flet thanks make posible this App\n\n"
+        # )
 
     def write_files_in_project(self,
                                screen_name: str = str(),

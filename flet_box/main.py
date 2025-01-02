@@ -11,6 +11,7 @@ from extra_utils import LiteMenuUpContainer  #: LITE MENU RIGHT PHONE AND DOWN
 from extra_utils import login_page  #: LOGIN PAGE
 from extra_utils import project_manager  #: LOGIN PAGE
 
+from extra_utils.menu_tab_left_phone.menu_save_container import menu_save_container
 
 class header_container(ft.Container):
 
@@ -188,6 +189,7 @@ class column_container(ft.Container):
         self.image = ft.DecorationImage(
             src='backend.webp',
             fit=ft.ImageFit.COVER,  #: CONTAIN, FILL, FIT_WIDTH, SCALE_DOWN, COVER, FIT_HEIGHT, NONE
+            opacity=0.35,
             # opacity=0.1 if self.page.window.width <= 620 else 0.1,
         )
         self.expand = True
@@ -288,6 +290,22 @@ class flet_box:
                         controls=[
                             column_container(page=self.page),
                             project_manager(page=self.page, visible=False),
+                            # menu_save_container(page=self.page,visible=False)
+                        ],
+                    )
+                )
+
+            if self.page.route == "/save_menu":
+                self.page.views.append(
+                    ft.View(
+                        horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+                        vertical_alignment=ft.MainAxisAlignment.CENTER,
+                        padding=0,
+                        route="/menu_save",
+                        controls=[
+                            menu_save_container(page=self.page)
+                            # column_container(page=self.page),
+                            # project_manager(page=self.page, visible=False),
                         ],
                     )
                 )
@@ -295,6 +313,7 @@ class flet_box:
             if self.page.route == "/admind/database":
                 self.page.views.append(
                     ft.View(
+                        bgcolor='transparent',
                         horizontal_alignment=ft.CrossAxisAlignment.CENTER,
                         vertical_alignment=ft.MainAxisAlignment.CENTER,
                         padding=0,
@@ -321,12 +340,13 @@ class flet_box:
         self.page.theme_mode = ft.ThemeMode.DARK
 
         # FIRST SCREEN
-        self.page.go('/')
+        # self.page.go('/')
         # self.page.go('/screen_manager')
         # self.page.go('/admind/database')
+        # self.page.go('/save_menu')
 
         # JUMP TO DEV ACCOUNT
-        # self.page.go('/home')
+        self.page.go('/home')
         self.page.session.set('user_name', {'user_name': 'kuko53348'})
 
     def setting_only_append_controls(self):
