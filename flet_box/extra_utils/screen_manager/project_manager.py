@@ -20,6 +20,7 @@ class screen_phone(ft.Container):
             padding=ft.padding.all(0),
             margin=ft.margin.all(0),
             alignment=ft.alignment.center,
+            expand = True,
             width=320,
             border_radius=ft.border_radius.all(2),
             shadow=ft.BoxShadow(
@@ -30,7 +31,6 @@ class screen_phone(ft.Container):
                 blur_style=ft.ShadowBlurStyle.OUTER,
             ),
         )
-
 
 tmp_screen_phone = screen_phone()
 
@@ -200,9 +200,9 @@ class lite_screen_manager(ft.Container):
 
     def updating_phone(self,phone_attrib: object=None):
         phone_attrib = phone_attrib
-        print(self.Build_Phone_Editor.content.content.bgcolor,"<<<<<")
-        print(self.Build_Phone_Editor.content.content.content.bgcolor,"<<<<<")
-        print(self.Build_Phone_Editor.content.content.image)
+        # print(self.Build_Phone_Editor.content.content.bgcolor,"<<<<<")
+        # print(self.Build_Phone_Editor.content.content.content.bgcolor,"<<<<<")
+        # print(self.Build_Phone_Editor.content.content.image)
 
         # main_container in export data
         self.Build_Phone_Editor.parent.image=self.Build_Phone_Editor.content.content.image
@@ -246,7 +246,6 @@ class lite_screen_manager(ft.Container):
         tmp_module = dynamic_module.load_module_str() # type: ignore
         return tmp_module
 
-
 class go_home_screen(ft.Container):
 
     def __init__(self, page: object = None, main_screen: object = None):
@@ -287,7 +286,6 @@ class go_home_screen(ft.Container):
         self.page.views[1].controls[0].visible = True
         self.page.views[1].update()
 
-
 class screen_manager(ft.Container):
 
     def __init__(self, page: object = None, visible: bool = True):
@@ -312,6 +310,9 @@ class screen_manager(ft.Container):
         # tmp_screen_phone = screen_phone()
 
         self.content = ft.Column(
+            # alignment=ft.MainAxisAlignment.SPACE_AROUND,              # horizontal <=> START,CENTER,END SPACE_BETWEEN SPACE_AROUND SPACE_EVENLY
+            horizontal_alignment=ft.CrossAxisAlignment.CENTER,        # vertical       START,CENTER END
+
             controls=[
                 lite_screen_manager(
                     selected_screen=tmp_screen_phone,
@@ -324,7 +325,6 @@ class screen_manager(ft.Container):
                 )
             ],
         )
-
 
 class projects_made(ft.Container):
     def __init__(
@@ -503,7 +503,7 @@ class project_manager(ft.Container):
         'Splash': ft.Icons('do_not_touch'),
         'Introduction': ft.Icons('start'),
         'Login': ft.Icons('login'),
-        'Register': ft.Icons('how_to_reg'),
+        # 'Register': ft.Icons('how_to_reg'),
         'Lock': ft.Icons('block'),
         'MixViews': ft.Icons('dashboard'),
         'GridView': ft.Icons('grid_view_rounded'),
@@ -548,7 +548,7 @@ class project_manager(ft.Container):
 
                 ) for tabs_name in self.TABS_PROJECTS
             ],
-            on_change=lambda e: self.change_rail_position(
+            on_change= lambda e: self.change_rail_position(
                 index_rail=e.control.selected_index),
         )
 
@@ -613,39 +613,36 @@ class project_manager(ft.Container):
                 self.list_projects_tabs(table_name='Login')
 
             case 3:
-                self.list_projects_tabs(table_name='Register')
-
-            case 4:
                 self.list_projects_tabs(table_name='Lock')
 
-            case 5:
+            case 4:
                 self.list_projects_tabs(table_name='MixViews')
 
-            case 6:
+            case 5:
                 self.list_projects_tabs(table_name='GridView')
 
-            case 7:
+            case 6:
                 self.list_projects_tabs(table_name='ListView')
 
-            case 8:
+            case 7:
                 self.list_projects_tabs(table_name='DashBoard')
 
-            case 9:
+            case 8:
                 self.list_projects_tabs(table_name='Payment')
 
-            case 10:
+            case 9:
                 self.list_projects_tabs(table_name='Shopping')
 
-            case 11:
+            case 10:
                 self.list_projects_tabs(table_name='Music')
 
-            case 12:
+            case 11:
                 self.list_projects_tabs(table_name='SettingsView')
 
-            case 13:
+            case 12:
                 self.list_projects_tabs(table_name='Verification')
 
-            case 14:
+            case 13:
                 self.list_projects_tabs(table_name='About')
 
         self.grid_widget.update()
@@ -659,6 +656,9 @@ class project_manager(ft.Container):
         """
         sqlite_obj = sqlite_db()
         data_returned = sqlite_obj.find_all(table_name=table_name)
+        
+        # print(data_returned)
+        # return 
 
         if data_returned:
             for tmp_list in data_returned:
@@ -682,11 +682,12 @@ class project_manager(ft.Container):
                 )
 
             # self.grid_widget.controls = [projects_made() for _ in range(random.randint(0,9))]
+        self.page.update()
 
     # def change_rail_extended(self, ):
         # self.nav_rail.leading = self.nav_rail.destinations[index_rail]
-        self.nav_rail.extended = True if not self.nav_rail.extended else False
-        self.page.update()
+        # self.nav_rail.extended = True if not self.nav_rail.extended else False
+        # self.page.update()
 
 
 if __name__ == '__main__':

@@ -54,14 +54,9 @@ class PhotoSelection(ft.Container):
         edit_widget_image = self.page.session.get('set_edit_widget_image')  # <== SET (ft.Container, Image)
 
         #: SET ATTRIBUTES
-        if attribute_name_image == "image_src":
-            edit_widget_image.image = ft.DecorationImage(
-                src=self.photo_selection.split('/')[2],
-                fit=ft.ImageFit.COVER,  #: CONTAIN, FILL, FIT_WIDTH, SCALE_DOWN, COVER, FIT_HEIGHT, NONE
-                # opacity=0.06,
-            )
 
         if attribute_name_image == "image_src ":
+            # ONLY IMAGE IN PHONE
             self.phone_image = self.page.session.get('SELECTED_SCREEN')
 
             # if self.phone_image.content.content.content.image:
@@ -81,14 +76,38 @@ class PhotoSelection(ft.Container):
             self.phone_image.image = None
             self.phone_image.content.content.content.image = None
             self.phone_image.update()
-            
+
             self.phone_image.image = ft.DecorationImage(
                    src=self.photo_selection.split('/')[2],
                     fit=ft.ImageFit.COVER,  #: CONTAIN, FILL, FIT_WIDTH, SCALE_DOWN, COVER, FIT_HEIGHT, NONE
                     # opacity=0.06,
                 )
             self.phone_image.update()
-        # self.page.update()
+
+        if attribute_name_image == "image_src":
+            # ONLY IMAGE IN CONTAINER
+            edit_widget_image.image = ft.DecorationImage(
+                src=self.photo_selection.split('/')[2],
+                fit=ft.ImageFit.COVER,  #: CONTAIN, FILL, FIT_WIDTH, SCALE_DOWN, COVER, FIT_HEIGHT, NONE
+                # opacity=0.06,
+            )
+
+        if attribute_name_image == "src":
+            # ONLY IMAGE IN IMAGE
+            # edit_widget_image.content.image = ft.DecorationImage(
+            #     src=self.photo_selection.split('/')[2],
+            #     fit=ft.ImageFit.COVER,  #: CONTAIN, FILL, FIT_WIDTH, SCALE_DOWN, COVER, FIT_HEIGHT, NONE
+            #     # opacity=0.06,
+            # )
+            edit_widget_image.src = self.photo_selection.split('/')[2]
+            self.page.session.set('image_fit',edit_widget_image)
+            
+            # edit_widget_image.fit = ft.ImageFit.CONTAIN
+            edit_widget_image.update()
+        self.page.update()
+
+        #  ONLY IN PRODUCTION
+        print(f"'{attribute_name_image}'",'<<<, HELLO')
 
 
 class ScreenPhotoSelection(ft.Container):

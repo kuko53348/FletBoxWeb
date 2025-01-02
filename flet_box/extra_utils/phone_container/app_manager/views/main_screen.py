@@ -8,15 +8,15 @@ import flet as ft
 #: STYLE TO MAIN SCREEN WIDGET
 phone_style_widget: dict = {
     "main_container":  {
-        "image":  {"src": "designer_2.jpeg", "fit": "cover", "opacity": 0.10999999999999999},
-        "gradient":  {"colors": ["black", "black12"], "tile_mode": "clamp", "begin": {"x": 0, "y": 1},
+        "image":  {"src": "designer_3.jpeg", "fit": "cover", "opacity": 0.61},
+        "gradient":  {"colors": ["black", "Black12"], "tile_mode": "clamp", "begin": {"x": 0, "y": 1},
                     "end": {"x": 0, "y": -1},
                     "type": "linear"}
     },
     "second_container":  {
         "padding":  None,
-        "blur":  {"sigma_x": 20, "sigma_y": 20, "tile_mode": "mirror"},
-        "bgcolor":  "transparent"
+        "blur":  None,
+        "bgcolor":  None
     },
     "column_attributes":  {
         "scroll":  None,
@@ -29,25 +29,7 @@ phone_style_widget: dict = {
 }
 
 #: STYLES IN SCREEN_STYLE
-styles = {
-    "Container_2879":  {
-        "alignment":  {"x": 0, "y": 0},
-        "bgcolor":  "transparent",
-        "border":  {"l": {"w": 2, "c": "transparent"},
-                    "t": {"w": 2, "c": "transparent"},
-                    "r": {"w": 2, "c": "transparent"},
-                    "b": {"w": 2, "c": "transparent"}
-                    },
-        "ink":  True,
-        "margin":  {"l": 0, "t": 0, "r": 0, "b": 0},
-        "padding":  {"l": 6, "t": 6, "r": 6, "b": 6},
-        "ink_color":  "red"
-    },
-    "Text_2880":  {
-        "size":  25.0,
-        "value":  "Welcome to Flet-Box"
-    }
-}
+styles = {}
 
 
 class main_screen(ft.DragTarget):
@@ -71,20 +53,6 @@ class main_screen(ft.DragTarget):
         #: DRAGG_CONTROLS
         list_controls: list = [
             
-            #: DRAG-BOX-CONTENT [ID: 2878]
-            self.draggin_framework(
-                content=ft.Container(
-                    **self.dict_style("Container_2879"),
-                    on_click=lambda dragg_item: self.dragg_event(
-                                     selected_widget=dragg_item,),
-
-                    content=ft.Text(
-                        **self.dict_style("Text_2880"),
-                        # on_click= lambda tmp_widget: event_2880(
-                        #        payload="Text_2880",
-                        #        page= self.page ),
-                    ),
-                ),),
         ]
 
         #: DRAGGIN CONTENT WIDGETS

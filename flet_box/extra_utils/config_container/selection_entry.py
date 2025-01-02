@@ -267,18 +267,34 @@ class SelectionEntry(ft.Stack):
         #: IMAGE FIT
         #: CONTAIN, COVER, FILL, FIT_HEIGHT, FIT_WIDTH, SCALE_DOWN
         if self.attribute_widget == "image_fit_src":
+            
             if config_widget == " Contain":
                 self.widget.fit = ft.ImageFit.CONTAIN
+
             if config_widget == " Cover":
                 self.widget.fit = ft.ImageFit.COVER
+
             if config_widget == " Fill":
                 self.widget.fit = ft.ImageFit.FILL
+
             if config_widget == " Fit Height":
                 self.widget.fit = ft.ImageFit.FIT_HEIGHT
+                # self.widget.fit = ft.ImageFit("fit_height")
+
             if config_widget == " Fit Width":
                 self.widget.fit = ft.ImageFit.FIT_WIDTH
+                # self.widget.fit = ft.ImageFit("fit_width")
+
             if config_widget == " Scale Down":
                 self.widget.fit = ft.ImageFit.SCALE_DOWN
+                # self.widget.fit = ft.ImageFit("scale_down")
+
+            # self.tmp_image = self.widget.src
+            # self.widget.image = ft.DecorationImage(
+            #     src=self.tmp_image,
+            #     fit=ft.ImageFit.COVER,  #: CONTAIN, FILL, FIT_WIDTH, SCALE_DOWN, COVER, FIT_HEIGHT, NONE
+            #     # opacity=0.06,
+            # )
 
         elif self.attribute_widget == "image_fit ":
             self.phone_image = self.page.session.get('SELECTED_SCREEN')
