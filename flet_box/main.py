@@ -340,14 +340,14 @@ class flet_box:
         self.page.theme_mode = ft.ThemeMode.DARK
 
         # FIRST SCREEN
-        # self.page.go('/')
+        self.page.go('/')
         # self.page.go('/screen_manager')
         # self.page.go('/admind/database')
         # self.page.go('/save_menu')
 
         # JUMP TO DEV ACCOUNT
-        self.page.go('/home')
-        self.page.session.set('user_name', {'user_name': 'kuko53348'})
+        # self.page.go('/home')
+        # self.page.session.set('user_name', {'user_name': 'kuko53348'})
 
     def setting_only_append_controls(self):
         self.widgetFilter = [_.lower()
