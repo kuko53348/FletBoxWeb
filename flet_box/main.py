@@ -183,8 +183,7 @@ class column_container(ft.Container):
     bgcolor_container = "Dark"
 
     def __init__(self, page: object = None):
-        super().__init__(
-        )
+        super().__init__()
         self.page = page
         self.alignment = ft.alignment.center
         self.image = ft.DecorationImage(
@@ -206,14 +205,14 @@ class column_container(ft.Container):
     def build(self):
         self.content = ft.Container(
             blur=(18, 18),
-            border=ft.border.all(2, ft.Colors.with_opacity(0.6, ft.colors("black"))),
+            border=ft.border.all(1, ft.Colors.with_opacity(0.03, ft.colors("white"))),
+            border_radius=ft.border_radius.all(30),
             content=ft.Column(
                 spacing=8,
                 run_spacing=8,
                 alignment=ft.MainAxisAlignment.CENTER,
                 horizontal_alignment=ft.CrossAxisAlignment.CENTER,
                 controls=[
-
                     row_middle_container(page=self.page),
                     footer_container(page=self.page),
                 ],
@@ -252,11 +251,6 @@ class flet_box:
         self.page.padding = 0
         self.page.spacing = 0
 
-        # self.page.window.width=365
-        # self.page.window.width=360
-        # self.page.window.width=761
-        # self.page.window.width=860
-        # print(self.page.window.width)
         self.setting_only_append_controls()
 
         def route_change(route):
@@ -341,14 +335,14 @@ class flet_box:
         self.page.theme_mode = ft.ThemeMode.DARK
 
         # FIRST SCREEN
-        self.page.go('/')
+        # self.page.go('/')
         # self.page.go('/screen_manager')
         # self.page.go('/admind/database')
         # self.page.go('/save_menu')
 
         # JUMP TO DEV ACCOUNT
-        # self.page.go('/home')
-        # self.page.session.set('user_name', {'user_name': 'kuko53348'})
+        self.page.go('/home')
+        self.page.session.set('user_name', {'user_name': 'kuko53348'})
 
     def setting_only_append_controls(self):
         self.widgetFilter = [_.lower()
