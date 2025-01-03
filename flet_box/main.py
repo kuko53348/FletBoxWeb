@@ -206,7 +206,7 @@ class column_container(ft.Container):
     def build(self):
         self.content = ft.Container(
             blur=(18, 18),
-
+            border=ft.border.all(2, ft.Colors.with_opacity(0.6, ft.colors("black"))),
             content=ft.Column(
                 spacing=8,
                 run_spacing=8,

@@ -340,7 +340,7 @@ class formulary_login(ft.Container):
         self.alignment = ft.alignment.top_center
         self.middle_box = middle_box
         # self.border = ft.border.all(2, ft.Colors.with_opacity(0.08, ft.colors("black")))
-        self.user_textfield = str()
+        self.email_textfield = str()
         self.pasword_textfield = str()
         # print(self.page)
 
@@ -401,7 +401,7 @@ class formulary_login(ft.Container):
                 ),
                 ft.Container(
                     ink=False,
-                    padding=ft.padding.all(2),
+                    padding=ft.padding.all(4),
                     margin=ft.margin.all(0),
                     alignment=ft.alignment.center_left,
                     border_radius=ft.border_radius.all(30),
@@ -413,7 +413,7 @@ class formulary_login(ft.Container):
                         blur_style=ft.ShadowBlurStyle.OUTER,
                     ),
                     content=ft.TextField(
-                        label="User name",
+                        label="User email",
                         border_color=ft.Colors.with_opacity(0.05, ft.colors("white")),
                         border_radius=30,
                         on_change=lambda submit_data:self.user_update_data(
@@ -562,33 +562,38 @@ class formulary_login(ft.Container):
         self.page.update()
 
     def user_update_data(self, payload: str = str()) -> str:
-        self.user_textfield = payload.data
+        self.email_textfield = payload.data
 
     def password_update_data(self, payload: str = str()) -> str:
         self.pasword_textfield = payload.data
 
     def start_flet_box(self):
 
-        self.user = self.user_textfield
+        self.email_user = self.email_textfield
         self.pasword = self.pasword_textfield
 
         sqlite_obj = sqlite_db()
         data_returned = sqlite_obj.find_name(
             table_name='register',
-            column='user_name',
-            name=self.user,
+            column='user_email',
+            name=self.email_user,
             match=['user_password',
                    self.pasword])
+
+        print(data_returned,"<<<< login_page.py")
 
         if data_returned:
             user_name, email, pasword, register_time = data_returned[0]
 
-            if user_name == self.user and self.pasword == pasword:
-                print(f"user_name: {user_name},pasword: {pasword}")
+            if email == self.email_user and self.pasword == pasword:
+                # print(f"user_name: {user_name},pasword: {pasword}")
                 self.page.session.set(
-                    'user_name', {'user_name': user_name, 'pasword': pasword})
+                    'user_name', {
+                        'user_name': user_name, 
+                        'pasword': pasword
+                    })
 
-                print(self.page,"<<<<<<<<<<<<<")
+                # print(self.page,"<<<<<<<<<<<<<")
                 self.page.go('/home')
         else:
             # self.open_dialog = self.page.session.get('on_dev')
@@ -850,15 +855,21 @@ class formulary_register(ft.Container):
                 and not self.user_register_str == ""\
                 and not self.email_register_str == "":
 
+            # IF IS VALID EMAIL CONTINUE LINE
             sqlite_obj = sqlite_db()
             is_valid_email = self.check_email(email=self.email_register_str)
 
             if is_valid_email:
+                
+                # IF NO EXIT DUPLICATE USER_NAME CONTINUE
+                sqlite_obj = sqlite_db()
                 user_name = sqlite_obj.find_name(
                     table_name='register',
                     column='user_name',
                     name=self.user_register_str
                 )
+
+                # IF NO EXIT DUPLICATE USER_EMAIL CONTINUE
                 sqlite_obj = sqlite_db()
                 user_email = sqlite_obj.find_name(
                     table_name='register',
@@ -867,12 +878,15 @@ class formulary_register(ft.Container):
                 )
 
                 if user_name:
+                    user_name = True
                     on_developing(
                         self=self,
                         name_seccion='Duplicate validation username',
                         body_string="Pleasse username exist in database take another account"
                     )
+                    
                 elif user_email:
+                    user_email = True
                     on_developing(
                         self=self,
                         name_seccion='Duplicate validation email',
@@ -894,7 +908,7 @@ class formulary_register(ft.Container):
                             str(datetime.now())
                         ))
 
-                    # WITE DATA IN SCREENS TABLE
+                    # WITE DATA BY DEFAULD IN SCREENS TABLE
                     sqlite_obj = sqlite_db()
                     sqlite_obj.write_data(
                         table_name='user_screen',
@@ -1092,7 +1106,7 @@ class login_page(ft.Container):
             src='backend.webp',
             fit=ft.ImageFit.COVER,
             # opacity=0.5 if self.page.window.width <= 620 else 0.5,
-            opacity=0.4
+            opacity=0.5
         )
         # print(self.page)
 
@@ -1116,7 +1130,7 @@ class login_page(ft.Container):
 if __name__ == "__main__":
 
     def main(page: ft.Page):
-
+        # kuko53348@gmail.com
         page.vertical_alignment = ft.MainAxisAlignment.CENTER
         page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
         page.theme_mode = ft.ThemeMode.DARK
