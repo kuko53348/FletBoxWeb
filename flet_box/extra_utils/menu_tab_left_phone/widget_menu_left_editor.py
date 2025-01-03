@@ -49,7 +49,7 @@ class MenuLeftContainer(ft.Stack):
             border_radius=ft.border_radius.all(30),
             expand=True,
             ink=False,
-            bgcolor=ft.colors('black38'),
+            # bgcolor=ft.colors('white12'),
             padding=ft.padding.only(left=0, top=8, right=0, bottom=8),
             margin=ft.margin.all(0),
             alignment=ft.alignment.center,
@@ -73,7 +73,7 @@ class MenuLeftContainer(ft.Stack):
 
             border=ft.border.all(
                 0.8,
-                ft.Colors.with_opacity(0.05, ft.colors('cyan')),
+                ft.Colors.with_opacity(0.1, ft.colors('cyan')),
             ),
             shadow=ft.BoxShadow(
                 spread_radius=1,

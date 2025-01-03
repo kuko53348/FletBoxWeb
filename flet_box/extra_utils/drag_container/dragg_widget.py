@@ -9,9 +9,9 @@ class DraggWidget(ft.Stack):
     2. SET IN VARIABLE GLOBAL THE SELECTED DRAGGABLE WIDGET
     3. CLEAN THE LIST listWidgetUpdate
     """
-    dragg_border_color = ft.Colors.with_opacity(0.4, 'white')
-    dragg_shadow_color = ft.Colors.with_opacity(0.3, 'white')
-    dragg_text_color = ft.Colors.with_opacity(0.6, 'white')
+    dragg_border_color = ft.Colors.with_opacity(0.1, 'white')
+    dragg_shadow_color = ft.Colors.with_opacity(0.3, 'black')
+    dragg_text_color = ft.Colors.with_opacity(0.5, 'white')
     dragg_icon_color = ft.Colors.with_opacity(0.6, 'white')
 
     take_dragg_border_color = ft.Colors.with_opacity(0.04, 'white')

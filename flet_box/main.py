@@ -91,7 +91,8 @@ class row_middle_container(ft.Container):
                 ft.Container(
                     padding=ft.padding.all(0),
                     border_radius=ft.border_radius.all(30),
-                    bgcolor=ft.Colors.with_opacity(0.08, ft.colors('cyan')),
+                    bgcolor=ft.Colors.with_opacity(0.02, ft.colors('white')),
+                    border=ft.border.all(0.5, ft.Colors.with_opacity(0.08, ft.colors("white"))),
                     width=60,
                     blur=(16, 16),
 
@@ -188,9 +189,9 @@ class column_container(ft.Container):
         self.alignment = ft.alignment.center
         self.image = ft.DecorationImage(
             src='backend.webp',
-            fit=ft.ImageFit.COVER,  #: CONTAIN, FILL, FIT_WIDTH, SCALE_DOWN, COVER, FIT_HEIGHT, NONE
-            opacity=0.35,
-            # opacity=0.1 if self.page.window.width <= 620 else 0.1,
+            fit=ft.ImageFit.COVER,
+            # opacity=0.5 if self.page.window.width <= 620 else 0.5,
+            opacity=0.8
         )
         self.expand = True
         self.ink = False

@@ -139,23 +139,28 @@ class Build_Editor(ft.Container):
         self.width = 355
         self.height = 670
         self.show_tab = True
+
+        self.bgcolor=ft.Colors.with_opacity(0.5, ft.colors("black"))
+        self.border=ft.border.all(2, ft.Colors.with_opacity(0.08, ft.colors("black")))
+        self.blur=(18, 18)
+        
         # self.bgcolor = "grey"
         # self.bgcolor = "Black12"
-        self.gradient = ft.LinearGradient(
-            begin=ft.alignment.top_center,
-            end=ft.alignment.bottom_center,
-            colors=[
-                ft.Colors.with_opacity(self.color_minimum, 'cyan'),
-                ft.Colors.with_opacity(self.color_medium, 'yellow'),
-                ft.Colors.with_opacity(self.color_hight, 'red'),
-                ft.Colors.with_opacity(self.color_medium, 'yellow'),
-                ft.Colors.with_opacity(self.color_minimum, 'white'),
-                ft.Colors.with_opacity(self.color_medium, 'yellow'),
-                ft.Colors.with_opacity(self.color_hight, 'red'),
-                ft.Colors.with_opacity(self.color_medium, 'yellow'),
-                ft.Colors.with_opacity(self.color_minimum, 'black'),
-                ],
-        )
+        # self.gradient = ft.LinearGradient(
+        #     begin=ft.alignment.top_center,
+        #     end=ft.alignment.bottom_center,
+        #     colors=[
+        #         ft.Colors.with_opacity(self.color_minimum, 'cyan'),
+        #         ft.Colors.with_opacity(self.color_medium, 'yellow'),
+        #         ft.Colors.with_opacity(self.color_hight, 'red'),
+        #         ft.Colors.with_opacity(self.color_medium, 'yellow'),
+        #         ft.Colors.with_opacity(self.color_minimum, 'white'),
+        #         ft.Colors.with_opacity(self.color_medium, 'yellow'),
+        #         ft.Colors.with_opacity(self.color_hight, 'red'),
+        #         ft.Colors.with_opacity(self.color_medium, 'yellow'),
+        #         ft.Colors.with_opacity(self.color_minimum, 'black'),
+        #         ],
+        # )
         self.blur = (32, 32)
 
 

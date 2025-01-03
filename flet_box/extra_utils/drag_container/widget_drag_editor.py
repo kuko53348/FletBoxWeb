@@ -73,22 +73,25 @@ class Build_Drag_Editor(ft.Container):
         self.border_radius = ft.border_radius.all(45)
         self.width = 268
 
+        self.bgcolor=ft.Colors.with_opacity(0.5, ft.colors("black"))
+        self.border=ft.border.all(2, ft.Colors.with_opacity(0.6, ft.colors("black")))
+        self.blur=(18, 18)
 
-        self.gradient = ft.LinearGradient(
-            begin=ft.alignment.top_center,
-            end=ft.alignment.bottom_center,
-            colors=[
-                ft.Colors.with_opacity(self.color_minimum, 'cyan'),
-                ft.Colors.with_opacity(self.color_medium, 'yellow'),
-                ft.Colors.with_opacity(self.color_hight, 'red'),
-                ft.Colors.with_opacity(self.color_medium, 'yellow'),
-                ft.Colors.with_opacity(self.color_minimum, 'white'),
-                ft.Colors.with_opacity(self.color_medium, 'yellow'),
-                ft.Colors.with_opacity(self.color_hight, 'red'),
-                ft.Colors.with_opacity(self.color_medium, 'yellow'),
-                ft.Colors.with_opacity(self.color_minimum, 'black'),
-                ],
-        )
+        # self.gradient = ft.LinearGradient(
+        #     begin=ft.alignment.top_center,
+        #     end=ft.alignment.bottom_center,
+        #     colors=[
+        #         ft.Colors.with_opacity(self.color_minimum, 'cyan'),
+        #         ft.Colors.with_opacity(self.color_medium, 'yellow'),
+        #         ft.Colors.with_opacity(self.color_hight, 'red'),
+        #         ft.Colors.with_opacity(self.color_medium, 'yellow'),
+        #         ft.Colors.with_opacity(self.color_minimum, 'white'),
+        #         ft.Colors.with_opacity(self.color_medium, 'yellow'),
+        #         ft.Colors.with_opacity(self.color_hight, 'red'),
+        #         ft.Colors.with_opacity(self.color_medium, 'yellow'),
+        #         ft.Colors.with_opacity(self.color_minimum, 'black'),
+        #         ],
+        # )
 
         self.blur = (32, 32)
 

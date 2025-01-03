@@ -50,7 +50,7 @@ class congratulation_menu(ft.Container):
         self.margin = ft.margin.all(0)
         self.alignment = ft.alignment.top_center
         self.middle_box = middle_box
-        self.border = ft.border.all(2, "white,0.01")
+        # self.border = ft.border.all(2, ft.Colors.with_opacity(0.08, ft.colors("black")))
 
     def build(self):
         self.column_data = ft.Column(
@@ -66,7 +66,7 @@ class congratulation_menu(ft.Container):
                                     ft.TextSpan("Ready to Build",
                                                 ft.TextStyle(
                                                     size=40,
-                                                    color="WHITE,0.5",
+                                                    color=ft.Colors.with_opacity(0.5, ft.colors("white")),
                                                     weight=ft.FontWeight.BOLD
                                                 ),),
                                 ]
@@ -82,7 +82,7 @@ class congratulation_menu(ft.Container):
                         spans=[
                             ft.TextSpan(CONGRATULATION,
                                         ft.TextStyle(
-                                            size=18, color="WHITE,0.2",
+                                            size=18, color=ft.Colors.with_opacity(0.5, ft.colors("white")),
                                             weight=ft.FontWeight.BOLD),), ]
                     ),
                 ),
@@ -92,13 +92,13 @@ class congratulation_menu(ft.Container):
                     shadow=ft.BoxShadow(
                         spread_radius=1,
                         blur_radius=15,
-                        color=ft.colors('black12'),
+                        color=ft.Colors.with_opacity(0.5, ft.colors("black")),
                         offset=ft.Offset(
                             0, 0),
                         blur_style=ft.ShadowBlurStyle.OUTER,
                     ),
                     ink=False,
-                    bgcolor="teal,0.5",
+                    bgcolor=ft.Colors.with_opacity(0.5, ft.colors("black")),
                     width=305,
                     # blur=(8,8),
                     padding=ft.padding.all(12),
@@ -116,7 +116,7 @@ class congratulation_menu(ft.Container):
                                     ft.TextSpan("START",
                                                 ft.TextStyle(
                                                     size=18,
-                                                    color="WHITE",
+                                                    color=ft.Colors.with_opacity(0.5, ft.colors("white")),
                                                     weight=ft.FontWeight.BOLD
                                                 ),), ]
                             ),
@@ -126,10 +126,12 @@ class congratulation_menu(ft.Container):
             ],
         )
         self.content = ft.Container(
-            blur=(8, 8),
+            bgcolor=ft.Colors.with_opacity(0.5, ft.colors("black")),
+            border=ft.border.all(2, ft.Colors.with_opacity(0.08, ft.colors("black"))),
+            blur=(18, 18),
+            border_radius = ft.border_radius.all(28),
             padding=ft.padding.only(left=16, top=16, right=16, bottom=16),
-            margin=ft.margin.only(left=4, top=4, right=4, bottom=4),
-            border=ft.border.all(2, "white,0.01"),
+            margin=ft.margin.all(8),
             width=460,
             content=self.column_data,
 
@@ -156,7 +158,7 @@ class recover_login(ft.Container):
         self.margin = ft.margin.all(0)
         self.alignment = ft.alignment.top_center
         self.middle_box = middle_box
-        self.border = ft.border.all(2, "white,0.01")
+        # self.border = ft.border.all(2, ft.Colors.with_opacity(0.08, ft.colors("black")))
         # print(self.page,"<<<<<<")
 
     def build(self):
@@ -174,7 +176,7 @@ class recover_login(ft.Container):
                                 spans=[
                                     ft.TextSpan("Recover",
                                                 ft.TextStyle(
-                                                    size=50, color="WHITE,0.5",
+                                                    size=50, color=ft.Colors.with_opacity(0.5, ft.colors("white")),
                                                     weight=ft.FontWeight.BOLD),
                                                 ),
                                 ]
@@ -196,7 +198,7 @@ class recover_login(ft.Container):
                                     ),
                             height=50,
                             width=50,
-                            bgcolor="teal,0.5",
+                            bgcolor=ft.Colors.with_opacity(0.5, ft.colors("black")),
                             on_click=lambda _: self.show_register_menu_email(only_return=True),
                             content=ft.Icon(
                                         name='supervised_user_circle')
@@ -210,7 +212,7 @@ class recover_login(ft.Container):
                         spans=[
                             ft.TextSpan("Recover password by email",
                                         ft.TextStyle(size=18,
-                                                     color="WHITE,0.2",
+                                                     color=ft.Colors.with_opacity(0.5, ft.colors("white")),
                                                      weight=ft.FontWeight.BOLD
                                                      ),),
                         ]
@@ -226,13 +228,13 @@ class recover_login(ft.Container):
                     shadow=ft.BoxShadow(
                         spread_radius=1,
                         blur_radius=15,
-                        color=ft.colors('white12'),
+                        color=ft.Colors.with_opacity(0.5, ft.colors("black")),
                         offset=ft.Offset(0, 0),
                         blur_style=ft.ShadowBlurStyle.OUTER,
                     ),
                     content=ft.TextField(
                         label="Write register email",
-                        border_color=ft.colors('white12'),
+                        border_color=ft.Colors.with_opacity(0.05, ft.colors("white")),
                         border_radius=30,
                         on_change=lambda submit_data: self.update_data(
                             payload=submit_data),
@@ -241,7 +243,7 @@ class recover_login(ft.Container):
                 ft.Container(height=16),
                 ft.Container(
                     ink=False,
-                    bgcolor="teal,0.5",
+                    bgcolor=ft.Colors.with_opacity(0.5, ft.colors("black")),
                     padding=ft.padding.all(12),
                     margin=ft.margin.all(0),
                     alignment=ft.alignment.center,
@@ -256,7 +258,7 @@ class recover_login(ft.Container):
                                 spans=[
                                     ft.TextSpan("RECOVER", ft.TextStyle(
                                         size=18,
-                                        color="WHITE",
+                                        color=ft.Colors.with_opacity(0.5, ft.colors("white")),
                                         weight=ft.FontWeight.BOLD),), ]
                             ),
                         ])
@@ -264,10 +266,12 @@ class recover_login(ft.Container):
             ],
         )
         self.content = ft.Container(
-            blur=(8, 8),
+            bgcolor=ft.Colors.with_opacity(0.5, ft.colors("black")),
+            border=ft.border.all(2, ft.Colors.with_opacity(0.08, ft.colors("black"))),
+            blur=(18, 18),
+            border_radius = ft.border_radius.all(28),
             padding=ft.padding.only(left=16, top=16, right=16, bottom=16),
-            margin=ft.margin.only(left=4, top=4, right=4, bottom=4),
-            border=ft.border.all(2, "white,0.01"),
+            margin=ft.margin.all(8),
             width=460,
             content=self.column_data,
 
@@ -335,7 +339,7 @@ class formulary_login(ft.Container):
         self.margin = ft.margin.all(0)
         self.alignment = ft.alignment.top_center
         self.middle_box = middle_box
-        self.border = ft.border.all(2, "white,0.01")
+        # self.border = ft.border.all(2, ft.Colors.with_opacity(0.08, ft.colors("black")))
         self.user_textfield = str()
         self.pasword_textfield = str()
         # print(self.page)
@@ -356,7 +360,7 @@ class formulary_login(ft.Container):
                                     ft.TextSpan("Loggin",
                                                 ft.TextStyle(
                                                     size=50,
-                                                    color="WHITE,0.5",
+                                                    color=ft.Colors.with_opacity(0.5, ft.colors("white")),
                                                     weight=ft.FontWeight.BOLD
                                                 ),
                                                 ), ]
@@ -378,7 +382,7 @@ class formulary_login(ft.Container):
                                     ),
                             height=50,
                             width=50,
-                            bgcolor="teal,0.5",
+                            bgcolor=ft.Colors.with_opacity(0.5, ft.colors("black")),
                             on_click=lambda _:self.show_register_menu(),
                             content=ft.Icon(
                                         name='border_color_rounded')
@@ -388,10 +392,11 @@ class formulary_login(ft.Container):
                     alignment=ft.alignment.center_left,
                     content=ft.Text(
                         spans=[
-                            ft.TextSpan("Welcome to flet-box loggin", ft.TextStyle(
+                            ft.TextSpan("Welcome to flet-box loggin", 
+                                ft.TextStyle(
                                 size=18,
-                                color="WHITE,0.2",
-                                weight=ft.FontWeight.BOLD),), ]
+                                color=ft.Colors.with_opacity(0.5, ft.colors("white")),
+                                weight=ft.FontWeight.BOLD ),) ]
                     ),
                 ),
                 ft.Container(
@@ -403,13 +408,13 @@ class formulary_login(ft.Container):
                     shadow=ft.BoxShadow(
                         spread_radius=1,
                         blur_radius=15,
-                        color=ft.colors('white12'),
+                        color=ft.Colors.with_opacity(0.5, ft.colors("black")),
                         offset=ft.Offset(0, 0),
                         blur_style=ft.ShadowBlurStyle.OUTER,
                     ),
                     content=ft.TextField(
                         label="User name",
-                        border_color=ft.colors('white12'),
+                        border_color=ft.Colors.with_opacity(0.05, ft.colors("white")),
                         border_radius=30,
                         on_change=lambda submit_data:self.user_update_data(
                             payload=submit_data),
@@ -421,7 +426,7 @@ class formulary_login(ft.Container):
                         spans=[ft.TextSpan("Password",
                                            ft.TextStyle(
                                                size=18,
-                                               color="WHITE,0.2",
+                                               color=ft.Colors.with_opacity(0.5, ft.colors("white")),
                                                weight=ft.FontWeight.BOLD),), ]
                     ),
                 ),
@@ -434,14 +439,14 @@ class formulary_login(ft.Container):
                     shadow=ft.BoxShadow(
                         spread_radius=1,
                         blur_radius=15,
-                        color=ft.colors('white12'),
+                        color=ft.Colors.with_opacity(0.5, ft.colors("black")),
                         offset=ft.Offset(0, 0),
                         blur_style=ft.ShadowBlurStyle.OUTER,
                     ),
                     content=ft.TextField(
                         label="Password",
                         password=True,
-                        border_color=ft.colors('white12'),
+                        border_color=ft.Colors.with_opacity(0.05, ft.colors("white")),
                         border_radius=30,
                         on_change=lambda submit_data:self.password_update_data(
                             payload=submit_data),
@@ -473,7 +478,7 @@ class formulary_login(ft.Container):
                         ft.Container(
                             expand=True,
                             ink=False,
-                            bgcolor="teal,0.5",
+                            bgcolor=ft.Colors.with_opacity(0.5, ft.colors("black")),
                             padding=ft.padding.all(12),
                             margin=ft.margin.all(0),
                             alignment=ft.alignment.center,
@@ -487,7 +492,7 @@ class formulary_login(ft.Container):
                                         spans=[
                                             ft.TextSpan("LOGGIN",
                                                         ft.TextStyle(size=18,
-                                                                     color="WHITE",
+                                                                     color=ft.Colors.with_opacity(0.5, ft.colors("white")),
                                                                      weight=ft.FontWeight.BOLD
                                                                      ),),
                                         ]
@@ -514,7 +519,7 @@ class formulary_login(ft.Container):
                                         spans=[
                                             ft.TextSpan("SIGN UP",
                                                         ft.TextStyle(size=18,
-                                                                     color="white",
+                                                                     color=ft.Colors.with_opacity(0.5, ft.colors("white")),
                                                                      weight=ft.FontWeight.BOLD
                                                                      ),),
                                         ]
@@ -527,10 +532,12 @@ class formulary_login(ft.Container):
             ],
         )
         self.content = ft.Container(
-            blur=(8, 8),
+            bgcolor=ft.Colors.with_opacity(0.5, ft.colors("black")),
+            border=ft.border.all(2, ft.Colors.with_opacity(0.08, ft.colors("black"))),
+            blur=(18, 18),
+            border_radius = ft.border_radius.all(28),
             padding=ft.padding.only(left=16, top=16, right=16, bottom=16),
-            margin=ft.margin.only(left=4, top=4, right=4, bottom=4),
-            border=ft.border.all(2, "white,0.01"),
+            margin=ft.margin.all(8),
             width=460,
             content=self.column_data,
 
@@ -602,7 +609,7 @@ class formulary_register(ft.Container):
         self.margin = ft.margin.all(0)
         self.alignment = ft.alignment.top_center
         self.middle_box = middle_box
-        self.border = ft.border.all(2, "white,0.01")
+        # self.border = ft.border.all(2, ft.Colors.with_opacity(0.08, ft.colors("black")))
 
         self.user_register_str = str()
         self.password_register_str = str()
@@ -624,7 +631,7 @@ class formulary_register(ft.Container):
                                     ft.TextSpan("Sign Up",
                                                 ft.TextStyle(
                                                     size=50,
-                                                    color="WHITE,0.5",
+                                                    color=ft.Colors.with_opacity(0.5, ft.colors("white")),
                                                     weight=ft.FontWeight.BOLD),
                                                 ), ]
                             ),
@@ -643,7 +650,7 @@ class formulary_register(ft.Container):
                             ),
                             ink=True,
                             ink_color="cyan",
-                            bgcolor="teal,0.5",
+                            bgcolor=ft.Colors.with_opacity(0.5, ft.colors("black")),
                             on_click=lambda _:self.show_login_menu(),
                             height=50,
                             width=50,
@@ -658,7 +665,7 @@ class formulary_register(ft.Container):
                     content=ft.Text(
                         spans=[ft.TextSpan("Welcome to flet-box register",
                                            ft.TextStyle(size=18,
-                                                        color="WHITE,0.2",
+                                                        color=ft.Colors.with_opacity(0.5, ft.colors("white")),
                                                         weight=ft.FontWeight.BOLD
                                                         ),), ]
                     ),
@@ -672,13 +679,13 @@ class formulary_register(ft.Container):
                     shadow=ft.BoxShadow(
                         spread_radius=1,
                         blur_radius=15,
-                        color=ft.colors('white12'),
+                        color=ft.Colors.with_opacity(0.5, ft.colors("black")),
                         offset=ft.Offset(0, 0),
                         blur_style=ft.ShadowBlurStyle.OUTER,
                     ),
                     content=ft.TextField(
                         label="User name",
-                        border_color=ft.colors('white12'),
+                        border_color=ft.Colors.with_opacity(0.05, ft.colors("white")),
                         border_radius=30,
                         on_change=lambda submit_data:self.user_register(
                             payload=submit_data),
@@ -689,7 +696,7 @@ class formulary_register(ft.Container):
                     padding=8,
                     content=ft.Text(
                         spans=[ft.TextSpan("Password", ft.TextStyle(
-                            size=18, color="WHITE,0.2",
+                            size=18, color=ft.Colors.with_opacity(0.5, ft.colors("white")),
                             weight=ft.FontWeight.BOLD),
                         ), ]
                     ),
@@ -703,14 +710,14 @@ class formulary_register(ft.Container):
                     shadow=ft.BoxShadow(
                         spread_radius=1,
                         blur_radius=15,
-                        color=ft.colors('white12'),
+                        color=ft.Colors.with_opacity(0.5, ft.colors("black")),
                         offset=ft.Offset(0, 0),
                         blur_style=ft.ShadowBlurStyle.OUTER,
                     ),
                     content=ft.TextField(
                         label="Password",
                         password=True,
-                        border_color=ft.colors('white12'),
+                        border_color=ft.Colors.with_opacity(0.05, ft.colors("white")),
                         border_radius=30,
                         on_change=lambda submit_data:self.password_register(
                             payload=submit_data),
@@ -737,14 +744,14 @@ class formulary_register(ft.Container):
                     shadow=ft.BoxShadow(
                         spread_radius=1,
                         blur_radius=15,
-                        color=ft.colors('white12'),
+                        color=ft.Colors.with_opacity(0.5, ft.colors("black")),
                         offset=ft.Offset(0, 0),
                         blur_style=ft.ShadowBlurStyle.OUTER,
                     ),
                     content=ft.TextField(
                         password=True,
                         label="Repeat Password",
-                        border_color=ft.colors('white12'),
+                        border_color=ft.Colors.with_opacity(0.05, ft.colors("white")),
                         border_radius=30,
                         on_change=lambda submit_data:self.password_second_register(
                             payload=submit_data),
@@ -758,7 +765,7 @@ class formulary_register(ft.Container):
                         spans=[ft.TextSpan("Email",
                                            ft.TextStyle(
                                                size=18,
-                                               color="WHITE,0.2",
+                                               color=ft.Colors.with_opacity(0.5, ft.colors("white")),
                                                weight=ft.FontWeight.BOLD
                                            ),),
                                ],
@@ -773,14 +780,14 @@ class formulary_register(ft.Container):
                     shadow=ft.BoxShadow(
                         spread_radius=1,
                         blur_radius=15,
-                        color=ft.colors('white12'),
+                        color=ft.Colors.with_opacity(0.5, ft.colors("black")),
                         offset=ft.Offset(0, 0),
                         blur_style=ft.ShadowBlurStyle.OUTER,
                     ),
 
                     content=ft.TextField(
                         label="exemple_name@gmail.com",
-                        border_color=ft.colors('white12'),
+                        border_color=ft.Colors.with_opacity(0.05, ft.colors("white")),
                         border_radius=30,
                         on_change=lambda submit_data: self.email_register(
                             payload=submit_data),
@@ -798,7 +805,7 @@ class formulary_register(ft.Container):
                         blur_style=ft.ShadowBlurStyle.OUTER,
                     ),
                     ink=False,
-                    bgcolor="teal,0.5",
+                    bgcolor=ft.Colors.with_opacity(0.5, ft.colors("black")),
                     width=305,
                     padding=ft.padding.all(12),
                     margin=ft.margin.all(0),
@@ -813,7 +820,7 @@ class formulary_register(ft.Container):
                             ft.Text(
                                 spans=[ft.TextSpan("REGISTER", ft.TextStyle(
                                     size=18,
-                                    color="WHITE",
+                                    color=ft.Colors.with_opacity(0.5, ft.colors("white")),
                                     weight=ft.FontWeight.BOLD),), ]
                             ),
                         ])
@@ -821,10 +828,12 @@ class formulary_register(ft.Container):
             ],
         )
         self.content = ft.Container(
-            blur=(8, 8),
+            bgcolor=ft.Colors.with_opacity(0.5, ft.colors("black")),
+            border=ft.border.all(2, ft.Colors.with_opacity(0.08, ft.colors("black"))),
+            blur=(18, 18),
+            border_radius = ft.border_radius.all(28),
             padding=ft.padding.only(left=16, top=16, right=16, bottom=16),
-            margin=ft.margin.only(left=4, top=4, right=4, bottom=4),
-            border=ft.border.all(2, "white,0.01"),
+            margin=ft.margin.all(8),
             width=460,
             content=self.column_data,
 
@@ -959,7 +968,7 @@ class about_flet_box(ft.Container):
         self.margin = ft.margin.all(0)
         self.alignment = ft.alignment.top_center
         self.middle_box = middle_box
-        self.border = ft.border.all(2, "white,0.01")
+        # self.border = ft.border.all(2, ft.Colors.with_opacity(0.08, ft.colors("black")))
         # print(self.page)
 
     def build(self):
@@ -968,9 +977,11 @@ class about_flet_box(ft.Container):
             padding=ft.padding.all(16),
             margin=ft.margin.all(8),
             alignment=ft.alignment.center,
-            blur=(12, 12),
+            bgcolor=ft.Colors.with_opacity(0.5, ft.colors("black")),
+            border=ft.border.all(2, ft.Colors.with_opacity(0.08, ft.colors("black"))),
+            blur=(18, 18),
+            border_radius = ft.border_radius.all(28),
             width=480,
-            border=ft.border.all(2, "white,0.01"),
             content=ft.Column(
                 controls=[
                     ft.Container(
@@ -990,19 +1001,19 @@ class about_flet_box(ft.Container):
                                 ft.TextSpan("App\n",
                                             ft.TextStyle(
                                                 size=45,
-                                                color="cyan,0.5"),),
+                                                color=ft.Colors.with_opacity(0.5, ft.colors("yellow"))),),
                                 ft.TextSpan("in just one place\n",
                                             ft.TextStyle(
                                                 size=30,
                                                 color=ft.colors('white')),),
                                 ft.TextSpan("FLET", ft.TextStyle(
                                     size=50,
-                                    color="teal,0.8",
+                                    color=ft.Colors.with_opacity(0.5, ft.colors("yellow")),
                                     weight=ft.FontWeight.BOLD)),
                                 ft.TextSpan("-BOX\n",
                                             ft.TextStyle(
                                                 size=50,
-                                                color="teal,0.8",
+                                                color=ft.Colors.with_opacity(0.5, ft.colors("yellow")),
                                                 weight=ft.FontWeight.BOLD),),
                                 ft.TextSpan(TEXT_PRESENTATION,
                                             ft.TextStyle(
@@ -1013,7 +1024,7 @@ class about_flet_box(ft.Container):
                     ),
                     ft.Container(
                         ink=False,
-                        bgcolor="teal,0.5",
+                        bgcolor=ft.Colors.with_opacity(0.5, ft.colors("black")),
                         padding=ft.padding.all(16),
                         margin=ft.margin.all(8),
                         alignment=ft.alignment.center,
@@ -1030,7 +1041,7 @@ class about_flet_box(ft.Container):
                             spans=[
                                 ft.TextSpan("Get started", ft.TextStyle(
                                     size=24,
-                                    color="WHITE",
+                                    color=ft.Colors.with_opacity(0.5, ft.colors("white")),
                                     weight=ft.FontWeight.BOLD),),
                             ],
                         ),),
@@ -1049,7 +1060,7 @@ class middle_body(ft.Container):
         super().__init__()
         self.page = page
 
-        self.expand = True
+        # self.expand = True
         self.ink = False
         self.padding = ft.padding.all(0)
         self.margin = ft.margin.all(0)
@@ -1078,19 +1089,27 @@ class login_page(ft.Container):
         self.margin = ft.margin.all(0)
         self.alignment = ft.alignment.center
         self.image = ft.DecorationImage(
-            src='login.jpeg',
+            src='backend.webp',
             fit=ft.ImageFit.COVER,
-            opacity=0.5 if self.page.window.width <= 620 else 0.5,
+            # opacity=0.5 if self.page.window.width <= 620 else 0.5,
+            opacity=0.4
         )
         # print(self.page)
 
     def build(self):
-        self.content = ft.Column(
-            scroll="ALWAYS",
+        self.container_login = ft.Column(
+            # scroll="ALWAYS",
+            alignment=ft.MainAxisAlignment.CENTER,
             horizontal_alignment=ft.CrossAxisAlignment.CENTER,
             controls=[
                 middle_body(page=self.page),
             ]
+        )
+        self.content=ft.Container(
+            # expand=True,
+            blur = (16,16),
+
+            content=self.container_login,
         )
 
 
