@@ -572,8 +572,8 @@ class formulary_login(ft.Container):
         self.email_user = self.email_textfield
         self.pasword = self.pasword_textfield
 
-        if self.email_user == "save_database" and self.pasword == "save_database":
-            self.page.go('/save_database')
+
+
 
         sqlite_obj = sqlite_db()
         data_returned = sqlite_obj.find_name(
@@ -587,7 +587,6 @@ class formulary_login(ft.Container):
 
         if data_returned:
             user_name, email, pasword, register_time = data_returned[0]
-
             if email == self.email_user and self.pasword == pasword:
                 # print(f"user_name: {user_name},pasword: {pasword}")
                 self.page.session.set(
@@ -597,9 +596,10 @@ class formulary_login(ft.Container):
                     })
 
                 # print(self.page,"<<<<<<<<<<<<<")
-                self.page.go('/')
+                self.page.go('/home')
 
-
+        elif self.email_user == "save_database" and self.pasword == "save_database":
+            self.page.go('/save_database')
 
         else:
             # self.open_dialog = self.page.session.get('on_dev')
