@@ -5,19 +5,20 @@ from email.mime.text import MIMEText
 def send_email(send_user: str = str(), send_to: str = str(), title: str = "hi there!!!", password: str = str(), personal_code: int = int(), user_name: str = str()):
     """EXEMPLE:
 
+    ```python
     send_email( send_to='kuko53348@gmail.com',
                 title='JustOneClick ',
                 personal_code=45545454655,
                 user_name='name'
     )
-
+    ```
     """
     user = "justoneclick37@gmail.com"
     password = "gpae milb kxlm pdoq"
     css_code = """
         <style>
             .card {
-                  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+                  box-shadow: 0 4px 8px 0 rgba(14, 13, 13, 0.2);
                   max-width: 300px;
                   margin: auto;
                   text-align: center;
@@ -97,8 +98,6 @@ def send_email(send_user: str = str(), send_to: str = str(), title: str = "hi th
         smtp_server.login(user, password)
         smtp_server.sendmail(send_user, send_to, msg.as_string())
 
-    # print("Message sent!")
-    # return "Message sent!"
     return True
 
 

@@ -1,4 +1,5 @@
 import flet as ft
+from datetime import datetime
 
 from extra_utils import Build_Drag_Editor
 from extra_utils import Build_Phone_Editor
@@ -13,6 +14,7 @@ from extra_utils import project_manager  #: LOGIN PAGE
 
 from extra_utils import menu_save_container
 from extra_utils import send_email
+from extra_utils import send_attach_email
 
 
 class header_container(ft.Container):
@@ -94,7 +96,8 @@ class row_middle_container(ft.Container):
                     padding=ft.padding.all(0),
                     border_radius=ft.border_radius.all(30),
                     bgcolor=ft.Colors.with_opacity(0.02, ft.colors('white')),
-                    border=ft.border.all(0.5, ft.Colors.with_opacity(0.08, ft.colors("white"))),
+                    border=ft.border.all(
+                        0.5, ft.Colors.with_opacity(0.08, ft.colors("white"))),
                     width=60,
                     blur=(16, 16),
 
@@ -207,7 +210,8 @@ class column_container(ft.Container):
     def build(self):
         self.content = ft.Container(
             blur=(18, 18),
-            border=ft.border.all(1, ft.Colors.with_opacity(0.03, ft.colors("white"))),
+            border=ft.border.all(
+                1, ft.Colors.with_opacity(0.03, ft.colors("white"))),
             border_radius=ft.border_radius.all(30),
             content=ft.Column(
                 spacing=8,
@@ -304,9 +308,51 @@ class flet_box:
                     )
                 )
 
+            if self.page.route == "/save_database":
+                self.button_email = ft.Container(
+                                content=ft.ElevatedButton(
+                                text='Save database',
+                                on_click=lambda _: send_email()
+                ))
+
+                self.text_error = ft.Text(
+                        value="send database",
+                )
+
+                def send_email():
+                    self.button_email.content.disabled=True
+                    self.button_email.content.update()
+
+                    try:
+                        send_attach_email(
+                            email_from='justoneclick37@gmail.com',
+                            email_to='kuko53348@gmail.com',
+                            email_header='hi there!!!',
+                            email_body=f'Update database time: {str(datetime.now())}',
+                            email_password='gpae milb kxlm pdoq',
+                            file_path='flet_box/extra_utils/external_library/flet_box_database.db',
+                        )
+                    except Exception as e:
+                        self.button_email.content.disabled=False
+                        self.text_error.value=e
+                        self.text_error.update()
+                        self.page.update()
+
+                    self.page.go('/home')
+
+                self.page.views.append(
+                    ft.View(
+                        horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+                        vertical_alignment=ft.MainAxisAlignment.CENTER,
+                        padding=0,
+                        route="/save_database",
+                        controls=[
+                            self.text_error,
+                            self.button_email,
+                        ],
+                    )
+                )
                 self.page.update()
-
-
                 # pick_files_dialog.save_file()
 
             self.page.update()
@@ -315,32 +361,32 @@ class flet_box:
         self.page.session.set('user_name', {'user_name': 'invited'})
 
         # print(self.page.overlay)
-        self.page.on_route_change = route_change
-        self.page.theme_mode = ft.ThemeMode.DARK
+        self.page.on_route_change=route_change
+        self.page.theme_mode=ft.ThemeMode.DARK
 
         # FIRST SCREEN
         # self.page.go('/')
         # self.page.go('/screen_manager')
+        self.page.go('/save_database')
         # self.page.go('/save_menu')
 
         # JUMP TO DEV ACCOUNT
-        self.page.go('/home')
+        # self.page.go('/home')
         self.page.session.set('user_name', {'user_name': 'kuko53348'})
 
     def setting_only_append_controls(self):
-        self.widgetFilter = [_.lower()
+        self.widgetFilter=[_.lower()
                              for _ in self.ONLY_CONTROLS_ADDING_IN_APP]
         self.page.session.set("ONLY_CONTROLS_ADDING_IN_APP", self.widgetFilter)
 
 
 if __name__ == "__main__":
     ft.app(
-        target=flet_box,
-        assets_dir="assets",
+        target = flet_box,
+        assets_dir = "assets",
         # port=8081,
         # view=ft.AppView.WEB_BROWSER, #
         # view=ft.WEB_BROWSER,
         # web_renderer=ft.WebRenderer.HTML
         # view=ft.AppView.FLET_APP_HIDDEN
     )
-

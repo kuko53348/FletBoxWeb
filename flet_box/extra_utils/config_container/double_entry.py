@@ -143,7 +143,6 @@ class DoubleEntry(ft.Stack):
                                         content_padding=self.padding_only,
                                         border_radius =ft.border_radius.all(30),
                                         border_color = ft.Colors('transparent'),
-                                        text_align          = ft.TextAlign.CENTER,        # [LEFT,RIGHT,CENTER,JUSTIFY,START,END]
                                         on_change=lambda x: self.modify_widget_attributes(
                                             config_widget=self.attribute_widget,
                                             value=Drop_DoubleEntry,
@@ -223,8 +222,8 @@ class DoubleEntry(ft.Stack):
         if config_widget == "blur":
             print('blur image')
             self.widget_tmp = self.page.session.get('SELECTED_SCREEN')
-            
-            # ERASE BLUR 
+
+            # ERASE BLUR
             self.widget_tmp.content.content.content.content.blur = ft.Blur(
                 int(value.content.controls[1].content.controls[0].content.value)
                 if value.content.controls[1].content.controls[0].content.value
@@ -236,7 +235,7 @@ class DoubleEntry(ft.Stack):
             )
             # self.widget_tmp.update()
             # self.page.update()
-        
+
             # self.widget_tmp = self.page.session.get("SELECTED_SCREEN")  # <== SELECTED PHONE SCREEN
             self.widget_tmp.content.content.content.blur = ft.Blur(
                 int(value.content.controls[1].content.controls[0].content.value)
