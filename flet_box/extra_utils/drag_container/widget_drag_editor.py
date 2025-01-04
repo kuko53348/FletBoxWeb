@@ -68,7 +68,7 @@ class Build_Drag_Editor(ft.Container):
         self.ink = False
         # self.bgcolor       = self.drag_container_color
         self.padding = ft.padding.all(0)
-        self.margin = ft.margin.all(6)
+        self.margin = ft.margin.all(3)
         self.alignment = ft.alignment.center
         self.border_radius = ft.border_radius.all(45)
         self.width = 268
@@ -96,13 +96,13 @@ class Build_Drag_Editor(ft.Container):
         self.blur = (32, 32)
 
         self.border = ft.border.all(0.2, self.drag_container_border_color)
-        self.shadow = ft.BoxShadow(
-            spread_radius=1,
-            blur_radius=16,
-            color=ft.Colors.with_opacity(0.8, self.drag_container_shadow_color),
-            offset=ft.Offset(0, 0),
-            blur_style=ft.ShadowBlurStyle.OUTER,
-        )
+        # self.shadow = ft.BoxShadow(
+        #     spread_radius=1,
+        #     blur_radius=16,
+        #     color=ft.Colors.with_opacity(0.8, self.drag_container_shadow_color),
+        #     offset=ft.Offset(0, 0),
+        #     blur_style=ft.ShadowBlurStyle.OUTER,
+        # )
 
     def build(self):
 

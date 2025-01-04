@@ -27,26 +27,7 @@ phone_style_widget: dict = {
 }
 
 #: STYLES IN SCREEN_STYLE
-styles = {
-    "Container_5749":  {
-        "alignment":  {"x": 0, "y": 0},
-        "border":  {"l": {"w": 2, "c": "transparent", "sa": None},
-                    "t": {"w": 2, "c": "transparent", "sa": None},
-                    "r": {"w": 2, "c": "transparent", "sa": None},
-                    "b": {"w": 2, "c": "transparent", "sa": None}
-                    },
-        "height":  148,
-        "ink":  True,
-        "margin":  {"l": 0, "t": 0, "r": 0, "b": 0},
-        "padding":  {"l": 6, "t": 6, "r": 6, "b": 6},
-        "ink_color":  "red"
-    },
-    "Image_5750":  {
-        "fit":  "fill",
-        "src":  "flet_box.webp",
-        "border_radius":  {"bl": 43.0, "br": 43.0, "tl": 43.0, "tr": 43.0}
-    }
-}
+styles = {}
 
 
 class main_screen(ft.DragTarget):
@@ -70,20 +51,6 @@ class main_screen(ft.DragTarget):
         #: DRAGG_CONTROLS
         list_controls: list = [
             
-            #: DRAG-BOX-CONTENT [ID: 5748]
-            self.draggin_framework(
-                content=ft.Container(
-                    **self.dict_style("Container_5749"),
-                    on_click=lambda dragg_item: self.dragg_event(
-                                     selected_widget=dragg_item,),
-
-                    content=ft.Image(
-                        **self.dict_style("Image_5750"),
-                        # on_click= lambda tmp_widget: event_5750(
-                        #        payload="Image_5750",
-                        #        page= self.page ),
-                    ),
-                ),),
         ]
 
         #: DRAGGIN CONTENT WIDGETS

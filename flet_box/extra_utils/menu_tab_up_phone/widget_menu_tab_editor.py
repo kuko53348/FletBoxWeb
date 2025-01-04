@@ -90,7 +90,7 @@ class MenuUpContainer(ft.Container):
                                             bottom=0
                                         ),
                                         image =ft.DecorationImage(
-                                                src='logo.jpg',
+                                                src='logo.png',
                                                 fit="COVER",
                                                 ),
                                         border=ft.border.all(

@@ -11,7 +11,9 @@ from extra_utils import LiteMenuUpContainer  #: LITE MENU RIGHT PHONE AND DOWN
 from extra_utils import login_page  #: LOGIN PAGE
 from extra_utils import project_manager  #: LOGIN PAGE
 
-from extra_utils.menu_tab_left_phone.menu_save_container import menu_save_container
+from extra_utils import menu_save_container
+from extra_utils import send_email
+
 
 class header_container(ft.Container):
 
@@ -285,7 +287,6 @@ class flet_box:
                         controls=[
                             column_container(page=self.page),
                             project_manager(page=self.page, visible=False),
-                            # menu_save_container(page=self.page,visible=False)
                         ],
                     )
                 )
@@ -299,31 +300,14 @@ class flet_box:
                         route="/menu_save",
                         controls=[
                             menu_save_container(page=self.page)
-                            # column_container(page=self.page),
-                            # project_manager(page=self.page, visible=False),
                         ],
                     )
                 )
 
-            if self.page.route == "/admind/database":
-                self.page.views.append(
-                    ft.View(
-                        bgcolor='transparent',
-                        horizontal_alignment=ft.CrossAxisAlignment.CENTER,
-                        vertical_alignment=ft.MainAxisAlignment.CENTER,
-                        padding=0,
-                        route="/admind/database",
-                        controls=[
-                            ft.Container(
-                                content=ft.Text(
-                                    value='welcome to admin menu',
-                                )
-                            )
-                            # column_container(page=self.page),
-                            # project_manager(page=self.page, visible=False),
-                        ],
-                    )
-                )
+                self.page.update()
+
+
+                # pick_files_dialog.save_file()
 
             self.page.update()
 
@@ -337,7 +321,6 @@ class flet_box:
         # FIRST SCREEN
         # self.page.go('/')
         # self.page.go('/screen_manager')
-        # self.page.go('/admind/database')
         # self.page.go('/save_menu')
 
         # JUMP TO DEV ACCOUNT
@@ -360,3 +343,4 @@ if __name__ == "__main__":
         # web_renderer=ft.WebRenderer.HTML
         # view=ft.AppView.FLET_APP_HIDDEN
     )
+

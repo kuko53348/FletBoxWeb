@@ -133,7 +133,7 @@ class Build_Editor(ft.Container):
         self.page = page
         self.main_phone = main_phone
         self.padding = ft.padding.all(0)
-        self.margin = ft.margin.all(6)
+        self.margin = ft.margin.all(3)
         self.border_radius = ft.border_radius.all(28)
         self.alignment = ft.alignment.center
         self.width = 355
@@ -141,7 +141,7 @@ class Build_Editor(ft.Container):
         self.show_tab = True
 
         self.bgcolor=ft.Colors.with_opacity(0.5, ft.colors("black"))
-        self.border=ft.border.all(2, ft.Colors.with_opacity(0.08, ft.colors("black")))
+        self.border=ft.border.all(1, ft.Colors.with_opacity(0.08, ft.colors("black")))
         self.blur=(18, 18)
         
         # self.bgcolor = "grey"
@@ -164,13 +164,13 @@ class Build_Editor(ft.Container):
         self.blur = (32, 32)
 
 
-        self.shadow = ft.BoxShadow(
-            spread_radius=1,
-            blur_radius=18,
-            color=ft.Colors.with_opacity(0.8, ft.colors('black26')),
-            offset=ft.Offset(0, 0),
-            blur_style=ft.ShadowBlurStyle.OUTER,
-        )
+        # self.shadow = ft.BoxShadow(
+        #     spread_radius=1,
+        #     blur_radius=18,
+        #     color=ft.Colors.with_opacity(0.8, ft.colors('black26')),
+        #     offset=ft.Offset(0, 0),
+        #     blur_style=ft.ShadowBlurStyle.OUTER,
+        # )
 
     def build(self):
         """
