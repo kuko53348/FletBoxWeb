@@ -338,7 +338,7 @@ class flet_box:
                         self.text_error.update()
                         self.page.update()
 
-                    self.page.go('/home')
+                    self.page.go('/')
 
                 self.page.views.append(
                     ft.View(
@@ -372,7 +372,7 @@ class flet_box:
 
         # JUMP TO DEV ACCOUNT
         # self.page.go('/home')
-        self.page.session.set('user_name', {'user_name': 'kuko53348'})
+        # self.page.session.set('user_name', {'user_name': 'kuko53348'})
 
     def setting_only_append_controls(self):
         self.widgetFilter=[_.lower()
