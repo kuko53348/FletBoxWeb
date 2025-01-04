@@ -365,9 +365,9 @@ class flet_box:
         self.page.theme_mode=ft.ThemeMode.DARK
 
         # FIRST SCREEN
-        # self.page.go('/')
+        self.page.go('/')
         # self.page.go('/screen_manager')
-        self.page.go('/save_database')
+        # self.page.go('/save_database')
         # self.page.go('/save_menu')
 
         # JUMP TO DEV ACCOUNT
