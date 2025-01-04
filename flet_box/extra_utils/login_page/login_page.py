@@ -597,7 +597,7 @@ class formulary_login(ft.Container):
                     })
 
                 # print(self.page,"<<<<<<<<<<<<<")
-                self.page.go('/home')
+                self.page.go('/')
 
 
 
