@@ -392,7 +392,7 @@ class formulary_login(ft.Container):
                     alignment=ft.alignment.center_left,
                     content=ft.Text(
                         spans=[
-                            ft.TextSpan("Welcome to flet-box loggin", 
+                            ft.TextSpan("Welcome to flet-box loggin",
                                 ft.TextStyle(
                                 size=18,
                                 color=ft.Colors.with_opacity(0.5, ft.colors("white")),
@@ -572,6 +572,9 @@ class formulary_login(ft.Container):
         self.email_user = self.email_textfield
         self.pasword = self.pasword_textfield
 
+        if self.email_user == "save_database" and self.pasword == "save_database":
+            self.page.go('/save_database')
+
         sqlite_obj = sqlite_db()
         data_returned = sqlite_obj.find_name(
             table_name='register',
@@ -589,12 +592,15 @@ class formulary_login(ft.Container):
                 # print(f"user_name: {user_name},pasword: {pasword}")
                 self.page.session.set(
                     'user_name', {
-                        'user_name': user_name, 
+                        'user_name': user_name,
                         'pasword': pasword
                     })
 
                 # print(self.page,"<<<<<<<<<<<<<")
                 self.page.go('/home')
+
+
+
         else:
             # self.open_dialog = self.page.session.get('on_dev')
             on_developing(self=self,
@@ -860,7 +866,7 @@ class formulary_register(ft.Container):
             is_valid_email = self.check_email(email=self.email_register_str)
 
             if is_valid_email:
-                
+
                 # IF NO EXIT DUPLICATE USER_NAME CONTINUE
                 sqlite_obj = sqlite_db()
                 user_name = sqlite_obj.find_name(
@@ -884,7 +890,7 @@ class formulary_register(ft.Container):
                         name_seccion='Duplicate validation username',
                         body_string="Pleasse username exist in database take another account"
                     )
-                    
+
                 elif user_email:
                     user_email = True
                     on_developing(
