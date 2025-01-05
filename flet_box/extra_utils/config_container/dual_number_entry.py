@@ -170,17 +170,20 @@ class config_number_widget(ft.Stack):
 
     def apply_config(self, configuration="", name_id=""):
 
+        tmp_value_configuration = personal_configuration.get(configuration).get("value")
+
         if name_id == "mix_container":
             self.widget_to_modify = self.page.session.get('SELECTED_CONTAINER')
+
         if name_id == "mix_container_content":
             self.widget_to_modify = self.page.session.get('SELECTED_CONTAINER').content
 
-        tmp_value_configuration = personal_configuration.get(configuration).get("value")
-
         if configuration == "padding":
-            self.widget_to_modify.padding = ft.padding.all(tmp_value_configuration)
+            self.widget_to_modify.padding = ft.padding.all(int(tmp_value_configuration))
+
         if configuration == "margin":
-            self.widget_to_modify.margin = ft.margin.all(tmp_value_configuration)
+            self.widget_to_modify.margin = ft.margin.all(int(tmp_value_configuration))
+
         if configuration == "radius":
             self.widget_to_modify.border_radius = ft.border_radius.all(tmp_value_configuration)
 
@@ -215,12 +218,12 @@ class config_number_widget(ft.Stack):
             self.widget_to_modify = self.page.session.get('SELECTED_CONTAINER').content
 
         if self.widget_name == "padding":
-            self.widget_to_modify.padding = ft.padding.all(slider_value)
-            personal_configuration[self.widget_name]["value"] = self.widget_to_modify.padding
+            self.widget_to_modify.padding = ft.padding.all(int(slider_value))
+            personal_configuration[self.widget_name]["value"] = int(slider_value)
 
         if self.widget_name == "margin":
-            self.widget_to_modify.margin = ft.margin.all(slider_value)
-            personal_configuration[self.widget_name]["value"] = self.widget_to_modify.margin
+            self.widget_to_modify.margin = ft.margin.all(int(slider_value))
+            personal_configuration[self.widget_name]["value"] = int(slider_value)
 
         if self.widget_name == "radius":
             self.widget_to_modify.border_radius = ft.border_radius.all(slider_value)

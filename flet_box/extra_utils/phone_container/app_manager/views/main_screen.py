@@ -8,13 +8,13 @@ import flet as ft
 #: STYLE TO MAIN SCREEN WIDGET
 phone_style_widget: dict = {
     "main_container":  {
-        "image":  {"src": "flet_box.webp", "fit": "cover", "opacity": 0.040000000000000036},
+        "image":  {"src": "backend.webp", "fit": "cover", "opacity": 0.31999999999999995},
         "gradient":  None
     },
     "second_container":  {
         "padding":  None,
-        "blur":  {"sigma_x": 2, "sigma_y": 2, "tile_mode": "mirror"},
-        "bgcolor":  None
+        "blur":  {"sigma_x": 4, "sigma_y": 4, "tile_mode": "mirror"},
+        "bgcolor":  "black38"
     },
     "column_attributes":  {
         "scroll":  None,

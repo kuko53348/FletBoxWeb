@@ -6,6 +6,85 @@ testing = False
 from ..external_library.sqlite_db import sqlite_db
 testing = True
 
+class code_editor(ft.Container):
+    def __init__(
+        self,
+        paren_widget: object = None,
+        visible: bool=False,
+        ):
+        super().__init__()
+        # self.user_name = user_name
+        self.visible = visible
+        self.paren_widget = paren_widget
+        self.border_radius = ft.border_radius.all(30)
+        self.margin = ft.margin.all(0)
+        self.padding = ft.padding.all(4)
+        # self.alignment = ft.alignment.center
+        self.bgcolor = ft.Colors.with_opacity(0.05, ft.colors('white'))
+        self.blur = (12,12)
+
+    def build(self):
+        self.theme_name = 'solarized-dark'
+        self.code_name = """
+```python
+class code_editor(ft.Container):
+    def __init__(
+        self,
+        # user_name: str = str(),
+        ):
+        super().__init__()
+        # self.user_name = user_name
+
+        # self.expand = True
+        self.border_radius = ft.border_radius.all(30)
+        self.margin = ft.margin.all(0)
+        self.padding = ft.padding.all(4)
+        self.alignment = ft.alignment.center
+        self.bgcolor = ft.Colors.with_opacity(0.05, ft.colors('white'))
+        self.blur = (12,12)
+```"""
+
+        self.Markdown=ft.Markdown(
+            expand=True,
+            # md1,
+            value=self.code_name,
+            selectable=True,
+            extension_set=ft.MarkdownExtensionSet.GITHUB_WEB, # COMMON_MARK ,GITHUB_FLAVORED ,GITHUB_WEB
+            code_theme=ft.MarkdownCodeTheme.TOMORROW_NIGHT,
+            code_style = ft.TextStyle(font_family='Roboto Mono')
+            # expand=True
+        )
+        self.content = ft.Row(
+            alignment=ft.MainAxisAlignment.CENTER,
+            vertical_alignment=ft.VerticalAlignment.START,
+
+            controls=[
+                self.Markdown,
+
+                # MARK DOWN EDITOR
+                ft.Container(
+                    padding=ft.padding.all(8),
+                    content=ft.Column(
+                        controls=[
+                            ft.ElevatedButton(
+                                text='Back Screen',
+                                on_click=lambda widget: self.hide_main_widget(widget=self),
+                            ),
+                            # ft.ElevatedButton(
+                            #     text='Back Screen'
+                            # ),
+                            # ft.ElevatedButton(
+                            #     text='Back Screen'
+                            # ),
+                        ]
+                    )
+                )
+            ]
+        )
+
+    def hide_main_widget(self, widget: object=None) -> None:
+        widget.visible = False
+        self.page.update()
 
 class screen_phone(ft.Container):
     def __init__(self, data='Erase this test'):
@@ -88,8 +167,8 @@ class lite_screen_manager(ft.Container):
                     ft.IconButton(
                         icon="add",
                         bgcolor=ft.Colors.with_opacity(
-                            opacity=0.2,
-                            color=ft.colors('green')
+                            opacity=0.4,
+                            color=ft.colors('purple')
                         ),
                         on_click=lambda _: self.add_drop_items()
                     ),
@@ -101,8 +180,8 @@ class lite_screen_manager(ft.Container):
                     ft.IconButton(
                         icon="remove",
                         bgcolor=ft.Colors.with_opacity(
-                            opacity=0.6,
-                            color=ft.colors('red')
+                            opacity=0.4,
+                            color=ft.colors('blue')
                         ),
                         on_click=lambda _: self.delete_drop_items()
                     ),
@@ -111,8 +190,8 @@ class lite_screen_manager(ft.Container):
                     ft.IconButton(
                         icon="update",
                         bgcolor=ft.Colors.with_opacity(
-                            opacity=0.6,
-                            color=ft.colors('blue')
+                            opacity=0.4,
+                            color=ft.colors('red')
                         ),
                         on_click=lambda _: self.update_drop_items()
                     ),
@@ -253,13 +332,12 @@ class go_home_screen(ft.Container):
         self.page = page
         self.alignment = ft.alignment.center
         self.main_screen = main_screen
-
     def build(self):
         self.content = ft.Container(
-            width=320,
+            width=200,
             # bgcolor=ft.colors('black12'),
             padding=ft.padding.all(8),
-            margin=ft.margin.all(8),
+            margin=ft.margin.all(2),
             border_radius=ft.border_radius.all(32),
 
             shadow=ft.BoxShadow(
@@ -270,10 +348,10 @@ class go_home_screen(ft.Container):
                 blur_style=ft.ShadowBlurStyle.OUTER,
             ),
             content=ft.ElevatedButton(
-                text="Go main screen",
+                text="Apply widgets",
                 bgcolor=ft.Colors.with_opacity(
-                    opacity=0.2,
-                    color=ft.colors('green')
+                    opacity=0.4,
+                    color=ft.colors('purple')
                 ),
                 on_click=lambda _: self.go_main_screen(),
 
@@ -313,13 +391,54 @@ class go_home_screen(ft.Container):
         self.page.session.set("SELECTED_CONTAINER", None)
         self.page.update()
 
+class get_sources_code(ft.Container):
+
+    def __init__(self, page: object = None, code_editor: object = None):
+        super().__init__()
+        self.page = page
+        self.alignment = ft.alignment.center
+        self.code_editor = code_editor
+        self.expand = True
+
+    def build(self):
+        self.content = ft.Container(
+            # width=200,
+            # bgcolor=ft.colors('black12'),
+            padding=ft.padding.all(8),
+            margin=ft.margin.all(2),
+            border_radius=ft.border_radius.all(32),
+
+            shadow=ft.BoxShadow(
+                spread_radius=1,
+                blur_radius=15,
+                color=ft.colors('black'),
+                offset=ft.Offset(0, 0),
+                blur_style=ft.ShadowBlurStyle.OUTER,
+            ),
+            content=ft.ElevatedButton(
+                text="Get Code",
+                bgcolor=ft.Colors.with_opacity(
+                    opacity=0.4,
+                    color=ft.colors('red'),
+                ),
+                on_click= lambda _: self.show_code_editor(),
+
+            ),
+        )
+
+    def show_code_editor(self):
+        self.code_editor.controls[1].visible = True
+        # code_editor_stance.update()
+        self.page.update()
+
 class screen_manager(ft.Container):
 
-    def __init__(self, page: object = None, visible: bool = True):
+    def __init__(self, page: object = None, visible: bool = True,  code_editor: object=None):
         super().__init__()
         self.page = page
         self.visible = visible
-        self.bgcolor = ft.colors('black12')
+        self.code_editor = code_editor
+        # self.bgcolor = ft.colors('black12')
         self.padding = ft.padding.all(8)
         self.margin = ft.margin.all(8)
         self.alignment = ft.alignment.center
@@ -346,9 +465,19 @@ class screen_manager(ft.Container):
                     page=self.page
                 ),
                 tmp_screen_phone,
-                go_home_screen(
-                    page=self.page,
-                    main_screen=self
+                ft.Container(
+                    content=ft.Row(
+                        controls=[
+                            go_home_screen(
+                                page=self.page,
+                                main_screen=self
+                            ),
+                            get_sources_code(
+                                page=self.page,
+                                code_editor=self.code_editor
+                            )
+                        ]
+                    )
                 )
             ],
         )
@@ -400,7 +529,7 @@ class projects_made(ft.Container):
             alignment=ft.MainAxisAlignment.CENTER,
             horizontal_alignment=ft.CrossAxisAlignment.CENTER,
             controls=[
-                # control number 0 
+                # control number 0
                 ft.Row(
                     alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
                     vertical_alignment=ft.CrossAxisAlignment.CENTER,
@@ -426,7 +555,7 @@ class projects_made(ft.Container):
                         ),  # for _ in range(3)
                     ]
                 ),
-                # control number 1 
+                # control number 1
                 ft.Text(
                     # text_align=ft.TextAlign.LEFT,
                     weight=ft.FontWeight.BOLD,
@@ -435,7 +564,7 @@ class projects_made(ft.Container):
                     size=10,
                     value=self.user_name,
                 ),
-                # control number 2 
+                # control number 2
                 ft.Text(
                     # text_align=ft.TextAlign.LEFT,
                     weight=ft.FontWeight.BOLD,
@@ -444,7 +573,7 @@ class projects_made(ft.Container):
                     size=10,
                     value=self.app_name,
                 ),
-                # control number 3 
+                # control number 3
                 ft.Text(
                     # text_align=ft.TextAlign.LEFT,
                     weight=ft.FontWeight.BOLD,
@@ -455,10 +584,10 @@ class projects_made(ft.Container):
                 ),
             ]
         )
-    
+
 
     def activate_screen(self,) -> object():
-        """Return widget screen to load 
+        """Return widget screen to load
 
         Args:
             widget (object, optional): _description_. Defaults to None)->object()
@@ -474,7 +603,7 @@ class projects_made(ft.Container):
 
         # self.tmp_screen_phone = screen_phone()
         self.selected_screen = tmp_screen_phone
-        # return 
+        # return
         # NECESSARY TAKE SELECTED SCREEN
         self.data_selected = self.dragg_widget
         # self.selected_screen.content.content = ft.Container(bgcolor="red", height=120, width=120)
@@ -505,8 +634,8 @@ class projects_made(ft.Container):
         globals()['dynamic_module'] = module
         tmp_module = dynamic_module.load_module_str() # type: ignore
         return tmp_module
-        
-class project_manager(ft.Container):
+
+class project_manager(ft.Stack):
     """
     project_tab = [
             'Splash',
@@ -528,7 +657,7 @@ class project_manager(ft.Container):
     """
     TABS_PROJECTS: list = {
         'Splash': ft.Icons('do_not_touch'),
-        'Introduction': ft.Icons('start'),
+        # 'Introduction': ft.Icons('start'),
         # 'Login': ft.Icons('login'),
         # 'LoginRegister': ft.Icons('how_to_reg'),
         # 'Lock': ft.Icons('block'),
@@ -576,7 +705,8 @@ class project_manager(ft.Container):
                 ) for tabs_name in self.TABS_PROJECTS
             ],
             on_change= lambda e: self.change_rail_position(
-                index_rail=e.control.selected_index),
+                index_rail=e.control.selected_index
+            ),
         )
 
         self.middle_container = ft.Container(
@@ -618,10 +748,14 @@ class project_manager(ft.Container):
                 # RIGHT WIDGETS
                 self.middle_container,
                 # screen_phone(),
-                screen_manager(page=self.page)
+                screen_manager(page=self.page,code_editor=self)
             ],
             # expand=True,
         )
+        self.controls = [
+                self.content,
+                code_editor(paren_widget=self, visible=False)
+            ]
 
     def change_rail_position(self, index_rail: int = int()):
         self.grid_widget = self.middle_container.content
@@ -686,9 +820,9 @@ class project_manager(ft.Container):
         """
         sqlite_obj = sqlite_db()
         data_returned = sqlite_obj.find_all(table_name=table_name)
-        
+
         # print(data_returned)
-        # return 
+        # return
 
         if data_returned:
             for tmp_list in data_returned:

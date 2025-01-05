@@ -158,7 +158,8 @@ class SingleNumeberEntry(ft.Stack):
 
         #:
         if self.widget_name == "image_opacity":
-            self.widget.image.opacity = 1 - slider_value
+            if self.widget.image:
+                self.widget.image.opacity = 1 - slider_value
 
         if self.widget_name == "image_opacity ":
             self.phone_image = self.page.session.get('SELECTED_SCREEN')

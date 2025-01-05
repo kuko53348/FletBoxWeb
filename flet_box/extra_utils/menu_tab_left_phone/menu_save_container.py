@@ -48,16 +48,33 @@ class menu_save_container(ft.Container):
     def build(self):
         self.save_column = ft.Column(
             controls=[
-                ft.Container(
-                    padding=ft.padding.all(8),
-                    alignment=ft.alignment.center,
-                    content=ft.Text(
-                        size=26,
-                        text_align=ft.TextAlign.CENTER,
-                        weight=ft.FontWeight.W_900,
-                        font_family="Consolas",
-                        value="Save Projects",
-                    )
+                ft.Row(
+                    controls=[
+                        ft.Container(
+                            expand=True,
+                            padding=ft.padding.only(left=62),
+                            alignment=ft.alignment.center,
+                            content=ft.Text(
+                                size=26,
+                                text_align=ft.TextAlign.CENTER,
+                                weight=ft.FontWeight.W_900,
+                                font_family="Consolas",
+                                value="Save Projects",
+                            )
+                        ),
+                        ft.Container(
+                            tooltip='Back Home Page',
+                            padding=ft.padding.all(8),
+                            margin=ft.margin.all(8),
+                            border_radius=ft.border_radius.all(24),
+                            bgcolor=ft.Colors.with_opacity(0.5,ft.colors('red')),
+                            alignment=ft.alignment.center,
+                            content=ft.Icon(
+                                name=ft.icons('swipe_left'),
+                            ),
+                            on_click=lambda _: self.page.go('/home')
+                        ),
+                    ]
                 ),
                 ft.Container(
                     # padding=ft.padding.all(8),
@@ -78,7 +95,7 @@ class menu_save_container(ft.Container):
                     # expand=True,
                     ink=True,
                     height=48,
-                    bgcolor=ft.Colors.with_opacity(0.2, ft.colors('teal')),
+                    bgcolor=ft.Colors.with_opacity(0.04, ft.colors('blue200')),
                     content=ft.Text(
                         size=18,
                         text_align=ft.TextAlign.CENTER,
@@ -167,7 +184,7 @@ class menu_save_container(ft.Container):
                     alignment=ft.alignment.center,
                     # expand=True,
                     height=48,
-                    bgcolor=ft.Colors.with_opacity(0.2, ft.colors('teal')),
+                    bgcolor=ft.Colors.with_opacity(0.04, ft.colors('blue200')),
                     content=ft.Text(
                         size=18,
                         text_align=ft.TextAlign.CENTER,
@@ -204,7 +221,7 @@ class menu_save_container(ft.Container):
                             # font_family="Consolas",
                             color=ft.colors('yellow'),
                             value="🌟 A Heartfelt Thank You to the Flet Development Team! 🌟"
-                            
+
                         )
                     ),
                     ft.Container(
@@ -265,7 +282,7 @@ class menu_save_container(ft.Container):
                 self.congratulation_container,
             ]
         )
-    
+
     def go_home_page(self):
         self.page.go('/home')
 
@@ -321,8 +338,8 @@ if __name__ == '__main__':
         page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
 
         page.theme_mode = ft.ThemeMode.DARK  # ft.ThemeMode.LIGHT DARK
-        page.theme = ft.Theme(color_scheme_seed=ft.Colors.TEAL)
-        page.dark_theme = ft.Theme(color_scheme_seed=ft.Colors.BLUE)
+        page.theme = ft.Theme(color_scheme_seed=ft.colors('white'))
+        page.dark_theme = ft.Theme(color_scheme_seed=ft.colors('blue'))
 
         page.window.left = 8
         page.window.top = 8

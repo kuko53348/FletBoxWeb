@@ -267,7 +267,7 @@ class SelectionEntry(ft.Stack):
         #: IMAGE FIT
         #: CONTAIN, COVER, FILL, FIT_HEIGHT, FIT_WIDTH, SCALE_DOWN
         if self.attribute_widget == "image_fit_src":
-            
+
             if config_widget == " Contain":
                 self.widget.fit = ft.ImageFit.CONTAIN
 
@@ -348,18 +348,29 @@ class SelectionEntry(ft.Stack):
 
         else:
             if config_widget == " Contain":
-                self.widget.image.fit = ft.ImageFit.CONTAIN
-            if config_widget == " Cover":
-                self.widget.image.fit = ft.ImageFit.COVER
-            if config_widget == " Fill":
+                if self.widget.image:
+                    self.widget.image.fit = ft.ImageFit.CONTAIN
 
-                self.widget.image.fit = ft.ImageFit.FILL
+            if config_widget == " Cover":
+                if self.widget.image:
+                    self.widget.image.fit = ft.ImageFit.COVER
+
+            if config_widget == " Fill":
+                if self.widget.image:
+                    self.widget.image.fit = ft.ImageFit.FILL
+
             if config_widget == " Fit Height":
-                self.widget.image.fit = ft.ImageFit.FIT_HEIGHT
+                if self.widget.image:
+                    self.widget.image.fit = ft.ImageFit.FIT_HEIGHT
+
             if config_widget == " Fit Width":
-                self.widget.image.fit = ft.ImageFit.FIT_WIDTH
+                if self.widget.image:
+                    self.widget.image.fit = ft.ImageFit.FIT_WIDTH
+
             if config_widget == " Scale Down":
-                self.widget.image.fit = ft.ImageFit.SCALE_DOWN
+                if self.widget.image:
+                    self.widget.image.fit = ft.ImageFit.SCALE_DOWN
+
 
         #: CONTAINER.content = ft.Widget()
         #: VERTICAL ALIGMENT
