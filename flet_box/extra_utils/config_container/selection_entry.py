@@ -267,7 +267,6 @@ class SelectionEntry(ft.Stack):
         #: IMAGE FIT
         #: CONTAIN, COVER, FILL, FIT_HEIGHT, FIT_WIDTH, SCALE_DOWN
         if self.attribute_widget == "image_fit_src":
-
             if config_widget == " Contain":
                 self.widget.fit = ft.ImageFit.CONTAIN
 
@@ -299,16 +298,10 @@ class SelectionEntry(ft.Stack):
         elif self.attribute_widget == "image_fit ":
             self.phone_image = self.page.session.get('SELECTED_SCREEN')
 
-            # self.widget = self.phone_image.content.content.content
-            # self.phone_image.content.content.content = None
             if self.phone_image.content.content.content.image:
-                # self.phone_image.image = None
                 self.widget = self.phone_image.content.content.content
-                # self.phone_image.update()
             else:
-                # self.phone_image.content.content.content.image = None
                 self.widget = self.phone_image
-                # self.phone_image.update()
 
             if not self.widget.image == None:
                 if config_widget == " Contain":

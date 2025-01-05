@@ -118,13 +118,16 @@ class InfinityBoxLayerOne(ft.DragTarget):
                      "Image": [    ft.Container(alignment=ft.alignment.center,padding=ft.padding.all(6),margin=ft.margin.all(0),border=ft.border.all(0, ft.colors('transparent')),tooltip='Image',
                                    ink=True,
                                    ink_color='red',
-                                   height=148,
+                                   # height=148,
                                    # width=148,
                                    # on_hover=lambda _:self.resetClick(),
                                    on_click=lambda _:self.touch_widget_in_phone(selected_widget=self.infinityDropWidget),
-                                   content=ft.Image(
-                                        src=f'.no_image.jpg',
-                                        fit=ft.ImageFit.FILL),
+                                   content=ft.Image(src=f'.no_image.jpg',
+                                                    fit=ft.ImageFit.FILL,
+                                                    width=self.page.session.get("SELECTED_SCREEN").width,
+                                                    height=self.page.session.get("SELECTED_SCREEN").height/4,
+                                                    tooltip='Image'
+                                                    )
                                    # image =ft.DecorationImage(
                                    #                 src='.no_image.jpg',
                                    #                 fit=ft.ImageFit.FILL,  #: CONTAIN, FILL, FIT_WIDTH, SCALE_DOWN, COVER, FIT_HEIGHT, NONE
