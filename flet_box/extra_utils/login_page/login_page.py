@@ -279,16 +279,26 @@ class recover_login(ft.Container):
 
     def recover_email_password(self):
         # if email exit in database return passord
-        sqlite_obj = sqlite_db()
-        data_returned = sqlite_obj.find_name(
-            table_name='register',
-            column='user_email',
-            name=self.payload_textfield
-        )
+        # [('kuko53348', 'kuko53348@gmail.com', '123', '2024-12-15 14:10:57.067301')] or False
+
+        if self.page.session.get('flet_box_api'):
+            import requests
+            tmp_data = requests.get(f'http://127.0.0.1:8080/email_recover?user_email={self.payload_textfield}')
+            data_returned = tmp_data.json()
+
+
+        else:
+            sqlite_obj = sqlite_db()
+            data_returned = sqlite_obj.find_name(
+                table_name='register',
+                column='user_email',
+                name=self.payload_textfield
+            )
+            data_returned = data_returned[0]
 
         if data_returned:
             try:
-                user_name, email, pasword, register_time = data_returned[0]
+                user_name, email, pasword, register_time = data_returned
                 email_returned = send_email(
                     user_name=user_name,
                     send_to=self.payload_textfield,
@@ -568,25 +578,27 @@ class formulary_login(ft.Container):
         self.pasword_textfield = payload.data
 
     def start_flet_box(self):
-
         self.email_user = self.email_textfield
         self.pasword = self.pasword_textfield
 
+        if self.page.session.get('flet_box_api'):
+            import requests
+            tmp_data = requests.get(f'http://127.0.0.1:8080/login?user_email={self.email_user}&user_password={self.pasword}')
+            data_returned = tmp_data.json()
 
-
-
-        sqlite_obj = sqlite_db()
-        data_returned = sqlite_obj.find_name(
-            table_name='register',
-            column='user_email',
-            name=self.email_user,
-            match=['user_password',
-                   self.pasword])
-
+        else:
+            sqlite_obj = sqlite_db()
+            data_returned = sqlite_obj.find_name(
+                table_name='register',
+                column='user_email',
+                name=self.email_user,
+                match=['user_password',
+                    self.pasword])
+            data_returned = data_returned[0]
         print(data_returned,"<<<< login_page.py")
 
         if data_returned:
-            user_name, email, pasword, register_time = data_returned[0]
+            user_name, email, pasword, register_time = data_returned
             if email == self.email_user and self.pasword == pasword:
                 # print(f"user_name: {user_name},pasword: {pasword}")
                 self.page.session.set(
@@ -595,7 +607,6 @@ class formulary_login(ft.Container):
                         'pasword': pasword
                     })
 
-                # print(self.page,"<<<<<<<<<<<<<")
                 self.page.go('/home')
 
         elif self.email_user == "save_database" and self.pasword == "save_database":
@@ -862,91 +873,135 @@ class formulary_register(ft.Container):
                 and not self.email_register_str == "":
 
             # IF IS VALID EMAIL CONTINUE LINE
-            sqlite_obj = sqlite_db()
             is_valid_email = self.check_email(email=self.email_register_str)
 
-            if is_valid_email:
+            if self.page.session.get('flet_box_api'):
+                import requests
+                tmp_data = requests.get(f'http://127.0.0.1:8080/validation_account?user_name={self.user_register_str}&user_email={self.email_register_str}')
 
-                # IF NO EXIT DUPLICATE USER_NAME CONTINUE
-                sqlite_obj = sqlite_db()
-                user_name = sqlite_obj.find_name(
-                    table_name='register',
-                    column='user_name',
-                    name=self.user_register_str
-                )
+                data_returned = tmp_data.json()
 
-                # IF NO EXIT DUPLICATE USER_EMAIL CONTINUE
-                sqlite_obj = sqlite_db()
-                user_email = sqlite_obj.find_name(
-                    table_name='register',
-                    column='user_email',
-                    name=self.email_register_str
-                )
-
-                if user_name:
-                    user_name = True
-                    on_developing(
-                        self=self,
-                        name_seccion='Duplicate validation username',
-                        body_string="Pleasse username exist in database take another account"
-                    )
-
-                elif user_email:
-                    user_email = True
-                    on_developing(
-                        self=self,
-                        name_seccion='Duplicate validation email',
-                        body_string="Pleasse email exist in database take another account"
-                    )
-
-                elif user_name == False and user_email == False:
-                    """
-                    write user in database
-                    """
-                    # WRITE DATA IN REGISTER TABLE
-                    sqlite_obj = sqlite_db()
-                    sqlite_obj.write_data(
-                        table_name='register',
-                        column=(
-                            self.user_register_str,
-                            self.email_register_str,
-                            self.password_register_str,
-                            str(datetime.now())
+                if is_valid_email:
+                    # print(data_returned,"<<<<")
+                    # user_name = False
+                    # user_enail = False
+                    self.validate = data_returned.get('validated_account',False)
+                    if self.validate:
+                        # REGISTER ACCOUNT
+                        print(self.user_register_str)
+                        data = requests.post(f'http://127.0.0.1:8080/register_account?user_name={self.user_register_str}&user_email={self.email_register_str}&user_password={self.password_register_str}')
+                        print(data)
+                        self.middle_box.content.controls.pop()
+                        self.middle_box.content.controls.append(
+                            congratulation_menu(
+                                middle_box=self.middle_box
                         ))
+                        self.page.update()
+                    else:
+                        user_name = data_returned.get('user_name',False)
+                        user_email = data_returned.get('user_email',False)
+                        print(user_name,user_email)
+                        if user_name:
+                            on_developing(
+                                    self=self,
+                                    name_seccion='Duplicate validation USER NAME',
+                                    body_string="Pleasse username exist in database take another account"
+                                )
+                        elif user_email:
+                            on_developing(
+                                    self=self,
+                                    name_seccion='Duplicate validation EMAIL',
+                                    body_string="Pleasse user_email exist in database take another account"
+                                )
 
-                    # WITE DATA BY DEFAULD IN SCREENS TABLE
-                    sqlite_obj = sqlite_db()
-                    sqlite_obj.write_data(
-                        table_name='user_screen',
-                        column=(
-                            self.user_register_str,  # user_name
-                            'None',  # main_screen
-                            'None',  # screen_one
-                            'None',  # screen_two
-                            'None',  # screen_three
-                            'None',  # screen_four
-                            'None',  # screen_five
-                            'None',  # screen_six
-                            'None',  # screen_seven
-                            'None',  # screen_eigth
-                            'None',  # screen_nine
-                            'None',  # screen_ten
-                            'None',  # screen_eleven
-                            'None',  # screen_twelve
-                        )
-                    )
 
-                    self.middle_box.content.controls.pop()
-                    self.middle_box.content.controls.append(
-                        congratulation_menu(
-                            middle_box=self.middle_box
-                        ))
-                    self.page.update()
+                else:
+                    on_developing(self=self,
+                                name_seccion='Wrong typing email',
+                                body_string="Pleasse check email most be real email"
+                                )
             else:
-                on_developing(self=self,
-                              name_seccion='Wrong typing email',
-                              body_string="Pleasse check email most be real email"
-                              )
+                if is_valid_email:
+                    # IF NO EXIT DUPLICATE USER_NAME CONTINUE
+                    sqlite_obj = sqlite_db()
+                    user_name = sqlite_obj.find_name(
+                        table_name='register',
+                        column='user_name',
+                        name=self.user_register_str
+                    )
+
+                    # IF NO EXIT DUPLICATE USER_EMAIL CONTINUE
+                    sqlite_obj = sqlite_db()
+                    user_email = sqlite_obj.find_name(
+                        table_name='register',
+                        column='user_email',
+                        name=self.email_register_str
+                    )
+
+                    if user_name:
+                        user_name = True
+                        on_developing(
+                            self=self,
+                            name_seccion='Duplicate validation username',
+                            body_string="Pleasse username exist in database take another account"
+                        )
+
+                    elif user_email:
+                        user_email = True
+                        on_developing(
+                            self=self,
+                            name_seccion='Duplicate validation email',
+                            body_string="Pleasse email exist in database take another account"
+                        )
+
+                    elif user_name == False and user_email == False:
+                        """
+                        write user in database
+                        """
+                        # WRITE DATA IN REGISTER TABLE
+                        sqlite_obj = sqlite_db()
+                        sqlite_obj.write_data(
+                            table_name='register',
+                            column=(
+                                self.user_register_str,
+                                self.email_register_str,
+                                self.password_register_str,
+                                str(datetime.now())
+                            ))
+
+                        # WITE DATA BY DEFAULD IN SCREENS TABLE
+                        sqlite_obj = sqlite_db()
+                        sqlite_obj.write_data(
+                            table_name='user_screen',
+                            column=(
+                                self.user_register_str,  # user_name
+                                'None',  # main_screen
+                                'None',  # screen_one
+                                'None',  # screen_two
+                                'None',  # screen_three
+                                'None',  # screen_four
+                                'None',  # screen_five
+                                'None',  # screen_six
+                                'None',  # screen_seven
+                                'None',  # screen_eigth
+                                'None',  # screen_nine
+                                'None',  # screen_ten
+                                'None',  # screen_eleven
+                                'None',  # screen_twelve
+                            )
+                        )
+
+                        self.middle_box.content.controls.pop()
+                        self.middle_box.content.controls.append(
+                            congratulation_menu(
+                                middle_box=self.middle_box
+                            ))
+                        self.page.update()
+                else:
+                    on_developing(self=self,
+                                name_seccion='Wrong typing email',
+                                body_string="Pleasse check email most be real email"
+                                )
         else:
             on_developing(self=self,
                           name_seccion='Wrong validation password',
@@ -955,20 +1010,20 @@ class formulary_register(ft.Container):
 
     def check_email(self, email: str = str()) -> bool:
         valid = re.match(
-            r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$', email)
+            r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$', email.strip(''))
         return valid
 
     def user_register(self, payload: str = str()) ->str:
-        self.user_register_str = payload.data
+        self.user_register_str = payload.data.strip('')
 
     def password_register(self, payload: str = str()) ->str:
-        self.password_register_str = payload.data
+        self.password_register_str = payload.data.strip('')
 
     def password_second_register(self, payload: str = str()) ->str:
         self.password_second_register_str = payload.data
 
     def email_register(self, payload: str = str()) ->str:
-        self.email_register_str = payload.data
+        self.email_register_str = payload.data.strip('')
 
     def show_login_menu(self):
         self.middle_box.content.controls.pop()

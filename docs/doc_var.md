@@ -23,6 +23,10 @@ self.page.session.set('user_name_phone', self.Build_Phone_Editor)  # <== SET MAI
 
 self.page.session.set('on_dev',error) # <== error fron config widgets
 
+self.page.session.set('flet_box_api',True) # <== Will have True or false
+
+
+
 ft.colors('blue300')
 ft.colors('cyan700')
 ft.colors('cyan800')
