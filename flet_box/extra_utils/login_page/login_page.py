@@ -5,6 +5,7 @@ from datetime import datetime
 from ..external_library.sqlite_db import sqlite_db
 from ..external_library.library_email import send_email
 
+headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
 request_session = requests.session()
 
 TEXT_PRESENTATION: str = """
@@ -284,10 +285,8 @@ class recover_login(ft.Container):
         # [('kuko53348', 'kuko53348@gmail.com', '123', '2024-12-15 14:10:57.067301')] or False
 
         if self.page.session.get('flet_box_api'):
-            # tmp_data = request_session.get(f'http://127.0.0.1:8080/email_recover?user_email={self.payload_textfield}')
-            tmp_data = request_session.get(f'http://127.0.0.1:8080/email_recover',params={'user_email': self.payload_textfield})
+            tmp_data = request_session.get(f'{self.page.session.get("api_server")}email_recover',params={'user_email': self.payload_textfield})
             data_returned = tmp_data.json()
-
 
         else:
             sqlite_obj = sqlite_db()
@@ -584,8 +583,7 @@ class formulary_login(ft.Container):
         self.pasword = self.pasword_textfield
 
         if self.page.session.get('flet_box_api'):
-            # tmp_data = request_session.get(f'http://127.0.0.1:8080/login?user_email={self.email_user}&user_password={self.pasword}')
-            tmp_data = request_session.get(f'http://127.0.0.1:8080/login',params={'user_email': self.email_user,'user_password':self.pasword})
+            tmp_data = request_session.get(f'{self.page.session.get("api_server")}login',params={'user_email': self.email_user,'user_password':self.pasword})
             data_returned = tmp_data.json()
 
         else:
@@ -878,9 +876,7 @@ class formulary_register(ft.Container):
             is_valid_email = self.check_email(email=self.email_register_str)
 
             if self.page.session.get('flet_box_api'):
-                # tmp_data = request_session.get(f'http://127.0.0.1:8080/validation_account?user_name={self.user_register_str}&user_email={self.email_register_str}')
-                tmp_data = request_session.get(f'http://127.0.0.1:8080/validation_account',params={'user_name': self.user_register_str,'user_email':self.email_register_str})
-
+                tmp_data = request_session.get(f'{self.page.session.get("api_server")}/validation_account',params={'user_name': self.user_register_str,'user_email':self.email_register_str})
                 data_returned = tmp_data.json()
 
                 if is_valid_email:
@@ -890,9 +886,8 @@ class formulary_register(ft.Container):
                     self.validate = data_returned.get('validated_account',False)
                     if self.validate:
                         # REGISTER ACCOUNT
-                        # data = request_session.post(f'http://127.0.0.1:8080/register_account?user_name={self.user_register_str}&user_email={self.email_register_str}&user_password={self.password_register_str}')
                         validation = {'user_name': self.user_register_str,'user_email':self.email_register_str, 'user_password': self.password_register_str}
-                        request_session.post(f'http://127.0.0.1:8080/validation_account',params=validation)
+                        request_session.post(f'{self.page.session.get("api_server")}validation_account',params=validation)
 
                         self.middle_box.content.controls.pop()
                         self.middle_box.content.controls.append(

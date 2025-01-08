@@ -3,7 +3,7 @@ import requests
 import json
 
 request_session = requests.Session()
-
+#
 testing = False
 
 # COMENT THIS 2 LINES IN TESTING
@@ -217,7 +217,6 @@ class lite_screen_manager(ft.Container):
             self.obtion_list.clear()
             self.session_user_name = self.page.session.get('user_name').get('user_name')
 
-            # https://httpbin.org/get?user_name=hello world
             data_returned = request_session.get(f'{self.page.session.get("api_server")}get_widgets', params={'user_name': self.session_user_name})
 
             for index, _ in enumerate(data_returned.json()):
