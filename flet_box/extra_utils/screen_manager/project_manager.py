@@ -1,10 +1,14 @@
 import flet as ft
+import requests
+import json
+
+request_session = requests.Session()
 
 testing = False
 
 # COMENT THIS 2 LINES IN TESTING
 from ..external_library.sqlite_db import sqlite_db
-testing = True
+# testing = True
 
 class code_editor(ft.Container):
     def __init__(
@@ -206,58 +210,68 @@ class lite_screen_manager(ft.Container):
         self.drop_down.update()
 
     def list_user_screen(self):
-        self.obtion_list.clear()
-        sqlite_obj = sqlite_db()
-        data_returned = sqlite_obj.find_name(
-            table_name='user_screen',
-            column='user_name',
-            # name='kuko53348',
-            # name='user_demo',
-            name=self.page.session.get('user_name').get('user_name')
-        )
+        """
+        Loader screens in marketplace is by defauld load all screens
+        """
+        if self.page.session.get('flet_box_api'):
+            self.obtion_list.clear()
+            self.session_user_name = self.page.session.get('user_name').get('user_name')
 
-        for index, _ in enumerate(data_returned[0]):
-            if not _ == "None" and index > 0:
-                print(f'index {index} Container')
-                self.obtion_list.append(index)
-            # else:
-            #     print(f'index {index} None')
-                # self.obtion_list.append(_)
+            # https://httpbin.org/get?user_name=hello world
+            data_returned = request_session.get(f'{self.page.session.get("api_server")}get_widgets', params={'user_name': self.session_user_name})
+
+            for index, _ in enumerate(data_returned.json()):
+                if not _ == "None" and index > 0:
+                    print(f'index {index} Container')
+                    self.obtion_list.append(index) # self.obtion_list.append(index)
+                    # print(self.obtion_list)
+        else:
+            self.obtion_list.clear()
+            sqlite_obj = sqlite_db()
+            data_returned = sqlite_obj.find_name(
+                table_name='user_screen',
+                column='user_name',
+                # name='kuko53348',
+                # name='user_demo',
+                name=self.page.session.get('user_name').get('user_name')
+            )
+
+            for index, _ in enumerate(data_returned[0]):
+                if not _ == "None" and index > 0:
+                    print(f'index {index} Container')
+                    self.obtion_list.append(index)
+                # else:
+                #     print(f'index {index} None')
+                    # self.obtion_list.append(_)
 
     def change_selected_input(self, payload):
-        # self.selected_text = payload
-
-        # if self.old_payload == payload:
-        #     # ESCAPE ERROR MULTYPLES THREATHS
-        #     # ONLY NEW SUBMIT WILL BE AVIABLES
-        #     # if self.old_payload:
-        #     #     # IF PRESS DOUBLE CLICK IN SAME PAGE WILL NO CONTINUE
-        #     #     self.old_payload = False
-        #     #     self.drop_down.options.clear()
-        #     #     self.drop_down.update()
-        #     #     return
-
-        #     # self.old_payload = True
-        #     self.drop_down.options.clear()
-        #     self.drop_down.update()
-
-        #     return
+        """
+        Change content of screen phone in screen manager
+        """
 
         self.old_payload = payload
-        print(f"changing {payload}")
+        self.tmp_session_user_name = self.page.session.get('user_name').get('user_name')
 
-        sqlite_obj = sqlite_db()
-        data_returned = sqlite_obj.find_name(
-            table_name='user_screen',
-            column='user_name',
-            # name='kuko53348',
-            # name='user_demo',
-            name=self.page.session.get('user_name').get('user_name')
+        if self.page.session.get('flet_box_api'):
+            data_returned = request_session.get(f'{self.page.session.get("api_server")}get_widgets', params={'user_name': self.tmp_session_user_name})
+            self.data_selected = data_returned.json()[1]
 
-        )
+        else:
+            sqlite_obj = sqlite_db()
+            data_returned = sqlite_obj.find_name(
+                table_name='user_screen',
+                column='user_name',
+                # name='kuko53348',
+                # name='user_demo',
+                name=self.tmp_session_user_name
 
-        # NECESSARY TAKE SELECTED SCREEN
-        self.data_selected = data_returned[0][1]
+            )
+
+            # NECESSARY TAKE SELECTED SCREEN
+            self.data_selected = data_returned[0][1]
+
+
+        # CHANGE CONTENT OF PHONE IN SCREEN MANAGER
         # self.selected_screen.content.content = ft.Container(bgcolor="red",height=120,width=120)
         self.selected_screen.content.content = self.load_module_from_string(
             page=self.page,
@@ -812,16 +826,21 @@ class project_manager(ft.Stack):
         self.grid_widget.update()
 
     def list_projects_tabs(self, table_name: str=str()) -> list:
-        """read data fron data table in db
+        """List all widgets in selected projects in database
 
         Args:
             ('kuko53348', 'Splash', 'exemple', '5', 'ft.DraggContainer()', 'ft.Container()', '14-15-15')
 
         """
-        sqlite_obj = sqlite_db()
-        data_returned = sqlite_obj.find_all(table_name=table_name)
+        if self.page.session.get('flet_box_api'):
+            data_returned = request_session.get(f'{self.page.session.get("api_server")}get_projects_widgets', params={'table_name': table_name})
+            data_returned = data_returned.json()
 
-        # print(data_returned)
+            # print(data_returned)
+        else:
+            sqlite_obj = sqlite_db()
+            data_returned = sqlite_obj.find_all(table_name=table_name)
+
         # return
 
         if data_returned:

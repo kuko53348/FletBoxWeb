@@ -1,7 +1,9 @@
+import json
+
 from datetime import datetime
 from flet_box_database.sqlite_db import sqlite_db
 from fastapi import FastAPI
-
+from fastapi import Body
 host_api_server: str = 'https://kuko53348.pythonanywhere.com/'
 PATH_DB: str = "flet_box_api/flet_box_database/flet_box_database.db"
 
@@ -12,7 +14,6 @@ app.title: str = "Flet Box Api"
 app.version: str = "0.0.1"
 app.description: str = "Flet Box Api server is a amazing gui to make beutiful widget with flet framework"
 
-
 @app.get('/', tags=['Welcome to FletBox api server'])
 async def home_screen():
     """
@@ -22,7 +23,10 @@ async def home_screen():
 
     import requests
 
-    tmp_data = requests.get(f'{host_api_server}')
+    request_session = requests.session()
+
+    # lobby screen
+    tmp_data = request_session.get(f'https://kuko53348.pythonanywhere.com/')
     data_returned = tmp_data.json()
     ```
     """
@@ -33,14 +37,21 @@ async def home_screen():
 
 
 @app.get('/login', tags=['Loggin Account'])
-async def get_login_user(user_email: str = "", user_password: str = "") -> list:
+async def login(user_email: str = "", user_password: str = "") -> list:
     """
     Login with your email and paswword
 
     ```python
     import requests
 
-    tmp_data = requests.get(f'{host_api_server}login?user_email={self.user_email}&user_password={self.user_password}')
+    request_session = requests.session()
+
+    # Exemple: 1
+    tmp_data = request_session.get(f'https://kuko53348.pythonanywhere.com/login?user_email={self.user_email}&user_password={self.user_password}')
+
+    # Exemple: 2
+    tmp_data = request_session.get(f'https://kuko53348.pythonanywhere.com/login',params={'user_email': self.user_email,'user_password':self.user_password})
+
     data_returned = tmp_data.json()
     ```
     """
@@ -60,8 +71,8 @@ async def get_login_user(user_email: str = "", user_password: str = "") -> list:
 # GET EMAIL RECOVER
 
 
-@app.get('/email_recover', tags=['email_recover'])
-async def get_login_user(user_email: str = "") -> list:
+@app.get('/email_recover', tags=['Loggin Account'])
+async def email_recover(user_email: str = "") -> list:
     """
     Recover your account passord by email
 
@@ -69,7 +80,14 @@ async def get_login_user(user_email: str = "") -> list:
 
     import requests
 
-    tmp_data = requests.get(f'{host_api_server}email_recover?user_email={self.user_email}')
+    request_session = requests.session()
+
+    # Exemple: 1
+    tmp_data = request_session.get(f'https://kuko53348.pythonanywhere.com/email_recover?user_email={self.user_email}')
+
+    # Exemple: 2
+    tmp_data = request_session.get(f'https://kuko53348.pythonanywhere.com/email_recover',params={'user_email': self.user_email})
+
     data_returned = tmp_data.json()
     ```
     """
@@ -88,15 +106,23 @@ async def get_login_user(user_email: str = "") -> list:
 # CHECK USERNAME EMAIL
 
 
-@app.get('/validation_account', tags=['validation_account'])
-async def get_login_user(user_name: str = "", user_email: str = "") -> dict:
+@app.get('/validation_account', tags=['Loggin Account'])
+async def validation_account(user_name: str = "", user_email: str = "") -> dict:
     """
     This validation let not have duplicates emails and usernames
 
     ```python
     import requests
 
-    tmp_data = requests.get(f'{host_api_server}email_recover?user_email={self.user_email}')
+    request_session = requests.session()
+
+    # Exemple: 1
+    tmp_data = request_session.get(f'https://kuko53348.pythonanywhere.com/validation_account?user_name={self.user_register_str}&user_email={self.email_register_str}')
+
+    # Exemple: 2
+    validation = {'user_name': self.user_register_str,'user_email':self.email_register_str}
+    tmp_data = request_session.get(f'https://kuko53348.pythonanywhere.com/validation_account',params=validation)
+
     data_returned = tmp_data.json()
     ```
     """
@@ -139,15 +165,25 @@ async def get_login_user(user_name: str = "", user_email: str = "") -> dict:
 
 
 # POST REGISTER ACCOUNT
-@app.post('/register_account', tags=['register_account'])
-async def get_login_user(user_name: str = "", user_email: str = "", user_password: str = "") -> list:
+@app.post('/register_account', tags=['Loggin Account'])
+async def register_account(user_name: str = "", user_email: str = "", user_password: str = "") -> list:
     """
     Register your account in FletBox web database
 
     ```python
     import requests
 
-    requests.post(f'{host_api_server}register_account?user_name={self.user_name}&user_email={self.user_email}&user_password={self.user_password}')
+    request_session = requests.session()
+
+    # Exemple: 1
+    tmp_data = request_session.post(f'https://kuko53348.pythonanywhere.com/register_account?user_name={self.user_name}&user_email={self.user_email}&user_password={self.user_password}')
+
+    # Exemple: 2
+    validation = {'user_name': self.user_register_str,'user_email':self.email_register_str, 'user_password': self.password_register_str}
+    tmp_data = request_session.post(f'https://kuko53348.pythonanywhere.com/validation_account',params=validation)
+
+    data_returned = tmp_data.json()
+
     ```
     """
     # kuko53348@gmail.com
@@ -186,6 +222,90 @@ async def get_login_user(user_name: str = "", user_email: str = "", user_passwor
     )
 
     return {'Account was registered succesfully'}
+
+# POST SAVED WIDGETS IN DATABASE ACCOUNT
+@app.get('/get_widgets', tags=['Widgets Edition'])
+async def get_widgets(user_name: str = ""):
+    """
+    Dump all index in marketplace by selected column
+
+    ```python
+
+    import requests
+
+    request_session = requests.session()
+
+    data_returned = request_session.get('https://kuko53348.pythonanywhere.com/get_widgets', params={'user_name': self.tmp_session_user_name})
+    data_returned = tmp_data.json()
+    ```
+    """
+    sqlite_obj = sqlite_db(path_db=PATH_DB)
+    data_returned = sqlite_obj.find_name(
+        table_name='user_screen',
+        column='user_name',
+        name=user_name
+    )
+
+    if data_returned:
+        return data_returned[0]
+    else:
+        return []
+
+
+# GET PROJECTS WIDGETS IN DATABASE
+@app.get('/get_projects_widgets', tags=['Widgets Edition'])
+async def get_projects_widgets(table_name: str = ""):
+    """
+    Dump all projects widgets in marketplace by selected column
+
+    ```python
+
+    import requests
+
+    request_session = requests.session()
+
+    data_returned = request_session.get('https://kuko53348.pythonanywhere.com/get_projects_widgets', params={'table_name': self.table_name})
+    data_returned = tmp_data.json()
+    ```
+    """
+    sqlite_obj = sqlite_db(path_db=PATH_DB)
+    data_returned = sqlite_obj.find_all(table_name=table_name)
+
+
+    if data_returned:
+        return data_returned
+    else:
+        return []
+
+# POST SAVED WIDGETS IN DATABASE ACCOUNT
+@app.put('/update_widgets', tags=['Widgets Edition'])
+async def update_widgets(user_name: str = Body(), dragg_widget: str = Body()):
+    """
+    Updating database widgets
+
+    ```python
+    import requests
+    import json
+
+    request_session = requests.session()
+
+    json_data: dict = {'user_name': self.user_name, 'dragg_widget' : self.dragg_widget }
+
+    data_returned = request_session.put('https://kuko53348.pythonanywhere.com/update_widgets', data=json.dumps(json_data))
+    print(data_returned.text)
+    ```
+    """
+    # kuko53348@gmail.com
+    # UPDATE DATA REGISTER TABLE
+    sqlite_obj = sqlite_db(path_db=PATH_DB)
+    sqlite_obj.update_data(
+        table_name='user_screen',
+        change_data=('user_name', user_name),
+        by_data=('main_screen', dragg_widget)
+    )
+    # for _ in dragg_widget:
+    #     print(_)
+    return {"Soucres code was succesfully saved"}
 
 if __name__ == "__main__":
     import uvicorn

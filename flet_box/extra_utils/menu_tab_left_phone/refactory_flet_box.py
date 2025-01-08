@@ -1,9 +1,38 @@
 import json
 import re
+import requests
 
 from ..external_library.sqlite_db import sqlite_db
 
+request_session = requests.Session()
+
 FRAME_WIDGET: dict = {
+
+    "container_content": """
+[+]#: DRAG-BOX-CONTENT [ID: NUMBER_DRAGG]
+[+]ft.Container(
+[+]    **self.dict_style("ContainerCONTAINER_ID"),
+[+]    on_click=lambda dragg_item: print(f'dragg_item {dragg_item}'),
+
+[+]    content=ft.CHANGE_CONTENT_WIDGET(
+[+]        **self.dict_style("CHANGE_CONTENT_WIDGETCONTEN_ID"),
+[+]        # on_click= lambda tmp_widget: eventCONTEN_ID(
+[+]        #        payload="CHANGE_CONTENT_WIDGETCONTEN_ID",
+[+]        #        page= self.page ),
+[+]    ),
+[+]),""",
+
+    "container_controls": """
+[+]#: DRAG-BOX-CONTROLS [ID: NUMBER_DRAGG]
+[+]ft.Container(
+[+]    **self.dict_style("ContainerCONTAINER_ID"),
+[+]    on_click=lambda dragg_item: print(f'dragg_item {dragg_item}'),
+
+[+]    content=ft.CHANGE_CONTENT_WIDGET(
+[+]        **self.dict_style("CHANGE_CONTENT_WIDGETCONTEN_ID"),
+[+]        controls=CHANGE_CONTROLS,
+[+]    ),
+[+]),""",
 
     "dragg_content": """
 [+]#: DRAG-BOX-CONTENT [ID: NUMBER_DRAGG]
@@ -868,7 +897,7 @@ class refactory_flet_box:
             self.clean_code_container = self.refactory_wring_attributes(dict_string=self.container_widget)
             self.class_bone = self.class_bone.replace('CONTAINER_STYLE',self.clean_code_container)
 
-            print('================== onefile ====================')
+            # print('================== onefile ====================')
             self.class_bone = self.class_bone.replace("from .main_screen_styles", "# from .main_screen_styles")
             self.class_bone = self.class_bone.replace("from .main_screen_events", "# from .main_screen_events")
 
@@ -878,15 +907,25 @@ class refactory_flet_box:
             # print(self.class_bone)
             # print(self.clean_code_container)
             #
-            # WRITE IN DATABAS
+            # WRITE IN DATABASE
             self.user_name  = self.page.session.get('user_name').get('user_name') if self.page.session.get('user_name') else 'user_demo'
-            print( self.user_name,"<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
-            sqlite_obj = sqlite_db()
-            data_returned = sqlite_obj.update_data(table_name='user_screen',
-                                          change_data=('user_name', self.user_name),
-                                          by_data=('main_screen', self.class_bone.replace("'",'"'))
-                                         )
-            # print(f'>>>> {self.user_name}')
+            # print( self.user_name,"<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
+
+
+            if self.page.session.get('flet_box_api'):
+                self.class_bone = self.class_bone.replace("'",'"')
+
+                data_returned = request_session.put(f'{self.page.session.get("api_server")}update_widgets', data=json.dumps({'user_name': self.user_name, 'dragg_widget' : self.class_bone}))
+                # print(data_returned.text)
+
+            else:
+                sqlite_obj = sqlite_db()
+                data_returned = sqlite_obj.update_data(
+                                        table_name='user_screen',
+                                        change_data=('user_name', self.user_name),
+                                        by_data=('main_screen', self.class_bone)
+                                )
+                # print(f'>>>> {self.user_name}')
 
             # SAVE DATA TO CONTROL ERRORS
             self.write_files_in_project(
