@@ -1,3 +1,8 @@
+### Documntation FAST-API server Flet-Box Web API
+```bash
+https://kuko53348.pythonanywhere.com/docs#/
+```
+
 ### Start FAST-API server local host
 ```bash
 >>> uvicorn --app-dir "./flet_box_api/" main:app --host 0.0.0.0 --port 8080 --reload
@@ -12,12 +17,13 @@
 ### Install basic dependecies
 ``` bash
 >>> pip install "uvicorn[standard]" fastapi
+>>> pip install --upgrade pythonanywhere
 ```
 
 ### Create file
 ```bash
->>> mkdir ~/my_fastapi/
->>> touch ~/my_fastapi/main.py
+>>> mkdir ~/flet_box_api_server/
+>>> touch ~/flet_box_api_server/main.py
 ```
 ### Create demo in main.py
 ```python
@@ -38,7 +44,7 @@ async def root():
 # pa website reload kuko53348.pythonanywhere.com
 
 # pa website create --domain USERNAME.pythonanywhere.com -c '/home/USERNAME/.virtualenvs/.venv/bin/uvicorn --app-dir "/home/USERNAME/folder_app" --uds ${DOMAIN_SOCKET} main:app'
-pa website create --domain kuko53348.pythonanywhere.com -c '/home/kuko53348/.virtualenvs/.venv/bin/uvicorn --app-dir "/home/kuko53348/my_fastapi" --uds ${DOMAIN_SOCKET} main:app'
+pa website create --domain kuko53348.pythonanywhere.com -c '/home/kuko53348/.virtualenvs/.venv/bin/uvicorn --app-dir "/home/kuko53348/flet_box_api_server" --uds ${DOMAIN_SOCKET} main:app'
 
 ```
 
