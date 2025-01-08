@@ -366,7 +366,7 @@ class flet_box:
         # self.page.session.set('flet_box_api',False)
 
         # NEVER ERASE THIS INVITED PERSON
-        self.page.session.set('user_name', {'user_name': 'invited'})
+        # self.page.session.set('user_name', {'user_name': 'invited'})
 
         # print(self.page.overlay)
         self.page.on_route_change=route_change
@@ -380,7 +380,7 @@ class flet_box:
 
         # JUMP TO DEV ACCOUNT
         # self.page.go('/home')             # <<< TO TESTING
-        self.page.session.set('user_name', {'user_name': 'kuko53348'})
+        # self.page.session.set('user_name', {'user_name': 'kuko53348'})
 
     def setting_only_append_controls(self):
         self.widgetFilter=[_.lower()
