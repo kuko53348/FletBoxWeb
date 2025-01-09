@@ -1,4 +1,5 @@
 bump_upgrade_pypi.sh
+*flet_box_database.db
 env_python.py
 making_wheel.py
 /testing_new_modules

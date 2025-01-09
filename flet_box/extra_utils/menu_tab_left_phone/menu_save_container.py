@@ -1,4 +1,5 @@
 import flet as ft
+from datetime import datetime
 
 from .refactory_flet_box import refactory_flet_box
 
@@ -23,7 +24,11 @@ class menu_save_container(ft.Container):
         'Verification',
         'About'
     ]
+    save_projects_name: dict = {
+        'column_tab': None,
+        'project_name': None,
 
+    }
     def __init__(self, page: object = None, visible: bool=True):
         super().__init__()
         self.page = page
@@ -46,6 +51,25 @@ class menu_save_container(ft.Container):
         )
 
     def build(self):
+        self.button_save_project = ft.Container(
+                    padding=ft.padding.all(8),
+                    margin=ft.margin.all(16),
+                    border_radius=ft.border_radius.all(18),
+                    alignment=ft.alignment.center,
+                    height=48,
+                    bgcolor=ft.Colors.with_opacity(0.04, ft.colors('blue200')),
+                    disabled=True,
+                    content=ft.Text(
+                        size=18,
+                        text_align=ft.TextAlign.CENTER,
+                        weight=ft.FontWeight.W_900,
+                        font_family="Consolas",
+                        color=ft.colors('blue200'),
+                        value="Create module",
+                    ),
+                    on_click=lambda tmp_widget:self.validate_save_project(widget_name=tmp_widget)
+                )
+
         self.save_column = ft.Column(
             controls=[
                 ft.Row(
@@ -143,7 +167,8 @@ class menu_save_container(ft.Container):
                                     label='Project name',
                                     options=[
                                         ft.dropdown.Option(
-                                            key=_
+                                            key=_,
+                                            on_click=lambda tmp_widget: self.column_name(widget_name=tmp_widget.control)
                                         ) for _ in self.project_tab
                                     ],
                                 ),
@@ -158,17 +183,14 @@ class menu_save_container(ft.Container):
                             border_radius=ft.border_radius.all(30),
                             content=ft.TextField(
                                 label="Set module name",
-                                color=ft.colors('black12'),
+                                color=ft.Colors.with_opacity(0.8,ft.colors('yellow')),
                                 border_color=ft.colors('black12'),
                                 border_width=2,
                                 bgcolor=ft.Colors.with_opacity(0.2, ft.colors( 'black')),
                                 border=ft.InputBorder.OUTLINE,
                                 border_radius=16,
                                 #: EVENTS
-                                # on_change= lambda x:print('Pressed [< Write inside > ]'),
-                                # on_submit= lambda x:print('Pressed [< Enter > ]'),
-                                # on_focus = lambda x:print('Pressed [< Click inside > ]'),
-                                # on_blur  = lambda x:print('Pressed [< click click and outside > ]'),
+                                on_change= lambda tmp_widget: self.project_name(widget_name= tmp_widget.control),
                             ),
                             #: EVENTS
                             # on_click= lambda _:print(_),   # on_hover=print('on click over'), on_long_press=print('long press'),
@@ -177,23 +199,7 @@ class menu_save_container(ft.Container):
                 ),
                 ),
 
-                ft.Container(
-                    padding=ft.padding.all(8),
-                    margin=ft.margin.all(16),
-                    border_radius=ft.border_radius.all(18),
-                    alignment=ft.alignment.center,
-                    # expand=True,
-                    height=48,
-                    bgcolor=ft.Colors.with_opacity(0.04, ft.colors('blue200')),
-                    content=ft.Text(
-                        size=18,
-                        text_align=ft.TextAlign.CENTER,
-                        weight=ft.FontWeight.W_900,
-                        font_family="Consolas",
-                        color=ft.colors('blue200'),
-                        value="Create module",
-                    )
-                ),
+                self.button_save_project,
             ]
         )
         self.congratulation_container = ft.Container(
@@ -256,13 +262,6 @@ class menu_save_container(ft.Container):
                     ink=True,
                     height=60,
                     bgcolor=ft.Colors.with_opacity(0.2, ft.colors('black')),
-                    # shadow = ft.BoxShadow(
-                    #     spread_radius=1,
-                    #     blur_radius=12,
-                    #     color=ft.colors('black12'),
-                    #     offset=ft.Offset(0, 0),
-                    #     blur_style=ft.ShadowBlurStyle.OUTER,
-                    # ),
                     content=ft.Text(
                         size=18,
                         text_align=ft.TextAlign.CENTER,
@@ -286,7 +285,47 @@ class menu_save_container(ft.Container):
     def go_home_page(self):
         self.page.go('/home')
 
-    def save_project(self,):
+    def activation_save_project_button(self, widget_name: object = None) -> None:
+        if self.save_projects_name.get('project_name') and self.save_projects_name.get('column_tab'):
+            widget_name.disabled = False
+        else:
+            widget_name.disabled = True
+
+        widget_name.update()
+
+    def project_name(self,widget_name: object=None) -> None:
+        """
+        Set value in dict self.save_projects_name ['project_name']
+        """
+        self.save_projects_name['project_name']=widget_name.value
+        self.activation_save_project_button(widget_name=self.button_save_project)
+
+
+    def column_name(self,widget_name: object=None) -> None:
+        """
+        Set value in dict self.save_projects_name ['column_tab']
+        """
+        self.save_projects_name['column_tab']=widget_name.key
+        self.activation_save_project_button(widget_name=self.button_save_project)
+
+    def validate_save_project(self,widget_name: object=None) -> None:
+        column_tab = self.save_projects_name.get('column_tab')
+        project_name = self.save_projects_name.get('project_name')
+
+        print(column_tab, project_name)
+
+        # save_project_module will set save as a module True
+
+        self.save_project(
+                save_project_module=True,
+                column_tab_db=column_tab,
+                name_project_db=project_name,
+                time_created_db=str(datetime.now())
+        )
+
+        self.go_home_page()
+
+    def save_project(self,save_project_module: bool= False , column_tab_db: str=str(), name_project_db: str=str(), time_created_db: str=str()):
 
         # MAIN SCREEN PHONE
         self.screen_phone = self.page.session.get("SELECTED_SCREEN")
@@ -321,11 +360,28 @@ class menu_save_container(ft.Container):
         #             one_file=True,
         #     )
         # WRITE DATA IN FILES
-        code_returned.save_all_data(
-                    screen_name='main_screen',
-                    container_attributes=self.dict_attributes,
-                    one_file=True,
-            )
+        if save_project_module:
+            # save_project_module will save as a project module
+            # one_file=True, will have all in one screen
+
+            code_returned.save_all_data(
+                        save_project_module=save_project_module,
+                        one_file=True,
+
+                        column_tab_db = column_tab_db,
+                        name_project_db = name_project_db,
+                        time_created_db = time_created_db,
+
+                        screen_name='main_screen',
+                        container_attributes=self.dict_attributes,
+                )
+
+        else:
+            code_returned.save_all_data(
+                        screen_name='main_screen',
+                        container_attributes=self.dict_attributes,
+                        one_file=True,
+                )
 
         self.save_column.visible=False
         self.congratulation_container.visible=True

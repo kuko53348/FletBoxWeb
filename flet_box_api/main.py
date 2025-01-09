@@ -5,14 +5,24 @@ from flet_box_database.sqlite_db import sqlite_db
 from fastapi import FastAPI
 from fastapi import Body
 host_api_server: str = 'https://kuko53348.pythonanywhere.com/'
+
+# paython everywhere path
+# PATH_DB: str = "flet_box_api_server/flet_box_database/flet_box_database.db"
+
+# local path
 PATH_DB: str = "flet_box_api/flet_box_database/flet_box_database.db"
 
 app = FastAPI()
 
+# show_hide_shemas: bool =True # Will show hidden shemas
+show_hide_shemas: bool =False
+
 # APP TAGS
 app.title: str = "Flet Box Api"
 app.version: str = "0.0.1"
-app.description: str = "Flet Box Api server is a amazing gui to make beutiful widget with flet framework"
+app.description: str = """
+Fletbox is an intuitive GUI builder interface designed for creating cross-platform applications with ease. It features a drag-and-drop functionality, allowing users to visually design user interfaces without extensive coding knowledge
+"""
 
 @app.get('/', tags=['Welcome to FletBox api server'])
 async def home_screen():
@@ -106,7 +116,7 @@ async def email_recover(user_email: str = "") -> list:
 # CHECK USERNAME EMAIL
 
 
-@app.get('/validation_account', tags=['Loggin Account'])
+@app.get('/validation_account',include_in_schema=show_hide_shemas, tags=['Loggin Account'])
 async def validation_account(user_name: str = "", user_email: str = "") -> dict:
     """
     This validation let not have duplicates emails and usernames
@@ -224,7 +234,7 @@ async def register_account(user_name: str = "", user_email: str = "", user_passw
     return {'Account was registered succesfully'}
 
 # POST SAVED WIDGETS IN DATABASE ACCOUNT
-@app.get('/get_widgets', tags=['Widgets Edition'])
+@app.get('/get_widgets',include_in_schema=show_hide_shemas, tags=['Widgets Edition'])
 async def get_widgets(user_name: str = ""):
     """
     Dump all index in marketplace by selected column
@@ -253,7 +263,7 @@ async def get_widgets(user_name: str = ""):
 
 
 # GET PROJECTS WIDGETS IN DATABASE
-@app.get('/get_projects_widgets', tags=['Widgets Edition'])
+@app.get('/get_projects_widgets',include_in_schema=show_hide_shemas, tags=['Widgets Edition'])
 async def get_projects_widgets(table_name: str = ""):
     """
     Dump all projects widgets in marketplace by selected column
@@ -278,7 +288,7 @@ async def get_projects_widgets(table_name: str = ""):
         return []
 
 # POST SAVED WIDGETS IN DATABASE ACCOUNT
-@app.put('/update_widgets', tags=['Widgets Edition'])
+@app.put('/update_widgets',include_in_schema=show_hide_shemas, tags=['Widgets Edition'])
 async def update_widgets(user_name: str = Body(), dragg_widget: str = Body()):
     """
     Updating database widgets
@@ -305,7 +315,85 @@ async def update_widgets(user_name: str = Body(), dragg_widget: str = Body()):
     )
     # for _ in dragg_widget:
     #     print(_)
-    return {"Soucres code was succesfully saved"}
+    return {"Source code was succesfully saved"}
+
+# POST SAVED WIDGETS IN DATABASE ACCOUNT
+@app.post('/save_module_widgets',include_in_schema=show_hide_shemas, tags=['Widgets Edition'])
+async def save_module_widgets(
+                                user_name: str = Body(),
+                                project_tab: str = Body(),
+                                name_project: str = Body(),
+                                ranking_app: str = Body(),
+                                dragg_screen: str = Body(),
+                                app_screen: str = Body(),
+                                time_created: str = Body()
+                                ):
+    """
+    Updating database widgets
+
+    ```python
+    import requests
+    import json
+
+    request_session = requests.session()
+
+    json_data:  dict={
+            'user_name':self.user_name,
+            'project_tab':column_tab_db,
+            'name_project':name_project_db,
+            'ranking_app':'0',
+            'dragg_screen':self.class_bone,
+            'app_screen':'ft.Container()',
+            'time_created':time_created_db
+    }
+
+    data_returned = request_session.put('https://kuko53348.pythonanywhere.com/save_module_widgets', data=json.dumps(json_data))
+    print(data_returned.text)
+    ```
+    """
+    # UPDATE DATA REGISTER TABLE
+    sqlite_obj = sqlite_db(path_db=PATH_DB)
+    user_name_have_same_project = sqlite_obj.find_name(
+                                table_name=project_tab,
+                                column='user_name',
+                                name=user_name,
+                                match=['name_project', name_project]
+    )
+
+
+    if not user_name_have_same_project == False:
+        # UPDATE IF EXIT PROJECT
+        sqlite_obj = sqlite_db(path_db=PATH_DB)
+        sqlite_obj.update_data(
+            table_name=project_tab,
+            change_data=('name_project', name_project),
+            by_data=('dragg_screen', dragg_screen)
+        )
+
+    else:
+        # WITE NEW PROJECT IF NOT EXIT IN DATABASE
+        sqlite_obj = sqlite_db(path_db=PATH_DB)
+        sqlite_obj.write_data(
+            table_name=project_tab,
+            column=(
+                user_name,
+                project_tab,
+                name_project,
+                ranking_app,
+                'None',
+                app_screen,
+                time_created
+            )
+        )
+
+        sqlite_obj = sqlite_db(path_db=PATH_DB)
+        sqlite_obj.update_data(
+            table_name=project_tab,
+            change_data=('dragg_screen', 'None'),
+            by_data=('dragg_screen', dragg_screen)
+        )
+
+    return {"Source code was succesfully saved"}
 
 if __name__ == "__main__":
     import uvicorn

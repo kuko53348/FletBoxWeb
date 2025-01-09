@@ -826,6 +826,12 @@ class refactory_flet_box:
         self.all_widget_in_row.append(self.edit_data)
 
     def save_all_data(  self,
+                        save_project_module: bool=False,
+
+                        column_tab_db: str = str(),
+                        name_project_db: str = str(),
+                        time_created_db: str = str(),
+
                         screen_name: str = str(),
                         one_file: bool = False,
 
@@ -913,12 +919,48 @@ class refactory_flet_box:
 
 
             if self.page.session.get('flet_box_api'):
+                """
+                Will save data in database
+                """
                 self.class_bone = self.class_bone.replace("'",'"')
 
-                data_returned = request_session.put(f'{self.page.session.get("api_server")}update_widgets', data=json.dumps({'user_name': self.user_name, 'dragg_widget' : self.class_bone}))
+                data_returned = request_session.put(f'{self.page.session.get("api_server")}update_widgets',
+                                                    data=json.dumps({
+                                                        'user_name': self.user_name,
+                                                        'dragg_widget' : self.class_bone
+                                                    }))
                 # print(data_returned.text)
+                if save_project_module:
+                    print('testing save project')
+                    # print(f"{self.user_name} <=== user_name_db")
+                    # print(f"{column_tab_db} <=== column_tab_db")
+                    # print(f"{name_project_db} <=== name_project_db")
+                    # print(f"0 <=== rankin_project_db")
+                    # print(f"{self.class_bone} <=== dragg_created_db")
+                    # print(f"ft.Container <=== app_screen_db")
+                    # print(f"{time_created_db} <=== time_created_db")
+
+                    data_request: dict={
+                        'user_name':self.user_name,
+                        'project_tab':column_tab_db,
+                        'name_project':name_project_db,
+                        'ranking_app':'0',
+                        'dragg_screen':self.class_bone,
+                        'app_screen':'ft.Container()',
+                        'time_created':time_created_db
+                    }
+                    data_module_returned = request_session.post(f'{self.page.session.get("api_server")}save_module_widgets',
+                                    data=json.dumps(data_request))
+                    # this will update user project
+                    # request_session.put(f'{self.page.session.get("api_server")}update_widgets',
+                    #                                 data=json.dumps({
+                    #                                     # 'user_name': self.user_name,
+                    #                                     # 'dragg_widget' : self.class_bone
+                    # }))
+                    # print(data_module_returned.text)
 
             else:
+                # WRITE DATA TO LOCAL DB BUT NOT WRITE IN PROJECT
                 sqlite_obj = sqlite_db()
                 data_returned = sqlite_obj.update_data(
                                         table_name='user_screen',
@@ -926,6 +968,50 @@ class refactory_flet_box:
                                         by_data=('main_screen', self.class_bone)
                                 )
                 # print(f'>>>> {self.user_name}')
+
+                if save_project_module:
+                    # UPDATE DATA REGISTER TABLE LOCAL AND MAKE MODULE PROJECT
+                    sqlite_obj = sqlite_db()
+                    user_name_have_same_project = sqlite_obj.find_name(
+                                    table_name=column_tab_db,
+                                    column='user_name',
+                                    name=self.user_name,
+                                    match=['name_project', name_project_db]
+                    )
+
+
+                    if not user_name_have_same_project == False:
+                        # UPDATE IF EXIT PROJECT LOCAL MAKE MODULE PROJECT
+                        sqlite_obj = sqlite_db()
+                        sqlite_obj.update_data(
+                            table_name=column_tab_db,
+                            change_data=('name_project', name_project_db),
+                            by_data=('dragg_screen', self.class_bone)
+                        )
+
+                    else:
+                        # WITE NEW PROJECT IF NOT EXIT IN DATABASE
+                        sqlite_obj = sqlite_db(path_db=PATH_DB)
+                        sqlite_obj.write_data(
+                            table_name=column_tab_db,
+                            column=(
+                                self.user_name,
+                                column_tab_db,
+                                name_project_db,
+                                '0',
+                                'None',
+                                'ft.Container()',
+                                time_created_db
+                            )
+                        )
+
+                        sqlite_obj = sqlite_db(path_db=PATH_DB)
+                        sqlite_obj.update_data(
+                            table_name=column_tab_db,
+                            change_data=('dragg_screen', 'None'),
+                            by_data=('dragg_screen', self.class_bone)
+                        )
+
 
             # SAVE DATA TO CONTROL ERRORS
             self.write_files_in_project(

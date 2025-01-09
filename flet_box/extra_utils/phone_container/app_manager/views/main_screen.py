@@ -8,12 +8,12 @@ import flet as ft
 #: STYLE TO MAIN SCREEN WIDGET
 phone_style_widget: dict = {
     "main_container":  {
-        "image":  {"src": "backend.webp", "fit": "cover"},
+        "image":  {"src": "image.jpg", "fit": "cover", "opacity": 0.47},
         "gradient":  None
     },
     "second_container":  {
         "padding":  None,
-        "blur":  None,
+        "blur":  {"sigma_x": 4, "sigma_y": 4, "tile_mode": "mirror"},
         "bgcolor":  None
     },
     "column_attributes":  {
@@ -28,7 +28,7 @@ phone_style_widget: dict = {
 
 #: STYLES IN SCREEN_STYLE
 styles = {
-    "Container_2899":  {
+    "Container_20774":  {
         "alignment":  {"x": 0, "y": 0},
         "border":  {"l": {"w": 2, "c": "transparent"},
                     "t": {"w": 2, "c": "transparent"},
@@ -41,10 +41,10 @@ styles = {
         "padding":  {"l": 6, "t": 6, "r": 6, "b": 6},
         "ink_color":  "red"
     },
-    "Image_2900":  {
+    "Image_20775":  {
         "fit":  "fill",
-        "src":  "logo.png",
-        "border_radius":  {"bl": 18.0, "br": 18.0, "tl": 18.0, "tr": 18.0}
+        "src":  "logo_mark.png",
+        "border_radius":  {"bl": 16.0, "br": 16.0, "tl": 16.0, "tr": 16.0}
     }
 }
 
@@ -70,17 +70,17 @@ class main_screen(ft.DragTarget):
         #: DRAGG_CONTROLS
         list_controls: list = [
             
-            #: DRAG-BOX-CONTENT [ID: 2898]
+            #: DRAG-BOX-CONTENT [ID: 20773]
             self.draggin_framework(
                 content=ft.Container(
-                    **self.dict_style("Container_2899"),
+                    **self.dict_style("Container_20774"),
                     on_click=lambda dragg_item: self.dragg_event(
                                      selected_widget=dragg_item,),
 
                     content=ft.Image(
-                        **self.dict_style("Image_2900"),
-                        # on_click= lambda tmp_widget: event_2900(
-                        #        payload="Image_2900",
+                        **self.dict_style("Image_20775"),
+                        # on_click= lambda tmp_widget: event_20775(
+                        #        payload="Image_20775",
                         #        page= self.page ),
                     ),
                 ),),

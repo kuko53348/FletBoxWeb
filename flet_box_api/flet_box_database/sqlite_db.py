@@ -5,57 +5,97 @@ import os
 
 class sqlite_db:
     """
-    # lite module in python to make easy work with sqlite3
+    ### Lite module in python to make easy work with sqlite3
 
+    ```python
     sqlite_db = sqlite_db(path_db="./exemple.db")
+    ```
 
-    # CREATE DATABASE
+    ### Create database
+
+    ```python
     sqlite_db.create_table(table_name="register", column=data_write,)
+    ```
 
-    # FIND NAME
-    # fetch=5,all                               #by tabl+column
+    ### Find by name
+    attributes:
+    fetch=[ 5, all]
+
+    by tabl+column
+
+    ```python
     data_returned = sqlite_db.find_name(
-        table_name='register', column='user_name', name='javier')
-    data_returned = sqlite_db.find_name(table_name='register', column='user_name', name='javier', match=[
-                                        'user_password', 'elanimal'])  # fetch=5,all  #by tbl+column+match(column,name)
+                                    table_name='register',
+                                    column='user_name', name='javier'
+                    )
 
-    # FIND ALL
+    data_returned = sqlite_db.find_name(
+                                    table_name='register',
+                                    column='user_name',
+                                    name='javier',
+                                    match=['user_password', 'elanimal']
+                    )  # fetch=5,all  #by tbl+column+match(column,name)
+    ```
+
+    ### Find all
+    ```python
     data_returned = sqlite_db.find_all(table_name='register')
+    ```
 
-    # WRITE DATA
+    ### Write data
+    ```python
     data_returned = sqlite_db.write_data(table_name='register',
                                          column=('javier53348', 'kuko', 'elanimal123'))
+    ```
 
-    # UPDATE DATA
+    ### Update data
+
+    ```python
     data_returned = sqlite_db.update_data(table_name='register',
                                           change_data=('user_name', 'javier53348'),
                                           by_data=('user_name', 'xavier53348')
                                           )
+
     data_returned = sqlite_db.update_data(table_name='register',
                                           change_data=('user_name', 'javier53348'),
                                           by_data=('user_name', 'xavier53348'),
                                           match=['user_email', 'email']
                                           )
+    ```
 
-    # CLEAN ALL
+    ### Clean all
+
+    ```python
+
     data_returned = sqlite_db.remove_all(table_name='register')
 
-    # REMOVE DATA
+    ```
+
+    ### Remove data
+
+    ```python
+
     data_returned = sqlite_db.remove_data(
                                     table_name='register',
                                     column_name='user_name',
                                     name='javier53348'
                     )
+
     data_returned = sqlite_db.remove_data(
                                     table_name='register',
                                     column_name='user_name',
                                     name='javier53348',
                                     match=['user_email', 'kuko']
                     )
+    ```
 
+    ### Data returned
+
+    ```python
     >>> print(data_returned)
-
+    ```
     """
+
     # real_pat='flet_box/extra_utils/external_library/flet_box_database.db'
 
     def __init__(self, path_db: str = 'Erase this test'):

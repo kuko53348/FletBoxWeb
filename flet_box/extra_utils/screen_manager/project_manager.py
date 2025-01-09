@@ -216,6 +216,8 @@ class lite_screen_manager(ft.Container):
         if self.page.session.get('flet_box_api'):
             self.obtion_list.clear()
             self.session_user_name = self.page.session.get('user_name').get('user_name')
+            # print(self.session_user_name)
+            # return
 
             data_returned = request_session.get(f'{self.page.session.get("api_server")}get_widgets', params={'user_name': self.session_user_name})
 
@@ -347,7 +349,7 @@ class go_home_screen(ft.Container):
         self.main_screen = main_screen
     def build(self):
         self.content = ft.Container(
-            width=200,
+            width=160,
             # bgcolor=ft.colors('black12'),
             padding=ft.padding.all(8),
             margin=ft.margin.all(2),
@@ -432,7 +434,7 @@ class get_sources_code(ft.Container):
                 text="Get Code",
                 bgcolor=ft.Colors.with_opacity(
                     opacity=0.4,
-                    color=ft.colors('red'),
+                    color=ft.colors('blue'),
                 ),
                 on_click= lambda _: self.show_code_editor(),
 
@@ -443,6 +445,41 @@ class get_sources_code(ft.Container):
         self.code_editor.controls[1].visible = True
         # code_editor_stance.update()
         self.page.update()
+
+class delete_project(ft.Container):
+
+    def __init__(self, page: object = None, code_editor: object = None):
+        super().__init__()
+        self.page = page
+        self.alignment = ft.alignment.center
+        self.code_editor = code_editor
+        self.expand = True
+
+    def build(self):
+        self.content = ft.Container(
+            # width=200,
+            # bgcolor=ft.colors('black12'),
+            padding=ft.padding.all(8),
+            margin=ft.margin.all(2),
+            border_radius=ft.border_radius.all(32),
+            bgcolor = ft.Colors.with_opacity(0.6,ft.colors.RED),
+            shadow=ft.BoxShadow(
+                spread_radius=1,
+                blur_radius=15,
+                color=ft.colors('black'),
+                offset=ft.Offset(0, 0),
+                blur_style=ft.ShadowBlurStyle.OUTER,
+            ),
+            content=ft.Icon(name='delete'),
+            on_click= lambda _: self.show_code_editor(),
+
+            )
+
+    def show_code_editor(self):
+        # self.code_editor.controls[1].visible = True
+        # # code_editor_stance.update()
+        # self.page.update()
+        ...
 
 class screen_manager(ft.Container):
 
@@ -488,7 +525,11 @@ class screen_manager(ft.Container):
                             get_sources_code(
                                 page=self.page,
                                 code_editor=self.code_editor
-                            )
+                            ),
+                            delete_project(
+                                page=self.page,
+                                code_editor=self.code_editor
+                            ),
                         ]
                     )
                 )
@@ -670,20 +711,20 @@ class project_manager(ft.Stack):
     """
     TABS_PROJECTS: list = {
         'Splash': ft.Icons('do_not_touch'),
-        # 'Introduction': ft.Icons('start'),
-        # 'Login': ft.Icons('login'),
-        # 'LoginRegister': ft.Icons('how_to_reg'),
-        # 'Lock': ft.Icons('block'),
-        # 'MixViews': ft.Icons('dashboard'),
-        # 'GridView': ft.Icons('grid_view_rounded'),
-        # 'ListView': ft.Icons('grading'),
-        # 'DashBoard': ft.Icons('dashboard'),
-        # 'Payment': ft.Icons('account_balance_wallet'),
-        # 'Shopping': ft.Icons('shopping_bag'),
-        # 'Music': ft.Icons('speaker_group_rounded'),
-        # 'SettingsView': ft.Icons('settings'),
-        # 'Verification': ft.Icons('verified'),
-        # 'About': ft.Icons('account_box'),
+        'Introduction': ft.Icons('start'),
+        'Login': ft.Icons('login'),
+        'LoginRegister': ft.Icons('how_to_reg'),
+        'Lock': ft.Icons('block'),
+        'MixViews': ft.Icons('dashboard'),
+        'GridView': ft.Icons('grid_view_rounded'),
+        'ListView': ft.Icons('grading'),
+        'DashBoard': ft.Icons('dashboard'),
+        'Payment': ft.Icons('account_balance_wallet'),
+        'Shopping': ft.Icons('shopping_bag'),
+        'Music': ft.Icons('speaker_group_rounded'),
+        'SettingsView': ft.Icons('settings'),
+        'Verification': ft.Icons('verified'),
+        'About': ft.Icons('account_box'),
     }
 
     def __init__(self, page: object = None, visible: bool = True):
@@ -859,7 +900,7 @@ class project_manager(ft.Stack):
                             ranking_stars = self.ranking_stars,
                             dragg_widget = self.dragg_widget,
                             code_widget = self.code_widget,
-                            time_created = self.time_created,
+                            time_created = self.time_created.split(' ')[0],
                     )
                 )
 
