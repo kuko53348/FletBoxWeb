@@ -373,13 +373,13 @@ class flet_box:
         self.page.theme_mode=ft.ThemeMode.DARK
 
         # FIRST SCREEN
-        # self.page.go('/')                   # <<< TO PRODUCTION
+        self.page.go('/')                   # <<< TO PRODUCTION
         # self.page.go('/screen_manager')   # <<< TO TESTING
         # self.page.go('/save_database')    # <<< TO TESTING
         # self.page.go('/save_menu')        # <<< TO TESTING
 
         # JUMP TO DEV ACCOUNT
-        self.page.go('/home')             # <<< TO TESTING
+        # self.page.go('/home')             # <<< TO TESTING
         # self.page.session.set('user_name', {'user_name': 'kuko53348'})
 
     def setting_only_append_controls(self):
