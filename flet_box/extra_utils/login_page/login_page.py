@@ -424,7 +424,7 @@ class formulary_login(ft.Container):
                         blur_style=ft.ShadowBlurStyle.OUTER,
                     ),
                     content=ft.TextField(
-                        label="User email",
+                        label="email*****@gmail.com",
                         border_color=ft.Colors.with_opacity(0.05, ft.colors("white")),
                         border_radius=30,
                         on_change=lambda submit_data:self.user_update_data(
