@@ -376,7 +376,7 @@ class flet_box:
         self.page.theme_mode=ft.ThemeMode.DARK
 
         # FIRST SCREEN
-        # self.page.go('/')                   # <<< TO PRODUCTION
+        self.page.go('/')                   # <<< TO PRODUCTION
         # self.page.go('/screen_manager')   # <<< TO TESTING
         # self.page.go('/save_database')    # <<< TO TESTING
         # self.page.go('/save_menu')        # <<< TO TESTING
