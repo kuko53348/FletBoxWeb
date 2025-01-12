@@ -3,9 +3,9 @@ import os
 
 
 class PhotoSelection(ft.Container):
-    def __init__(self, photo_selection: str = ""):
+    def __init__(self, photo_selection: str = "", index_data: int=int()):
         super().__init__()
-        self.tooltip = "PhotoSelection"
+        self.tooltip = f"{index_data}"
         self.photo_selection = photo_selection
         self.width = 50
         self.height = 50
@@ -169,10 +169,10 @@ class ScreenPhotoSelection(ft.Container):
             path_to_check_filename=current_dir_path
         )
 
-        for _ in basename_dict:
+        for index, _ in enumerate(basename_dict):
             tmp_path = basename_dict.get(_)
             full_path = os.path.join(current_dir_path, tmp_path)
-            screen_1.controls.append(PhotoSelection(photo_selection=full_path))
+            screen_1.controls.append(PhotoSelection(photo_selection=full_path, index_data=index))
 
     def show_menu_tab_editor(self):
         "CLICK IN PHOTO SELECTION"

@@ -8,7 +8,7 @@ import flet as ft
 #: STYLE TO MAIN SCREEN WIDGET
 phone_style_widget: dict = {
     "main_container":  {
-        "image":  {"src": "flet_box/assets/project_assets/Abstract Graphic Design PNG File HD Transparent HQ PNG Download .png", "fit": "cover", "opacity": 0.24},
+        "image":  None,
         "gradient":  None
     },
     "second_container":  {
@@ -28,7 +28,7 @@ phone_style_widget: dict = {
 
 #: STYLES IN SCREEN_STYLE
 styles = {
-    "Container_3546":  {
+    "Container_10717":  {
         "alignment":  {"x": 0, "y": 0},
         "border":  {"l": {"w": 2, "c": "transparent"},
                     "t": {"w": 2, "c": "transparent"},
@@ -42,20 +42,20 @@ styles = {
         "width":  102,
         "ink_color":  "red"
     },
-    "Image_3547":  {
+    "Image_10718":  {
         "fit":  "cover",
         "height":  141.75,
         "src":  "flet_box/assets/project_assets/30+ Key Logo Design Trends for 2025.gif",
         "width":  320,
         "border_radius":  {"bl": 50.0, "br": 50.0, "tl": 50.0, "tr": 50.0}
     },
-    "Container_3549":  {
+    "Container_10720":  {
         "alignment":  {"x": 0, "y": 0},
         "bgcolor":  "black87",
-        "border":  {"l": {"w": 2, "c": "transparent"},
-                    "t": {"w": 2, "c": "transparent"},
-                    "r": {"w": 2, "c": "transparent"},
-                    "b": {"w": 2, "c": "transparent"}
+        "border":  {"l": {"w": 0, "c": "transparent"},
+                    "t": {"w": 0, "c": "transparent"},
+                    "r": {"w": 0, "c": "transparent"},
+                    "b": {"w": 0, "c": "transparent"}
                     },
         "image":  {"src": "flet_box/assets/project_assets/8 ideas de Logo tienda internet  disenos de unas, diseu00f1o de logo.jpeg", "fit": "cover", "opacity": 0.050000000000000044},
         "ink":  True,
@@ -64,7 +64,7 @@ styles = {
         "border_radius":  {"bl": 85.0, "br": 85.0, "tl": 85.0, "tr": 85.0},
         "ink_color":  "red"
     },
-    "Text_3550":  {
+    "Text_10721":  {
         "disabled":  False,
         "opacity":  1.0,
         "size":  25.0,
@@ -99,31 +99,31 @@ class main_screen(ft.DragTarget):
         #: DRAGG_CONTROLS
         list_controls: list = [
             
-            #: DRAG-BOX-CONTENT [ID: 3545]
+            #: DRAG-BOX-CONTENT [ID: 10716]
             self.draggin_framework(
                 content=ft.Container(
-                    **self.dict_style("Container_3546"),
+                    **self.dict_style("Container_10717"),
                     on_click=lambda dragg_item: self.dragg_event(
                                      selected_widget=dragg_item,),
 
                     content=ft.Image(
-                        **self.dict_style("Image_3547"),
-                        # on_click= lambda tmp_widget: event_3547(
-                        #        payload="Image_3547",
+                        **self.dict_style("Image_10718"),
+                        # on_click= lambda tmp_widget: event_10718(
+                        #        payload="Image_10718",
                         #        page= self.page ),
                     ),
                 ),),
-            #: DRAG-BOX-CONTENT [ID: 3548]
+            #: DRAG-BOX-CONTENT [ID: 10719]
             self.draggin_framework(
                 content=ft.Container(
-                    **self.dict_style("Container_3549"),
+                    **self.dict_style("Container_10720"),
                     on_click=lambda dragg_item: self.dragg_event(
                                      selected_widget=dragg_item,),
 
                     content=ft.Text(
-                        **self.dict_style("Text_3550"),
-                        # on_click= lambda tmp_widget: event_3550(
-                        #        payload="Text_3550",
+                        **self.dict_style("Text_10721"),
+                        # on_click= lambda tmp_widget: event_10721(
+                        #        payload="Text_10721",
                         #        page= self.page ),
                     ),
                 ),),

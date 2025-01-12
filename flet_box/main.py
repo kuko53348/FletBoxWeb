@@ -16,6 +16,8 @@ from extra_utils import menu_save_container
 from extra_utils import send_email
 from extra_utils import send_attach_email
 
+from extra_utils import congratulation_menu
+
 
 class header_container(ft.Container):
 
@@ -291,19 +293,20 @@ class flet_box:
                         controls=[
                             column_container(page=self.page),
                             project_manager(page=self.page, visible=False),
+                            menu_save_container(page=self.page, visible=False)
                         ],
                     )
                 )
 
-            if self.page.route == "/save_menu":
+            if self.page.route == "/congratulation":
                 self.page.views.append(
                     ft.View(
                         horizontal_alignment=ft.CrossAxisAlignment.CENTER,
                         vertical_alignment=ft.MainAxisAlignment.CENTER,
                         padding=0,
-                        route="/menu_save",
+                        route="/congratulation",
                         controls=[
-                            menu_save_container(page=self.page)
+                            congratulation_menu(page=self.page)
                         ],
                     )
                 )
@@ -358,8 +361,8 @@ class flet_box:
             self.page.update()
 
         # API SERVER LOCAL OR EXTERNAL
-        self.page.session.set('api_server','http://127.0.0.1:8080/')
-        # self.page.session.set('api_server','https://kuko53348.pythonanywhere.com/')
+        # self.page.session.set('api_server','http://127.0.0.1:8080/')
+        self.page.session.set('api_server','https://kuko53348.pythonanywhere.com/')
 
         # SET API ON OR OFF
         self.page.session.set('flet_box_api',True)
@@ -377,9 +380,10 @@ class flet_box:
         # self.page.go('/screen_manager')   # <<< TO TESTING
         # self.page.go('/save_database')    # <<< TO TESTING
         # self.page.go('/save_menu')        # <<< TO TESTING
+        # self.page.go('/congratulation')        # <<< TO TESTING
 
         # JUMP TO DEV ACCOUNT
-        self.page.go('/home')             # <<< TO TESTING
+        # self.page.go('/home')             # <<< TO TESTING
         self.page.session.set('user_name', {'user_name': 'kuko53348'})
 
     def setting_only_append_controls(self):

@@ -272,7 +272,12 @@ class MenuLeftContainer(ft.Stack):
         if show_widget == "save_project":
             # will save in database
             self.reset_border_select_widget()
-            self.page.go('/save_menu')
+            # self.page.go('/save_menu')
+            # print(self.page._index.get('_244'))
+            self.page.views[1].controls[0].visible=False
+            self.page.views[1].controls[1].visible=False
+            self.page.views[1].controls[2].visible=True
+            self.page.views[1].update()
 
         if show_widget == "icon_browser":
             # NEED IMPLEMENT YET

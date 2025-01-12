@@ -16,3 +16,5 @@ from .external_library.send_attach_email                import send_attach_email
 #: SCREEN MANAGER
 from .screen_manager.project_manager                    import project_manager
 from .menu_tab_left_phone.menu_save_container           import menu_save_container
+#: CONGRATULATION MENU MANAGER
+from .menu_tab_left_phone.congratulation_menu           import congratulation_menu

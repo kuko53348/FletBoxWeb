@@ -96,7 +96,7 @@ class menu_save_container(ft.Container):
                             content=ft.Icon(
                                 name=ft.icons('swipe_left'),
                             ),
-                            on_click=lambda _: self.page.go('/home')
+                            on_click=lambda _: self.go_home_page(same_page=True)
                         ),
                     ]
                 ),
@@ -202,88 +202,21 @@ class menu_save_container(ft.Container):
                 self.button_save_project,
             ]
         )
-        self.congratulation_container = ft.Container(
-            visible=False,
-            content=ft.Column(
-                controls=[
-                    ft.Container(
-                        padding=ft.padding.all(16),
-                        alignment=ft.alignment.center,
-                        content=ft.Text(
-                            size=30,
-                            text_align=ft.TextAlign.CENTER,
-                            weight=ft.FontWeight.W_900,
-                            font_family="Consolas",
-                            value="Congratulation !!.",
-                        )
-                    ),
-                    ft.Container(
-                        padding=ft.padding.all(16),
-                        alignment=ft.alignment.center,
-                        content=ft.Text(
-                            size=18,
-                            text_align=ft.TextAlign.CENTER,
-                            weight=ft.FontWeight.BOLD,
-                            # font_family="Consolas",
-                            color=ft.colors('yellow'),
-                            value="🌟 A Heartfelt Thank You to the Flet Development Team! 🌟"
 
-                        )
-                    ),
-                    ft.Container(
-                        padding=ft.padding.all(16),
-                        alignment=ft.alignment.center,
-                        content=ft.Text(
-                            size=18,
-                            text_align=ft.TextAlign.CENTER,
-                            weight=ft.FontWeight.BOLD,
-                            # font_family="Consolas",
-                            color=ft.colors('cyan'),
-                            value="Dear @feodorf, @the_ethical_boy, and the entire Flet development team, Thank you for your hard work, passion, and vision. We are excited to see how Flet will evolve and inspire even more innovation in the future. Keep shining bright!",
-                        )
-                    ),
-                    ft.Container(
-                        padding=ft.padding.all(16),
-                        alignment=ft.alignment.center,
-                        content=ft.Text(
-                            size=30,
-                            text_align=ft.TextAlign.CENTER,
-                            weight=ft.FontWeight.W_900,
-                            font_family="Consolas",
-                            value="Project succesfully saved !!.",
-                        )
-                    ),
-                ft.Container(
-                    padding=ft.padding.all(8),
-                    margin=ft.margin.all(16),
-                    border_radius=ft.border_radius.all(18),
-                    alignment=ft.alignment.center,
-                    # expand=True,
-                    ink=True,
-                    height=60,
-                    bgcolor=ft.Colors.with_opacity(0.2, ft.colors('black')),
-                    content=ft.Text(
-                        size=18,
-                        text_align=ft.TextAlign.CENTER,
-                        weight=ft.FontWeight.W_900,
-                        font_family="Consolas",
-                        color=ft.colors('yellow'),
-                        value="Go to Market Place",
-                    ),
-                    on_click=lambda _:self.go_home_page(),
-                ),
-                ]
-            )
-        )
         self.content = ft.Column(
             controls = [
                 self.save_column,
-                self.congratulation_container,
             ]
         )
 
-    def go_home_page(self):
-        self.page.go('/home')
+    def go_home_page(self, same_page: bool=False):
+        self.page.views[1].controls[0].visible=True
+        self.page.views[1].controls[1].visible=False
+        self.page.views[1].controls[2].visible=False
+        self.page.views[1].update()
+
+        if not same_page:
+            self.page.go('/congratulation')
 
     def activation_save_project_button(self, widget_name: object = None) -> None:
         if self.save_projects_name.get('project_name') and self.save_projects_name.get('column_tab'):
@@ -323,7 +256,8 @@ class menu_save_container(ft.Container):
                 time_created_db=str(datetime.now())
         )
 
-        self.go_home_page()
+        # self.go_home_page()
+        self.page.go('/congratulation')
 
     def save_project(self,save_project_module: bool= False , column_tab_db: str=str(), name_project_db: str=str(), time_created_db: str=str()):
 
@@ -383,9 +317,10 @@ class menu_save_container(ft.Container):
                         one_file=True,
                 )
 
-        self.save_column.visible=False
-        self.congratulation_container.visible=True
-        self.update()
+        # self.save_column.visible=False
+        # self.congratulation_container.visible=True
+        # self.update()
+        self.page.go('/congratulation')
 
 if __name__ == '__main__':
     def main(page: ft.Page):

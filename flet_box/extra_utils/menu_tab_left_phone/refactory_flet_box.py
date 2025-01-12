@@ -842,6 +842,9 @@ class refactory_flet_box:
         # WILLRETURN A LIST WITH ALL WIDGET TO MAKE A NESTED RECURSION
         self.refactorized = self.return_code(widget=widget, tab=tab)
         self.edit_data = self.refactorized
+        # print(self.edit_data)
+
+        # print(self.page._index.get('_244'))
 
         while "'_" in self.edit_data:
             tab += 3
