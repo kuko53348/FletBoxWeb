@@ -8,7 +8,7 @@ import flet as ft
 #: STYLE TO MAIN SCREEN WIDGET
 phone_style_widget: dict = {
     "main_container":  {
-        "image":  None,
+        "image":  {"src": "backend.webp", "fit": "cover", "opacity": 0.06999999999999995},
         "gradient":  None
     },
     "second_container":  {
@@ -18,11 +18,11 @@ phone_style_widget: dict = {
     },
     "column_attributes":  {
         "scroll":  None,
-        "spacing":  None,
+        "spacing":  "16.0",
         "tight":  None,
         "wrap":  None,
-        "alignment":  "center",
-        "horizontal_alignment":  "center"
+        "alignment":  "start",
+        "horizontal_alignment":  "start"
     }
 }
 
@@ -47,20 +47,52 @@ styles = {
     },
     "Container_2960":  {
         "alignment":  {"x": 0, "y": 0},
-        "bgcolor":  "transparent",
-        "border":  {"l": {"w": 0, "c": "transparent", "sa": None},
-                    "t": {"w": 0, "c": "transparent", "sa": None},
-                    "r": {"w": 0, "c": "transparent", "sa": None},
-                    "b": {"w": 0, "c": "transparent", "sa": None}
+        "border":  {"l": {"w": 2, "c": "transparent", "sa": None},
+                    "t": {"w": 2, "c": "transparent", "sa": None},
+                    "r": {"w": 2, "c": "transparent", "sa": None},
+                    "b": {"w": 2, "c": "transparent", "sa": None}
                     },
+        "height":  "",
         "ink":  True,
         "margin":  {"l": 0, "t": 0, "r": 0, "b": 0},
-        "padding":  {"l": 6, "t": 6, "r": 6, "b": 6},
+        "padding":  {"l": 0, "t": 0, "r": 0, "b": 0},
+        "width":  260,
+        "border_radius":  {"bl": 61.0, "br": 61.0, "tl": 61.0, "tr": 61.0},
         "ink_color":  "red"
     },
-    "Text_2961":  {
-        "size":  10,
-        "value":  "Ready to make your first app!!"
+    "Image_2961":  {
+        "fit":  "cover",
+        "height":  276,
+        "src":  "backend.webp",
+        "width":  276
+    },
+    "Container_2963":  {
+        "alignment":  {"x": 1, "y": 0},
+        "bgcolor":  "transparent",
+        "blur":  ["", ""],
+        "border":  {"l": {"w": 2, "c": "transparent", "sa": None},
+                    "t": {"w": 2, "c": "transparent", "sa": None},
+                    "r": {"w": 2, "c": "transparent", "sa": None},
+                    "b": {"w": 2, "c": "transparent", "sa": None}
+                    },
+        "height":  "",
+        "ink":  True,
+        "margin":  {"l": 0, "t": 0, "r": 0, "b": 0},
+        "padding":  {"l": 4, "t": 4, "r": 4, "b": 4},
+        "width":  "",
+        "border_radius":  {"bl": 0.0, "br": 0.0, "tl": 0.0, "tr": 0.0},
+        "ink_color":  "red"
+    },
+    "TextField_2964":  {
+        "height":  32,
+        "label":  "Tell me something ?",
+        "width":  240,
+        "border_color":  "white",
+        "border_radius":  {"bl": 30, "br": 30, "tl": 30, "tr": 30},
+        "content_padding":  {"l": 16, "t": 16, "r": 16, "b": 16},
+        "cursor_height":  20,
+        "text_size":  12,
+        "focused_border_color":  "red"
     }
 }
 
@@ -107,10 +139,24 @@ class main_screen(ft.DragTarget):
                     on_click=lambda dragg_item: self.dragg_event(
                                      selected_widget=dragg_item,),
 
-                    content=ft.Text(
-                        **self.dict_style("Text_2961"),
+                    content=ft.Image(
+                        **self.dict_style("Image_2961"),
                         # on_click= lambda tmp_widget: event_2961(
-                        #        payload="Text_2961",
+                        #        payload="Image_2961",
+                        #        page= self.page ),
+                    ),
+                ),),
+            #: DRAG-BOX-CONTENT [ID: 2962]
+            self.draggin_framework(
+                content=ft.Container(
+                    **self.dict_style("Container_2963"),
+                    on_click=lambda dragg_item: self.dragg_event(
+                                     selected_widget=dragg_item,),
+
+                    content=ft.TextField(
+                        **self.dict_style("TextField_2964"),
+                        # on_click= lambda tmp_widget: event_2964(
+                        #        payload="TextField_2964",
                         #        page= self.page ),
                     ),
                 ),),

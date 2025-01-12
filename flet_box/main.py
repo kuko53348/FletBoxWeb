@@ -358,8 +358,8 @@ class flet_box:
             self.page.update()
 
         # API SERVER LOCAL OR EXTERNAL
-        self.page.session.set('api_server','http://127.0.0.1:8080/')
-        # self.page.session.set('api_server','https://kuko53348.pythonanywhere.com/')
+        # self.page.session.set('api_server','http://127.0.0.1:8080/')
+        self.page.session.set('api_server','https://kuko53348.pythonanywhere.com/')
 
         # SET API ON OR OFF
         self.page.session.set('flet_box_api',True)
@@ -373,14 +373,14 @@ class flet_box:
         self.page.theme_mode=ft.ThemeMode.DARK
 
         # FIRST SCREEN
-        # self.page.go('/')                   # <<< TO PRODUCTION
+        self.page.go('/')                   # <<< TO PRODUCTION
         # self.page.go('/screen_manager')   # <<< TO TESTING
         # self.page.go('/save_database')    # <<< TO TESTING
         # self.page.go('/save_menu')        # <<< TO TESTING
 
         # JUMP TO DEV ACCOUNT
-        self.page.go('/home')             # <<< TO TESTING
-        self.page.session.set('user_name', {'user_name': 'kuko53348'})
+        # self.page.go('/home')             # <<< TO TESTING
+        # self.page.session.set('user_name', {'user_name': 'kuko53348'})
 
     def setting_only_append_controls(self):
         self.widgetFilter=[_.lower()
