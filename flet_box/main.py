@@ -201,9 +201,9 @@ class column_container(ft.Container):
         self.ink = False
         self.margin = ft.margin.all(0)
         self.padding = ft.padding.only(
-            left=8,
+            left=3,
             top=8,
-            right=8,
+            right=3,
             bottom=8
         )
 

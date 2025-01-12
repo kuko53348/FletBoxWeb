@@ -5,7 +5,7 @@ https://kuko53348.pythonanywhere.com/docs#/
 
 ### Start FAST-API server local host
 ```bash
->>> uvicorn --app-dir "./flet_box_api/" main:app --host 0.0.0.0 --port 8080 --reload
+>>> uvicorn --app-dir "./flet_box_api_server/" main:app --host 0.0.0.0 --port 8080 --reload
 ```
 
 ### Start FAST-API server in pythonanywhere.com

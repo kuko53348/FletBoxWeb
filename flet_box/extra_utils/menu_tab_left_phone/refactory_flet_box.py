@@ -931,14 +931,7 @@ class refactory_flet_box:
                                                     }))
                 # print(data_returned.text)
                 if save_project_module:
-                    print('testing save project')
-                    # print(f"{self.user_name} <=== user_name_db")
-                    # print(f"{column_tab_db} <=== column_tab_db")
-                    # print(f"{name_project_db} <=== name_project_db")
-                    # print(f"0 <=== rankin_project_db")
-                    # print(f"{self.class_bone} <=== dragg_created_db")
-                    # print(f"ft.Container <=== app_screen_db")
-                    # print(f"{time_created_db} <=== time_created_db")
+                    # print('testing save project')
 
                     data_request: dict={
                         'user_name':self.user_name,
@@ -951,13 +944,6 @@ class refactory_flet_box:
                     }
                     data_module_returned = request_session.post(f'{self.page.session.get("api_server")}save_module_widgets',
                                     data=json.dumps(data_request))
-                    # this will update user project
-                    # request_session.put(f'{self.page.session.get("api_server")}update_widgets',
-                    #                                 data=json.dumps({
-                    #                                     # 'user_name': self.user_name,
-                    #                                     # 'dragg_widget' : self.class_bone
-                    # }))
-                    # print(data_module_returned.text)
 
             else:
                 # WRITE DATA TO LOCAL DB BUT NOT WRITE IN PROJECT
@@ -978,7 +964,6 @@ class refactory_flet_box:
                                     name=self.user_name,
                                     match=['name_project', name_project_db]
                     )
-
 
                     if not user_name_have_same_project == False:
                         # UPDATE IF EXIT PROJECT LOCAL MAKE MODULE PROJECT
@@ -1017,7 +1002,7 @@ class refactory_flet_box:
             self.write_files_in_project(
                                     screen_name=f"{screen_name}",
                                     data_to_write=self.class_bone,
-                )
+            )
         else:
 
             self.container_attributes = self.refactory_code(string_widget=container_attributes.get('container'))
@@ -1047,9 +1032,6 @@ class refactory_flet_box:
             }
             self.clean_code_container = self.refactory_wring_attributes(dict_string=self.container_widget)
             self.class_bone = self.class_bone.replace('CONTAINER_STYLE',self.clean_code_container)
-            # print(self.clean_code_container)
-
-            # print()
 
             # WRITE CLASS WIDGET
             self.write_files_in_project(

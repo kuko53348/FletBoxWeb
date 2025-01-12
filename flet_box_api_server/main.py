@@ -4,13 +4,12 @@ from datetime import datetime
 from flet_box_database.sqlite_db import sqlite_db
 from fastapi import FastAPI
 from fastapi import Body
-host_api_server: str = 'https://kuko53348.pythonanywhere.com/'
 
-# paython everywhere path
-# PATH_DB: str = "flet_box_api_server/flet_box_database/flet_box_database.db"
 
-# local path
-PATH_DB: str = "flet_box_api/flet_box_database/flet_box_database.db"
+# host_api_server: str = 'https://kuko53348.pythonanywhere.com/'
+
+# python everywhere path
+PATH_DB: str = "flet_box_api_server/flet_box_database/flet_box_database.db"
 
 app = FastAPI()
 
