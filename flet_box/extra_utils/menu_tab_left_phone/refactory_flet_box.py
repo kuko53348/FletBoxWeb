@@ -125,9 +125,12 @@ phone_style_widget: dict = CONTAINER_STYLE
 class SCREEN_NAME(ft.DragTarget):
     #: NECCESARY HAVE INSTANCE OF ACTUALLY PAGE
     # main_page: dict = dict()
-    def __init__(self, page: object = None):
+    def __init__(self, page: object = None, main_page: bool= False):
         super().__init__(content=None)
         self.group="GroupDragg"
+
+        # HEIGHT MAIN SCREEN
+        self.main_page = main_page
 
         # ERASE IN PRODUCTION
         self.drag_width = 320
@@ -147,6 +150,7 @@ class SCREEN_NAME(ft.DragTarget):
 
         #: DRAGGIN CONTENT WIDGETS
         self.content = ft.Container(
+            height=self.page.window.height if self.main_page else None,
             width=self.drag_width,
             **self.main_screen_style(code='main_container'),
             content=ft.Container(
@@ -157,8 +161,8 @@ class SCREEN_NAME(ft.DragTarget):
                             **self.main_screen_style(code='column_attributes'),
                             controls=list_controls
                         ),
-                        on_click=lambda dragg_item: self.dragg_event(
-                            selected_widget=dragg_item,),
+                        # on_click=lambda dragg_item: self.dragg_event(
+                        #     selected_widget=dragg_item,),
                     ),
                 ),)
         )
@@ -302,6 +306,30 @@ class SCREEN_NAME(ft.DragTarget):
 
 # MAKE CLASS A DYNAMIC MODULE
 load_module_str = SCREEN_NAME
+
+if __name__ == "__main__":
+    # RUN IN LINE
+    # flet flet_box/extra_utils/phone_container/app_manager/views/main_screen.py  -r
+
+    def main(page: ft.Page):
+        page.theme_mode = ft.ThemeMode.DARK  # ft.ThemeMode.LIGHT
+        page.window.left = 0
+        page.window.top = 0
+        page.window.height = 567
+        page.window.width = 320
+        page.padding = 0
+        page.spacing = 0
+        page.add(
+            load_module_str(
+                    page= page,
+                    main_page=True
+            )
+        )
+        page.update()
+
+    ft.app(
+        target=main,
+    )
 """,
 }
 

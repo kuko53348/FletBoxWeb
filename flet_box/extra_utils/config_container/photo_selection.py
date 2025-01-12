@@ -23,7 +23,7 @@ class PhotoSelection(ft.Container):
         self.container = ft.Container(
             image=ft.DecorationImage(
                 fit=ft.ImageFit.COVER,
-                src=self.photo_selection.split('/')[2],
+                src=self.photo_selection,
             ),
             padding=ft.padding.all(0),
             margin=ft.margin.all(0),
@@ -78,7 +78,7 @@ class PhotoSelection(ft.Container):
             self.phone_image.update()
 
             self.phone_image.image = ft.DecorationImage(
-                   src=self.photo_selection.split('/')[2],
+                   src=self.photo_selection,
                     fit=ft.ImageFit.COVER,  #: CONTAIN, FILL, FIT_WIDTH, SCALE_DOWN, COVER, FIT_HEIGHT, NONE
                     # opacity=0.06,
                 )
@@ -87,7 +87,7 @@ class PhotoSelection(ft.Container):
         if attribute_name_image == "image_src":
             # ONLY IMAGE IN CONTAINER
             edit_widget_image.image = ft.DecorationImage(
-                src=self.photo_selection.split('/')[2],
+                src=self.photo_selection,
                 fit=ft.ImageFit.COVER,  #: CONTAIN, FILL, FIT_WIDTH, SCALE_DOWN, COVER, FIT_HEIGHT, NONE
                 # opacity=0.06,
             )
@@ -99,7 +99,7 @@ class PhotoSelection(ft.Container):
             #     fit=ft.ImageFit.COVER,  #: CONTAIN, FILL, FIT_WIDTH, SCALE_DOWN, COVER, FIT_HEIGHT, NONE
             #     # opacity=0.06,
             # )
-            edit_widget_image.src = self.photo_selection.split('/')[2]
+            edit_widget_image.src = self.photo_selection
             self.page.session.set('image_fit',edit_widget_image)
 
             # edit_widget_image.fit = ft.ImageFit.CONTAIN
@@ -156,16 +156,14 @@ class ScreenPhotoSelection(ft.Container):
             ],
         )
         self.content = ft.Container(
-            # bgcolor  = ft.colors.RED,
             border_radius=12,
             padding=ft.padding.all(0),
             margin=ft.margin.all(0),
-            # on_click=lambda _: self.validate_click(),
             content=screen_1,
         )
         current_dir_path = os.path.relpath(
             # path="./test/proyect_name/proyect_name/assets"
-            path="flet_box/assets"
+            path="flet_box/assets/project_assets"
         )
         basename_dict = self.selection_photo_files(
             path_to_check_filename=current_dir_path
@@ -180,7 +178,6 @@ class ScreenPhotoSelection(ft.Container):
         "CLICK IN PHOTO SELECTION"
         print("selection data [+] photo_selection.py")
         self.tab_container = self.page.session.get('PHOTO_SELECTION')
-
         self.tab_container.controls[0].visible = True
         self.tab_container.controls[1].visible = False
         self.tab_container.controls[2].visible = False

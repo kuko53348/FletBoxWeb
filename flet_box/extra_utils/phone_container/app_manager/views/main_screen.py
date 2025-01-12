@@ -8,7 +8,7 @@ import flet as ft
 #: STYLE TO MAIN SCREEN WIDGET
 phone_style_widget: dict = {
     "main_container":  {
-        "image":  {"src": "backend.webp", "fit": "cover", "opacity": 0.06999999999999995},
+        "image":  {"src": "flet_box/assets/project_assets/Abstract Graphic Design PNG File HD Transparent HQ PNG Download .png", "fit": "cover", "opacity": 0.24},
         "gradient":  None
     },
     "second_container":  {
@@ -18,81 +18,59 @@ phone_style_widget: dict = {
     },
     "column_attributes":  {
         "scroll":  None,
-        "spacing":  "16.0",
+        "spacing":  "0.0",
         "tight":  None,
         "wrap":  None,
-        "alignment":  "start",
+        "alignment":  "spaceBetween",
         "horizontal_alignment":  "start"
     }
 }
 
 #: STYLES IN SCREEN_STYLE
 styles = {
-    "Container_2957":  {
+    "Container_3546":  {
         "alignment":  {"x": 0, "y": 0},
-        "bgcolor":  "transparent",
-        "border":  {"l": {"w": 0, "c": "transparent", "sa": None},
-                    "t": {"w": 0, "c": "transparent", "sa": None},
-                    "r": {"w": 0, "c": "transparent", "sa": None},
-                    "b": {"w": 0, "c": "transparent", "sa": None}
+        "border":  {"l": {"w": 2, "c": "transparent"},
+                    "t": {"w": 2, "c": "transparent"},
+                    "r": {"w": 2, "c": "transparent"},
+                    "b": {"w": 2, "c": "transparent"}
                     },
+        "height":  102,
         "ink":  True,
-        "margin":  {"l": 0, "t": 0, "r": 0, "b": 0},
-        "padding":  {"l": 6, "t": 6, "r": 6, "b": 6},
-        "ink_color":  "red"
-    },
-    "Text_2958":  {
-        "size":  10,
-        "value":  "Ready to make your first app!!"
-    },
-    "Container_2960":  {
-        "alignment":  {"x": 0, "y": 0},
-        "border":  {"l": {"w": 2, "c": "transparent", "sa": None},
-                    "t": {"w": 2, "c": "transparent", "sa": None},
-                    "r": {"w": 2, "c": "transparent", "sa": None},
-                    "b": {"w": 2, "c": "transparent", "sa": None}
-                    },
-        "height":  "",
-        "ink":  True,
-        "margin":  {"l": 0, "t": 0, "r": 0, "b": 0},
+        "margin":  {"l": 16, "t": 32, "r": 0, "b": 0},
         "padding":  {"l": 0, "t": 0, "r": 0, "b": 0},
-        "width":  260,
-        "border_radius":  {"bl": 61.0, "br": 61.0, "tl": 61.0, "tr": 61.0},
+        "width":  102,
         "ink_color":  "red"
     },
-    "Image_2961":  {
+    "Image_3547":  {
         "fit":  "cover",
-        "height":  276,
-        "src":  "backend.webp",
-        "width":  276
+        "height":  141.75,
+        "src":  "flet_box/assets/project_assets/30+ Key Logo Design Trends for 2025.gif",
+        "width":  320,
+        "border_radius":  {"bl": 50.0, "br": 50.0, "tl": 50.0, "tr": 50.0}
     },
-    "Container_2963":  {
-        "alignment":  {"x": 1, "y": 0},
-        "bgcolor":  "transparent",
-        "blur":  ["", ""],
-        "border":  {"l": {"w": 2, "c": "transparent", "sa": None},
-                    "t": {"w": 2, "c": "transparent", "sa": None},
-                    "r": {"w": 2, "c": "transparent", "sa": None},
-                    "b": {"w": 2, "c": "transparent", "sa": None}
+    "Container_3549":  {
+        "alignment":  {"x": 0, "y": 0},
+        "bgcolor":  "black87",
+        "border":  {"l": {"w": 2, "c": "transparent"},
+                    "t": {"w": 2, "c": "transparent"},
+                    "r": {"w": 2, "c": "transparent"},
+                    "b": {"w": 2, "c": "transparent"}
                     },
-        "height":  "",
+        "image":  {"src": "flet_box/assets/project_assets/8 ideas de Logo tienda internet  disenos de unas, diseu00f1o de logo.jpeg", "fit": "cover", "opacity": 0.050000000000000044},
         "ink":  True,
-        "margin":  {"l": 0, "t": 0, "r": 0, "b": 0},
-        "padding":  {"l": 4, "t": 4, "r": 4, "b": 4},
-        "width":  "",
-        "border_radius":  {"bl": 0.0, "br": 0.0, "tl": 0.0, "tr": 0.0},
+        "margin":  {"l": 8, "t": 0, "r": 8, "b": 32},
+        "padding":  {"l": 6, "t": 6, "r": 6, "b": 6},
+        "border_radius":  {"bl": 85.0, "br": 85.0, "tl": 85.0, "tr": 85.0},
         "ink_color":  "red"
     },
-    "TextField_2964":  {
-        "height":  32,
-        "label":  "Tell me something ?",
-        "width":  240,
-        "border_color":  "white",
-        "border_radius":  {"bl": 30, "br": 30, "tl": 30, "tr": 30},
-        "content_padding":  {"l": 16, "t": 16, "r": 16, "b": 16},
-        "cursor_height":  20,
-        "text_size":  12,
-        "focused_border_color":  "red"
+    "Text_3550":  {
+        "disabled":  False,
+        "opacity":  1.0,
+        "size":  25.0,
+        "value":  "Flet box Experience",
+        "weight":  "bold",
+        "text_align":  "left"
     }
 }
 
@@ -100,9 +78,12 @@ styles = {
 class main_screen(ft.DragTarget):
     #: NECCESARY HAVE INSTANCE OF ACTUALLY PAGE
     # main_page: dict = dict()
-    def __init__(self, page: object = None):
+    def __init__(self, page: object = None, main_page: bool= False):
         super().__init__(content=None)
         self.group="GroupDragg"
+
+        # HEIGHT MAIN SCREEN
+        self.main_page = main_page
 
         # ERASE IN PRODUCTION
         self.drag_width = 320
@@ -118,45 +99,31 @@ class main_screen(ft.DragTarget):
         #: DRAGG_CONTROLS
         list_controls: list = [
             
-            #: DRAG-BOX-CONTENT [ID: 2956]
+            #: DRAG-BOX-CONTENT [ID: 3545]
             self.draggin_framework(
                 content=ft.Container(
-                    **self.dict_style("Container_2957"),
-                    on_click=lambda dragg_item: self.dragg_event(
-                                     selected_widget=dragg_item,),
-
-                    content=ft.Text(
-                        **self.dict_style("Text_2958"),
-                        # on_click= lambda tmp_widget: event_2958(
-                        #        payload="Text_2958",
-                        #        page= self.page ),
-                    ),
-                ),),
-            #: DRAG-BOX-CONTENT [ID: 2959]
-            self.draggin_framework(
-                content=ft.Container(
-                    **self.dict_style("Container_2960"),
+                    **self.dict_style("Container_3546"),
                     on_click=lambda dragg_item: self.dragg_event(
                                      selected_widget=dragg_item,),
 
                     content=ft.Image(
-                        **self.dict_style("Image_2961"),
-                        # on_click= lambda tmp_widget: event_2961(
-                        #        payload="Image_2961",
+                        **self.dict_style("Image_3547"),
+                        # on_click= lambda tmp_widget: event_3547(
+                        #        payload="Image_3547",
                         #        page= self.page ),
                     ),
                 ),),
-            #: DRAG-BOX-CONTENT [ID: 2962]
+            #: DRAG-BOX-CONTENT [ID: 3548]
             self.draggin_framework(
                 content=ft.Container(
-                    **self.dict_style("Container_2963"),
+                    **self.dict_style("Container_3549"),
                     on_click=lambda dragg_item: self.dragg_event(
                                      selected_widget=dragg_item,),
 
-                    content=ft.TextField(
-                        **self.dict_style("TextField_2964"),
-                        # on_click= lambda tmp_widget: event_2964(
-                        #        payload="TextField_2964",
+                    content=ft.Text(
+                        **self.dict_style("Text_3550"),
+                        # on_click= lambda tmp_widget: event_3550(
+                        #        payload="Text_3550",
                         #        page= self.page ),
                     ),
                 ),),
@@ -164,6 +131,7 @@ class main_screen(ft.DragTarget):
 
         #: DRAGGIN CONTENT WIDGETS
         self.content = ft.Container(
+            height=self.page.window.height if self.main_page else None,
             width=self.drag_width,
             **self.main_screen_style(code="main_container"),
             content=ft.Container(
@@ -174,8 +142,8 @@ class main_screen(ft.DragTarget):
                             **self.main_screen_style(code="column_attributes"),
                             controls=list_controls
                         ),
-                        on_click=lambda dragg_item: self.dragg_event(
-                            selected_widget=dragg_item,),
+                        # on_click=lambda dragg_item: self.dragg_event(
+                        #     selected_widget=dragg_item,),
                     ),
                 ),)
         )
@@ -319,3 +287,27 @@ class main_screen(ft.DragTarget):
 
 # MAKE CLASS A DYNAMIC MODULE
 load_module_str = main_screen
+
+if __name__ == "__main__":
+    # RUN IN LINE
+    # flet flet_box/extra_utils/phone_container/app_manager/views/main_screen.py  -r
+
+    def main(page: ft.Page):
+        page.theme_mode = ft.ThemeMode.DARK  # ft.ThemeMode.LIGHT
+        page.window.left = 0
+        page.window.top = 0
+        page.window.height = 567
+        page.window.width = 320
+        page.padding = 0
+        page.spacing = 0
+        page.add(
+            load_module_str(
+                    page= page,
+                    main_page=True
+            )
+        )
+        page.update()
+
+    ft.app(
+        target=main,
+    )
