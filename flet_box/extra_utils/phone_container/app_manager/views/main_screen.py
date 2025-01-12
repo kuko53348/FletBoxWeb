@@ -8,12 +8,12 @@ import flet as ft
 #: STYLE TO MAIN SCREEN WIDGET
 phone_style_widget: dict = {
     "main_container":  {
-        "image":  {"src": "image.jpg", "fit": "cover", "opacity": 0.47},
+        "image":  None,
         "gradient":  None
     },
     "second_container":  {
         "padding":  None,
-        "blur":  {"sigma_x": 4, "sigma_y": 4, "tile_mode": "mirror"},
+        "blur":  None,
         "bgcolor":  None
     },
     "column_attributes":  {
@@ -28,23 +28,39 @@ phone_style_widget: dict = {
 
 #: STYLES IN SCREEN_STYLE
 styles = {
-    "Container_20774":  {
+    "Container_2957":  {
         "alignment":  {"x": 0, "y": 0},
-        "border":  {"l": {"w": 2, "c": "transparent"},
-                    "t": {"w": 2, "c": "transparent"},
-                    "r": {"w": 2, "c": "transparent"},
-                    "b": {"w": 2, "c": "transparent"}
+        "bgcolor":  "transparent",
+        "border":  {"l": {"w": 0, "c": "transparent", "sa": None},
+                    "t": {"w": 0, "c": "transparent", "sa": None},
+                    "r": {"w": 0, "c": "transparent", "sa": None},
+                    "b": {"w": 0, "c": "transparent", "sa": None}
                     },
-        "height":  148,
         "ink":  True,
         "margin":  {"l": 0, "t": 0, "r": 0, "b": 0},
         "padding":  {"l": 6, "t": 6, "r": 6, "b": 6},
         "ink_color":  "red"
     },
-    "Image_20775":  {
-        "fit":  "fill",
-        "src":  "logo_mark.png",
-        "border_radius":  {"bl": 16.0, "br": 16.0, "tl": 16.0, "tr": 16.0}
+    "Text_2958":  {
+        "size":  10,
+        "value":  "Ready to make your first app!!"
+    },
+    "Container_2960":  {
+        "alignment":  {"x": 0, "y": 0},
+        "bgcolor":  "transparent",
+        "border":  {"l": {"w": 0, "c": "transparent", "sa": None},
+                    "t": {"w": 0, "c": "transparent", "sa": None},
+                    "r": {"w": 0, "c": "transparent", "sa": None},
+                    "b": {"w": 0, "c": "transparent", "sa": None}
+                    },
+        "ink":  True,
+        "margin":  {"l": 0, "t": 0, "r": 0, "b": 0},
+        "padding":  {"l": 6, "t": 6, "r": 6, "b": 6},
+        "ink_color":  "red"
+    },
+    "Text_2961":  {
+        "size":  10,
+        "value":  "Ready to make your first app!!"
     }
 }
 
@@ -70,17 +86,31 @@ class main_screen(ft.DragTarget):
         #: DRAGG_CONTROLS
         list_controls: list = [
             
-            #: DRAG-BOX-CONTENT [ID: 20773]
+            #: DRAG-BOX-CONTENT [ID: 2956]
             self.draggin_framework(
                 content=ft.Container(
-                    **self.dict_style("Container_20774"),
+                    **self.dict_style("Container_2957"),
                     on_click=lambda dragg_item: self.dragg_event(
                                      selected_widget=dragg_item,),
 
-                    content=ft.Image(
-                        **self.dict_style("Image_20775"),
-                        # on_click= lambda tmp_widget: event_20775(
-                        #        payload="Image_20775",
+                    content=ft.Text(
+                        **self.dict_style("Text_2958"),
+                        # on_click= lambda tmp_widget: event_2958(
+                        #        payload="Text_2958",
+                        #        page= self.page ),
+                    ),
+                ),),
+            #: DRAG-BOX-CONTENT [ID: 2959]
+            self.draggin_framework(
+                content=ft.Container(
+                    **self.dict_style("Container_2960"),
+                    on_click=lambda dragg_item: self.dragg_event(
+                                     selected_widget=dragg_item,),
+
+                    content=ft.Text(
+                        **self.dict_style("Text_2961"),
+                        # on_click= lambda tmp_widget: event_2961(
+                        #        payload="Text_2961",
                         #        page= self.page ),
                     ),
                 ),),

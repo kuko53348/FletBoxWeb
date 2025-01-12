@@ -262,9 +262,9 @@ class DoubleEntry(ft.Stack):
         #: print(self.widget.uid)
         #: UPDATE DATA
         try:
+            self.phone_container = self.page.session.get('SELECTED_SCREEN')
+            self.phone_container.update()
             # self.widget.update()
-            # self.widget_tmp.update()
-            self.page.update()
 
         except Exception as error:
             self.error_page = self.page.session.get('on_dev')

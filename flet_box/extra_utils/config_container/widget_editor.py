@@ -11,9 +11,6 @@ from .selection_entry import SelectionEntry
 from .selection_button_entry import SelectionButtonEntry
 from .single_number_entry import SingleNumeberEntry
 from .dual_number_entry import DualNumeberEntry
-
-
-# from ..settings_var.settings_widget import GLOBAL_VAR
 from .photo_selection import ScreenPhotoSelection
 from .small_palette_color import Screen_palette
 
@@ -29,25 +26,18 @@ class BoxConfigContainer(ft.Container):
         self.tooltip = "BoxConfigContainer"
         self.title = title
         self.controls = controls
-        # self.bgcolor = ft.colors('black26')
-        # self.size=0.01
         self.padding = ft.padding.only(
             left=0,
             top=0,
             right=0,
             bottom=0)
         self.margin = ft.margin.only(left=0, top=0, right=0, bottom=0)
-        # self.scale = 0.8
         self.selection_size_page = size_screen
-        # self.alignment = ft.alignment.center
 
     def build(self):
-        # Drop_BoxConfigContainer = ft.Container(
         self.content = ft.Column(
             alignment=ft.MainAxisAlignment.CENTER,
             horizontal_alignment=ft.CrossAxisAlignment.CENTER,
-
-            # wrap=True,
             controls=[
                 ft.Container(
                     border_radius=ft.border_radius.all(20),
@@ -78,11 +68,7 @@ class BoxConfigContainer(ft.Container):
                 ),
                 ft.Container(
                     bgcolor=ft.colors('black38'),
-                    # expand=True,
-                    # bgcolor="red",
                     width=self.selection_size_page,
-                    # width=270,
-                    # width=425,
                     padding=ft.padding.only(
                         left=2,
                         top=2,
@@ -90,8 +76,6 @@ class BoxConfigContainer(ft.Container):
                         bottom=2),
                     border_radius=ft.border_radius.all(20),
                     content=ft.Row(
-                        # scroll=True,
-                        # horizontal <=> START,CENTER,END SPACE_BETWEEN SPACE_AROUND SPACE_EVENLY
                         alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
                         # vertical       START,CENTER END
                         vertical_alignment=ft.CrossAxisAlignment.CENTER,
@@ -143,34 +127,6 @@ class Build_Editor(ft.Container):
         self.bgcolor=ft.Colors.with_opacity(0.5, ft.colors("black"))
         self.border=ft.border.all(1, ft.Colors.with_opacity(0.08, ft.colors("black")))
         self.blur=(18, 18)
-        
-        # self.bgcolor = "grey"
-        # self.bgcolor = "Black12"
-        # self.gradient = ft.LinearGradient(
-        #     begin=ft.alignment.top_center,
-        #     end=ft.alignment.bottom_center,
-        #     colors=[
-        #         ft.Colors.with_opacity(self.color_minimum, 'cyan'),
-        #         ft.Colors.with_opacity(self.color_medium, 'yellow'),
-        #         ft.Colors.with_opacity(self.color_hight, 'red'),
-        #         ft.Colors.with_opacity(self.color_medium, 'yellow'),
-        #         ft.Colors.with_opacity(self.color_minimum, 'white'),
-        #         ft.Colors.with_opacity(self.color_medium, 'yellow'),
-        #         ft.Colors.with_opacity(self.color_hight, 'red'),
-        #         ft.Colors.with_opacity(self.color_medium, 'yellow'),
-        #         ft.Colors.with_opacity(self.color_minimum, 'black'),
-        #         ],
-        # )
-        self.blur = (32, 32)
-
-
-        # self.shadow = ft.BoxShadow(
-        #     spread_radius=1,
-        #     blur_radius=18,
-        #     color=ft.Colors.with_opacity(0.8, ft.colors('black26')),
-        #     offset=ft.Offset(0, 0),
-        #     blur_style=ft.ShadowBlurStyle.OUTER,
-        # )
 
     def build(self):
         """
@@ -178,17 +134,17 @@ class Build_Editor(ft.Container):
 
         widgets_dict <= IS A DICT THAT CONTAIN ALL WIDGET THAT ARE WATING TO SHOW BECOUS BY DEFAULD ARE VISIBLE = OFF
         """
-        self.main_phone = self.page.session.get(
-            'SELECTED_SCREEN')                # main_phone
-
+        # get main phone
+        self.main_phone = self.page.session.get('SELECTED_SCREEN') # main_phone
         self.phone_layer = self.main_phone.content.content.content
         self.main_phone_container = self.phone_layer               # main_phone_container
+
         # main_phone_container_content
         self.main_phone_container_content = self.phone_layer.content
 
         # SET DEFOULD NONE
-        self.container_widget = None                # main_phone
-        self.container_widget_content = None                # main_phone
+        self.container_widget = None           # main_phone
+        self.container_widget_content = None   # main_phone
 
         widgets_dict = {
 
@@ -199,23 +155,24 @@ class Build_Editor(ft.Container):
             'phone_gradient'     :GradientEntry(  config_widget='gradient '              ,page=self.page ,screen_phone=self.main_phone                  ,id_name_widget_dict='main_phone'),
             'phone_padding'      :FourEntry(      config_widget='padding '               ,page=self.page ,screen_phone=self.main_phone_container        ,id_name_widget_dict="main_phone_container"),
 
-           'column_phone_spacing':SingleNumeberEntry( config_widget='spacing'           ,page=self.page ,screen_phone=self.main_phone_container_content ,id_name_widget_dict="main_phone_container_content"),
-
             'phone_bgcolor'      :ColorEntry(     config_widget='bgcolor '               ,page=self.page ,screen_phone=self.main_phone_container        ,id_name_widget_dict="main_phone_container"),
 
-            'column_phone_wrap'  :BoolEntry(      config_widget='wrap'                  ,page=self.page ,screen_phone=self.main_phone_container_content ,id_name_widget_dict="main_phone_container_content"),
-            'column_phone_tight' :BoolEntry(      config_widget='tight'                 ,page=self.page ,screen_phone=self.main_phone_container_content ,id_name_widget_dict="main_phone_container_content"),
-            'column_phone_scroll':BoolEntry(      config_widget='scroll'                ,page=self.page ,screen_phone=self.main_phone_container_content ,id_name_widget_dict="main_phone_container_content"),
+            'column_phone_wrap'  :BoolEntry(      config_widget='column_wrap'           ,page=self.page ,screen_phone=self.main_phone_container_content ,id_name_widget_dict="main_phone_container_content"),
+            'column_phone_tight' :BoolEntry(      config_widget='column_tight'          ,page=self.page ,screen_phone=self.main_phone_container_content ,id_name_widget_dict="main_phone_container_content"),
+            'column_phone_scroll':BoolEntry(      config_widget='column_scroll'         ,page=self.page ,screen_phone=self.main_phone_container_content ,id_name_widget_dict="main_phone_container_content"),
 
-        'column_phone_alignment' :SelectionEntry( config_widget='alignment'             ,page=self.page ,screen_phone=self.main_phone_container_content ,id_name_widget_dict="main_phone_container_content"),
-   'column_horizontal_alignment' :SelectionEntry( config_widget='horizontal_alignment'  ,page=self.page ,screen_phone=self.main_phone_container_content ,id_name_widget_dict="main_phone_container_content"),
+
+           'rn_space_wrap_true'  :SingleNumeberEntry( config_widget='rn_space_wrap_true' ,page=self.page ,screen_phone=self.main_phone_container_content ,id_name_widget_dict="main_phone_container_content"),
+           'column_phone_spacing':SingleNumeberEntry( config_widget='column_spacing'     ,page=self.page ,screen_phone=self.main_phone_container_content ,id_name_widget_dict="main_phone_container_content"),
+        'column_phone_alignment' :SelectionEntry( config_widget='column_alignment'       ,page=self.page ,screen_phone=self.main_phone_container_content ,id_name_widget_dict="main_phone_container_content"),
+   'column_horizontal_alignment' :SelectionEntry( config_widget='h_column_alignment'     ,page=self.page ,screen_phone=self.main_phone_container_content ,id_name_widget_dict="main_phone_container_content"),
 
             'phone_blur'         :DoubleEntry(    config_widget='blur'                  ,page=self.page ,screen_phone=self.main_phone_container        ,id_name_widget_dict="main_phone_container"),
 
         #: ESPECIAL WIDGETS ONLY FOR CONTAINERS
 
-        'container_rotate'   :SingleNumeberEntry(    config_widget='rotate'         ,page=self.page ,screen_phone=self.container_widget),
-        'container_scale'    :SingleNumeberEntry(    config_widget='scale'          ,page=self.page ,screen_phone=self.container_widget),
+        'container_rotate'   :SingleNumeberEntry( config_widget='rotate'            ,page=self.page ,screen_phone=self.container_widget),
+        'container_scale'    :SingleNumeberEntry( config_widget='scale'             ,page=self.page ,screen_phone=self.container_widget),
         'container_padding'  :FourEntry(      config_widget='padding'               ,page=self.page ,screen_phone=self.container_widget),
         'container_margin'   :FourEntry(      config_widget='margin'                ,page=self.page ,screen_phone=self.container_widget),
         'container_offset'   :DoubleEntry(    config_widget='offset'                ,page=self.page ,screen_phone=self.container_widget),
@@ -226,7 +183,7 @@ class Build_Editor(ft.Container):
         'container_expand'   :BoolEntry(      config_widget='expand'                ,page=self.page ,screen_phone=self.container_widget),
         'container_ink'      :BoolEntry(      config_widget='ink'                   ,page=self.page ,screen_phone=self.container_widget),
         'container_visible'  :BoolEntry(      config_widget='visible'               ,page=self.page ,screen_phone=self.container_widget),
-        'container_border_radius':FourEntry(      config_widget='border_radius'         ,page=self.page ,screen_phone=self.container_widget),
+        'container_border_radius':FourEntry(  config_widget='border_radius'         ,page=self.page ,screen_phone=self.container_widget),
 
         'container_blur'     :DoubleEntry(    config_widget='blur'                  ,page=self.page ,screen_phone=self.container_widget),
         'container_bgcolor'  :ColorEntry(     config_widget='bgcolor'               ,page=self.page ,screen_phone=self.container_widget),
@@ -235,19 +192,19 @@ class Build_Editor(ft.Container):
         'shadow_color'       :ColorEntry(     config_widget='shadow_color'          ,page=self.page ,screen_phone=self.container_widget),
         'container_gradient' :GradientEntry(  config_widget='gradient'              ,page=self.page ,screen_phone=self.container_widget),
 
-    'container_image_src'    :SelectionButtonEntry(    config_widget='image_src'   ,page=self.page ,screen_phone=self.container_widget),
-    'container_image_opacity':SingleNumeberEntry(    config_widget='image_opacity' ,page=self.page ,screen_phone=self.container_widget),
-    'container_image_fit'    :SelectionEntry( config_widget='image_fit'            ,page=self.page ,screen_phone=self.container_widget),
+    'container_image_src'    :SelectionButtonEntry(  config_widget='image_src'      ,page=self.page ,screen_phone=self.container_widget),
+    'container_image_opacity':SingleNumeberEntry(    config_widget='image_opacity'  ,page=self.page ,screen_phone=self.container_widget),
+    'container_image_fit'    :SelectionEntry(        config_widget='image_fit'      ,page=self.page ,screen_phone=self.container_widget),
 
            'mix_widget' :DualNumeberEntry( config_widget='mix_container'        ,page=self.page ,screen_phone=self.container_widget ,         id_name_widget_dict='width'),
      'mix_widg_content' :DualNumeberEntry( config_widget='mix_container_content',page=self.page ,screen_phone=self.container_widget_content , id_name_widget_dict='offset'),
 
         #: ESPECIAL WIDGETS ONLY FOR WIDGET
+        # id_name_widget_dict: => is real config inside widget exemple ft.Text() have inside [value,size,bgcolor]
         'text'                :SingleEntry(config_widget='text'               ,page=self.page ,screen_phone=self.container_widget_content , id_name_widget_dict='text'),
         'name'                :SingleEntry(config_widget='name'               ,page=self.page ,screen_phone=self.container_widget_content , id_name_widget_dict='name'),
         'label'               :SingleEntry(config_widget='label'              ,page=self.page ,screen_phone=self.container_widget_content , id_name_widget_dict='label'),
         'value'               :SingleEntry(config_widget='value'              ,page=self.page ,screen_phone=self.container_widget_content , id_name_widget_dict='value'),
-
         'hint_text'           :SingleEntry(config_widget='hint_text'          ,page=self.page ,screen_phone=self.container_widget_content , id_name_widget_dict='hint_text'),
         'counter_text'        :SingleEntry(config_widget='counter_text'       ,page=self.page ,screen_phone=self.container_widget_content , id_name_widget_dict='counter_text'),
         'suffix_text'         :SingleEntry(config_widget='suffix_text'        ,page=self.page ,screen_phone=self.container_widget_content , id_name_widget_dict='suffix_text'),
@@ -338,12 +295,13 @@ class Build_Editor(ft.Container):
         'text_align':         SelectionEntry(config_widget='text_align'          ,page=self.page ,screen_phone=self.container_widget_content , id_name_widget_dict='text_align'),
         'alignment':          SelectionEntry(config_widget='alignment'           ,page=self.page ,screen_phone=self.container_widget_content , id_name_widget_dict='alignment'),
         'content_alignment':  SelectionEntry(config_widget='content_alignment'   ,page=self.page ,screen_phone=self.container_widget_content , id_name_widget_dict='content_alignment'),
-        'vertical_alignment' :SelectionEntry(config_widget='vertical_alignment'  ,page=self.page ,screen_phone=self.container_widget_content , id_name_widget_dict='vertical_alignment'),
-        'horizontal_alignment':SelectionEntry(config_widget='horizontal_alignment',page=self.page ,screen_phone=self.container_widget_content , id_name_widget_dict='horizontal_alignment'),
+        'vertical_alignment': SelectionEntry(config_widget='vertical_alignment'  ,page=self.page ,screen_phone=self.container_widget_content , id_name_widget_dict='vertical_alignment'),
+      'horizontal_alignment': SelectionEntry(config_widget='horizontal_alignment',page=self.page ,screen_phone=self.container_widget_content , id_name_widget_dict='horizontal_alignment'),
 
         #: GRADIEN ENTRY
 
         'gradient':           GradientEntry(config_widget ='gradient'            ,page=self.page ,screen_phone=self.container_widget_content , id_name_widget_dict='gradient'),
+
         }
 
         self.check_width_page = self.check_size_page()
@@ -378,17 +336,18 @@ class Build_Editor(ft.Container):
                             widgets_dict.get('phone_image_opacity'),
                         ],),
 
-                    # BoxConfigContainer(
-                    #     size_screen=self.check_width_page,
-                    #     title='Column Phone Property',
-                    #     controls=[
-                    #         widgets_dict.get('column_phone_tight'),
-                            # widgets_dict.get('column_phone_wrap'),
-                            # widgets_dict.get('column_phone_scroll'),
-                    #         widgets_dict.get('column_phone_spacing'),
-                            # widgets_dict.get('column_phone_alignment'),
-                            # widgets_dict.get('column_horizontal_alignment'),
-                    #     ],),
+                    BoxConfigContainer(
+                        size_screen=self.check_width_page,
+                        title='Column Phone Property',
+                        controls=[
+                            widgets_dict.get('column_phone_tight'),
+                            widgets_dict.get('column_phone_wrap'),
+                            widgets_dict.get('column_phone_scroll'),
+                            widgets_dict.get('rn_space_wrap_true'),
+                            widgets_dict.get('column_phone_spacing'),
+                            widgets_dict.get('column_phone_alignment'),
+                            widgets_dict.get('column_horizontal_alignment'),
+                        ],),
                 ],
             ),
         )

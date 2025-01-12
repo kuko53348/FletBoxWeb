@@ -123,7 +123,7 @@ class SelectionButtonEntry(ft.Stack):
             self.tab_container = self.page.session.get('PHOTO_SELECTION')
 
 
-        print(f"{self.widget_name}<<<<<")
+        # print(f"{self.widget_name}<<<<<")
 
         self.tab_container = self.page.session.get('PHOTO_SELECTION')
         # # self.tab_container.update()
@@ -151,7 +151,9 @@ class SelectionButtonEntry(ft.Stack):
 
         # #: UPDATE DATA
         try:
-            self.widget.update()
+            self.phone_container = self.page.session.get('SELECTED_SCREEN')
+            self.phone_container.update()
+            # self.widget.update()
         except Exception as error:
             self.error_page = self.page.session.get('on_dev')
             self.error_page(

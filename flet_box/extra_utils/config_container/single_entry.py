@@ -140,19 +140,15 @@ class SingleEntry(ft.Stack):
             height:     value
             bgcolor:    value
             value:      value
-        """
-        #: print(config_widget)
-        #: print(value)
 
-        #: self.widget.content.value = value if config_widget  == "value" else None
-        #: will modify attributes of the widget class in real time
-        #: self.widget.bgcolor='red'  #<<< cmain container
+        Container
+        ```python
+        'width', 'rotate', 'alignment', 'animate', 'bgcolor', 'blur', 'border', 'border_radius', 'padding',
+        'url_target', 'url', 'margin', 'clip_behavior', 'content', 'gradient', 'image_fit', 'image_opacity',
+        'image_repeat', 'image_src', 'image_src_base64', 'blend_mode', 'ink', 'rtl', 'shadow', 'shape',
+        'theme_mode', 'theme',
 
-        """ Container
-         'width', 'rotate', 'alignment', 'animate', 'bgcolor', 'blur', 'border', 'border_radius', 'padding',
-         'url_target', 'url', 'margin', 'clip_behavior', 'content', 'gradient', 'image_fit', 'image_opacity',
-         'image_repeat', 'image_src', 'image_src_base64', 'blend_mode', 'ink', 'rtl', 'shadow', 'shape',
-         'theme_mode', 'theme',
+         ```
         """
 
         #: CONTAINER STR
@@ -363,7 +359,9 @@ class SingleEntry(ft.Stack):
 
         #: UPDATE DATA
         try:
-            self.widget.update()
+            self.phone_container = self.page.session.get('SELECTED_SCREEN')
+            self.phone_container.update()
+            # self.widget.update()
         except Exception as error:
             self.error_page = self.page.session.get('on_dev')
             self.error_page(

@@ -260,7 +260,10 @@ class config_number_widget(ft.Stack):
 
         #: UPDATE DATA
         try:
-            self.widget_to_modify.update()
+            self.phone_container = self.page.session.get('SELECTED_SCREEN')
+            self.phone_container.update()
+            # self.widget.update()
+            # self.widget_to_modify.update()
         except Exception as error:
             self.error_page = self.page.session.get('on_dev')
             self.error_page(

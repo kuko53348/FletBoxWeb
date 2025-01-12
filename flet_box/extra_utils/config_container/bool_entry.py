@@ -17,7 +17,7 @@ class BoolEntry(ft.Stack):
         config_widget: str="exemple [value,bgcolor,width,height] ....",
         page: object=object(),
         screen_phone: object=object(),
-    ):
+        ):
         super().__init__()
         self.page = page
         self.widget = screen_phone
@@ -226,6 +226,7 @@ class BoolEntry(ft.Stack):
                 .content.controls[1]
                 .content.value
             )
+
         if config_widget == "multiline":
             self.widget.multiline = bool(
                 value.content.controls[1]
@@ -310,13 +311,42 @@ class BoolEntry(ft.Stack):
                 .content.controls[1]
                 .content.value
             )
+        # phone container ==========
+
+        self.phone_container = self.page.session.get('SELECTED_SCREEN')
+        self.phone_column = self.phone_container.content.content.content.content.content.content.content
+
+        if config_widget == "column_wrap":
+            self.phone_column.wrap = bool(
+                value.content.controls[1]
+                .content.controls[0]
+                .content.controls[1]
+                .content.value
+            )
+
+        if config_widget == "column_tight":
+            self.phone_column.tight = bool(
+                value.content.controls[1]
+                .content.controls[0]
+                .content.controls[1]
+                .content.value
+            )
+        if config_widget == "column_scroll":
+            self.phone_column.scroll = bool(
+                value.content.controls[1]
+                .content.controls[0]
+                .content.controls[1]
+                .content.value
+            )
 
         #: only in production
         #: print(self.widget.uid)
         #: print(data_usage)
         #: UPDATE DATA
         try:
-            self.widget.update()
+            self.phone_container = self.page.session.get('SELECTED_SCREEN')
+            self.phone_container.update()
+            # self.widget.update()
         except Exception as error:
             self.error_page = self.page.session.get('on_dev')
             self.error_page(

@@ -137,7 +137,10 @@ class Screen_palette(ft.Container):
         self.tab_container.controls[2].visible = False
 
         try:
-            self.tab_container.update()
+            self.phone_container = self.page.session.get('SELECTED_SCREEN')
+            self.phone_container.update()
+            # self.widget.update()
+            # self.tab_container.update()
         except Exception as error:
             self.error_page = self.page.session.get('on_dev')
             self.error_page(

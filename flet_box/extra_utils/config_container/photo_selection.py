@@ -188,7 +188,9 @@ class ScreenPhotoSelection(ft.Container):
 
         #: UPDATE DATA
         try:
-            self.tab_container.update()
+            self.phone_container = self.page.session.get('SELECTED_SCREEN')
+            self.phone_container.update()
+            # self.widget.update()
         except Exception as error:
             self.error_page = self.page.session.get('on_dev')
             self.error_page(

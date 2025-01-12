@@ -176,7 +176,7 @@ Certainly! In **Flet-Box**, you can create drag-and-drop interactions using the 
 │   │   │   └── login_page.py
 │   │   ├── menu_tab_left_phone
 │   │   │   ├── refactory_flet_box.py
-│   │   │   └── widget_menu_left_editor.py
+│   │   │   └── menu_left_editor.py
 │   │   ├── menu_tab_up_phone
 │   │   │   ├── basic_menu_tab_up.py
 │   │   │   └── widget_menu_tab_editor.py

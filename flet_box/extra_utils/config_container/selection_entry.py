@@ -98,6 +98,27 @@ class SelectionEntry(ft.Stack):
                 ft.dropdown.Option(" Horizontal End"),
             ]
 
+        # ====================================================
+        # PHONE ALIGMENT
+        if self.attribute_widget == "h_column_alignment":
+            self.alignment_tmp_name = "Column Start"
+            self.alignment_tmp = [
+                ft.dropdown.Option("Column Start"),
+                ft.dropdown.Option("Column Center"),
+                ft.dropdown.Option("Column End"),
+            ]
+
+        if self.attribute_widget == "column_alignment":
+            self.alignment_tmp_name = "Column_Start"
+            self.alignment_tmp = [
+                ft.dropdown.Option("Column_Start"),
+                ft.dropdown.Option("Column_Center"),
+                ft.dropdown.Option("Column_End"),
+                ft.dropdown.Option("Space_Between"),
+                ft.dropdown.Option("Space_Around"),
+                ft.dropdown.Option("Space_Evenly"),
+            ]
+        # ====================================================
         #: keyboard_type
         if self.attribute_widget == "keyboard_type":
             self.alignment_tmp_name = " Multiline"
@@ -469,12 +490,45 @@ class SelectionEntry(ft.Stack):
         if config_widget == " Weight W_900":
             self.widget.weight = ft.FontWeight.W_900
 
+
+        # PHONE =============================================
+        self.phone_container = self.page.session.get('SELECTED_SCREEN')
+        self.phone_column = self.phone_container.content.content.content.content.content.content.content
+        if config_widget == "Column Start":
+            self.phone_column.horizontal_alignment = ft.CrossAxisAlignment.START
+        if config_widget == "Column Center":
+            self.phone_column.horizontal_alignment = ft.CrossAxisAlignment.CENTER
+        if config_widget == "Column End":
+            self.phone_column.horizontal_alignment = ft.CrossAxisAlignment.END
+        # ===
+
+        if config_widget == "Column_Start":
+            self.phone_column.alignment = ft.MainAxisAlignment.START
+
+        if config_widget == "Column_Center":
+            self.phone_column.alignment = ft.MainAxisAlignment.CENTER
+
+        if config_widget == "Column_End":
+            self.phone_column.alignment = ft.MainAxisAlignment.END
+
+        if config_widget == "Space_Between":
+            self.phone_column.alignment = ft.MainAxisAlignment.SPACE_BETWEEN
+
+        if config_widget == "Space_Around":
+            self.phone_column.alignment = ft.MainAxisAlignment.SPACE_AROUND
+
+        if config_widget == "Space_Evenly":
+            self.phone_column.alignment = ft.MainAxisAlignment.SPACE_EVENLY
+
         #: only in production
         #: print(self.widget.uid)
+        # print(self.phone_column)
 
         #: UPDATE DATA
         try:
-            self.widget.update()
+            self.phone_container = self.page.session.get('SELECTED_SCREEN')
+            self.phone_container.update()
+            # self.widget.update()
         except Exception as error:
             self.error_page = self.page.session.get('on_dev')
             self.error_page(

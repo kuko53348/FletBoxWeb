@@ -203,6 +203,7 @@ class DraggWidget(ft.Stack):
         self.page.session.set(session_id, selected_widget)
 
         # print(selected_widget)
+        # print('=======')
         print(f"{self.page.session.get(session_id)} ID: <<< SELECTED: [drag_widget.py] : selected: >>> {selected_widget}")
         # CHECK SIZE OF PAGE IF LESS VISIBLE OFF
         try:

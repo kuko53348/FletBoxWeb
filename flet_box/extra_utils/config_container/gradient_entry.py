@@ -373,18 +373,7 @@ class GradientEntry(ft.Stack):
         return Drop_GradientEntry
 
     def apply_gradient(self):
-        #: all_data = f"""
-        #:                 color 1:        {self.color_1}
-        #:                 color 2:        {self.color_2}
-        #:                 color 3:        {self.color_3}
-        #:                 color 4:        {self.color_4}
 
-        #:                 main gradient:  {self.main_gradient}
-        #:                 begin gradient: {self.start_gradient}
-        #:                 end gradient:   {self.end_gradient}
-        #:                         """
-        #: all_x = [self.color_1]
-        print(self.main_gradient)
         if self.main_gradient == " Linear ":
             if self.color_1 and self.color_2:
                 if self.color_1 and self.color_2 and self.color_3 and self.color_4:
@@ -399,11 +388,6 @@ class GradientEntry(ft.Stack):
                 else:
                     self.data_color = [self.color_1, self.color_2]
 
-                # self.widget.gradient = ft.LinearGradient(
-                #     begin=self.effects_gradients.get(self.start_gradient),
-                #     end=self.effects_gradients.get(self.end_gradient),
-                #     colors=self.data_color,
-                # )
                 if self.attribute_widget == "gradient ":
                     self.phone_image = self.page.session.get('SELECTED_SCREEN')
                     self.widget_tmp = self.phone_image
@@ -419,7 +403,6 @@ class GradientEntry(ft.Stack):
                         end=self.effects_gradients.get(self.end_gradient),
                         colors=self.data_color,
                     )
-                    print(self.widget)
 
         # elif self.main_gradient == " Linear ":
         elif self.main_gradient == " Radial ":
@@ -451,7 +434,9 @@ class GradientEntry(ft.Stack):
 
         #: UPDATE DATA
         try:
-            self.widget.update()
+            self.phone_container = self.page.session.get('SELECTED_SCREEN')
+            self.phone_container.update()
+            # self.widget.update()
         except Exception as error:
             self.error_page = self.page.session.get('on_dev')
             self.error_page(

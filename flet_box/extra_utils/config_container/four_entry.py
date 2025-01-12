@@ -227,7 +227,7 @@ class FourEntry(ft.Stack):
 
         #: self.widget.content.value = value if config_widget  == "value" else None
         #: will modify attributes of the widget class in real time
-        print(f"{config_widget}<==")
+        # print(f"{config_widget}<==")
         #: ONLY FOR CONTENT
         if config_widget == "padding" or config_widget == "padding ":
             """all values in Box Container"""
@@ -332,7 +332,9 @@ class FourEntry(ft.Stack):
             )
 
         try:
-            self.widget.update()
+            self.phone_container = self.page.session.get('SELECTED_SCREEN')
+            self.phone_container.update()
+            # self.widget.update()
         except Exception as error:
             self.error_page = self.page.session.get('on_dev')
             self.error_page(

@@ -9,46 +9,16 @@ class LiteMenuUpContainer(ft.Container):
         phone_widget_container: object = None,
         menu_left_container: object = None,
         menu_right_container: object = None,
-        # space_widget=None,
     ):
         super().__init__()
         self.page = page
         self.menu_left_container = menu_left_container
         self.phone_widget_container = phone_widget_container
         self.menu_right_container = menu_right_container
-        # HEIGHT
-        # self.height = 542
-
-        # self.space_widget_1, self.space_widget_2 = space_widget
-
-        #: only in production
-        #: print(self.space_widget_1)
-        # offset=(0.1,0),
         self.ink = False
-        # self.padding=ft.padding.all(2)
-        # self.margin=ft.margin.only(left=2, top=2, right=2, bottom=2)
         self.alignment = ft.alignment.center
         self.border_radius = ft.border_radius.all(30)
-        # # height        = 450,
-        # self.gradient = ft.LinearGradient(
-        #     begin=ft.alignment.top_center,
-        #     end=ft.alignment.bottom_center,
-        #     colors=[
-        #         ft.colors("teal"),
-        #         ft.colors("black12")
-        #     ],
-        # )
         self.blur = (16 ,16)
-        # self.expand=True
-        # self.bgcolor="Red"
-        # self.border=ft.border.all(0.6, ft.colors.WHITE12)
-        # self.shadow=ft.BoxShadow(
-        #     spread_radius=1,
-        #     blur_radius=18,
-        #     color=ft.Colors.with_opacity(0.8, ft.colors("black26")),
-        #     offset=ft.Offset(0, 0),
-        #     blur_style=ft.ShadowBlurStyle.OUTER,
-        # )
 
     def build(self):
         self.phone_edition = ft.Container(
@@ -179,11 +149,9 @@ class LiteMenuUpContainer(ft.Container):
         :Return size of screen to addapt main screen to config container widget
         """
         page_width = self.page.width
-        # page_width = self.page.window.width
 
         if page_width <= 690.0:
             self.phone_edition.visible = False
-            # self.phone_edition.update()
 
     def modify_widget_in_phone_container(self):
         """
@@ -205,14 +173,14 @@ class LiteMenuUpContainer(ft.Container):
             AND AFTER PERES BUTTON EDIT WILL CALL THIS METOD TO
             CHANGE PROPERTY
         """
-
         self.select_droped_widget = self.page.session.get("SELECTED_CONTAINER")
         self.select_container_id = self.page.session.get("SELECTED_CONTAINER_ID")
 
-        self.config_tab_container = self.page.session.get(
-            "CONFIG_TABS_CONTAINERS")
-        self.config_tab_container_content = self.page.session.get(
-            "CONFIG_TABS_CONTAINERS_CONTENT")
+        # TAB BOX EDITION OF CONTAINER WIDGET
+        self.config_tab_container = self.page.session.get("CONFIG_TABS_CONTAINERS")
+
+        # TAB BOX EDITION OF CONTAINER CONTENT WIDGET
+        self.config_tab_container_content = self.page.session.get("CONFIG_TABS_CONTAINERS_CONTENT")
 
         is_selected = False
 
@@ -231,6 +199,7 @@ class LiteMenuUpContainer(ft.Container):
             self.page.update()
 
             #  'left', 'top', 'right', 'bottom', 'rotate', 'scale', 'offset'
+            self.list_wdiget_content_attribute = []
             self.list_wdiget_content_attribute: list = self.select_droped_widget_CONTENT.__dir__()
 
             list_range: tuple = (
@@ -309,9 +278,6 @@ class LiteMenuUpContainer(ft.Container):
                 self.delete_widget()
 
         if action == "UNSELECT":
-            #: SET GLOBAL VAR // LIST_SELECTED_WIDGETS // TO RESET AFTER PRESS SELECTED BORDER IN PHONE CONTAINER
-            # selected_widget_clicked = GLOBAL_VAR(get_global_var="LIST_SELECTED_WIDGETS")
-
             if not self.select_droped_widget == None:
                 self.select_droped_widget.border = ft.border.all(
                     2, ft.colors("transparent"))
@@ -352,15 +318,13 @@ class LiteMenuUpContainer(ft.Container):
                 self.menu_left_container.update()
                 self.menu_right_container.update()
 
-            # else:
-            #     self.Drop_LiteMenuUpContainer.update()
-
         if action == "LIGHT / DARK":
-            self.phone_widget_container.bgcolor = (
-                ft.colors('white')
-                if self.phone_widget_container.bgcolor == "#070707"
-                else "#070707"
-            )
+            self.light_color = ft.Colors.with_opacity(0.1,ft.colors.SURFACE_VARIANT)
+            self.dark_color  = ft.Colors.with_opacity(0.6,ft.colors('black'))
+            self.phone_widget_container.dark_theme = ft.Theme(color_scheme_seed=ft.Colors.YELLOW)
+
+            self.phone_widget_container.theme_mode = ft.ThemeMode.DARK if self.phone_widget_container.theme_mode == ft.ThemeMode.LIGHT else ft.ThemeMode.LIGHT
+            self.phone_widget_container.bgcolor = self.dark_color if self.phone_widget_container.bgcolor == self.light_color else self.light_color
             self.phone_widget_container.update()
 
         if action == "SMARTPHONE":
@@ -468,8 +432,28 @@ class LiteMenuUpContainer(ft.Container):
                                      tab_control: list = list(),
                                      widget_name: object = object()):
         """
-        THIS METOD WALK IN TABS number #2 EACH COLUMN WITH WIDGETS INSIDE 4 COLUMNS
+        - WALK ALL TABS TO INSERT THE VALUE THAT WE
+        CHECK IF HAVE CURRENT SELECTED WIDGET HAVE OWN CORRECT VALUES
 
+        EXEMPLE:
+        ```python
+        ft.Container()
+        ```
+
+        ATTRIBUTES:
+        ```python
+        bgcolor, width, height ....
+        ```
+
+        EXEMPLE content:
+        ```python
+        ft.Text()
+        ```
+
+        ATTRIBUTES:
+        ```python
+        color, size, value ....
+        ```
         """
         #: TAB 2
 
@@ -485,8 +469,6 @@ class LiteMenuUpContainer(ft.Container):
         if column_tab == "2_3":
             tmp_value = self.check_number_column(tab_control=tab_control)
 
-        #: FINISH
-
         for _ in tmp_value:
             _.controls[0].visible = True
             _.widget = widget_name
@@ -497,21 +479,27 @@ class LiteMenuUpContainer(ft.Container):
                                              tab_control: list = list(),
                                              widget_name: object = object()):
         """
+        - WALK ALL TABS TO INSERT THE VALUE THAT WE
+        CHECK IF HAVE CURRENT SELECTED WIDGET HAVE OWN CORRECT VALUES
 
-        THIS METOD WALK IN TABS number #3 EACH COLUMN WITH WIDGETS INSIDE 4 COLUMNS
+        EXEMPLE:
+        ```python
+        ft.Container()
+        ```
 
-        #: WE GET A LIS WITH ALL WIDGET IN EACH BOX IN TAB 3
-        #: AFTER WE FILTER ALL DATA LIST TO A EVOID DUPLICATES FALSE OR TRUE
-        #: RETURNING { False } OR { False , True }
-        #: IF DATA SET RETURNING HAVE 2 CONTENT INSIDE THE SET
-        #: IS TRUE IS VISIBLE ALL CONTENT BOX
-        #: IF NOT NO APEAR IN BOX
+        ATTRIBUTES:
+        ```python
+        bgcolor, width, height ....
+        ```
 
-        #: NEED CHECK IF THE WIDGET IT'S IN LIST_KEYS_DICT_USED
-        #: IF IS TRUE THE CONTAINER CONFIG
-        #:
-        #: WILL PUT          VISIBLE TRUE
-        #: IF NOT WILL PUT   VISIBLE OFF
+        EXEMPLE content:
+        ```python
+        ft.Text()
+        ```
+
+        ATTRIBUTES:
+        ```python
+        color, size, value ....
         """
 
         #: TAB 3
@@ -540,30 +528,17 @@ class LiteMenuUpContainer(ft.Container):
         if column_tab == "3_7":
             tmp_value = self.check_number_column(tab_control=tab_control)
 
-        #: FINISH
-
         for _ in tmp_value:
-            #: WALK ALL TABS TO INSERT THE VALUE THAT WE
-            #: if _.id_name_widget_dict in LIST_KEYS_DICT_USED:
-            if (_.id_name_widget_dict in self.list_wdiget_content_attribute):
-                # is_in_widget_attribute = (_.id_name_widget_dict in self.list_wdiget_content_attribute)
 
+            if (_.id_name_widget_dict in self.list_wdiget_content_attribute):
+                _.visible = True
                 _.widget = widget_name
                 _.update()  # :<==== update exactly widget <<<
 
-                # ONLY IN PRODUCTION
-                # _.controls[0].bgcolor="green"
-                # print(f"[True] Attribute: {_.id_name_widget_dict} in >>> [{self.select_droped_widget_CONTENT._get_control_name()}]")
             else:
-                # is_not_in_widget_attribute = (if not _.id_name_widget_dict in self.list_wdiget_content_attribute)
-
                 _.visible = False
                 _.widget = widget_name
                 _.update()  # :<==== update exactly widget <<<
-
-                # ONLY IN PRODUCTION
-                # _.controls[0].bgcolor="red"
-                # print(f"[False] Attribute: {_.id_name_widget_dict} is not in >>> [{self.select_droped_widget_CONTENT._get_control_name()}]")
 
     def action_windows(self, action):
         self.phone_widget_container.width, self.phone_widget_container.height = (
@@ -596,7 +571,7 @@ class LiteMenuUpContainer(ft.Container):
         4. update to apply all
         """
         self.select_container = self.page.session.get("SELECTED_CONTAINER")
-        # print(self.page._index)
+
         if not self.select_container == None:
             # NECESSARY REMOVE PROM PREVIOUS PARAEN PARENT
             cover_widget = self.page.session.get("cover_widget")
@@ -632,7 +607,6 @@ class LiteMenuUpContainer(ft.Container):
 
 
 if __name__ == "__main__":
-    #
     def main(page: ft.Page):
         page.scroll = "HIDDEN"  # AUTO ADAPTIVE ALWAYS HIDDEN
         page.vertical_alignment = ft.MainAxisAlignment.CENTER

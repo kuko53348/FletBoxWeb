@@ -320,8 +320,17 @@ class MenuLeftContainer(ft.Stack):
 
         self.page.overlay.insert(0, self.dialog_alert)
         self.page.overlay[0].open = True
-        self.page.update()
-        # print(self.page.overlay)
+
+        try:
+            self.page.update()
+        except Exception as error:
+            # self.error_page = self.page.session.get('on_dev')
+            # self.error_page(
+            #     name_seccion='Error by Dev',
+            #     body_string=error
+            # )
+
+            print(f'error {error}')
 
     def action_windows(self, action):
         if action == "Close":
@@ -340,7 +349,7 @@ class MenuLeftContainer(ft.Stack):
             remove clean all editro tab and selected widget before save data in database
         """
         self.widget_selected = self.page.session.get("SELECTED_CONTAINER")
-        
+
         # REMOVE BORDER COLOR BEFORE SAVE
         if not self.widget_selected == None:
             self.widget_selected.border = ft.border.all(
@@ -354,7 +363,7 @@ class MenuLeftContainer(ft.Stack):
         # REMOVE VISIBLE TAB EDITOR BEFORE SAVE
         self.config_tab_container.visible=False
         self.config_tab_container_content.visible=False
-        
+
         # RESET TO NONE TOUCH WIDGET
         self.page.session.set("SELECTED_CONTAINER", None)
         self.page.update()

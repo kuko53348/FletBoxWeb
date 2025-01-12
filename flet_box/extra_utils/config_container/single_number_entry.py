@@ -47,6 +47,8 @@ class SingleNumeberEntry(ft.Stack):
             "max_lines": {"minimum": 0, "maximum": 300, "division": 300, "value": 0},
             "runs_count": {"minimum": 0, "maximum": 300, "division": 300, "value": 0},
             "run_spacing": {"minimum": 0, "maximum": 300, "division": 300, "value": 0},
+            "rn_space_wrap_true": {"minimum": 0, "maximum": 300, "division": 300, "value": 0},
+            "column_spacing": {"minimum": 0, "maximum": 300, "division": 300, "value": 0},
             "spacing": {"minimum": 0, "maximum": 300, "division": 300, "value": 0},
             "max_extent": {"minimum": 0, "maximum": 100, "division": 100, "value": 0},
             "border_width": {"minimum": 0, "maximum": 100, "division": 100, "value": 0},
@@ -154,8 +156,6 @@ class SingleNumeberEntry(ft.Stack):
     def modify_widget_attributes(self, slider_value, slider_widget):
         slider_widget.label = f"{slider_value:.2f}"
         slider_widget.update()
-        # print(self.widget, "single")
-
         #:
         if self.widget_name == "image_opacity":
             if self.widget.image:
@@ -212,9 +212,22 @@ class SingleNumeberEntry(ft.Stack):
         if self.widget_name == "rotate":
             self.widget.rotate = slider_value
 
+
+        self.phone_container = self.page.session.get('SELECTED_SCREEN')
+        self.phone_column = self.phone_container.content.content.content.content.content.content.content
+
+        # PHONE COLUMN
+        if self.widget_name == "column_spacing":
+            self.phone_column.spacing = slider_value
+        if self.widget_name == "rn_space_wrap_true":
+            self.phone_column.run_spacing = slider_value
+
         #: UPDATE DATA
+
         try:
-            self.widget.update()
+            self.phone_container = self.page.session.get('SELECTED_SCREEN')
+            self.phone_container.update()
+            # self.widget.update()
         except Exception as error:
             self.error_page = self.page.session.get('on_dev')
             self.error_page(
