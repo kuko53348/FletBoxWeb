@@ -311,80 +311,58 @@ class flet_box:
                     )
                 )
 
-            if self.page.route == "/save_database":
-                self.button_email = ft.Container(
-                                content=ft.ElevatedButton(
-                                text='Save database',
-                                on_click=lambda _: send_email()
-                ))
-
-                self.text_error = ft.Text(
-                        value="send database",
-                )
-
-                def send_email():
-                    self.button_email.content.disabled=True
-                    self.button_email.content.update()
-
-                    try:
-                        send_attach_email(
-                            email_from='justoneclick37@gmail.com',
-                            email_to='kuko53348@gmail.com',
-                            email_header='hi there!!!',
-                            email_body=f'Update database time: {str(datetime.now())}',
-                            email_password='gpae milb kxlm pdoq',
-                            file_path='flet_box/extra_utils/external_library/flet_box_database.db',
-                        )
-                    except Exception as e:
-                        self.button_email.content.disabled=False
-                        self.text_error.value=e
-                        self.text_error.update()
-                        self.page.update()
-
-                    self.page.go('/')
-
-                self.page.views.append(
-                    ft.View(
-                        horizontal_alignment=ft.CrossAxisAlignment.CENTER,
-                        vertical_alignment=ft.MainAxisAlignment.CENTER,
-                        padding=0,
-                        route="/save_database",
-                        controls=[
-                            self.text_error,
-                            self.button_email,
-                        ],
-                    )
-                )
                 self.page.update()
-                # pick_files_dialog.save_file()
 
             self.page.update()
 
-        # API SERVER LOCAL OR EXTERNAL
-        # self.page.session.set('api_server','http://127.0.0.1:8080/')
-        self.page.session.set('api_server','https://kuko53348.pythonanywhere.com/')
-
-        # SET API ON OR OFF
-        self.page.session.set('flet_box_api',True)
-        # self.page.session.set('flet_box_api',False)
-
         # NEVER ERASE THIS INVITED PERSON
         # self.page.session.set('user_name', {'user_name': 'invited'})
-
-        # print(self.page.overlay)
         self.page.on_route_change=route_change
         self.page.theme_mode=ft.ThemeMode.DARK
 
-        # FIRST SCREEN
-        self.page.go('/')                   # <<< TO PRODUCTION
-        # self.page.go('/screen_manager')   # <<< TO TESTING
-        # self.page.go('/save_database')    # <<< TO TESTING
-        # self.page.go('/save_menu')        # <<< TO TESTING
-        # self.page.go('/congratulation')        # <<< TO TESTING
+        # COMENT IF WILL WORK ONLINE IN WEB          <==== ONLINE IN WEB
+        self.run_in_production(page=self.page, runing_online_server=True)
+
+        # COMENT IF WILL WORK ONLINE IN WEB          <==== OFFLINE IN WEB
+        # self.run_in_production(page=self.page, runing_offline=False)
 
         # JUMP TO DEV ACCOUNT
         # self.page.go('/home')             # <<< TO TESTING
-        self.page.session.set('user_name', {'user_name': 'kuko53348'})
+        # self.page.session.set('user_name', {'user_name': 'kuko53348'})
+        self.page.update()
+
+    def run_in_production(self,runing_online_server: bool=False ,page: object=None):
+        """
+        Args:
+            FIRST SCREEN
+            self.page.session.set('api_server','http://127.0.0.1:8080/')
+            self.page.session.set('api_server','https://kuko53348.pythonanywhere.com/')
+
+            # SET API ON OR OFF
+            self.page.session.set('flet_box_api',True)
+            self.page.session.set('flet_box_api',False)
+
+            self.page.go('/')                   # <<< TO PRODUCTION
+            self.page.go('/screen_manager')   # <<< TO TESTING
+            self.page.go('/save_database')    # <<< TO TESTING
+            self.page.go('/save_menu')        # <<< TO TESTING
+            self.page.go('/congratulation')        # <<< TO TESTING
+        """
+        page = page
+
+        if runing_online_server:
+            page.session.set('api_server','https://kuko53348.pythonanywhere.com/')
+            page.session.set('flet_box_api',True)
+            page.go('/')                   # <<< TO PRODUCTION
+
+        else:
+            # if runing_offline is true will be locally
+            page.session.set('api_server','http://127.0.0.1:8080/')
+            page.session.set('flet_box_api',True)
+
+            page.go('/home')             # <<< TO TESTING
+            page.session.set('user_name', {'user_name': 'kuko53348'})
+
 
     def setting_only_append_controls(self):
         self.widgetFilter=[_.lower()

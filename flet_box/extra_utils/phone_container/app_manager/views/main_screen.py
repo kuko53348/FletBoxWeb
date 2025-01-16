@@ -8,70 +8,290 @@ import flet as ft
 #: STYLE TO MAIN SCREEN WIDGET
 phone_style_widget: dict = {
     "main_container":  {
-        "image":  None,
-        "gradient":  None
+        "image":  {"src": "flet_box/assets/project_assets/image182.jpeg", "fit": "cover"},
+        "gradient":  {"colors": ["Purple", "Black12"], "tile_mode": "clamp", "begin": {"x": 0, "y": 1},
+                    "end": {"x": 0, "y": -1},
+                    "type": "linear"}
     },
     "second_container":  {
         "padding":  None,
-        "blur":  None,
-        "bgcolor":  None
+        "blur":  {"sigma_x": 4, "sigma_y": 2, "tile_mode": "mirror"},
+        "bgcolor":  "black45"
     },
     "column_attributes":  {
         "scroll":  None,
         "spacing":  "0.0",
         "tight":  None,
         "wrap":  None,
-        "alignment":  "spaceBetween",
-        "horizontal_alignment":  "start"
+        "alignment":  "end",
+        "horizontal_alignment":  "center"
     }
 }
 
 #: STYLES IN SCREEN_STYLE
 styles = {
-    "Container_10717":  {
+    "Container_11290":  {
         "alignment":  {"x": 0, "y": 0},
+        "bgcolor":  "transparent",
+        "border":  {"l": {"w": 2, "c": "transparent", "sa": None},
+                    "t": {"w": 2, "c": "transparent", "sa": None},
+                    "r": {"w": 2, "c": "transparent", "sa": None},
+                    "b": {"w": 2, "c": "transparent", "sa": None}
+                    },
+        "ink":  True,
+        "padding":  {"l": 0, "t": 0, "r": 0, "b": 0},
+        "ink_color":  "yellow"
+    },
+    "Column_11291":  {
+        "scroll":  "ALWAYS",
+        "horizontal_alignment":  "center"
+    },
+    "Container_11293":  {
+        "alignment":  {"x": 0, "y": 0},
+        "border":  {"l": {"w": 2, "c": "transparent", "sa": None},
+                    "t": {"w": 2, "c": "transparent", "sa": None},
+                    "r": {"w": 2, "c": "transparent", "sa": None},
+                    "b": {"w": 2, "c": "transparent", "sa": None}
+                    },
+        "height":  206,
+        "ink":  True,
+        "margin":  {"l": 0, "t": 0, "r": 0, "b": 0},
+        "padding":  {"l": 0, "t": 0, "r": 0, "b": 0},
+        "width":  206,
+        "ink_color":  "red"
+    },
+    "Image_11294":  {
+        "fit":  "cover",
+        "height":  132,
+        "src":  "flet_box/assets/project_assets/image56.png",
+        "width":  132
+    },
+    "Container_11296":  {
+        "alignment":  {"x": 0, "y": 0},
+        "bgcolor":  "transparent",
+        "border":  {"l": {"w": 2, "c": "transparent", "sa": None},
+                    "t": {"w": 2, "c": "transparent", "sa": None},
+                    "r": {"w": 2, "c": "transparent", "sa": None},
+                    "b": {"w": 2, "c": "transparent", "sa": None}
+                    },
+        "ink":  True,
+        "margin":  {"l": 0, "t": 0, "r": 0, "b": 0},
+        "padding":  {"l": 0, "t": 0, "r": 0, "b": 0},
+        "border_radius":  {"bl": 0.0, "br": 0.0, "tl": 0.0, "tr": 0.0},
+        "ink_color":  "red"
+    },
+    "Text_11297":  {
+        "size":  22.0,
+        "value":  "Manage all your funds.",
+        "weight":  "bold"
+    },
+    "Container_11299":  {
+        "alignment":  {"x": 0, "y": 0},
+        "bgcolor":  "transparent",
+        "border":  {"l": {"w": 2, "c": "transparent", "sa": None},
+                    "t": {"w": 2, "c": "transparent", "sa": None},
+                    "r": {"w": 2, "c": "transparent", "sa": None},
+                    "b": {"w": 2, "c": "transparent", "sa": None}
+                    },
+        "ink":  True,
+        "margin":  {"l": 0, "t": 0, "r": 0, "b": 0},
+        "padding":  {"l": 8, "t": 0, "r": 15, "b": 0},
+        "ink_color":  "yellow"
+    },
+    "Column_11300":  {
+        "scroll":  "ALWAYS",
+        "horizontal_alignment":  "center",
+        "run_spacing":  0.0
+    },
+    "Container_11302":  {
+        "alignment":  {"x": 0, "y": 0},
+        "bgcolor":  "transparent",
+        "blur":  ["", ""],
+        "border":  {"l": {"w": 2, "c": "transparent", "sa": None},
+                    "t": {"w": 2, "c": "transparent", "sa": None},
+                    "r": {"w": 2, "c": "transparent", "sa": None},
+                    "b": {"w": 2, "c": "transparent", "sa": None}
+                    },
+        "height":  "",
+        "ink":  True,
+        "margin":  {"l": 0, "t": 0, "r": 0, "b": 0},
+        "padding":  {"l": 0, "t": 0, "r": 0, "b": 0},
+        "width":  "",
+        "border_radius":  {"bl": 0, "br": 0, "tl": 0, "tr": 0},
+        "ink_color":  "red"
+    },
+    "TextField_11303":  {
+        "bgcolor":  "white10",
+        "filled":  True,
+        "height":  35,
+        "icon":  "supervised_user_circle",
+        "label":  "Enter Username",
+        "width":  " ",
+        "border_color":  "white",
+        "border_radius":  {"bl": 30, "br": 30, "tl": 30, "tr": 30},
+        "content_padding":  {"l": 16, "t": 16, "r": 16, "b": 16},
+        "cursor_height":  20,
+        "text_size":  12,
+        "focused_border_color":  "red"
+    },
+    "Container_11305":  {
+        "alignment":  {"x": 0, "y": 0},
+        "bgcolor":  "transparent",
+        "blur":  ["", ""],
+        "border":  {"l": {"w": 2, "c": "transparent", "sa": None},
+                    "t": {"w": 2, "c": "transparent", "sa": None},
+                    "r": {"w": 2, "c": "transparent", "sa": None},
+                    "b": {"w": 2, "c": "transparent", "sa": None}
+                    },
+        "height":  "",
+        "ink":  True,
+        "margin":  {"l": 0, "t": 0, "r": 0, "b": 0},
+        "padding":  {"l": 0, "t": 0, "r": 0, "b": 0},
+        "width":  "",
+        "border_radius":  {"bl": 0, "br": 0, "tl": 0, "tr": 0},
+        "ink_color":  "red"
+    },
+    "TextField_11306":  {
+        "bgcolor":  "white10",
+        "filled":  True,
+        "height":  35,
+        "icon":  "verified_user_outlined",
+        "label":  "Enter Password",
+        "password":  True,
+        "value":  "",
+        "width":  " ",
+        "border_color":  "white",
+        "border_radius":  {"bl": 30, "br": 30, "tl": 30, "tr": 30},
+        "content_padding":  {"l": 16, "t": 16, "r": 16, "b": 16},
+        "cursor_height":  20,
+        "text_size":  12,
+        "focused_border_color":  "red"
+    },
+    "Container_11308":  {
+        "alignment":  {"x": 0, "y": 0},
+        "bgcolor":  "transparent",
+        "border":  {"l": {"w": 2, "c": "transparent", "sa": None},
+                    "t": {"w": 2, "c": "transparent", "sa": None},
+                    "r": {"w": 2, "c": "transparent", "sa": None},
+                    "b": {"w": 2, "c": "transparent", "sa": None}
+                    },
+        "ink":  True,
+        "margin":  {"l": 0, "t": 0, "r": 0, "b": 0},
+        "padding":  {"l": 0, "t": 15, "r": 0, "b": 0},
+        "ink_color":  "yellow"
+    },
+    "Column_11309":  {
+        "scroll":  "ALWAYS",
+        "horizontal_alignment":  "center"
+    },
+    "Container_11311":  {
+        "alignment":  {"x": 0, "y": 0},
+        "bgcolor":  "white10",
+        "blur":  [8,4],
+        "border":  {"l": {"w": 2, "c": "transparent", "sa": None},
+                    "t": {"w": 2, "c": "transparent", "sa": None},
+                    "r": {"w": 2, "c": "transparent", "sa": None},
+                    "b": {"w": 2, "c": "transparent", "sa": None}
+                    },
+        "height":  "",
+        "ink":  True,
+        "margin":  {"l": 0, "t": 0, "r": 0, "b": 0},
+        "padding":  {"l": 0, "t": 0, "r": 0, "b": 0},
+        "width":  220,
+        "border_radius":  {"bl": 17.0, "br": 17.0, "tl": 17.0, "tr": 17.0},
+        "ink_color":  "red"
+    },
+    "Text_11312":  {
+        "size":  29.0,
+        "value":  "Login",
+        "weight":  "bold"
+    },
+    "Container_11314":  {
+        "alignment":  {"x": 0, "y": 0},
+        "bgcolor":  "transparent",
+        "border":  {"l": {"w": 2, "c": "transparent", "sa": None},
+                    "t": {"w": 2, "c": "transparent", "sa": None},
+                    "r": {"w": 2, "c": "transparent", "sa": None},
+                    "b": {"w": 2, "c": "transparent", "sa": None}
+                    },
+        "height":  "",
+        "ink":  True,
+        "margin":  {"l": 0, "t": 0, "r": 0, "b": 0},
+        "padding":  {"l": 0, "t": 0, "r": 0, "b": 0},
+        "width":  220,
+        "border_radius":  {"bl": 14.0, "br": 14.0, "tl": 14.0, "tr": 14.0},
+        "ink_color":  "red"
+    },
+    "Text_11315":  {
+        "size":  24.0,
+        "value":  "Create Acount",
+        "weight":  "bold"
+    },
+    "Container_11317":  {
+        "alignment":  {"x": 0, "y": 0},
+        "bgcolor":  "transparent",
+        "border":  {"l": {"w": 2, "c": "transparent", "sa": None},
+                    "t": {"w": 2, "c": "transparent", "sa": None},
+                    "r": {"w": 2, "c": "transparent", "sa": None},
+                    "b": {"w": 2, "c": "transparent", "sa": None}
+                    },
+        "ink":  True,
+        "margin":  {"l": 0, "t": 0, "r": 0, "b": 0},
+        "padding":  {"l": 0, "t": 0, "r": 0, "b": 0},
+        "border_radius":  {"bl": 0, "br": 0, "tl": 0, "tr": 0},
+        "ink_color":  "cyan"
+    },
+    "Row_11318":  {
+        "scroll":  "ALWAYS"
+    },
+    "Container_11320":  {
+        "alignment":  {"x": 0, "y": 0},
+        "bgcolor":  "transparent",
         "border":  {"l": {"w": 2, "c": "transparent"},
                     "t": {"w": 2, "c": "transparent"},
                     "r": {"w": 2, "c": "transparent"},
                     "b": {"w": 2, "c": "transparent"}
                     },
-        "height":  102,
         "ink":  True,
-        "margin":  {"l": 16, "t": 32, "r": 0, "b": 0},
-        "padding":  {"l": 0, "t": 0, "r": 0, "b": 0},
-        "width":  102,
-        "ink_color":  "red"
-    },
-    "Image_10718":  {
-        "fit":  "cover",
-        "height":  141.75,
-        "src":  "flet_box/assets/project_assets/30+ Key Logo Design Trends for 2025.gif",
-        "width":  320,
-        "border_radius":  {"bl": 50.0, "br": 50.0, "tl": 50.0, "tr": 50.0}
-    },
-    "Container_10720":  {
-        "alignment":  {"x": 0, "y": 0},
-        "bgcolor":  "black87",
-        "border":  {"l": {"w": 0, "c": "transparent"},
-                    "t": {"w": 0, "c": "transparent"},
-                    "r": {"w": 0, "c": "transparent"},
-                    "b": {"w": 0, "c": "transparent"}
-                    },
-        "image":  {"src": "flet_box/assets/project_assets/8 ideas de Logo tienda internet  disenos de unas, diseu00f1o de logo.jpeg", "fit": "cover", "opacity": 0.050000000000000044},
-        "ink":  True,
-        "margin":  {"l": 8, "t": 0, "r": 8, "b": 32},
+        "margin":  {"l": 0, "t": 0, "r": 0, "b": 0},
         "padding":  {"l": 6, "t": 6, "r": 6, "b": 6},
-        "border_radius":  {"bl": 85.0, "br": 85.0, "tl": 85.0, "tr": 85.0},
         "ink_color":  "red"
     },
-    "Text_10721":  {
-        "disabled":  False,
-        "opacity":  1.0,
-        "size":  25.0,
-        "value":  "Flet box Experience",
-        "weight":  "bold",
-        "text_align":  "left"
-    }
+    "Icon_11321":  {
+        "name":  "fmd_good"
+    },
+    "Container_11323":  {
+        "alignment":  {"x": 0, "y": 0},
+        "bgcolor":  "transparent",
+        "border":  {"l": {"w": 2, "c": "transparent", "sa": None},
+                    "t": {"w": 2, "c": "transparent", "sa": None},
+                    "r": {"w": 2, "c": "transparent", "sa": None},
+                    "b": {"w": 2, "c": "transparent", "sa": None}
+                    },
+        "ink":  True,
+        "margin":  {"l": 0, "t": 0, "r": 0, "b": 0},
+        "padding":  {"l": 6, "t": 6, "r": 6, "b": 6},
+        "ink_color":  "red"
+    },
+    "Icon_11324":  {
+        "name":  "golf_course_rounded"
+    },
+    "Container_11326":  {
+        "alignment":  {"x": 0, "y": 0},
+        "bgcolor":  "transparent",
+        "border":  {"l": {"w": 2, "c": "transparent", "sa": None},
+                    "t": {"w": 2, "c": "transparent", "sa": None},
+                    "r": {"w": 2, "c": "transparent", "sa": None},
+                    "b": {"w": 2, "c": "transparent", "sa": None}
+                    },
+        "height":  "",
+        "ink":  True,
+        "margin":  {"l": 0, "t": 0, "r": 0, "b": 0},
+        "padding":  {"l": 0, "t": 0, "r": 0, "b": 16},
+        "width":  140,
+        "ink_color":  "red"
+    },
+    "Divider_11327":  {}
 }
 
 
@@ -99,31 +319,177 @@ class main_screen(ft.DragTarget):
         #: DRAGG_CONTROLS
         list_controls: list = [
             
-            #: DRAG-BOX-CONTENT [ID: 10716]
+            #: DRAG-BOX-CONTROLS [ID: 11289]
             self.draggin_framework(
                 content=ft.Container(
-                    **self.dict_style("Container_10717"),
+                    **self.dict_style("Container_11290"),
                     on_click=lambda dragg_item: self.dragg_event(
-                                     selected_widget=dragg_item,),
+                                     selected_widget=dragg_item ),
 
-                    content=ft.Image(
-                        **self.dict_style("Image_10718"),
-                        # on_click= lambda tmp_widget: event_10718(
-                        #        payload="Image_10718",
-                        #        page= self.page ),
+                    content=ft.Column(
+                        **self.dict_style("Column_11291"),
+                        controls=[
+                        #: DRAG-BOX-CONTENT [ID: 11292]
+                        self.draggin_framework(
+                            content=ft.Container(
+                                **self.dict_style("Container_11293"),
+                                on_click=lambda dragg_item: self.dragg_event(
+                                                 selected_widget=dragg_item,),
+
+                                content=ft.Image(
+                                    **self.dict_style("Image_11294"),
+                                    # on_click= lambda tmp_widget: event_11294(
+                                    #        payload="Image_11294",
+                                    #        page= self.page ),
+                                ),
+                            ),),
+                        #: DRAG-BOX-CONTENT [ID: 11295]
+                        self.draggin_framework(
+                            content=ft.Container(
+                                **self.dict_style("Container_11296"),
+                                on_click=lambda dragg_item: self.dragg_event(
+                                                 selected_widget=dragg_item,),
+
+                                content=ft.Text(
+                                    **self.dict_style("Text_11297"),
+                                    # on_click= lambda tmp_widget: event_11297(
+                                    #        payload="Text_11297",
+                                    #        page= self.page ),
+                                ),
+                            ),),]
                     ),
                 ),),
-            #: DRAG-BOX-CONTENT [ID: 10719]
+            #: DRAG-BOX-CONTROLS [ID: 11298]
             self.draggin_framework(
                 content=ft.Container(
-                    **self.dict_style("Container_10720"),
+                    **self.dict_style("Container_11299"),
+                    on_click=lambda dragg_item: self.dragg_event(
+                                     selected_widget=dragg_item ),
+
+                    content=ft.Column(
+                        **self.dict_style("Column_11300"),
+                        controls=[
+                        #: DRAG-BOX-CONTENT [ID: 11301]
+                        self.draggin_framework(
+                            content=ft.Container(
+                                **self.dict_style("Container_11302"),
+                                on_click=lambda dragg_item: self.dragg_event(
+                                                 selected_widget=dragg_item,),
+
+                                content=ft.TextField(
+                                    **self.dict_style("TextField_11303"),
+                                    # on_click= lambda tmp_widget: event_11303(
+                                    #        payload="TextField_11303",
+                                    #        page= self.page ),
+                                ),
+                            ),),
+                        #: DRAG-BOX-CONTENT [ID: 11304]
+                        self.draggin_framework(
+                            content=ft.Container(
+                                **self.dict_style("Container_11305"),
+                                on_click=lambda dragg_item: self.dragg_event(
+                                                 selected_widget=dragg_item,),
+
+                                content=ft.TextField(
+                                    **self.dict_style("TextField_11306"),
+                                    # on_click= lambda tmp_widget: event_11306(
+                                    #        payload="TextField_11306",
+                                    #        page= self.page ),
+                                ),
+                            ),),]
+                    ),
+                ),),
+            #: DRAG-BOX-CONTROLS [ID: 11307]
+            self.draggin_framework(
+                content=ft.Container(
+                    **self.dict_style("Container_11308"),
+                    on_click=lambda dragg_item: self.dragg_event(
+                                     selected_widget=dragg_item ),
+
+                    content=ft.Column(
+                        **self.dict_style("Column_11309"),
+                        controls=[
+                        #: DRAG-BOX-CONTENT [ID: 11310]
+                        self.draggin_framework(
+                            content=ft.Container(
+                                **self.dict_style("Container_11311"),
+                                on_click=lambda dragg_item: self.dragg_event(
+                                                 selected_widget=dragg_item,),
+
+                                content=ft.Text(
+                                    **self.dict_style("Text_11312"),
+                                    # on_click= lambda tmp_widget: event_11312(
+                                    #        payload="Text_11312",
+                                    #        page= self.page ),
+                                ),
+                            ),),
+                        #: DRAG-BOX-CONTENT [ID: 11313]
+                        self.draggin_framework(
+                            content=ft.Container(
+                                **self.dict_style("Container_11314"),
+                                on_click=lambda dragg_item: self.dragg_event(
+                                                 selected_widget=dragg_item,),
+
+                                content=ft.Text(
+                                    **self.dict_style("Text_11315"),
+                                    # on_click= lambda tmp_widget: event_11315(
+                                    #        payload="Text_11315",
+                                    #        page= self.page ),
+                                ),
+                            ),),]
+                    ),
+                ),),
+            #: DRAG-BOX-CONTROLS [ID: 11316]
+            self.draggin_framework(
+                content=ft.Container(
+                    **self.dict_style("Container_11317"),
+                    on_click=lambda dragg_item: self.dragg_event(
+                                     selected_widget=dragg_item ),
+
+                    content=ft.Row(
+                        **self.dict_style("Row_11318"),
+                        controls=[
+                        #: DRAG-BOX-CONTENT [ID: 11319]
+                        self.draggin_framework(
+                            content=ft.Container(
+                                **self.dict_style("Container_11320"),
+                                on_click=lambda dragg_item: self.dragg_event(
+                                                 selected_widget=dragg_item,),
+
+                                content=ft.Icon(
+                                    **self.dict_style("Icon_11321"),
+                                    # on_click= lambda tmp_widget: event_11321(
+                                    #        payload="Icon_11321",
+                                    #        page= self.page ),
+                                ),
+                            ),),
+                        #: DRAG-BOX-CONTENT [ID: 11322]
+                        self.draggin_framework(
+                            content=ft.Container(
+                                **self.dict_style("Container_11323"),
+                                on_click=lambda dragg_item: self.dragg_event(
+                                                 selected_widget=dragg_item,),
+
+                                content=ft.Icon(
+                                    **self.dict_style("Icon_11324"),
+                                    # on_click= lambda tmp_widget: event_11324(
+                                    #        payload="Icon_11324",
+                                    #        page= self.page ),
+                                ),
+                            ),),]
+                    ),
+                ),),
+            #: DRAG-BOX-CONTENT [ID: 11325]
+            self.draggin_framework(
+                content=ft.Container(
+                    **self.dict_style("Container_11326"),
                     on_click=lambda dragg_item: self.dragg_event(
                                      selected_widget=dragg_item,),
 
-                    content=ft.Text(
-                        **self.dict_style("Text_10721"),
-                        # on_click= lambda tmp_widget: event_10721(
-                        #        payload="Text_10721",
+                    content=ft.Divider(
+                        **self.dict_style("Divider_11327"),
+                        # on_click= lambda tmp_widget: event_11327(
+                        #        payload="Divider_11327",
                         #        page= self.page ),
                     ),
                 ),),

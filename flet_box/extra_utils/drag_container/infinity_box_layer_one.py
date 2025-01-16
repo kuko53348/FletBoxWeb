@@ -43,7 +43,7 @@ class InfinityBoxLayerOne(ft.DragTarget):
                                    ink=True,
                                    ink_color='cyan',
                                    on_click=lambda _:self.touch_widget_in_phone(selected_widget=self.infinityDropWidget),
-                                   content=ft.Row( scroll="ALWAYS",
+                                   content=ft.Row(
                                         controls= [
                                                        ],),),
                               ],

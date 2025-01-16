@@ -91,7 +91,7 @@ class code_editor(ft.Container):
         self.page.update()
 
 class screen_phone(ft.Container):
-    def __init__(self, data='Erase this test'):
+    def __init__(self,):
         super().__init__()
         self.expand = True
         self.border_radius = ft.border_radius.all(16)
@@ -180,24 +180,24 @@ class lite_screen_manager(ft.Container):
                     # DROP DOWN SELECTION ITEMS
                     self.drop_down,
 
-                    # REMOVE ITEMS
-                    ft.IconButton(
-                        icon="remove",
-                        bgcolor=ft.Colors.with_opacity(
-                            opacity=0.4,
-                            color=ft.colors('blue')
-                        ),
-                        on_click=lambda _: self.delete_drop_items()
-                    ),
-
                     # UPDATE ITEMS
                     ft.IconButton(
                         icon="update",
                         bgcolor=ft.Colors.with_opacity(
                             opacity=0.4,
-                            color=ft.colors('red')
+                            color=ft.colors('green')
                         ),
                         on_click=lambda _: self.update_drop_items()
+                    ),
+
+                    # REMOVE ITEMS
+                    ft.IconButton(
+                        icon='delete',
+                        bgcolor=ft.Colors.with_opacity(
+                            opacity=0.4,
+                            color=ft.colors('red')
+                        ),
+                        on_click=lambda _: self.delete_drop_items()
                     ),
                 ],),
         )
@@ -314,19 +314,6 @@ class lite_screen_manager(ft.Container):
         return
 
         print(self.drop_down.options)
-
-    def delete_drop_items(self):
-        return
-        print(self.drop_down.options)
-
-        # IF ITEMS ARE LESS THAN 0 NO RETURN ERROR
-        if len(self.drop_down.options) >= 1:
-            self.drop_down.options.pop()
-
-        else:
-            print('hello 0')
-
-        self.page.update()
 
     def load_module_from_string(self, page, string_code: str = str()) -> object:
         import importlib.util
@@ -470,16 +457,16 @@ class delete_project(ft.Container):
                 offset=ft.Offset(0, 0),
                 blur_style=ft.ShadowBlurStyle.OUTER,
             ),
-            content=ft.Icon(name='delete'),
-            on_click= lambda _: self.show_code_editor(),
+            content=ft.Icon(name='home'),
+            on_click= lambda _: self.back_home(),
 
             )
 
-    def show_code_editor(self):
-        # self.code_editor.controls[1].visible = True
-        # # code_editor_stance.update()
-        # self.page.update()
-        ...
+    def back_home(self):
+        # RESET SELECTED WIDGET TO EVOIT ISSUES
+        self.page.views[1].controls[1].visible = False
+        self.page.views[1].controls[0].visible = True
+        self.page.views[1].update()
 
 class screen_manager(ft.Container):
 
@@ -873,8 +860,14 @@ class project_manager(ft.Stack):
 
         """
         if self.page.session.get('flet_box_api'):
-            data_returned = request_session.get(f'{self.page.session.get("api_server")}get_projects_widgets', params={'table_name': table_name})
-            data_returned = data_returned.json()
+            try:
+
+                data_returned = request_session.get(f'{self.page.session.get("api_server")}get_projects_widgets', params={'table_name': table_name})
+                data_returned = data_returned.json()
+
+            except Exception as error:
+                data_returned = False
+                print('CONNECT FAST API\n\n[+] >>> uvicorn --app-dir "./flet_box_api_server/" main:app --host 0.0.0.0 --port 8080 --reload')
 
             # print(data_returned)
         else:
