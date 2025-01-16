@@ -1,5 +1,7 @@
 ###  VAR USED IN FLET_BOX
 ```python
+self.page.session.set('MARK_DOWN_CODE', self.data_selected)    # <== MARKDOWN CODE IN PHONE SCREEN
+
 self.page.session.set("SELECTED_SCREEN",self.phone_container)  # <== SELECTED PHONE SCREEN
 self.page.session.set("SELECTED_CONTAINER",selected)           # <== SELECTED PHONE DROPP CONATINER
 self.page.session.set("SELECTED_CONTAINER_ID",selected.uid)

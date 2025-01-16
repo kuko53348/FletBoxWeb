@@ -11,78 +11,87 @@ from ..external_library.sqlite_db import sqlite_db
 # testing = True
 
 class code_editor(ft.Container):
+    opacity_markdown: float= 0.9
+
     def __init__(
         self,
         paren_widget: object = None,
+        md_code: str=str(),
         visible: bool=False,
         ):
         super().__init__()
-        # self.user_name = user_name
         self.visible = visible
         self.paren_widget = paren_widget
-        self.border_radius = ft.border_radius.all(30)
         self.margin = ft.margin.all(0)
-        self.padding = ft.padding.all(4)
-        # self.alignment = ft.alignment.center
-        self.bgcolor = ft.Colors.with_opacity(0.05, ft.colors('white'))
+        self.bgcolor = ft.Colors.with_opacity(0.05, ft.colors('brown'))
         self.blur = (12,12)
+        self.md_code = md_code
 
     def build(self):
         self.theme_name = 'solarized-dark'
-        self.code_name = """
-```python
-class code_editor(ft.Container):
-    def __init__(
-        self,
-        # user_name: str = str(),
-        ):
-        super().__init__()
-        # self.user_name = user_name
-
-        # self.expand = True
-        self.border_radius = ft.border_radius.all(30)
-        self.margin = ft.margin.all(0)
-        self.padding = ft.padding.all(4)
-        self.alignment = ft.alignment.center
         self.bgcolor = ft.Colors.with_opacity(0.05, ft.colors('white'))
-        self.blur = (12,12)
-```"""
 
         self.Markdown=ft.Markdown(
-            expand=True,
-            # md1,
-            value=self.code_name,
-            selectable=True,
+            scale=0.998,
+            opacity=self.opacity_markdown,
+            value=self.md_code,
             extension_set=ft.MarkdownExtensionSet.GITHUB_WEB, # COMMON_MARK ,GITHUB_FLAVORED ,GITHUB_WEB
-            code_theme=ft.MarkdownCodeTheme.TOMORROW_NIGHT,
-            code_style = ft.TextStyle(font_family='Roboto Mono')
-            # expand=True
+            code_theme=ft.MarkdownCodeTheme.GRUVBOX_DARK,
+            code_style_sheet=ft.MarkdownStyleSheet(code_text_style=ft.TextStyle(font_family='Roboto Mono'),),
+            md_style_sheet=ft.MarkdownStyleSheet(code_text_style=ft.TextStyle(font_family='Roboto Mono'),),
         )
-        self.content = ft.Row(
-            alignment=ft.MainAxisAlignment.CENTER,
-            vertical_alignment=ft.VerticalAlignment.START,
-
+        self.content = ft.Column(
+            alignment=ft.MainAxisAlignment.START,
+            horizontal_alignment=ft.VerticalAlignment.START,
             controls=[
-                self.Markdown,
+                ft.Container(
+                    padding=ft.padding.only(left=16,right=0,top=0,bottom=0),
+                    expand=True,
+                    opacity=self.opacity_markdown,
+                    bgcolor="#282828",
+                    content=ft.Column(
+                            scroll="ALWAYS",
+                            controls=[
+                                self.Markdown
+                            ],
+                        ),
+                ),
 
                 # MARK DOWN EDITOR
                 ft.Container(
-                    padding=ft.padding.all(8),
-                    content=ft.Column(
-                        controls=[
-                            ft.ElevatedButton(
-                                text='Back Screen',
-                                on_click=lambda widget: self.hide_main_widget(widget=self),
+                    content=ft.Row(
+                    alignment= ft.MainAxisAlignment.CENTER,
+                    controls=[
+                        ft.Container(
+                            padding=ft.padding.all(0),
+                            margin=ft.margin.all(0),
+                            content=ft.Row(
+                                controls=[
+                                    ft.IconButton(
+                                        bgcolor=ft.Colors.with_opacity(opacity=0.2,color='cyan'),
+                                        icon="home",
+                                        on_click=lambda widget: self.hide_main_widget(widget=self),
+                                    ),
+                                ]
                             ),
-                            # ft.ElevatedButton(
-                            #     text='Back Screen'
-                            # ),
-                            # ft.ElevatedButton(
-                            #     text='Back Screen'
-                            # ),
-                        ]
-                    )
-                )
+                        ),
+                        ft.Container(
+                            padding=ft.padding.all(8),
+                            content=ft.Row(
+                                controls=[
+                                    ft.IconButton(
+                                        bgcolor=ft.Colors.with_opacity(opacity=0.2,color='yellow'),
+                                        icon="copy",
+                                        # on_click=lambda widget: print(self.code_name),
+                                    ),
+                                ]
+                            ),
+                        ),
+                    ]
+                        ),
+
+                ),
+
             ]
         )
 
@@ -228,22 +237,23 @@ class lite_screen_manager(ft.Container):
                     # print(self.obtion_list)
         else:
             self.obtion_list.clear()
+
             sqlite_obj = sqlite_db()
             data_returned = sqlite_obj.find_name(
                 table_name='user_screen',
                 column='user_name',
-                # name='kuko53348',
+                name='kuko53348',
                 # name='user_demo',
-                name=self.page.session.get('user_name').get('user_name')
+                # name=self.page.session.get('user_name').get('user_name')
             )
 
             for index, _ in enumerate(data_returned[0]):
                 if not _ == "None" and index > 0:
-                    print(f'index {index} Container')
+                    # print(f'index {index} Container')
                     self.obtion_list.append(index)
-                # else:
-                #     print(f'index {index} None')
-                    # self.obtion_list.append(_)
+                else:
+                    # print(f'index {index} None')
+                    self.obtion_list.append(_)
 
     def change_selected_input(self, payload):
         """
@@ -285,6 +295,9 @@ class lite_screen_manager(ft.Container):
             page=self.page,
             string_code=self.data_selected
         )
+
+        # SET CODE IN CODE MARKDOWN
+        self.page.session.set('MARK_DOWN_CODE', self.data_selected)
 
         self.Build_Phone_Editor.update()
         self.drop_down.options.clear()
@@ -429,8 +442,11 @@ class get_sources_code(ft.Container):
         )
 
     def show_code_editor(self):
-        self.code_editor.controls[1].visible = True
-        # code_editor_stance.update()
+        mark_down_code = self.page.session.get('MARK_DOWN_CODE')    # <== MARKDOWN CODE IN PHONE SCREEN
+        self.tmp_markdown = self.code_editor.controls[1]
+        self.tmp_markdown.Markdown.value = f"""```python\n{mark_down_code}```"""
+        self.tmp_markdown.visible = True
+
         self.page.update()
 
 class delete_project(ft.Container):
@@ -449,7 +465,7 @@ class delete_project(ft.Container):
             padding=ft.padding.all(8),
             margin=ft.margin.all(2),
             border_radius=ft.border_radius.all(32),
-            bgcolor = ft.Colors.with_opacity(0.6,ft.colors.RED),
+            bgcolor = ft.Colors.with_opacity(0.6,ft.colors('red')),
             shadow=ft.BoxShadow(
                 spread_radius=1,
                 blur_radius=15,
@@ -633,18 +649,10 @@ class projects_made(ft.Container):
         Args:
             widget (object, optional): _description_. Defaults to None)->object()
         """
-        # print('='*20)
-        # print(self.user_name)
-        # print(self.table_name)
-        # print(self.app_name)
-        # print(self.ranking_stars)
-        # print(self.dragg_widget)
-        # print(self.code_widget)
-        # print(self.time_created)
 
-        # self.tmp_screen_phone = screen_phone()
         self.selected_screen = tmp_screen_phone
         # return
+
         # NECESSARY TAKE SELECTED SCREEN
         self.data_selected = self.dragg_widget
         # self.selected_screen.content.content = ft.Container(bgcolor="red", height=120, width=120)
@@ -660,8 +668,23 @@ class projects_made(ft.Container):
             page=self.page,
             string_code=self.data_selected
         )
+
+        # SET CODE IN CODE MARKDOWN
+        self.page.session.set('MARK_DOWN_CODE', self.data_selected)
+
         self.Build_Phone_Editor.update()
         self.page.update()
+
+        # run only in production
+        # print('='*20)
+        # print(self.user_name)
+        # print(self.table_name)
+        # print(self.app_name)
+        # print(self.ranking_stars)
+        # print(self.dragg_widget)
+        # print(self.code_widget)
+        # print(self.time_created)
+
 
     def load_module_from_string(self, page, string_code: str = str()) -> object:
         import importlib.util
@@ -785,7 +808,6 @@ class project_manager(ft.Stack):
             controls=[
                 # NAV RAIL
                 self.nav_rail,
-
                 # RIGHT WIDGETS
                 self.middle_container,
                 # screen_phone(),
@@ -795,6 +817,7 @@ class project_manager(ft.Stack):
         )
         self.controls = [
                 self.content,
+                # code_editor(paren_widget=self, visible=True)
                 code_editor(paren_widget=self, visible=False)
             ]
 
@@ -866,8 +889,10 @@ class project_manager(ft.Stack):
                 data_returned = data_returned.json()
 
             except Exception as error:
+                import os
+                os.system('clear')
                 data_returned = False
-                print('CONNECT FAST API\n\n[+] >>> uvicorn --app-dir "./flet_box_api_server/" main:app --host 0.0.0.0 --port 8080 --reload')
+                print('CONNECT FAST API\n\n[+] >>> source .venv/bin/activate\n[+] >>> uvicorn --app-dir "./flet_box_api_server/" main:app --host 0.0.0.0 --port 8080 --reload')
 
             # print(data_returned)
         else:
@@ -909,6 +934,7 @@ class project_manager(ft.Stack):
 if __name__ == '__main__':
 
     def main(page: ft.Page):
+        # page.scroll='ALWAYS'
         page.theme_mode = ft.ThemeMode.DARK  # ft.ThemeMode.LIGHT DARK
         screen_1 = project_manager(page=page)
         page.add(screen_1)
