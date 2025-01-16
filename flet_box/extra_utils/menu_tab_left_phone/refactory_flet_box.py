@@ -2,363 +2,53 @@ import json
 import re
 import requests
 
+from .widget_templates import widget_templates
 from ..external_library.sqlite_db import sqlite_db
 
 request_session = requests.Session()
 
-FRAME_WIDGET: dict = {
-
-    "container_content": """
-[+]#: DRAG-BOX-CONTENT [ID: NUMBER_DRAGG]
-[+]ft.Container(
-[+]    **self.dict_style("ContainerCONTAINER_ID"),
-[+]    on_click=lambda dragg_item: print(f'dragg_item {dragg_item}'),
-
-[+]    content=ft.CHANGE_CONTENT_WIDGET(
-[+]        **self.dict_style("CHANGE_CONTENT_WIDGETCONTEN_ID"),
-[+]        # on_click= lambda tmp_widget: eventCONTEN_ID(
-[+]        #        payload="CHANGE_CONTENT_WIDGETCONTEN_ID",
-[+]        #        page= self.page ),
-[+]    ),
-[+]),""",
-
-    "container_controls": """
-[+]#: DRAG-BOX-CONTROLS [ID: NUMBER_DRAGG]
-[+]ft.Container(
-[+]    **self.dict_style("ContainerCONTAINER_ID"),
-[+]    on_click=lambda dragg_item: print(f'dragg_item {dragg_item}'),
-
-[+]    content=ft.CHANGE_CONTENT_WIDGET(
-[+]        **self.dict_style("CHANGE_CONTENT_WIDGETCONTEN_ID"),
-[+]        controls=CHANGE_CONTROLS,
-[+]    ),
-[+]),""",
-
-    "dragg_content": """
-[+]#: DRAG-BOX-CONTENT [ID: NUMBER_DRAGG]
-[+]self.draggin_framework(
-[+]    content=ft.Container(
-[+]        **self.dict_style("ContainerCONTAINER_ID"),
-[+]        on_click=lambda dragg_item: self.dragg_event(
-[+]                         selected_widget=dragg_item,),
-
-[+]        content=ft.CHANGE_CONTENT_WIDGET(
-[+]            **self.dict_style("CHANGE_CONTENT_WIDGETCONTEN_ID"),
-[+]            # on_click= lambda tmp_widget: eventCONTEN_ID(
-[+]            #        payload="CHANGE_CONTENT_WIDGETCONTEN_ID",
-[+]            #        page= self.page ),
-[+]        ),
-[+]    ),),""",
-
-    "dragg_controls": """
-[+]#: DRAG-BOX-CONTROLS [ID: NUMBER_DRAGG]
-[+]self.draggin_framework(
-[+]    content=ft.Container(
-[+]        **self.dict_style("ContainerCONTAINER_ID"),
-[+]        on_click=lambda dragg_item: self.dragg_event(
-[+]                         selected_widget=dragg_item ),
-
-[+]        content=ft.CHANGE_CONTENT_WIDGET(
-[+]            **self.dict_style("CHANGE_CONTENT_WIDGETCONTEN_ID"),
-[+]            controls=CHANGE_CONTROLS,
-[+]        ),
-[+]    ),),""",
-
-    "event_dragg_target": "on_click= lambda dragg_item: self.dragg_event(selected_widget= dragg_item),",
-
-    "frame_content": """
-CHANGE_NAME(
-    content= CHANGE_WIDGET
-            ),""",
-
-    "frame_controls": """
-CHANGE_NAME(
-    controls=[
-        CHANGE_WIDGET
-            ],),""",
-
-    "screen_event": """
-'''
-EVENT MANAGER WILL CONTENT ALL APP EVENT IN ONE PLACE TO MAKE A EASY USABILITY
-'''
-
-# from builder.app_manager import got_to_screen
-
-
-def CONTEN_ID(payload: str = str(), page: object = None):  # ID: CONTEN_ID
-    # EASY WAY GO TROUGHT DIFERENT SCREENS NO LAG BETWEEN THEM
-    # got_to_screen(
-    #                 to_screen= 'first_screen' ,
-    #                 style='burble' ,
-    #                 time_style=0.8,
-    #                 rotation=True,
-    #                 page=page
-    #                 )
-    print(f"Demo App: {payload} CONTEN_ID")""",
-
-    "widget_reference": """
-self.widget_reference: dict() line 248
-
-exemple:
-
-    self.widget_reference: {
-
-        'text':'Text',
-        'container':'Container'
-
-}""",
-
-    "screen_class": """
-#: MAIN WIDGET SCREEN CLASS
-import flet as ft
-
-from .main_screen_styles import styles
-from .main_screen_events import *
-
-#: STYLE TO MAIN SCREEN WIDGET
-phone_style_widget: dict = CONTAINER_STYLE
-
-#: STYLES IN SCREEN_STYLE
-# styles = CHANGE_STYLE
-
-
-class SCREEN_NAME(ft.DragTarget):
-    #: NECCESARY HAVE INSTANCE OF ACTUALLY PAGE
-    # main_page: dict = dict()
-    def __init__(self, page: object = None, main_page: bool= False):
-        super().__init__(content=None)
-        self.group="GroupDragg"
-
-        # HEIGHT MAIN SCREEN
-        self.main_page = main_page
-
-        # ERASE IN PRODUCTION
-        self.drag_width = 320
-
-        #: NECCESARY HAVE INSTANCE OF ACTUALLY PAGE
-        self.page = page
-
-        #: ERASE IN PRODUCTION OR COMMENT THIS 2 LINES
-        self.expand = True
-        self.border_radius=ft.border_radius.all(32)
-
-    def build(self,):
-        #: DRAGG_CONTROLS
-        list_controls: list = [
-            REPLACE_WIDGET
-        ]
-
-        #: DRAGGIN CONTENT WIDGETS
-        self.content = ft.Container(
-            height=self.page.window.height if self.main_page else None,
-            width=self.drag_width,
-            **self.main_screen_style(code='main_container'),
-            content=ft.Container(
-                **self.main_screen_style(code='second_container'),
-                content=self.draggin_framework(
-                    content=ft.Container(
-                        content=ft.Column(
-                            **self.main_screen_style(code='column_attributes'),
-                            controls=list_controls
-                        ),
-                        # on_click=lambda dragg_item: self.dragg_event(
-                        #     selected_widget=dragg_item,),
-                    ),
-                ),)
-        )
-        self.on_will_accept    = lambda dragg_item : self.dragg_on_will_accept(DragTargetEvent=dragg_item) # Traslate Drop
-        self.on_leave          = lambda dragg_item : self.dragg_on_leave(DragTargetEvent=dragg_item) # Leafing Drop Line Border
-        self.on_accept         = lambda dragg_item : self.dragg_on_accept(DragTargetEvent=dragg_item) # Leafing Drop Line Border
-
-    def main_screen_style(self, code: str = ''):
-        #: SET MAIN STYLE WIDGET
-        return phone_style_widget.get(code)
-
-    def dict_style(self, code: str = ''):
-        #: SET CONTENT STYLE WIDGET
-        return styles.get(code)
-
-    def show_text_dragg_selected(self, name_selected: str = "") -> None:
-        # session_id = self.page._session_id
-        # self.name_selected = self.page.session.get(session_id)
-        self.name_selected = name_selected
-        self.widget_selected = self.page.session.get("SHOW_TEXT_SELECTED_DRAGG_WIDGET")
-        self.draggs_selected = self.page.session.get("SHOW_TEXT_SELECTED_PHONE_WIDGET")
-
-        self.widget_selected.content.controls[1].content.spans[0].text = "None"
-        self.draggs_selected.content.controls[1].content.spans[0].text = self.name_selected
-        self.widget_selected.bgcolor = ft.colors('black12')
-        self.draggs_selected.bgcolor = ft.Colors.with_opacity(0.1,ft.colors('cyan'))
-        self.widget_selected.update()
-        self.draggs_selected.update()
-
-    def dragg_on_will_accept(self, DragTargetEvent: object = None):
-        DragTargetEvent.control.content.border = None
-        DragTargetEvent.control.content.border = ft.border.all(4, ft.colors('cyan900'))
-        DragTargetEvent.control.update()
-        self.page.update()
-
-    def dragg_on_accept(self, DragTargetEvent: object = None):
-        # print(DragTargetEvent.control.content.content)
-        self.widgetFilter = self.page.session.get("ONLY_CONTROLS_ADDING_IN_APP")
-
-        session_id = self.page._session_id
-        selectWidgetBox = self.page.session.get(session_id)
-
-        self.InfinityBox = self.page.session.get('infinity_box')
-        self.InstanceNewWidget = self.InfinityBox(
-                                        dataPassed=selectWidgetBox,
-                                        page=self.page
-                                    )
-
-        self.right_widget = DragTargetEvent.control.content.content
-        self.right_control = self.right_widget._get_control_name()
-
-        if self.right_control in self.widgetFilter:
-            DragTargetEvent.control.content.content.controls.append(self.InstanceNewWidget)
-
-        else:
-            if self.right_control in self.widgetFilter:
-                DragTargetEvent.control.content.content.controls.append(self.InstanceNewWidget)
-
-            else:
-                # GET FROM INFINITY DRAGG BOX CONTENT OF MAIN CONTAINER
-                DragTargetEvent.control.content.content = self.InstanceNewWidget.widgets.get(selectWidgetBox)[0].content
-
-        #: UPDATE COLOR WIDGET
-        DragTargetEvent.control.content.border = True
-        DragTargetEvent.control.content.border = ft.border.all(0, ft.colors('transparent'))
-        DragTargetEvent.control.update()
-
-        self.page.update()
-
-    def draggin_framework(self, content: object =None) -> object():
-        return ft.DragTarget(
-            group="GroupDragg",
-            on_will_accept    = lambda dragg_item : self.dragg_on_will_accept(DragTargetEvent=dragg_item), # Traslate Drop
-            on_leave          = lambda dragg_item : self.dragg_on_leave(DragTargetEvent=dragg_item), # Leafing Drop Line Border
-            on_accept         = lambda dragg_item : self.dragg_on_accept(DragTargetEvent=dragg_item), # Leafing Drop Line Border
-            content=content
-        )
-
-    def dragg_on_leave(self, DragTargetEvent: object = None):
-        DragTargetEvent.control.content.border = True
-        DragTargetEvent.control.content.border = ft.border.all(0, ft.colors('transparent'))
-
-        DragTargetEvent.control.update()
-        self.page.update()
-
-        # return ft.DragTarget(group="GroupDragg",on_will_accept=lambda dragg_item: self.dragg_on_will_accept(DragTargetEvent=dragg_item),  # Traslate Drop
-        #     on_leave=lambda dragg_item: self.dragg_on_leave(DragTargetEvent=dragg_item),  # Leafing Drop Line Border
-        #     on_accept=lambda dragg_item: self.dragg_on_accept(DragTargetEvent=dragg_item),  # Leafing Drop Line Border
-        #     content=content
-        # )
-
-    def switch_border_selected(self, selected: object =None):
-        selected_widget = self.page.session.get("SELECTED_CONTAINER")
-
-        # print(selected_widget)
-        if not selected_widget == None:
-            selected_widget.border = ft.border.all(2, ft.colors('transparent'))
-            selected_widget.update()
-
-        selected.border = ft.border.all(2, ft.colors('yellow900'))
-        selected.update()
-
-        self.show_text_dragg_selected(
-            name_selected=selected.content._get_control_name())
-
-    def set_selected_widget(self, selected):
-        self.page.session.set("SELECTED_CONTAINER", selected)
-
-    def set_selected_widget_id(self, selected):
-        self.page.session.set("SELECTED_CONTAINER_ID", selected.uid)
-
-    def dragg_event(self, selected_widget: object =None):
-        # def dragg_event(self,listWidget,e: ft.ContainerTapEvent):
-        '''
-        NOTE:
-
-        WE CAPTURE THE CLICK SELECTION_WIDGET SHOWING BORDER COLOR YELLOW
-
-        IF PRESS IN OTHER WIDGET WE COMPARE tmp_list listWidgetUpdate
-        IF IS DIFERENT SHOW BLACK COLOR THE PREVIEW SELECT_WIDGET
-
-        NOTE:
-
-        WE PASS TO Build_Editor => self.infinityDropWidget[0] THAT IS CLICKED SELECTION
-        Build_Editor.update_widget_attributes(widget_cliked=ft.Container(content=ft.Text()))
-
-        '''
-
-        # print(selected_widget.control)
-        # SWITCH BORDER COLOR IN SELECTED CONTAINER PHONE
-        self.selected = selected_widget.control
-        # self.selected = selected_widget[0]
-        self.page.session.set("cover_widget", self.selected.parent.parent)
-
-        self.switch_border_selected(selected=selected_widget.control)
-        self.set_selected_widget(selected=self.selected)
-        self.set_selected_widget_id(selected=self.selected)
-
-        # print(f"[-] {self.selected.tooltip} ID: <<< dragg_event: [infinity_box_layer_one.py]")
-
-
-# MAKE CLASS A DYNAMIC MODULE
-load_module_str = SCREEN_NAME
-
-if __name__ == "__main__":
-    # RUN IN LINE
-    # flet flet_box/extra_utils/phone_container/app_manager/views/main_screen.py  -r
-
-    def main(page: ft.Page):
-        page.theme_mode = ft.ThemeMode.DARK  # ft.ThemeMode.LIGHT
-        page.window.left = 0
-        page.window.top = 0
-        page.window.height = 567
-        page.window.width = 320
-        page.padding = 0
-        page.spacing = 0
-        page.add(
-            load_module_str(
-                    page= page,
-                    main_page=True
-            )
-        )
-        page.update()
-
-    ft.app(
-        target=main,
-    )
-""",
-}
-
-
 class refactory_flet_box:
     """
+    - ## Will returned a clean code of recusion widget.
+
+    ```python
     code_returned = refactory_flet_box(page=page)
     code_returned.get_widget_attributes(widget= widget_name, screen_name='main_screens')
-
-    # refactory code
+    ```
+    ### refactory code
+    ```python
     clean_code = code_returned.refactory_code(string_widget=widget)
+    ```
 
-    # name of class widget
+    ### name of class widget
+    ```python
     widget_name = code_returned.get_widget_name(widget_name=widget)
+    ```
 
-    # get list of controls
+    ### get list of controls
+    ```python
     list_controls = code_returned.get_list_controls(widget_name=widget_name, widget=widget)
+    ```
 
-    # id calss widget
+    ### id calss widget
+    ```python
     widget_id = code_returned.get_widget_id(widget_id=widget)
+    ```
 
-    # get style coded
+    ### get style coded
+    ```python
     widget_style = code_returned.get_style_function(widget_id=widget_id.get('id'))
+    ```
 
-    # get funtion coded
+    ### get funtion coded
+    ```python
     widget_function = code_returned.get_function_in_app(widget_id=widget_id.get('id'),string_widget=widget)
+    ```
 
 
-    return
+    - ## Will return current format
+
+    ```python
 
     [control_type]   >>> {'parent_controls': 'column'}
     [controls_child] >>> {'child_controls': []}
@@ -366,6 +56,7 @@ class refactory_flet_box:
     [control_id]     >>> {'id': '_2'}
     [control_style]  >>> **self.dict_style('_2'),
     [control_event]  >>> # on_click= lambda tmp_widget: event_2(data='_2'),
+    ```
 
     """
 
@@ -522,22 +213,17 @@ class refactory_flet_box:
 
     def refactory_code(self, string_widget: object = object()) -> str:
         """
-        :param      string_widget:  flet object example ft.Container()
-        :type       string_widget:  object
-
-        TAKE OBJECT EXAMPLE CONTAINER AND TAKE IT ATTRIBUTES AND REFACTORY
+        - TAKE OBJECT EXAMPLE CONTAINER AND TAKE IT ATTRIBUTES AND REFACTORY
         TO CLEAN CODE:
 
+        ```python
         >>> FROM: 'borderradius':  '{"bl":30,"br":30,"tl":30,"tr":30}'
         >>> TO:   'border_radius': '{"bl":30,"br":30,"tl":30,"tr":30}'
-
-        :rtype:     str
-
+        ```
         """
         self.attributes= {}
         string_widget.copy_attrs(dest=self.attributes)
 
-        # print(string_widget,"<<<<")
         # DELETING ATTRIBUTES EXEMPLE 'n','tooltip'
         for _ in self.del_attributes:
             if self.attributes.get(_, False):
@@ -552,13 +238,13 @@ class refactory_flet_box:
 
     def get_widget_name(self, widget_name: object = object()) -> dict:
         """
-        Gets the widget name.
+        - Gets the widget name.
 
-        :param      widget_name:  The widget name
-        :type       widget_name: get name of class widget
+        ```python
+        widget_name = code_returned.get_widget_name(widget_name=widget)
 
         :returns:   {'controls': 'column'}
-        :rtype:     str
+        ```
         """
         value: str = ""
         self.widget_name: str = widget_name._get_control_name()
@@ -578,30 +264,14 @@ class refactory_flet_box:
 
     def get_list_controls(self, widget_name: dict = dict(), widget: object = object()) -> dict:
         """
-        Gets the list controls.
+        - Gets the list controls.
 
-        :param      widget_name:  The widget name
-        :type       widget_name:  dict
-        :param      widget:       The widget
-        :type       widget:       object
+        ```python
+        list_controls = code_returned.get_list_controls(widget_name=widget_name, widget=widget)
 
         :returns:   The list controls.
-        :rtype:     dict
+        ```
         """
-        # self.is_true = widget_name.get('parent_controls',None)
-
-        # if self.is_true:
-        #     return {'child_controls': widget.controls}
-
-        # else:
-        #     self.is_true = widget_name.get('no_content_controls',False)
-
-        #     if self.is_true:
-        #         return {'child_content': None}
-
-        #     else:
-        #         return {'child_content': widget.content}
-        ##
         is_content = self.content_attributes.get(str(widget_name), None)
         print('[+]',is_content, widget_name)
 
@@ -619,34 +289,39 @@ class refactory_flet_box:
 
     def get_widget_id(self, widget_id: object = object()) -> str:
         """
-        Gets the widget identifier ID
+        - Gets the widget identifier ID
 
-        :param      widget_id:  The widget identifier
+        ```python
+        widget_id = code_returned.get_widget_id(widget_id=widget)
+
         :returns:   The widget identifier {'id': '_2'}
-        :rtype:     str
+        ```
         """
 
         return widget_id.__dict__['_Control__uid']
 
     def get_style_function(self, widget_id: str = str()) -> str:
         """
-        retunr the style function ID.
+        - Will return the style function ID.
 
-        :param      widget_id:  The widget identifier
+        ```python
+        widget_style = code_returned.get_style_function(widget_id=widget_id.get('id'))
+
         :returns:   >>> **self.dict_style('_125'),
-        :rtype:     str
+        ```
         """
         return f"**self.dict_style('{widget_id}'),"
 
     def get_function_in_app(self, widget_id: str = str(), string_widget: object = object()) -> str:
         """
-        Gets the function in application.
+        - Gets the function in application.
 
-        :param      widget_id:  The widget identifier
+        ```python
+        widget_function = code_returned.get_function_in_app(widget_id=widget_id.get('id'),string_widget=widget)
+
         :returns:   >>> on_click= lambda tmp_widget: event_3634(data='_3634'),
-        :rtype:     str
+        ```
         """
-
         # print(string_widget._get_control_name())
 
         # IF _GET_CONTROL_NAME IN function_attributes DICT WILL HAVE ON_CLICK
@@ -656,8 +331,7 @@ class refactory_flet_box:
         # if is container will have on_click
         if self.check_data:
             # return f"on_click= lambda dragg_item: self.dragg_event(selected_widget=dragg_item),"
-
-            return FRAME_WIDGET.get('event_dragg_target')
+            return widget_templates.get('event_dragg_target')
 
         else:
             return f"# on_click= lambda btn_event: event{widget_id}(data=\'{widget_id}\'),"
@@ -673,7 +347,7 @@ class refactory_flet_box:
         is_container = widget_name.get('parent_content', False)
 
         if is_container:
-            return {"dragg_editor": FRAME_WIDGET.get('frame_content')}
+            return {"dragg_editor": widget_templates.get('frame_content')}
 
         return {"dragg_editor": None}
 
@@ -698,7 +372,7 @@ class refactory_flet_box:
             if widget not in dict return
             """
             self.open_dialog = self.page.session.get('on_dev')
-            self.open_dialog(name_seccion='dev most add widget:',body_string=f"Sorry is not aviable yet it's neccesary be added in [ {widget_name.get('content_name')} ]\n{FRAME_WIDGET.get('widget_reference')}")
+            self.open_dialog(name_seccion='dev most add widget:',body_string=f"Sorry is not aviable yet it's neccesary be added in [ {widget_name.get('content_name')} ]\n{widget_templates.get('widget_reference')}")
             return
 
         if self.check_controls == 'controls':
@@ -711,7 +385,7 @@ class refactory_flet_box:
                 if not f"{_}" in self.all_controls_in_widget:
                     self.all_controls_in_widget.append(_)
 
-            self.skeleton = FRAME_WIDGET.get('dragg_controls')
+            self.skeleton = widget_templates.get('dragg_controls')
             self.skeleton = self.skeleton.replace('NUMBER_DRAGG', self.dragg_id.strip('_'))
             self.skeleton = self.skeleton.replace('CONTAINER_ID', self.container_id)
             self.skeleton = self.skeleton.replace('CONTEN_ID', self.content_id)
@@ -724,7 +398,7 @@ class refactory_flet_box:
             self.screen_styles[f"Container{self.container_id}"] = clean_code.get('clean_container')
             self.screen_styles[f"{self.change_content}{self.content_id}"] = clean_code.get('clean_content')
 
-            self.event_btn = FRAME_WIDGET.get("screen_event")
+            self.event_btn = widget_templates.get("screen_event")
             self.event_btn = self.event_btn.replace('CONTEN_ID', f"event{self.content_id}")
 
             self.all_events_widget.append(self.event_btn)
@@ -736,7 +410,7 @@ class refactory_flet_box:
             # SKELETON WIDGET WILL RETURN
             # EVENT , STYLE AND CLASS
             #
-            self.skeleton = FRAME_WIDGET.get('dragg_content')
+            self.skeleton = widget_templates.get('dragg_content')
             self.skeleton = self.skeleton.replace('NUMBER_DRAGG', self.dragg_id.strip('_'))
             self.skeleton = self.skeleton.replace('CONTAINER_ID', self.container_id)
             self.skeleton = self.skeleton.replace('CONTEN_ID', self.content_id)
@@ -748,7 +422,7 @@ class refactory_flet_box:
             self.screen_styles[f"Container{self.container_id}"] = clean_code.get('clean_container')
             self.screen_styles[f"{self.change_content}{self.content_id}"] = clean_code.get('clean_content')
 
-            self.event_btn = FRAME_WIDGET.get("screen_event")
+            self.event_btn = widget_templates.get("screen_event")
             self.event_btn = self.event_btn.replace('CONTEN_ID', f"event{self.content_id}")
 
             self.all_events_widget.append(self.event_btn)
@@ -760,6 +434,13 @@ class refactory_flet_box:
         return self.refactory_string
 
     def return_code(self, widget: object = None, tab: int = 3) -> dict:
+        """
+        - Return clean code refactorized
+
+        ```python
+        self.refactorized = self.return_code(widget=widget, tab=tab)
+        ```
+        """
 
         dragg = widget
         container = dragg.content
@@ -812,7 +493,12 @@ class refactory_flet_box:
 
     def recursive_nested(self, tab: int = int()):
         """
-        recursion neste function
+        - Recursion neste function
+
+        ```python
+        self.recursive_nested(tab=tab)
+        ```
+        :return: Remplace all widgets_id by ft.Container(content=Widget_name)
         """
         for _ in self.controls_widget:
             self.tmp = self.return_code(widget=self.page._index[_], tab=tab)
@@ -831,10 +517,12 @@ class refactory_flet_box:
 
     def get_widget_attributes(self, widget: object = ""):
         """
-        Gets the widget attributes.
+        - Gets the widget attributes.
 
+        ```python
         code_returned = refactory_flet_box(page=page)
         code_returned.get_widget_attributes(widget=widget1,screen_name='main_screens')
+        ```
 
         """
         tab = 3
@@ -867,10 +555,12 @@ class refactory_flet_box:
                         one_file: bool = False,
 
                         container_attributes: dict = dict(),
-                      ):
+                      ) -> None:
         """
-        save data in app
+        - Save all App data in file and send by request metod to FletBox Web API
+
         """
+
         widgets_events: str = str()
         widgets_class:  str = str()
         widgets_styles: str = str()
@@ -879,12 +569,13 @@ class refactory_flet_box:
         for widgets in self.all_widget_in_row:
             widgets_class+=widgets
 
-        # ALL WOIDGETS STYLES
+        # ALL WIDGETS STYLES
         widgets_styles = self.refactory_wring_attributes(dict_string=self.screen_styles)
 
         # ONLY GET NUMBERS
         for _ in re.findall('"[0-9(.)]+"', widgets_styles):
             widgets_styles = widgets_styles.replace(_, _.strip('"'))
+
 
         # ALL WIDGETS EVENTS
         tmp_list = set(self.all_events_widget)
@@ -893,16 +584,16 @@ class refactory_flet_box:
         for events in tmp_list:
             widgets_events += events
 
-        self.class_bone = FRAME_WIDGET.get('screen_class')
-        self.class_bone = self.class_bone.replace('SCREEN_NAME', screen_name)
-        self.class_bone = self.class_bone.replace('REPLACE_WIDGET', widgets_class)
+        # self.class_bone = widget_templates.get('screen_class')
+        self.get_template_widget(name_app='screen_class',screen_name=screen_name, widgets_class=widgets_class)
+        # self.get_template_widget(name_app='screen_class',screen_name=screen_name, widgets_class=widgets_class)
 
         # ========================================
-        # print(self.class_bone)
+        print(self.class_bone)
         # print(widgets_styles)
         # print(widgets_events)
         # ========================================
-        # print(">>>>>> END <<<<<<")
+        print(">>>>>> END <<<<<<")
 
         # IF ONE FILE WILL BE SAVED IN DATABASE
         if one_file:
@@ -1079,12 +770,21 @@ class refactory_flet_box:
                                     screen_name=f"{screen_name}_events",
                                     data_to_write=f"{widgets_events}\n",
                 )
-        # OPEN ALL DATATA WAS SAVE
-        # self.open_dialog = self.page.session.get('on_dev')
-        # self.open_dialog(
-        #                 name_seccion='your project have been saved',
-        #                 body_string=f"Thank your contribution with Flet-Box\nAnd all dev with Flet thanks make posible this App\n\n"
-        # )
+
+    def get_template_widget(self,name_app: str=str(), screen_name: str=str(), widgets_class: str=str()):
+        """
+        - Get Template from widget_templates
+
+        ```python
+
+        self.get_template_widget(name_app='screen_class',screen_name=screen_name, widgets_class=widgets_class)
+
+        :return: ONLY TEMPLATE
+        ```
+        """
+        self.class_bone = widget_templates.get(name_app)
+        self.class_bone = self.class_bone.replace('SCREEN_NAME', screen_name)
+        self.class_bone = self.class_bone.replace('REPLACE_WIDGET', widgets_class)
 
     def write_files_in_project(self,
                                screen_name: str = str(),

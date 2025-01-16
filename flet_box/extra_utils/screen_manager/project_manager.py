@@ -242,9 +242,9 @@ class lite_screen_manager(ft.Container):
             data_returned = sqlite_obj.find_name(
                 table_name='user_screen',
                 column='user_name',
-                name='kuko53348',
+                # name='kuko53348',
                 # name='user_demo',
-                # name=self.page.session.get('user_name').get('user_name')
+                name=self.page.session.get('user_name').get('user_name')
             )
 
             for index, _ in enumerate(data_returned[0]):
@@ -307,9 +307,6 @@ class lite_screen_manager(ft.Container):
 
     def updating_phone(self,phone_attrib: object=None):
         phone_attrib = phone_attrib
-        # print(self.Build_Phone_Editor.content.content.bgcolor,"<<<<<")
-        # print(self.Build_Phone_Editor.content.content.content.bgcolor,"<<<<<")
-        # print(self.Build_Phone_Editor.content.content.image)
 
         # main_container in export data
         self.Build_Phone_Editor.parent.image=self.Build_Phone_Editor.content.content.image
@@ -318,10 +315,6 @@ class lite_screen_manager(ft.Container):
         # second_container
         self.Build_Phone_Editor.content.content.bgcolor=self.Build_Phone_Editor.content.content.content.bgcolor
         self.Build_Phone_Editor.content.content.blur=self.Build_Phone_Editor.content.content.content.blur
-        # self.Build_Phone_Editor.content.content.padding=self.Build_Phone_Editor.content.content.content.padding
-
-        # self.Build_Phone_Editor.content.content.padding='red'
-        # self.Build_Phone_Editor.parent.blur=(0,0)
 
     def add_drop_items(self):
         return
@@ -922,13 +915,7 @@ class project_manager(ft.Stack):
                     )
                 )
 
-            # self.grid_widget.controls = [projects_made() for _ in range(random.randint(0,9))]
         self.page.update()
-
-    # def change_rail_extended(self, ):
-        # self.nav_rail.leading = self.nav_rail.destinations[index_rail]
-        # self.nav_rail.extended = True if not self.nav_rail.extended else False
-        # self.page.update()
 
 
 if __name__ == '__main__':

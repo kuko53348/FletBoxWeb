@@ -1,0 +1,416 @@
+widget_templates: dict = {
+
+    "container_content": """
+[+]#: DRAG-BOX-CONTENT [ID: NUMBER_DRAGG]
+[+]ft.Container(
+[+]    **self.dict_style("ContainerCONTAINER_ID"),
+[+]    on_click=lambda dragg_item: print(f'dragg_item {dragg_item}'),
+
+[+]    content=ft.CHANGE_CONTENT_WIDGET(
+[+]        **self.dict_style("CHANGE_CONTENT_WIDGETCONTEN_ID"),
+[+]        # on_click= lambda tmp_widget: eventCONTEN_ID(
+[+]        #        payload="CHANGE_CONTENT_WIDGETCONTEN_ID",
+[+]        #        page= self.page ),
+[+]    ),
+[+]),""",
+
+    "container_controls": """
+[+]#: DRAG-BOX-CONTROLS [ID: NUMBER_DRAGG]
+[+]ft.Container(
+[+]    **self.dict_style("ContainerCONTAINER_ID"),
+[+]    on_click=lambda dragg_item: print(f'dragg_item {dragg_item}'),
+
+[+]    content=ft.CHANGE_CONTENT_WIDGET(
+[+]        **self.dict_style("CHANGE_CONTENT_WIDGETCONTEN_ID"),
+[+]        controls=CHANGE_CONTROLS,
+[+]    ),
+[+]),""",
+
+    "dragg_content": """
+[+]#: DRAG-BOX-CONTENT [ID: NUMBER_DRAGG]
+[+]self.draggin_framework(
+[+]    content=ft.Container(
+[+]        **self.dict_style("ContainerCONTAINER_ID"),
+[+]        on_click=lambda dragg_item: self.dragg_event(
+[+]                         selected_widget=dragg_item,),
+
+[+]        content=ft.CHANGE_CONTENT_WIDGET(
+[+]            **self.dict_style("CHANGE_CONTENT_WIDGETCONTEN_ID"),
+[+]            # on_click= lambda tmp_widget: eventCONTEN_ID(
+[+]            #        payload="CHANGE_CONTENT_WIDGETCONTEN_ID",
+[+]            #        page= self.page ),
+[+]        ),
+[+]    ),),""",
+
+    "dragg_controls": """
+[+]#: DRAG-BOX-CONTROLS [ID: NUMBER_DRAGG]
+[+]self.draggin_framework(
+[+]    content=ft.Container(
+[+]        **self.dict_style("ContainerCONTAINER_ID"),
+[+]        on_click=lambda dragg_item: self.dragg_event(
+[+]                         selected_widget=dragg_item ),
+
+[+]        content=ft.CHANGE_CONTENT_WIDGET(
+[+]            **self.dict_style("CHANGE_CONTENT_WIDGETCONTEN_ID"),
+[+]            controls=CHANGE_CONTROLS,
+[+]        ),
+[+]    ),),""",
+
+    "event_dragg_target": "on_click= lambda dragg_item: self.dragg_event(selected_widget= dragg_item),",
+
+    "frame_content": """
+CHANGE_NAME(
+    content= CHANGE_WIDGET
+            ),""",
+
+    "frame_controls": """
+CHANGE_NAME(
+    controls=[
+        CHANGE_WIDGET
+            ],),""",
+
+    "screen_event": """
+'''
+EVENT MANAGER WILL CONTENT ALL APP EVENT IN ONE PLACE TO MAKE A EASY USABILITY
+'''
+
+# from builder.app_manager import got_to_screen
+
+
+def CONTEN_ID(payload: str = str(), page: object = None):  # ID: CONTEN_ID
+    # EASY WAY GO TROUGHT DIFERENT SCREENS NO LAG BETWEEN THEM
+    # got_to_screen(
+    #                 to_screen= 'first_screen' ,
+    #                 style='burble' ,
+    #                 time_style=0.8,
+    #                 rotation=True,
+    #                 page=page
+    #                 )
+    print(f"Demo App: {payload} CONTEN_ID")""",
+
+    "widget_reference": """
+self.widget_reference: dict() line 248
+
+exemple:
+
+    self.widget_reference: {
+
+        'text':'Text',
+        'container':'Container'
+
+}""",
+
+    "screen_class": """
+#: MAIN WIDGET SCREEN CLASS
+import flet as ft
+
+from .main_screen_styles import styles
+from .main_screen_events import *
+
+#: STYLE TO MAIN SCREEN WIDGET
+phone_style_widget: dict = CONTAINER_STYLE
+
+#: STYLES IN SCREEN_STYLE
+# styles = CHANGE_STYLE
+
+
+class SCREEN_NAME(ft.DragTarget):
+    #: NECCESARY HAVE INSTANCE OF ACTUALLY PAGE
+    # main_page: dict = dict()
+    def __init__(self, page: object = None, main_page: bool= False):
+        super().__init__(content=None)
+        self.group="GroupDragg"
+
+        # HEIGHT MAIN SCREEN
+        self.main_page = main_page
+
+        # ERASE IN PRODUCTION
+        self.drag_width = 320
+
+        #: NECCESARY HAVE INSTANCE OF ACTUALLY PAGE
+        self.page = page
+
+        #: ERASE IN PRODUCTION OR COMMENT THIS 2 LINES
+        self.expand = True
+        self.border_radius=ft.border_radius.all(32)
+
+    def build(self,):
+        #: DRAGG_CONTROLS
+        list_controls: list = [
+            REPLACE_WIDGET
+        ]
+
+        #: DRAGGIN CONTENT WIDGETS
+        self.content = ft.Container(
+            height=self.page.window.height if self.main_page else None,
+            width=self.drag_width,
+            **self.main_screen_style(code='main_container'),
+            content=ft.Container(
+                **self.main_screen_style(code='second_container'),
+                content=self.draggin_framework(
+                    content=ft.Container(
+                        content=ft.Column(
+                            **self.main_screen_style(code='column_attributes'),
+                            controls=list_controls
+                        ),
+                        # on_click=lambda dragg_item: self.dragg_event(
+                        #     selected_widget=dragg_item,),
+                    ),
+                ),)
+        )
+        self.on_will_accept    = lambda dragg_item : self.dragg_on_will_accept(DragTargetEvent=dragg_item) # Traslate Drop
+        self.on_leave          = lambda dragg_item : self.dragg_on_leave(DragTargetEvent=dragg_item) # Leafing Drop Line Border
+        self.on_accept         = lambda dragg_item : self.dragg_on_accept(DragTargetEvent=dragg_item) # Leafing Drop Line Border
+
+    def main_screen_style(self, code: str = ''):
+        #: SET MAIN STYLE WIDGET
+        return phone_style_widget.get(code)
+
+    def dict_style(self, code: str = ''):
+        #: SET CONTENT STYLE WIDGET
+        return styles.get(code)
+
+    def show_text_dragg_selected(self, name_selected: str = "") -> None:
+        # session_id = self.page._session_id
+        # self.name_selected = self.page.session.get(session_id)
+        self.name_selected = name_selected
+        self.widget_selected = self.page.session.get("SHOW_TEXT_SELECTED_DRAGG_WIDGET")
+        self.draggs_selected = self.page.session.get("SHOW_TEXT_SELECTED_PHONE_WIDGET")
+
+        self.widget_selected.content.controls[1].content.spans[0].text = "None"
+        self.draggs_selected.content.controls[1].content.spans[0].text = self.name_selected
+        self.widget_selected.bgcolor = ft.colors('black12')
+        self.draggs_selected.bgcolor = ft.Colors.with_opacity(0.1,ft.colors('cyan'))
+        self.widget_selected.update()
+        self.draggs_selected.update()
+
+    def dragg_on_will_accept(self, DragTargetEvent: object = None):
+        DragTargetEvent.control.content.border = None
+        DragTargetEvent.control.content.border = ft.border.all(4, ft.colors('cyan900'))
+        DragTargetEvent.control.update()
+        self.page.update()
+
+    def dragg_on_accept(self, DragTargetEvent: object = None):
+        # print(DragTargetEvent.control.content.content)
+        self.widgetFilter = self.page.session.get("ONLY_CONTROLS_ADDING_IN_APP")
+
+        session_id = self.page._session_id
+        selectWidgetBox = self.page.session.get(session_id)
+
+        self.InfinityBox = self.page.session.get('infinity_box')
+        self.InstanceNewWidget = self.InfinityBox(
+                                        dataPassed=selectWidgetBox,
+                                        page=self.page
+                                    )
+
+        self.right_widget = DragTargetEvent.control.content.content
+        self.right_control = self.right_widget._get_control_name()
+
+        if self.right_control in self.widgetFilter:
+            DragTargetEvent.control.content.content.controls.append(self.InstanceNewWidget)
+
+        else:
+            if self.right_control in self.widgetFilter:
+                DragTargetEvent.control.content.content.controls.append(self.InstanceNewWidget)
+
+            else:
+                # GET FROM INFINITY DRAGG BOX CONTENT OF MAIN CONTAINER
+                DragTargetEvent.control.content.content = self.InstanceNewWidget.widgets.get(selectWidgetBox)[0].content
+
+        #: UPDATE COLOR WIDGET
+        DragTargetEvent.control.content.border = True
+        DragTargetEvent.control.content.border = ft.border.all(0, ft.colors('transparent'))
+        DragTargetEvent.control.update()
+
+        self.page.update()
+
+    def draggin_framework(self, content: object =None) -> object():
+        return ft.DragTarget(
+            group="GroupDragg",
+            on_will_accept    = lambda dragg_item : self.dragg_on_will_accept(DragTargetEvent=dragg_item), # Traslate Drop
+            on_leave          = lambda dragg_item : self.dragg_on_leave(DragTargetEvent=dragg_item), # Leafing Drop Line Border
+            on_accept         = lambda dragg_item : self.dragg_on_accept(DragTargetEvent=dragg_item), # Leafing Drop Line Border
+            content=content
+        )
+
+    def dragg_on_leave(self, DragTargetEvent: object = None):
+        DragTargetEvent.control.content.border = True
+        DragTargetEvent.control.content.border = ft.border.all(0, ft.colors('transparent'))
+
+        DragTargetEvent.control.update()
+        self.page.update()
+
+        # return ft.DragTarget(group="GroupDragg",on_will_accept=lambda dragg_item: self.dragg_on_will_accept(DragTargetEvent=dragg_item),  # Traslate Drop
+        #     on_leave=lambda dragg_item: self.dragg_on_leave(DragTargetEvent=dragg_item),  # Leafing Drop Line Border
+        #     on_accept=lambda dragg_item: self.dragg_on_accept(DragTargetEvent=dragg_item),  # Leafing Drop Line Border
+        #     content=content
+        # )
+
+    def switch_border_selected(self, selected: object =None):
+        selected_widget = self.page.session.get("SELECTED_CONTAINER")
+
+        # print(selected_widget)
+        if not selected_widget == None:
+            selected_widget.border = ft.border.all(2, ft.colors('transparent'))
+            selected_widget.update()
+
+        selected.border = ft.border.all(2, ft.colors('yellow900'))
+        selected.update()
+
+        self.show_text_dragg_selected(
+            name_selected=selected.content._get_control_name())
+
+    def set_selected_widget(self, selected):
+        self.page.session.set("SELECTED_CONTAINER", selected)
+
+    def set_selected_widget_id(self, selected):
+        self.page.session.set("SELECTED_CONTAINER_ID", selected.uid)
+
+    def dragg_event(self, selected_widget: object =None):
+        # def dragg_event(self,listWidget,e: ft.ContainerTapEvent):
+        '''
+        NOTE:
+
+        WE CAPTURE THE CLICK SELECTION_WIDGET SHOWING BORDER COLOR YELLOW
+
+        IF PRESS IN OTHER WIDGET WE COMPARE tmp_list listWidgetUpdate
+        IF IS DIFERENT SHOW BLACK COLOR THE PREVIEW SELECT_WIDGET
+
+        NOTE:
+
+        WE PASS TO Build_Editor => self.infinityDropWidget[0] THAT IS CLICKED SELECTION
+        Build_Editor.update_widget_attributes(widget_cliked=ft.Container(content=ft.Text()))
+
+        '''
+
+        # print(selected_widget.control)
+        # SWITCH BORDER COLOR IN SELECTED CONTAINER PHONE
+        self.selected = selected_widget.control
+        # self.selected = selected_widget[0]
+        self.page.session.set("cover_widget", self.selected.parent.parent)
+
+        self.switch_border_selected(selected=selected_widget.control)
+        self.set_selected_widget(selected=self.selected)
+        self.set_selected_widget_id(selected=self.selected)
+
+        # print(f"[-] {self.selected.tooltip} ID: <<< dragg_event: [infinity_box_layer_one.py]")
+
+
+# MAKE CLASS A DYNAMIC MODULE
+load_module_str = SCREEN_NAME
+
+if __name__ == "__main__":
+    # RUN IN LINE
+    # flet flet_box/extra_utils/phone_container/app_manager/views/main_screen.py  -r
+
+    def main(page: ft.Page):
+        page.theme_mode = ft.ThemeMode.DARK  # ft.ThemeMode.LIGHT
+        page.window.left = 0
+        page.window.top = 0
+        page.window.height = 567
+        page.window.width = 320
+        page.padding = 0
+        page.spacing = 0
+        page.add(
+            load_module_str(
+                    page= page,
+                    main_page=True
+            )
+        )
+        page.update()
+
+    ft.app(
+        target=main,
+    )
+""",
+
+    "app_screen_class": """
+#: MAIN WIDGET SCREEN CLASS
+import flet as ft
+
+from .main_screen_styles import styles
+from .main_screen_events import *
+
+#: STYLE TO MAIN SCREEN WIDGET
+phone_style_widget: dict = CONTAINER_STYLE
+
+#: STYLES IN SCREEN_STYLE
+# styles = CHANGE_STYLE
+
+
+class SCREEN_NAME(ft.Container):
+    #: NECCESARY HAVE INSTANCE OF ACTUALLY PAGE
+    # main_page: dict = dict()
+    def __init__(self, page: object = None, main_page: bool= False):
+        super().__init__(content=None)
+        # HEIGHT MAIN SCREEN
+        self.main_page = main_page
+
+        # ERASE IN PRODUCTION
+        self.drag_width = 320
+
+        #: NECCESARY HAVE INSTANCE OF ACTUALLY PAGE
+        self.page = page
+
+        #: ERASE IN PRODUCTION OR COMMENT THIS 2 LINES
+        self.expand = True
+        self.border_radius=ft.border_radius.all(32)
+
+    def build(self,):
+        #: APP_CONTROLS
+        list_controls: list = [
+            REPLACE_WIDGET
+        ]
+
+        #: APP CONTENT WIDGETS
+        self.content = ft.Container(
+            **self.main_screen_style(code='main_container'),
+            height=self.page.window.height if self.main_page else None,
+            width=self.drag_width,
+
+            content=ft.Container(
+                **self.main_screen_style(code='second_container'),
+                content=ft.Column(
+                            **self.main_screen_style(code='column_attributes'),
+                            controls=list_controls
+                        ),
+                ),
+        )
+
+    def main_screen_style(self, code: str = ''):
+        #: SET MAIN STYLE WIDGET
+        return phone_style_widget.get(code)
+
+    def dict_style(self, code: str = ''):
+        #: SET CONTENT STYLE WIDGET
+        return styles.get(code)
+
+# MAKE CLASS A DYNAMIC MODULE
+load_module_str = SCREEN_NAME
+
+if __name__ == "__main__":
+    # RUN IN LINE
+    # flet flet_box/extra_utils/phone_container/app_manager/views/main_screen.py  -r
+
+    def main(page: ft.Page):
+        page.theme_mode = ft.ThemeMode.DARK  # ft.ThemeMode.LIGHT
+        page.window.left = 0
+        page.window.top = 0
+        page.window.height = 567
+        page.window.width = 320
+        page.padding = 0
+        page.spacing = 0
+        page.add(
+            load_module_str(
+                    page= page,
+                    main_page=True
+            )
+        )
+        page.update()
+
+    ft.app(
+        target=main,
+    )
+""",
+
+}
