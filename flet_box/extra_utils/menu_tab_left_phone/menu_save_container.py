@@ -298,6 +298,7 @@ class menu_save_container(ft.Container):
             # save_project_module will save as a project module
             # one_file=True, will have all in one screen
 
+            # ONLY APP WIDGET
             code_returned.save_all_data(
                         save_project_module=save_project_module,
                         one_file=True,
@@ -311,6 +312,7 @@ class menu_save_container(ft.Container):
                 )
 
         else:
+
             code_returned.save_all_data(
                         screen_name='main_screen',
                         container_attributes=self.dict_attributes,

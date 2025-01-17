@@ -63,6 +63,7 @@ class code_editor(ft.Container):
                     alignment= ft.MainAxisAlignment.CENTER,
                     controls=[
                         ft.Container(
+                            tooltip="Home",
                             padding=ft.padding.all(0),
                             margin=ft.margin.all(0),
                             content=ft.Row(
@@ -76,13 +77,14 @@ class code_editor(ft.Container):
                             ),
                         ),
                         ft.Container(
+                            tooltip="Copy",
                             padding=ft.padding.all(8),
                             content=ft.Row(
                                 controls=[
                                     ft.IconButton(
                                         bgcolor=ft.Colors.with_opacity(opacity=0.2,color='yellow'),
                                         icon="copy",
-                                        # on_click=lambda widget: print(self.code_name),
+                                        on_click=lambda widget: self.copy_widget_template(),
                                     ),
                                 ]
                             ),
@@ -93,6 +95,14 @@ class code_editor(ft.Container):
                 ),
 
             ]
+        )
+
+    def copy_widget_template(self,):
+        self.alert_dialog = self.page.session.get('on_dev')
+        self.alert_dialog(
+            name_seccion='Save App code',
+            body_string='This is only demo preview will be aviable very soon'
+
         )
 
     def hide_main_widget(self, widget: object=None) -> None:
@@ -214,7 +224,8 @@ class lite_screen_manager(ft.Container):
     def update_drop_items(self):
         self.list_user_screen()
         self.drop_down.options = [
-            ft.dropdown.Option(key=f"Screen number: {_}") for _ in self.obtion_list
+            ft.dropdown.Option(key=f"Screen number: {self.obtion_list[0]}"),
+            # ft.dropdown.Option(key=f"Screen number: {_}") for _ in self.obtion_list
         ]
         self.drop_down.update()
 
@@ -266,6 +277,7 @@ class lite_screen_manager(ft.Container):
         if self.page.session.get('flet_box_api'):
             data_returned = request_session.get(f'{self.page.session.get("api_server")}get_widgets', params={'user_name': self.tmp_session_user_name})
             self.data_selected = data_returned.json()[1]
+            self.app_data_selected = data_returned.json()[2]
 
         else:
             sqlite_obj = sqlite_db()
@@ -280,6 +292,7 @@ class lite_screen_manager(ft.Container):
 
             # NECESSARY TAKE SELECTED SCREEN
             self.data_selected = data_returned[0][1]
+            self.app_data_selected = data_returned[0][2]
 
 
         # CHANGE CONTENT OF PHONE IN SCREEN MANAGER
@@ -297,7 +310,7 @@ class lite_screen_manager(ft.Container):
         )
 
         # SET CODE IN CODE MARKDOWN
-        self.page.session.set('MARK_DOWN_CODE', self.data_selected)
+        self.page.session.set('MARK_DOWN_CODE', self.app_data_selected)
 
         self.Build_Phone_Editor.update()
         self.drop_down.options.clear()
@@ -663,7 +676,7 @@ class projects_made(ft.Container):
         )
 
         # SET CODE IN CODE MARKDOWN
-        self.page.session.set('MARK_DOWN_CODE', self.data_selected)
+        self.page.session.set('MARK_DOWN_CODE', self.code_widget)
 
         self.Build_Phone_Editor.update()
         self.page.update()

@@ -288,7 +288,7 @@ async def get_projects_widgets(table_name: str = ""):
 
 # POST SAVED WIDGETS IN DATABASE ACCOUNT
 @app.put('/update_widgets',include_in_schema=show_hide_shemas, tags=['Widgets Edition'])
-async def update_widgets(user_name: str = Body(), dragg_widget: str = Body()):
+async def update_widgets(user_name: str = Body(), dragg_widget: str = Body(),app_widget: str = Body()):
     """
     Updating database widgets
 
@@ -298,7 +298,7 @@ async def update_widgets(user_name: str = Body(), dragg_widget: str = Body()):
 
     request_session = requests.session()
 
-    json_data: dict = {'user_name': self.user_name, 'dragg_widget' : self.dragg_widget }
+    json_data: dict = {'user_name': self.user_name, 'dragg_widget' : self.dragg_widget ,'app_widget': self.app_dragg_template}
 
     data_returned = request_session.put('https://kuko53348.pythonanywhere.com/update_widgets', data=json.dumps(json_data))
     print(data_returned.text)
@@ -312,6 +312,14 @@ async def update_widgets(user_name: str = Body(), dragg_widget: str = Body()):
         change_data=('user_name', user_name),
         by_data=('main_screen', dragg_widget)
     )
+
+    sqlite_obj = sqlite_db(path_db=PATH_DB)
+    sqlite_obj.update_data(
+        table_name='user_screen',
+        change_data=('user_name', user_name),
+        by_data=('screen_one', app_widget)
+    )
+
     # for _ in dragg_widget:
     #     print(_)
     return {"Source code was succesfully saved"}
@@ -342,7 +350,7 @@ async def save_module_widgets(
             'name_project':name_project_db,
             'ranking_app':'0',
             'dragg_screen':self.class_bone,
-            'app_screen':'ft.Container()',
+            'app_screen':name_app_project_db,
             'time_created':time_created_db
     }
 
@@ -368,6 +376,13 @@ async def save_module_widgets(
             change_data=('name_project', name_project),
             by_data=('dragg_screen', dragg_screen)
         )
+        # UPDATE IF EXIT PROJECT
+        sqlite_obj = sqlite_db(path_db=PATH_DB)
+        sqlite_obj.update_data(
+            table_name=project_tab,
+            change_data=('name_project', name_project),
+            by_data=('app_screen', app_screen)
+        )
 
     else:
         # WITE NEW PROJECT IF NOT EXIT IN DATABASE
@@ -391,7 +406,12 @@ async def save_module_widgets(
             change_data=('dragg_screen', 'None'),
             by_data=('dragg_screen', dragg_screen)
         )
-
+        sqlite_obj = sqlite_db(path_db=PATH_DB)
+        sqlite_obj.update_data(
+            table_name=project_tab,
+            change_data=('dragg_screen', 'None'),
+            by_data=('app_screen', app_screen)
+        )
     return {"Source code was succesfully saved"}
 
 if __name__ == "__main__":

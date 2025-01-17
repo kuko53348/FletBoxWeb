@@ -1,6 +1,6 @@
 widget_templates: dict = {
 
-    "container_content": """
+    "app_content": """
 [+]#: DRAG-BOX-CONTENT [ID: NUMBER_DRAGG]
 [+]ft.Container(
 [+]    **self.dict_style("ContainerCONTAINER_ID"),
@@ -14,7 +14,7 @@ widget_templates: dict = {
 [+]    ),
 [+]),""",
 
-    "container_controls": """
+    "app_controls": """
 [+]#: DRAG-BOX-CONTROLS [ID: NUMBER_DRAGG]
 [+]ft.Container(
 [+]    **self.dict_style("ContainerCONTAINER_ID"),
@@ -390,7 +390,7 @@ load_module_str = SCREEN_NAME
 
 if __name__ == "__main__":
     # RUN IN LINE
-    # flet flet_box/extra_utils/phone_container/app_manager/views/main_screen.py  -r
+    # flet flet_box/extra_utils/phone_container/app_manager/views/app_main_screen.py  -r
 
     def main(page: ft.Page):
         page.theme_mode = ft.ThemeMode.DARK  # ft.ThemeMode.LIGHT

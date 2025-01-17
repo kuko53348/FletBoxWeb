@@ -24,6 +24,10 @@ self.page.session.set('user_name', {'user_name': user_name, 'pasword': pasword})
 self.page.session.set('user_name_phone', self.Build_Phone_Editor)  # <== SET MAIN PHONE
 
 self.page.session.set('on_dev',error) # <== error fron config widgets
+on_developing(
+    name_seccion='Email was sent',
+    body_string=f"Mensage was sent sucessfully check your spam email: {email}"
+)
 
 self.page.session.set('flet_box_api',True) # <== Will have True or false
 

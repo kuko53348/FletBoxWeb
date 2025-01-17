@@ -45,7 +45,6 @@ class refactory_flet_box:
     widget_function = code_returned.get_function_in_app(widget_id=widget_id.get('id'),string_widget=widget)
     ```
 
-
     - ## Will return current format
 
     ```python
@@ -64,16 +63,25 @@ class refactory_flet_box:
         self.page = page
         # STRING THAT CONTENT ALL MAIN SCREEN
         self.refactory_string: str = str()
+        self.app_refactory_string: str = str()
 
         # LIST WITH CONTRLS WIDGET
         self.controls_widget: list = []
         self.all_controls_in_widget: list = []
+
+        self.app_all_controls_in_widget: list = []
+        self.app_controls_widget: list = []
 
         # SCREEN STYLE AND SCREEN EVENT
         self.all_events_widget: list = []
         self.all_events_id: list = []
         self.screen_styles: dict = dict()
         self.all_widget_in_row: list = []
+
+        self.app_all_events_widget: list = []
+        self.app_all_events_id: list = []
+        self.app_screen_styles: dict = dict()
+        self.app_all_widget_in_row: list = []
 
         self.code_to_refactory: dict = {
             "aspectratio": "aspect_ratio",
@@ -393,7 +401,16 @@ class refactory_flet_box:
             self.skeleton = self.skeleton.replace('CHANGE_CONTROLS', str(self.controls_widget))
             self.skeleton = self.skeleton.replace('[+]', self.tab)
 
+            self.app_skeleton = widget_templates.get('app_controls')
+            self.app_skeleton = self.app_skeleton.replace('NUMBER_DRAGG', self.dragg_id.strip('_'))
+            self.app_skeleton = self.app_skeleton.replace('CONTAINER_ID', self.container_id)
+            self.app_skeleton = self.app_skeleton.replace('CONTEN_ID', self.content_id)
+            self.app_skeleton = self.app_skeleton.replace('CHANGE_CONTENT_WIDGET', self.change_content)
+            self.app_skeleton = self.app_skeleton.replace('CHANGE_CONTROLS', str(self.controls_widget))
+            self.app_skeleton = self.app_skeleton.replace('[+]', self.tab)
+
             self.refactory_string = self.skeleton
+            self.app_refactory_string = self.app_skeleton
 
             self.screen_styles[f"Container{self.container_id}"] = clean_code.get('clean_container')
             self.screen_styles[f"{self.change_content}{self.content_id}"] = clean_code.get('clean_content')
@@ -417,7 +434,15 @@ class refactory_flet_box:
             self.skeleton = self.skeleton.replace('CHANGE_CONTENT_WIDGET', self.change_content)
             self.skeleton = self.skeleton.replace('[+]', self.tab)
 
+            self.app_skeleton = widget_templates.get('app_content')
+            self.app_skeleton = self.app_skeleton.replace('NUMBER_DRAGG', self.dragg_id.strip('_'))
+            self.app_skeleton = self.app_skeleton.replace('CONTAINER_ID', self.container_id)
+            self.app_skeleton = self.app_skeleton.replace('CONTEN_ID', self.content_id)
+            self.app_skeleton = self.app_skeleton.replace('CHANGE_CONTENT_WIDGET', self.change_content)
+            self.app_skeleton = self.app_skeleton.replace('[+]', self.tab)
+
             self.refactory_string = self.skeleton
+            self.app_refactory_string = self.app_skeleton
 
             self.screen_styles[f"Container{self.container_id}"] = clean_code.get('clean_container')
             self.screen_styles[f"{self.change_content}{self.content_id}"] = clean_code.get('clean_content')
@@ -431,7 +456,10 @@ class refactory_flet_box:
             # RUN IN PRODUCTION
             # print(self.event_btn)
 
-        return self.refactory_string
+        return {
+                'dragg_widget':self.refactory_string,
+                'dragg_app_widget':self.app_refactory_string,
+            }
 
     def return_code(self, widget: object = None, tab: int = 3) -> dict:
         """
@@ -474,6 +502,7 @@ class refactory_flet_box:
 
         self.tab = '    ' * tab
 
+        # DONT TOUCH
         self.refactorized = self.create_framework(
             tab=self.tab,
             widget_id=widget_data.get(dragg_id).get('widget_id'),
@@ -500,19 +529,36 @@ class refactory_flet_box:
         ```
         :return: Remplace all widgets_id by ft.Container(content=Widget_name)
         """
+        # most be str
+        # dragg_app_widget dragg_widget
+
         for _ in self.controls_widget:
-            self.tmp = self.return_code(widget=self.page._index[_], tab=tab)
+            self.tmp = self.return_code(widget=self.page._index[_], tab=tab).get('dragg_widget')
             if _ in self.edit_data:
                 # self.edit_data= self.edit_data.replace(_, 'self.tmp')
                 self.edit_data = self.edit_data.replace(_, self.tmp)
 
         # IF SCAPE WIDGETS IN MIDDLE CALL AGAIN IN LIST
         for _ in self.all_controls_in_widget:
-            self.tmp = self.return_code(widget=self.page._index[_], tab=tab+2)
+            self.tmp = self.return_code(widget=self.page._index[_], tab=tab+2).get('dragg_widget')
             if _ in self.edit_data:
                 # print(self.tmp,'==========================')
                 self.edit_data = self.edit_data.replace(_, self.tmp)
 
+
+        # APP CONTENT
+        for _tmp in self.controls_widget:
+            self.app_tmp = self.return_code(widget=self.page._index[_tmp], tab=tab).get('dragg_app_widget')
+            if _tmp in self.app_edit_data:
+                # self.app_edit_data= self.app_edit_data.replace(_, 'self.app_tmp')
+                self.app_edit_data = self.app_edit_data.replace(_tmp, self.app_tmp)
+
+        # IF SCAPE WIDGETS IN MIDDLE CALL AGAIN IN LIST
+        for _tmp in self.all_controls_in_widget:
+            self.app_tmp = self.return_code(widget=self.page._index[_tmp], tab=tab+2).get('dragg_app_widget')
+            if _tmp in self.app_edit_data:
+                # print(self.app_tmp,'==========================')
+                self.app_edit_data = self.app_edit_data.replace(_tmp, self.app_tmp)
         # print(self.all_controls_in_widget)
 
     def get_widget_attributes(self, widget: object = ""):
@@ -528,21 +574,64 @@ class refactory_flet_box:
         tab = 3
 
         # WILLRETURN A LIST WITH ALL WIDGET TO MAKE A NESTED RECURSION
-        self.refactorized = self.return_code(widget=widget, tab=tab)
+        self.refactorized = self.return_code(widget=widget, tab=tab).get('dragg_widget')
         self.edit_data = self.refactorized
-        # print(self.edit_data)
 
-        # print(self.page._index.get('_244'))
+        self.app_refactorized = self.return_code(widget=widget, tab=tab).get('dragg_app_widget')
+        self.app_edit_data = self.app_refactorized
 
         while "'_" in self.edit_data:
             tab += 3
             self.recursive_nested(tab=tab)
 
+        while "'_" in self.app_edit_data:
+            tab += 3
+            self.recursive_nested(tab=tab)
+
         self.edit_data = self.edit_data.replace("'],", ']').replace("['", "[").replace("', '", '')
-        #  REMOVE COMA [ , ]
-        # self.edit_data = self.edit_data[:-1]
+        self.app_edit_data = self.app_edit_data.replace("'],", ']').replace("['", "[").replace("', '", '')
 
         self.all_widget_in_row.append(self.edit_data)
+        self.app_all_widget_in_row.append(self.app_edit_data)
+
+
+    def get_template_widget(self,name_app: str=str(), screen_name: str=str(), widgets_class: str=str()) -> str:
+        """
+        - Get Template from widget_templates
+
+        ```python
+
+        self.get_template_widget(name_app='screen_class',screen_name=screen_name, widgets_class=widgets_class)
+
+        :return: ONLY TEMPLATE
+        ```
+        """
+        tmp_template = widget_templates.get(name_app)
+        tmp_template = tmp_template.replace('SCREEN_NAME', screen_name)
+        tmp_template = tmp_template.replace('REPLACE_WIDGET', widgets_class)
+        return tmp_template
+
+    def write_files_in_project(self,
+                               screen_name: str = str(),
+                               data_to_write: str = str(),
+                               ):
+
+        with open(f"flet_box/extra_utils/phone_container/app_manager/views/{screen_name}.py", 'w') as f:
+            f.write(data_to_write)
+
+    def refactory_wring_attributes(self,
+                            dict_string: dict=dict()
+                            ) -> str:
+
+        widgets_styles = json.dumps(dict_string, indent=4, skipkeys=True )
+        widgets_styles = widgets_styles.replace('"{', '{').replace('}"', '}').replace('\\', '').replace(":", ": ").replace('"["', '["').replace('"]"', '"]')
+        widgets_styles = widgets_styles.replace('},"', '},\n\t\t\t\t\t"').replace('}},', '}\n\t\t\t\t\t},').replace(',"', ', "')
+        widgets_styles = widgets_styles.replace('"on_click"', '# "on_click"').replace('\t', '    ')
+        widgets_styles = widgets_styles.replace('"[', '[').replace(']"', ']')
+        widgets_styles = widgets_styles.replace('"true"', 'True').replace('true', 'True').replace('"false"', 'False').replace('false', 'False')
+        widgets_styles = widgets_styles.replace('null', 'None')
+        #
+        return widgets_styles
 
     def save_all_data(  self,
                         save_project_module: bool=False,
@@ -565,9 +654,16 @@ class refactory_flet_box:
         widgets_class:  str = str()
         widgets_styles: str = str()
 
+        app_widgets_events: str = str()
+        app_widgets_class:  str = str()
+        app_widgets_styles: str = str()
+
         # ALL WIDGETS DRAGGIN CLASS
         for widgets in self.all_widget_in_row:
             widgets_class+=widgets
+
+        for tmp_widgets in self.app_all_widget_in_row:
+            app_widgets_class+=tmp_widgets
 
         # ALL WIDGETS STYLES
         widgets_styles = self.refactory_wring_attributes(dict_string=self.screen_styles)
@@ -579,21 +675,21 @@ class refactory_flet_box:
 
         # ALL WIDGETS EVENTS
         tmp_list = set(self.all_events_widget)
-        # tmp_list_id = set(self.all_eventsid)
 
         for events in tmp_list:
             widgets_events += events
 
-        # self.class_bone = widget_templates.get('screen_class')
-        self.get_template_widget(name_app='screen_class',screen_name=screen_name, widgets_class=widgets_class)
-        # self.get_template_widget(name_app='screen_class',screen_name=screen_name, widgets_class=widgets_class)
+        self.dragg_template = self.get_template_widget(name_app='screen_class',screen_name=screen_name, widgets_class=widgets_class)
+        self.app_dragg_template = self.get_template_widget(name_app='app_screen_class',screen_name=screen_name, widgets_class=app_widgets_class)
 
         # ========================================
-        print(self.class_bone)
+        # print(self.dragg_template)
+        # print(self.app_dragg_template)
+
         # print(widgets_styles)
         # print(widgets_events)
         # ========================================
-        print(">>>>>> END <<<<<<")
+        # print(">>>>>> END <<<<<<")
 
         # IF ONE FILE WILL BE SAVED IN DATABASE
         if one_file:
@@ -622,19 +718,37 @@ class refactory_flet_box:
                     },
 
             }
-            self.clean_code_container = self.refactory_wring_attributes(dict_string=self.container_widget)
-            self.class_bone = self.class_bone.replace('CONTAINER_STYLE',self.clean_code_container)
 
-            # print('================== onefile ====================')
-            self.class_bone = self.class_bone.replace("from .main_screen_styles", "# from .main_screen_styles")
-            self.class_bone = self.class_bone.replace("from .main_screen_events", "# from .main_screen_events")
+            # DRAGG TEMPLATE
+            # self.clean_code_container = self.refactory_wring_attributes(dict_string=self.container_widget)
+            # self.dragg_template = self.dragg_template.replace('CONTAINER_STYLE',self.clean_code_container)
 
-            self.class_bone = self.class_bone.replace('# styles','styles').replace('CHANGE_STYLE',widgets_styles)
-            self.class_bone = self.class_bone.replace('CONTAINER_STYLE',self.clean_code_container)
+            # # print('================== onefile ====================')
+            # self.dragg_template = self.dragg_template.replace("from .main_screen_styles", "# from .main_screen_styles")
+            # self.dragg_template = self.dragg_template.replace("from .main_screen_events", "# from .main_screen_events")
 
-            # print(self.class_bone)
-            # print(self.clean_code_container)
-            #
+            # self.dragg_template = self.dragg_template.replace('# styles','styles').replace('CHANGE_STYLE',widgets_styles)
+            # self.dragg_template = self.dragg_template.replace('CONTAINER_STYLE',self.clean_code_container)
+
+            self.dragg_template = self.clean_template_to_production(
+                                        widget_to_modify=self.dragg_template,
+                                        container_widget=self.container_widget,
+                                        widgets_styles=widgets_styles,
+                                    )
+
+            self.app_dragg_template = self.clean_template_to_production(
+                                        widget_to_modify=self.app_dragg_template,
+                                        container_widget=self.container_widget,
+                                        widgets_styles=widgets_styles,
+                                    )
+            # APP TEMPLATE
+            # ========================================
+            # print(self.dragg_template)
+            # print(self.app_dragg_template)
+
+            # print(widgets_styles)
+            # print(widgets_events)
+            # ========================================
             # WRITE IN DATABASE
             self.user_name  = self.page.session.get('user_name').get('user_name') if self.page.session.get('user_name') else 'user_demo'
             # print( self.user_name,"<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
@@ -644,12 +758,15 @@ class refactory_flet_box:
                 """
                 Will save data in database
                 """
-                self.class_bone = self.class_bone.replace("'",'"')
+                self.dragg_template = self.dragg_template.replace("'",'"')
+                self.app_dragg_template = self.app_dragg_template.replace("'",'"')
 
                 data_returned = request_session.put(f'{self.page.session.get("api_server")}update_widgets',
                                                     data=json.dumps({
                                                         'user_name': self.user_name,
-                                                        'dragg_widget' : self.class_bone
+                                                        'dragg_widget' : self.dragg_template,
+                                                        'app_widget' : self.app_dragg_template,
+
                                                     }))
                 # print(data_returned.text)
                 if save_project_module:
@@ -660,10 +777,11 @@ class refactory_flet_box:
                         'project_tab':column_tab_db,
                         'name_project':name_project_db,
                         'ranking_app':'0',
-                        'dragg_screen':self.class_bone,
-                        'app_screen':'ft.Container()',
+                        'dragg_screen':self.dragg_template,
+                        'app_screen':self.app_dragg_template,
                         'time_created':time_created_db
                     }
+
                     data_module_returned = request_session.post(f'{self.page.session.get("api_server")}save_module_widgets',
                                     data=json.dumps(data_request))
 
@@ -673,9 +791,15 @@ class refactory_flet_box:
                 data_returned = sqlite_obj.update_data(
                                         table_name='user_screen',
                                         change_data=('user_name', self.user_name),
-                                        by_data=('main_screen', self.class_bone)
+                                        by_data=('main_screen', self.dragg_template)
                                 )
-                # print(f'>>>> {self.user_name}')
+
+                data_returned = sqlite_obj.update_data(
+                                        table_name='user_screen',
+                                        change_data=('user_name', self.user_name),
+                                        by_data=('screen_one', self.app_dragg_template)
+                                )
+                # print(f'>>>> {self.user_name} {data_returned}')
 
                 if save_project_module:
                     # UPDATE DATA REGISTER TABLE LOCAL AND MAKE MODULE PROJECT
@@ -689,13 +813,18 @@ class refactory_flet_box:
 
                     if not user_name_have_same_project == False:
                         # UPDATE IF EXIT PROJECT LOCAL MAKE MODULE PROJECT
-                        sqlite_obj = sqlite_db()
-                        sqlite_obj.update_data(
-                            table_name=column_tab_db,
-                            change_data=('name_project', name_project_db),
-                            by_data=('dragg_screen', self.class_bone)
-                        )
-
+                        self.save_in_database(
+                                            column_name='dragg_screen',
+                                            column_tab_db=column_tab_db,
+                                            name_project_db=name_project_db,
+                                            template_app=self.dragg_template
+                            )
+                        self.save_in_database(
+                                            column_name='app_screen',
+                                            column_tab_db=column_tab_db,
+                                            name_project_db=name_project_db,
+                                            template_app=self.app_dragg_template
+                            )
                     else:
                         # WITE NEW PROJECT IF NOT EXIT IN DATABASE
                         sqlite_obj = sqlite_db(path_db=PATH_DB)
@@ -707,24 +836,42 @@ class refactory_flet_box:
                                 name_project_db,
                                 '0',
                                 'None',
-                                'ft.Container()',
+                                'None',
                                 time_created_db
                             )
                         )
 
-                        sqlite_obj = sqlite_db(path_db=PATH_DB)
-                        sqlite_obj.update_data(
-                            table_name=column_tab_db,
-                            change_data=('dragg_screen', 'None'),
-                            by_data=('dragg_screen', self.class_bone)
-                        )
-
+                        # sqlite_obj = sqlite_db(path_db=PATH_DB)
+                        # sqlite_obj.update_data(
+                        #     table_name=column_tab_db,
+                        #     change_data=('dragg_screen', 'None'),
+                        #     by_data=('dragg_screen', self.dragg_template)
+                        # )
+                        self.save_in_database(
+                                            path_db=PATH_DB,
+                                            column_name='dragg_screen',
+                                            column_tab_db=column_tab_db,
+                                            name_project_db=name_project_db,
+                                            template_app=self.dragg_template
+                            )
+                        self.save_in_database(
+                                            path_db=PATH_DB,
+                                            column_name='app_screen',
+                                            column_tab_db=column_tab_db,
+                                            name_project_db=name_project_db,
+                                            template_app=self.app_dragg_template
+                            )
 
             # SAVE DATA TO CONTROL ERRORS
             self.write_files_in_project(
                                     screen_name=f"{screen_name}",
-                                    data_to_write=self.class_bone,
+                                    data_to_write=self.dragg_template,
             )
+            self.write_files_in_project(
+                                    screen_name=f"app_{screen_name}",
+                                    data_to_write=self.app_dragg_template,
+            )
+
         else:
 
             self.container_attributes = self.refactory_code(string_widget=container_attributes.get('container'))
@@ -753,12 +900,12 @@ class refactory_flet_box:
 
             }
             self.clean_code_container = self.refactory_wring_attributes(dict_string=self.container_widget)
-            self.class_bone = self.class_bone.replace('CONTAINER_STYLE',self.clean_code_container)
+            self.dragg_template = self.dragg_template.replace('CONTAINER_STYLE',self.clean_code_container)
 
             # WRITE CLASS WIDGET
             self.write_files_in_project(
                                     screen_name=f"{screen_name}",
-                                    data_to_write=self.class_bone,
+                                    data_to_write=self.dragg_template,
                 )
             # WRITE STYLE WIDGET
             self.write_files_in_project(
@@ -771,40 +918,38 @@ class refactory_flet_box:
                                     data_to_write=f"{widgets_events}\n",
                 )
 
-    def get_template_widget(self,name_app: str=str(), screen_name: str=str(), widgets_class: str=str()):
+    def clean_template_to_production(self,
+                            widget_to_modify: str=object(),
+                            container_widget: str=str(),
+                            widgets_styles: str=str(),
+        ) -> str:
         """
-        - Get Template from widget_templates
+        Make a clean template to save all in database
 
-        ```python
-
-        self.get_template_widget(name_app='screen_class',screen_name=screen_name, widgets_class=widgets_class)
-
-        :return: ONLY TEMPLATE
-        ```
+        Args:
+            widgets_styles (_type_): _description_
         """
-        self.class_bone = widget_templates.get(name_app)
-        self.class_bone = self.class_bone.replace('SCREEN_NAME', screen_name)
-        self.class_bone = self.class_bone.replace('REPLACE_WIDGET', widgets_class)
+        clean_code_container = self.refactory_wring_attributes(dict_string=container_widget)
 
-    def write_files_in_project(self,
-                               screen_name: str = str(),
-                               data_to_write: str = str(),
-                               ):
+        clean_template = widget_to_modify
+        clean_template = clean_template.replace('CONTAINER_STYLE',clean_code_container)
 
-        with open(f"flet_box/extra_utils/phone_container/app_manager/views/{screen_name}.py", 'w') as f:
-            f.write(data_to_write)
+        clean_template = clean_template.replace("from .main_screen_styles", "# from .main_screen_styles")
+        clean_template = clean_template.replace("from .main_screen_events", "# from .main_screen_events")
 
+        clean_template = clean_template.replace('# styles','styles').replace('CHANGE_STYLE',widgets_styles)
+        clean_template = clean_template.replace('CONTAINER_STYLE',clean_code_container)
 
-    def refactory_wring_attributes(self,
-                            dict_string: dict=dict()
-                            ) -> str:
+        return clean_template
 
-        widgets_styles = json.dumps(dict_string, indent=4, skipkeys=True )
-        widgets_styles = widgets_styles.replace('"{', '{').replace('}"', '}').replace('\\', '').replace(":", ": ").replace('"["', '["').replace('"]"', '"]')
-        widgets_styles = widgets_styles.replace('},"', '},\n\t\t\t\t\t"').replace('}},', '}\n\t\t\t\t\t},').replace(',"', ', "')
-        widgets_styles = widgets_styles.replace('"on_click"', '# "on_click"').replace('\t', '    ')
-        widgets_styles = widgets_styles.replace('"[', '[').replace(']"', ']')
-        widgets_styles = widgets_styles.replace('"true"', 'True').replace('true', 'True').replace('"false"', 'False').replace('false', 'False')
-        widgets_styles = widgets_styles.replace('null', 'None')
-        #
-        return widgets_styles
+    def save_in_database(self, path_db=False, column_tab_db: str=str(), name_project_db: str=str(),column_name: str=str(),template_app: str=str()):
+        if path_db:
+            sqlite_obj = sqlite_db(path_db=path_db)
+        else:
+            sqlite_obj = sqlite_db()
+
+        sqlite_obj.update_data(
+                            table_name=column_tab_db,
+                            change_data=('name_project', name_project_db),
+                            by_data=(column_name, template_app)
+                        )
