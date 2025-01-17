@@ -321,10 +321,10 @@ class flet_box:
         self.page.theme_mode=ft.ThemeMode.DARK
 
         # COMENT IF WILL WORK ONLINE IN WEB          <==== ONLINE IN WEB
-        # self.run_in_production(page=self.page, runing_online_server=True)
+        self.run_in_production(page=self.page, runing_online_server=True)
 
         # COMENT IF WILL WORK ONLINE IN WEB          <==== OFFLINE IN WEB
-        self.run_in_production(page=self.page, runing_online_server=False)
+        # self.run_in_production(page=self.page, runing_online_server=False)
 
         # JUMP TO DEV ACCOUNT
         # self.page.go('/home')             # <<< TO TESTING

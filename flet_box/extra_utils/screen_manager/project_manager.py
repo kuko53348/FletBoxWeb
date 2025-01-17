@@ -102,7 +102,6 @@ class code_editor(ft.Container):
         self.alert_dialog(
             name_seccion='Save App code',
             body_string='This is only demo preview will be aviable very soon'
-
         )
 
     def hide_main_widget(self, widget: object=None) -> None:

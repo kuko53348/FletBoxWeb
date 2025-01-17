@@ -583,7 +583,7 @@ class formulary_login(ft.Container):
         self.pasword = self.pasword_textfield
 
         if self.page.session.get('flet_box_api'):
-            tmp_data = request_session.get(f'{self.page.session.get("api_server")}login',params={'user_email': self.email_user,'user_password':self.pasword})
+            tmp_data = request_session.get(f'{self.page.session.get("api_server")}login',params={'user_email': self.email_user.strip(),'user_password':self.pasword.strip()})
             data_returned = tmp_data.json()
 
         else:
@@ -591,20 +591,20 @@ class formulary_login(ft.Container):
             data_returned = sqlite_obj.find_name(
                 table_name='register',
                 column='user_email',
-                name=self.email_user,
+                name=self.email_user.strip(),
                 match=['user_password',
-                    self.pasword])
+                    self.pasword.strip()])
             data_returned = data_returned[0]
         print(data_returned,"<<<< login_page.py")
 
         if data_returned:
             user_name, email, pasword, register_time = data_returned
-            if email == self.email_user and self.pasword == pasword:
+            if email == self.email_user.strip() and self.pasword.strip() == pasword:
                 # print(f"user_name: {user_name},pasword: {pasword}")
                 self.page.session.set(
                     'user_name', {
-                        'user_name': user_name,
-                        'pasword': pasword
+                        'user_name': user_name.strip(),
+                        'pasword': pasword.strip()
                     })
 
                 self.page.go('/home')
@@ -876,7 +876,7 @@ class formulary_register(ft.Container):
             is_valid_email = self.check_email(email=self.email_register_str)
 
             if self.page.session.get('flet_box_api'):
-                tmp_data = request_session.get(f'{self.page.session.get("api_server")}/validation_account',params={'user_name': self.user_register_str,'user_email':self.email_register_str})
+                tmp_data = request_session.get(f'{self.page.session.get("api_server")}/validation_account',params={'user_name': self.user_register_str.strip(),'user_email':self.email_register_str.strip()})
                 data_returned = tmp_data.json()
 
                 if is_valid_email:
@@ -886,7 +886,7 @@ class formulary_register(ft.Container):
                     self.validate = data_returned.get('validated_account',False)
                     if self.validate:
                         # REGISTER ACCOUNT
-                        validation = {'user_name': self.user_register_str,'user_email':self.email_register_str, 'user_password': self.password_register_str}
+                        validation = {'user_name': self.user_register_str.strip(),'user_email':self.email_register_str.strip(), 'user_password': self.password_register_str.strip()}
                         request_session.post(f'{self.page.session.get("api_server")}validation_account',params=validation)
 
                         self.middle_box.content.controls.pop()
@@ -925,7 +925,7 @@ class formulary_register(ft.Container):
                     user_name = sqlite_obj.find_name(
                         table_name='register',
                         column='user_name',
-                        name=self.user_register_str
+                        name=self.user_register_str.strip()
                     )
 
                     # IF NO EXIT DUPLICATE USER_EMAIL CONTINUE
@@ -933,7 +933,7 @@ class formulary_register(ft.Container):
                     user_email = sqlite_obj.find_name(
                         table_name='register',
                         column='user_email',
-                        name=self.email_register_str
+                        name=self.email_register_str.strip()
                     )
 
                     if user_name:
@@ -961,9 +961,9 @@ class formulary_register(ft.Container):
                         sqlite_obj.write_data(
                             table_name='register',
                             column=(
-                                self.user_register_str,
-                                self.email_register_str,
-                                self.password_register_str,
+                                self.user_register_str.strip(),
+                                self.email_register_str.strip(),
+                                self.password_register_str.strip(),
                                 str(datetime.now())
                             ))
 
@@ -972,7 +972,7 @@ class formulary_register(ft.Container):
                         sqlite_obj.write_data(
                             table_name='user_screen',
                             column=(
-                                self.user_register_str,  # user_name
+                                self.user_register_str.strip(),  # user_name
                                 'None',  # main_screen
                                 'None',  # screen_one
                                 'None',  # screen_two
@@ -1012,16 +1012,16 @@ class formulary_register(ft.Container):
         return valid
 
     def user_register(self, payload: str = str()) ->str:
-        self.user_register_str = payload.data.strip('')
+        self.user_register_str = payload.data.strip()
 
     def password_register(self, payload: str = str()) ->str:
-        self.password_register_str = payload.data.strip('')
+        self.password_register_str = payload.data.strip()
 
     def password_second_register(self, payload: str = str()) ->str:
         self.password_second_register_str = payload.data
 
     def email_register(self, payload: str = str()) ->str:
-        self.email_register_str = payload.data.strip('')
+        self.email_register_str = payload.data.strip()
 
     def show_login_menu(self):
         self.middle_box.content.controls.pop()
