@@ -18,3 +18,6 @@ from .screen_manager.project_manager                    import project_manager
 from .menu_tab_left_phone.menu_save_container           import menu_save_container
 #: CONGRATULATION MENU MANAGER
 from .menu_tab_left_phone.congratulation_menu           import congratulation_menu
+#: ACTIVATION APP
+from .settings.activation_app                           import sponsor_page
+from .settings.about                                    import about_page

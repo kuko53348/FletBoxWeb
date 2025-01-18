@@ -281,8 +281,7 @@ class MenuLeftContainer(ft.Stack):
 
         if show_widget == "icon_browser":
             # NEED IMPLEMENT YET
-            # self.on_developing("icon_browser")
-            return
+            self.page.go('/SponsorPage')
 
         if show_widget == "MARKET PLACE":
             # NEED IMPLEMENT YET

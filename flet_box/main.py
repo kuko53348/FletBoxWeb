@@ -17,7 +17,8 @@ from extra_utils import send_email
 from extra_utils import send_attach_email
 
 from extra_utils import congratulation_menu
-
+from extra_utils import sponsor_page
+from extra_utils import about_page
 
 class header_container(ft.Container):
 
@@ -311,6 +312,32 @@ class flet_box:
                     )
                 )
 
+            if self.page.route == "/sponsor_page":
+                self.page.views.append(
+                    ft.View(
+                        horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+                        vertical_alignment=ft.MainAxisAlignment.CENTER,
+                        padding=0,
+                        route="/sponsor_page",
+                        controls=[
+                            sponsor_page(page=self.page)
+                        ],
+                    )
+                )
+
+            if self.page.route == "/about_page":
+                self.page.views.append(
+                    ft.View(
+                        horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+                        vertical_alignment=ft.MainAxisAlignment.CENTER,
+                        padding=0,
+                        route="/about_page",
+                        controls=[
+                            about_page(page=self.page)
+                        ],
+                    )
+                )
+
                 self.page.update()
 
             self.page.update()
@@ -321,10 +348,10 @@ class flet_box:
         self.page.theme_mode=ft.ThemeMode.DARK
 
         # COMENT IF WILL WORK ONLINE IN WEB          <==== ONLINE IN WEB
-        self.run_in_production(page=self.page, runing_online_server=True)
+        # self.run_in_production(page=self.page, runing_online_server=True)
 
         # COMENT IF WILL WORK ONLINE IN WEB          <==== OFFLINE IN WEB
-        # self.run_in_production(page=self.page, runing_online_server=False)
+        self.run_in_production(page=self.page, runing_online_server=False)
 
         # JUMP TO DEV ACCOUNT
         # self.page.go('/home')             # <<< TO TESTING
@@ -362,7 +389,9 @@ class flet_box:
 
             # page.go('/')             # <<< TO TESTING
             page.go('/home')             # <<< TO TESTING
-            # page.session.set('user_name', {'user_name': 'kuko53348'})
+            # page.go('/sponsor_page')             # <<< TO TESTING
+            # page.go('/about_page')             # <<< TO TESTING
+            page.session.set('user_name', {'user_name': 'kuko53348'})
 
 
     def setting_only_append_controls(self):
