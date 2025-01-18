@@ -1,6 +1,7 @@
 import os
 import time
 import flet as ft
+
 # import pyperclip # type: ignore
 
 click_avalidation: bool = False
@@ -10,20 +11,23 @@ dictionary_contribution: dict = {
 
     "header": """
 ▎Flet-Box: The Future of Development, Built on Freedom""",
-    "body": """\
-The software landscape is changing.
+    "body": """Dear FletBox Community,
 
-While many powerful tools are locked behind expensive paywalls, Flet-Box stands as a beacon of open-source innovation, accessible to everyone.
-But the reality is, free and open-source projects like ours face constant challenges.  We rely on the generosity of our community to keep our doors open and continue to empower developers of all levels.
-Join us in building a future where innovation is truly free.  Contribute today and help us keep Flet-Box alive.  Every contribution, big or small, makes a difference.
+At FletBox, we strive to provide the best services and experiences for our users. Our mission is to continually enhance our platform, deliver innovative features, and support our growing community. However, to achieve these goals, we rely on the generosity of supporters like you.
 
-We accept donations in the following cryptocurrencies:
+Your donation will help us:
 
-                        • Matic
+• Improve our infrastructure and ensure a seamless user experience.
 
-Together, we can ensure that Flet-Box remains a vital resource for the future of development, accessible to everyone, regardless of budget.
+• Develop new features that meet your needs and expectations.
 
-""",
+• Maintain and enhance our existing services.
+
+• Support our team in creating valuable content and resources.
+
+Every contribution, no matter how small, makes a significant difference. Together, we can build a better FletBox for everyone. If you appreciate what we do and want to see us thrive, please consider making a donation today.
+
+Thank you for your support!""",
     "crypto": {
         "Matic": {
             "address": "0x6d437bB66af8d2c44670eA18F059BE1417Dcd7bA",
@@ -158,8 +162,10 @@ class CardPrice(ft.Container):
                                                  ),), ],
                         ),
 
-                ft.Text(value="Per Month", size=16,
-                        weight=ft.FontWeight.BOLD,),
+                ft.Text(
+                    value="Per Month",
+                    size=16,
+                    weight=ft.FontWeight.BOLD,),
 
                 ft.Checkbox(label="Core Plataform Features",
                             value=self.buy_card[0]),
@@ -172,7 +178,7 @@ class CardPrice(ft.Container):
                 ft.Checkbox(label="App & Play Store Dev",
                             value=self.buy_card[4]),
                 ft.ElevatedButton(
-                    text="FREE",
+                    text="Is free no need Pay",
                     bgcolor=ft.colors('black45'),
                 )
             ]
@@ -196,10 +202,20 @@ class price_container(ft.Container):
         self.content = ft.Row(
             scroll='Hidden',
             controls=[
-                CardPrice(card_plan=1, card_price=110, card_type="Standar"),
-                CardPrice(card_plan=3, card_price=200,
-                          card_type="Pro", card_color=True),
-                CardPrice(card_plan=2, card_price=160, card_type="Teams"),
+                CardPrice(
+                    card_plan=1,
+                    card_price=110,
+                    card_type="Standar"),
+                CardPrice(
+                    card_plan=3,
+                    card_price=200,
+
+                    card_type="Pro",
+                    card_color=True),
+                CardPrice(
+                    card_plan=2,
+                    card_price=160,
+                    card_type="Teams"),
             ]
         )
 
@@ -258,25 +274,26 @@ class wallet_container(ft.Container):
                         run_spacing=0,
                         spacing=4,
                         controls=[
-                            ft.ElevatedButton(text="Copy", elevation=12, bgcolor=ft.colors(
-                                'red800'), on_click=lambda _:self.copy_clipboad()),
+                            ft.ElevatedButton(text="Copy",
+                                              elevation=12,
+                                              bgcolor=ft.colors(
+                                                  'red800'),
+                                              on_click=lambda _:self.copy_clipboad(value="0x6d437bB66af8d2c44670eA18F059BE1417Dcd7bA")),
                             ft.TextButton(
                                 text="0x6d437bB66af8d2c44670eA18F059BE1417Dcd7bA",
                                 height=40
                             ),
                         ]),
-
-
                     ft.Text(
                         spans=[
 
                             ft.TextSpan("Hello Dev:   You may invite me a beer ;)\n",
-                                        ft.TextStyle(size=20,
-                                                     weight=ft.FontWeight.BOLD,
-                                                     color=ft.colors(
-                                                         'blueaccent200'),
-                                                     ),),
-
+                                        ft.TextStyle(
+                                            size=20,
+                                            weight=ft.FontWeight.BOLD,
+                                            color=ft.colors(
+                                                'blueaccent200'),
+                                        ),),
                         ],
                     ),
 
@@ -325,7 +342,8 @@ class wallet_container(ft.Container):
             ]
         )
 
-    def copy_clipboad(self):
+    def copy_clipboad(self,value: str=str()):
+        self.page.set_clipboard(value=value)
         self.alert_dialog.visible = True
         self.alert_dialog.content.value = f"Done:"
         self.alert_dialog.update()
@@ -334,37 +352,37 @@ class wallet_container(ft.Container):
         self.alert_dialog.update()
 
 
-class sponsor_page(ft.Stack):
+class sponsor_page(ft.Container):
 
     def __init__(self, page: object = None):
         super().__init__()
         self.page = page
+        self.ink = False
+        self.bgcolor = ft.colors('black12')
+        self.padding = ft.padding.all(32)
+        self.margin = ft.margin.all(8)
+        self.alignment = ft.alignment.center
+        self.border_radius = ft.border_radius.all(30)
+        self.border = ft.border.all(1, ft.colors('teal900'))
+        self.expand = True
+        self.blur = (60, 60)
 
     def build(self):
+        self.on_click = lambda _: self.go_home_page()
+        self.content = ft.Row(
+            controls=[
+                ft.Container(
+                    content=ft.Column(
+                        controls=[
+                            price_container(),
+                            wallet_container(),
+                        ])
+                ),
+                InfoProyect(),
+            ],)
 
-        Drop_SponsorPage = ft.Container(
-            ink=False,
-            bgcolor=ft.colors('black12'),
-            padding=ft.padding.all(32),
-            margin=ft.margin.all(8),
-            alignment=ft.alignment.center,
-            border_radius=ft.border_radius.all(30),
-            border=ft.border.all(1, ft.colors('teal900')),
-            expand=True,
-            blur=(60, 60),
-            content=ft.Row(
-                controls=[
-                    ft.Container(
-                        content=ft.Column(
-                            controls=[
-                                price_container(),
-                                wallet_container(),
-                            ])
-                    ),
-                    InfoProyect(),
-                ],),
-        )
-        return Drop_SponsorPage
+    def go_home_page(self):
+        self.page.go('/')
 
 
 if __name__ == '__main__':

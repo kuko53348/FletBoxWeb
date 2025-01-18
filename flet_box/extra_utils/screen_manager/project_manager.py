@@ -32,9 +32,9 @@ class code_editor(ft.Container):
         self.bgcolor = ft.Colors.with_opacity(0.05, ft.colors('white'))
 
         self.Markdown=ft.Markdown(
+            value=self.md_code,
             scale=0.998,
             opacity=self.opacity_markdown,
-            value=self.md_code,
             extension_set=ft.MarkdownExtensionSet.GITHUB_WEB, # COMMON_MARK ,GITHUB_FLAVORED ,GITHUB_WEB
             code_theme=ft.MarkdownCodeTheme.GRUVBOX_DARK,
             code_style_sheet=ft.MarkdownStyleSheet(code_text_style=ft.TextStyle(font_family='Roboto Mono'),),
@@ -84,7 +84,7 @@ class code_editor(ft.Container):
                                     ft.IconButton(
                                         bgcolor=ft.Colors.with_opacity(opacity=0.2,color='yellow'),
                                         icon="copy",
-                                        on_click=lambda widget: self.copy_widget_template(),
+                                        on_click=lambda widget: self.copy_widget_template(markdown_text=self.Markdown.value),
                                     ),
                                 ]
                             ),
@@ -97,11 +97,14 @@ class code_editor(ft.Container):
             ]
         )
 
-    def copy_widget_template(self,):
+    def copy_widget_template(self,markdown_text) -> None:
+        markdown_text = markdown_text.strip('```python').strip('```')
+        self.page.set_clipboard(value=markdown_text)
+
         self.alert_dialog = self.page.session.get('on_dev')
         self.alert_dialog(
-            name_seccion='Save App code',
-            body_string='This is only demo preview will be aviable very soon'
+            name_seccion='Code was saved',
+            body_string='[+] Module was saved paste a in a new file and run your flet App\n[+] Run Code:\n[+]>>> flet module_name.py'
         )
 
     def hide_main_widget(self, widget: object=None) -> None:

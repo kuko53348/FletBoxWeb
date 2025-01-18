@@ -2,6 +2,7 @@ import re
 import requests
 import flet as ft
 from datetime import datetime
+
 from ..external_library.sqlite_db import sqlite_db
 from ..external_library.library_email import send_email
 
@@ -1047,6 +1048,7 @@ class about_flet_box(ft.Container):
     def build(self):
         self.content = ft.Container(
             ink=False,
+            expand = True,
             padding=ft.padding.all(16),
             margin=ft.margin.all(8),
             alignment=ft.alignment.center,
@@ -1133,7 +1135,7 @@ class middle_body(ft.Container):
         super().__init__()
         self.page = page
 
-        # self.expand = True
+        self.expand = True
         self.ink = False
         self.padding = ft.padding.all(0)
         self.margin = ft.margin.all(0)
@@ -1151,7 +1153,129 @@ class middle_body(ft.Container):
             ]
         )
 
+class header_container(ft.Container):
+    def __init__(self, page: object = None):
+        super().__init__()
+        self.page = page
+        self.ink = False
+        self.padding = ft.padding.all(16)
+        self.margin = ft.margin.all(8)
+        self.alignment = ft.alignment.center
+        self.expand=True
+        # self.height = 50
+        # print(self.page)
 
+    def build(self):
+        self.container_login = ft.Row(
+            # scroll="ALWAYS",
+            alignment=ft.MainAxisAlignment.END,
+            vertical_alignment=ft.CrossAxisAlignment.END,
+            controls=[
+                ft.Container(
+                    padding=ft.padding.only(left=12,right=12),
+                    border_radius=ft.border_radius.all(8),
+                    content=ft.Text(
+                        size=28,
+                        weight=ft.FontWeight.BOLD,
+                        value="Gallery"),
+                    # on_click=lambda _:self.page.set_clipboard(value='hello'),
+                ),
+                ft.Container(
+                    padding=ft.padding.only(left=12,right=12),
+                    border_radius=ft.border_radius.all(8),
+                    ink=True,
+                    ink_color='yellow',
+                    content=ft.Text(
+                        size=28,
+                        weight=ft.FontWeight.BOLD,
+                        value="About"),
+                    on_click=lambda _:self.about_place(),
+                ),
+                ft.Container(
+                    padding=ft.padding.only(left=12,right=12),
+                    border_radius=ft.border_radius.all(8),
+                    ink=True,
+                    ink_color='yellow',
+                    content=ft.Text(
+                        size=28,
+                        weight=ft.FontWeight.BOLD,
+                        value="Donation"),
+                    on_click=lambda _:self.sponsor_place(),
+                ),
+
+            ]
+        )
+        self.content=ft.Container(
+            # blur = (16,16),
+            content=self.container_login,
+        )
+
+    def market_place(self):
+        ...
+
+    def about_place(self):
+        self.page.go('/about_page')
+
+    def sponsor_place(self):
+        self.page.go('/sponsor_page')
+
+class footer_container(ft.Container):
+    def __init__(self, page: object = None):
+        super().__init__()
+        self.page = page
+        self.ink = False
+        self.padding = ft.padding.all(0)
+        self.margin = ft.margin.all(0)
+        self.alignment = ft.alignment.center
+        self.expand=True
+        # print(self.page)
+
+    def build(self):
+        self.container_login = ft.Row(
+            # scroll="ALWAYS",
+            alignment=ft.MainAxisAlignment.CENTER,
+            vertical_alignment=ft.CrossAxisAlignment.CENTER,
+            controls=[
+                ft.Container(
+                    ink=False,
+                    padding=ft.padding.all(0),
+                    margin=ft.margin.all(0),
+                    alignment=ft.alignment.center,
+                    content=ft.Row(
+                        controls=[
+                            ft.IconButton(
+                                # icon_color='blue',
+                                icon=ft.icons('discord'),
+                                tooltip='@legend_53348#0000',),
+                            ft.IconButton(
+                                # icon_color='green',
+                                icon=ft.icons('chat'),
+                                tooltip='WHATSAPP GROUP',
+                                url='https://chat.whatsapp.com/ELFB8fSbdMS2chOjXiYAMo'),
+                            ft.IconButton(
+                                # icon_color='blue',
+                                icon=ft.icons('email_rounded'),
+                                tooltip='xavier53348@gmail.com',
+                                url='mailto:xavier53348@gmail.com'),
+                            ft.IconButton(
+                                # icon_color='blue',
+                                icon=ft.icons('phone'),
+                                tooltip='(+53) 54448442',),
+                            ft.IconButton(
+                                # icon_color='red',
+                                icon=ft.icons('video_collection'),
+                                tooltip='YOUTUBE',
+                                url='https://www.youtube.com/@flet-box'),
+                        ],),
+                ),
+            ]
+        )
+        self.content=ft.Container(
+            # expand=True,
+            # blur = (16,16),
+
+            content=self.container_login,
+        )
 class login_page(ft.Container):
     def __init__(self, page: object = None):
         super().__init__()
@@ -1170,16 +1294,25 @@ class login_page(ft.Container):
         # print(self.page)
 
     def build(self):
+        self.divider_line =  ft.Container(expand=True )
         self.container_login = ft.Column(
-            # scroll="ALWAYS",
-            alignment=ft.MainAxisAlignment.CENTER,
+            scroll="Hidden",
+            alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
             horizontal_alignment=ft.CrossAxisAlignment.CENTER,
             controls=[
+                header_container(page=self.page),
+                self.divider_line,
+
                 middle_body(page=self.page),
+
+                self.divider_line,
+                footer_container(page=self.page),
+
             ]
         )
         self.content=ft.Container(
-            # expand=True,
+            expand=True,
+            expand_loose=True,
             blur = (16,16),
 
             content=self.container_login,

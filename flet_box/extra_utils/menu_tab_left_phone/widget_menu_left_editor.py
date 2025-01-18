@@ -21,7 +21,7 @@ class MenuLeftContainer(ft.Stack):
         self.page = page
         self.padding = ft.padding.all(0)
         self.margin = ft.margin.all(0)
-
+        # self.expand = True
         self.phone_container = phone_container
         self.menu_right_container = menu_right_container
         # self.data_view = WrapWidgetNode()
@@ -29,6 +29,7 @@ class MenuLeftContainer(ft.Stack):
 
     def build(self):
         self.eye_icon = ft.IconButton(
+            tooltip='Hide Dragg Container',
             icon=ft.icons('remove_red_eye'),
             on_click=lambda _: self.show_pone_container(
                 phone_container=self.phone_container,
@@ -36,7 +37,7 @@ class MenuLeftContainer(ft.Stack):
         )
         self.eye_icon_edit = ft.IconButton(
             # phone_container= self.phone_container,
-            tooltip="CLOSE EDIT WIDGET",
+            tooltip="Hide widget editor",
             icon=ft.icons('edit_square'),
             bgcolor="RED,0.2",
             icon_color="RED,0.8",
@@ -84,86 +85,116 @@ class MenuLeftContainer(ft.Stack):
             ),
             content=ft.Column(
                 horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+                # alignment=ft.MainAxisAlignment.SPACE_EVENLY,
+                spacing=32,
                 controls=[
-                    self.eye_icon,
-                    self.eye_icon_edit,
-
-                    ft.Container(height=8),
                     ft.Container(
-                        expand=True,
-                        ink=False,
-                        padding=ft.padding.all(0),
-                        margin=ft.margin.all(0),
-                        alignment=ft.alignment.center,
+                        # bgcolor=ft.Colors.with_opacity(opacity=0.2,color=ft.colors('red')),
                         content=ft.Column(
-                            alignment=ft.MainAxisAlignment.CENTER,
-                            horizontal_alignment=ft.CrossAxisAlignment.CENTER,
-                            spacing=8,
                             controls=[
                                 ft.Container(
-                                    alignment=ft.alignment.center,
-                                    tooltip="ICONS",
                                     content=ft.IconButton(
-                                        icon=ft.icons('add_reaction_outlined'),
-                                        on_click=lambda _: self.show_widgets(
-                                            show_widget="icon_browser"
-                                        ),
-                                    ),
-                                    border=ft.border.all(
-                                        1, ft.colors('cyan800')),
-                                    bgcolor=ft.colors("black45"),
-                                    height=self.width_height,
-                                    width=self.width_height,
-                                    border_radius=ft.border_radius.all(42),
+                                        tooltip='User',
+                                        icon='supervised_user_circle_rounded',
+                                        bgcolor='Black12',
+                                        # on_click=lambda _:self.page.go('/')
+                                    )
                                 ),
                                 ft.Container(
-                                    alignment=ft.alignment.center,
-                                    tooltip="COLORS",
                                     content=ft.IconButton(
-                                        icon=ft.icons('color_lens_outlined'),
-                                        on_click=lambda _: self.show_widgets(
-                                            show_widget="color_browser"
-                                        ),
-                                    ),
-                                    border=ft.border.all(
-                                        1, ft.colors('cyan800')),
-                                    bgcolor=ft.colors("black45"),
-                                    height=self.width_height,
-                                    width=self.width_height,
-                                    border_radius=ft.border_radius.all(42),
+                                        tooltip='Closing App',
+                                        icon='exit_to_app_rounded',
+                                        icon_color='red',
+                                        on_click=lambda _:self.page.go('/')
+                                    )
                                 ),
-                                ft.Container(
-                                    alignment=ft.alignment.center,
-                                    tooltip="CODE",
-                                    content=ft.IconButton(
-                                        icon=ft.icons('code_rounded'),
-                                        on_click=lambda _: self.show_widgets(
-                                            show_widget="text_editor"
-                                        ),
-                                    ),
-                                    border=ft.border.all(
-                                        1, ft.colors('cyan800')),
-                                    bgcolor=ft.colors("black45"),
-                                    height=self.width_height,
-                                    width=self.width_height,
-                                    border_radius=ft.border_radius.all(42),
-                                ),
-                                ft.Container(
-                                    alignment=ft.alignment.center,
-                                    tooltip="TREE",
-                                    content=ft.IconButton(
-                                        icon=ft.icons('account_tree_rounded'),
-                                        on_click=lambda _: self.show_widgets(
-                                            show_widget="tree_view"
-                                        ),
-                                    ),
-                                    border=ft.border.all(
-                                        1, ft.colors('cyan800')),
-                                    bgcolor=ft.colors("black45"),
-                                    height=self.width_height,
-                                    width=self.width_height,
-                                    border_radius=ft.border_radius.all(42),
-                                ),
+                            ]
+                        )
+                    ),
+                    ft.Container(
+                        content=ft.Column(
+                            controls=[
+                                self.eye_icon,
+                                self.eye_icon_edit,
+                            ]
+                        )
+                    ),
+                    ft.Container(height=8),
+                    # ft.Container(
+                    #     expand=True,
+                    #     ink=False,
+                    #     padding=ft.padding.all(0),
+                    #     margin=ft.margin.all(0),
+                    #     alignment=ft.alignment.center,
+                    #     content=ft.Column(
+                    #         alignment=ft.MainAxisAlignment.CENTER,
+                    #         horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+                    #         spacing=8,
+                    #         controls=[
+                    #             ft.Container(
+                    #                 alignment=ft.alignment.center,
+                    #                 tooltip="ICONS",
+                    #                 content=ft.IconButton(
+                    #                     icon=ft.icons('add_reaction_outlined'),
+                    #                     on_click=lambda _: self.show_widgets(
+                    #                         show_widget="icon_browser"
+                    #                     ),
+                    #                 ),
+                    #                 border=ft.border.all(
+                    #                     1, ft.colors('cyan800')),
+                    #                 bgcolor=ft.colors("black45"),
+                    #                 height=self.width_height,
+                    #                 width=self.width_height,
+                    #                 border_radius=ft.border_radius.all(42),
+                    #             ),
+                    #             ft.Container(
+                    #                 alignment=ft.alignment.center,
+                    #                 tooltip="COLORS",
+                    #                 content=ft.IconButton(
+                    #                     icon=ft.icons('color_lens_outlined'),
+                    #                     on_click=lambda _: self.show_widgets(
+                    #                         show_widget="color_browser"
+                    #                     ),
+                    #                 ),
+                    #                 border=ft.border.all(
+                    #                     1, ft.colors('cyan800')),
+                    #                 bgcolor=ft.colors("black45"),
+                    #                 height=self.width_height,
+                    #                 width=self.width_height,
+                    #                 border_radius=ft.border_radius.all(42),
+                    #             ),
+                    #             ft.Container(
+                    #                 alignment=ft.alignment.center,
+                    #                 tooltip="CODE",
+                    #                 content=ft.IconButton(
+                    #                     icon=ft.icons('code_rounded'),
+                    #                     on_click=lambda _: self.show_widgets(
+                    #                         show_widget="text_editor"
+                    #                     ),
+                    #                 ),
+                    #                 border=ft.border.all(
+                    #                     1, ft.colors('cyan800')),
+                    #                 bgcolor=ft.colors("black45"),
+                    #                 height=self.width_height,
+                    #                 width=self.width_height,
+                    #                 border_radius=ft.border_radius.all(42),
+                    #             ),
+                    #             ft.Container(
+                    #                 alignment=ft.alignment.center,
+                    #                 tooltip="TREE",
+                    #                 content=ft.IconButton(
+                    #                     icon=ft.icons('account_tree_rounded'),
+                    #                     on_click=lambda _: self.show_widgets(
+                    #                         show_widget="tree_view"
+                    #                     ),
+                    #                 ),
+                    #                 border=ft.border.all(
+                    #                     1, ft.colors('cyan800')),
+                    #                 bgcolor=ft.colors("black45"),
+                    #                 height=self.width_height,
+                    #                 width=self.width_height,
+                    #                 border_radius=ft.border_radius.all(42),
+                    #             ),
                                 # ft.Container(
                                 #     alignment=ft.alignment.center,
                                 #     tooltip="GIT-HUB",
@@ -188,9 +219,9 @@ class MenuLeftContainer(ft.Stack):
                                 #     width         = self.width_height,
                                 #     border_radius = ft.border_radius.all(42)
                                 #     ),
-                            ],
-                        ),
-                    ),
+                            # ],
+                        # ),
+                    # ),
                     # ft.Container(
                     #     alignment=ft.alignment.center,
                     #     tooltip="LOAD FILE",
@@ -207,38 +238,46 @@ class MenuLeftContainer(ft.Stack):
                     #     width=self.width_height,
                     #     border_radius=ft.border_radius.all(42),
                     # ),
+
                     ft.Container(
-                        alignment=ft.alignment.center,
-                        tooltip="MARKET PLACE",
-                        content=ft.IconButton(
-                            icon=ft.icons('local_grocery_store_rounded'),
-                            on_click=lambda _: self.show_widgets(
-                                show_widget="MARKET PLACE"
-                            ),
-                        ),
-                        border=ft.border.all(1, ft.colors('cyan200')),
-                        # bgcolor=ft.colors("black45"),
-                        bgcolor="purple,0.2",
-                        height=self.width_height,
-                        width=self.width_height,
-                        border_radius=ft.border_radius.all(42),
+                        content=ft.Column(
+                            controls=[
+                                ft.Container(
+                                    alignment=ft.alignment.center,
+                                    tooltip="MARKET PLACE",
+                                    content=ft.IconButton(
+                                        icon=ft.icons('local_grocery_store_rounded'),
+                                        on_click=lambda _: self.show_widgets(
+                                            show_widget="MARKET PLACE"
+                                        ),
+                                    ),
+                                    border=ft.border.all(1, ft.colors('cyan200')),
+                                    # bgcolor=ft.colors("black45"),
+                                    bgcolor="purple,0.2",
+                                    height=self.width_height,
+                                    width=self.width_height,
+                                    border_radius=ft.border_radius.all(42),
+                                ),
+                                ft.Container(
+                                    alignment=ft.alignment.center,
+                                    tooltip="SAVE PROJECT",
+                                    content=ft.IconButton(
+                                        icon=ft.icons('save_outlined'),
+                                        on_click=lambda _: self.show_widgets(
+                                            show_widget="save_project"
+                                        ),
+                                    ),
+                                    border=ft.border.all(1, ft.colors('cyan200')),
+                                    # bgcolor=ft.colors("black45"),
+                                    bgcolor="Green,0.2",
+                                    height=self.width_height,
+                                    width=self.width_height,
+                                    border_radius=ft.border_radius.all(42),
+                                ),
+                            ]
+                        )
                     ),
-                    ft.Container(
-                        alignment=ft.alignment.center,
-                        tooltip="SAVE PROJECT",
-                        content=ft.IconButton(
-                            icon=ft.icons('save_outlined'),
-                            on_click=lambda _: self.show_widgets(
-                                show_widget="save_project"
-                            ),
-                        ),
-                        border=ft.border.all(1, ft.colors('cyan200')),
-                        # bgcolor=ft.colors("black45"),
-                        bgcolor="Green,0.2",
-                        height=self.width_height,
-                        width=self.width_height,
-                        border_radius=ft.border_radius.all(42),
-                    ),
+
                     # ft.IconButton(icon=ft.icons.SETTINGS),
                 ],
             ),
@@ -281,7 +320,8 @@ class MenuLeftContainer(ft.Stack):
 
         if show_widget == "icon_browser":
             # NEED IMPLEMENT YET
-            self.page.go('/SponsorPage')
+            # self.page.go('/SponsorPage')
+            ...
 
         if show_widget == "MARKET PLACE":
             # NEED IMPLEMENT YET
