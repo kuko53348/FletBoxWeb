@@ -349,7 +349,7 @@ class flet_box:
             self.page.go('/congratulation')        # <<< TO TESTING
         """
         page = page
-
+        # kuko533486@gmail.com
         if runing_online_server:
             page.session.set('api_server','https://kuko53348.pythonanywhere.com/')
             page.session.set('flet_box_api',True)
@@ -357,11 +357,12 @@ class flet_box:
 
         else:
             # if runing_offline is true will be locally
-            page.session.set('api_server','http://127.0.0.1:8080/')
+            page.session.set('api_server','http://0.0.0.0:8080/')
             page.session.set('flet_box_api',True)
 
+            # page.go('/')             # <<< TO TESTING
             page.go('/home')             # <<< TO TESTING
-            page.session.set('user_name', {'user_name': 'kuko53348'})
+            # page.session.set('user_name', {'user_name': 'kuko53348'})
 
 
     def setting_only_append_controls(self):

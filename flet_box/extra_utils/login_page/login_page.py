@@ -876,7 +876,7 @@ class formulary_register(ft.Container):
             is_valid_email = self.check_email(email=self.email_register_str)
 
             if self.page.session.get('flet_box_api'):
-                tmp_data = request_session.get(f'{self.page.session.get("api_server")}/validation_account',params={'user_name': self.user_register_str.strip(),'user_email':self.email_register_str.strip()})
+                tmp_data = request_session.get(f'{self.page.session.get("api_server")}/validation_account',params={'user_name': self.user_register_str,'user_email':self.email_register_str})
                 data_returned = tmp_data.json()
 
                 if is_valid_email:
@@ -886,8 +886,8 @@ class formulary_register(ft.Container):
                     self.validate = data_returned.get('validated_account',False)
                     if self.validate:
                         # REGISTER ACCOUNT
-                        validation = {'user_name': self.user_register_str.strip(),'user_email':self.email_register_str.strip(), 'user_password': self.password_register_str.strip()}
-                        request_session.post(f'{self.page.session.get("api_server")}validation_account',params=validation)
+                        validation = {'user_name': str(self.user_register_str),'user_email':str(self.email_register_str), 'user_password': str(self.password_register_str)}
+                        requests.post(f'{self.page.session.get("api_server")}register_account',params=validation)
 
                         self.middle_box.content.controls.pop()
                         self.middle_box.content.controls.append(

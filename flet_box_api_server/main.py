@@ -13,8 +13,8 @@ PATH_DB: str = "flet_box_api_server/flet_box_database/flet_box_database.db"
 
 app = FastAPI()
 
-# show_hide_shemas: bool =True # Will show hidden shemas
-show_hide_shemas: bool =False
+show_hide_shemas: bool =True # Will show hidden shemas
+# show_hide_shemas: bool =False
 
 # APP TAGS
 app.title: str = "Flet Box Api"
@@ -196,7 +196,8 @@ async def register_account(user_name: str = "", user_email: str = "", user_passw
     ```
     """
     # kuko53348@gmail.com
-
+    # kuko5335548@gmail.com
+    print('[] >>>>> hello')
     # WRITE DATA IN REGISTER TABLE
     sqlite_obj = sqlite_db(path_db=PATH_DB)
     sqlite_obj.write_data(
