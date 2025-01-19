@@ -363,7 +363,7 @@ class sponsor_page(ft.Container):
         self.margin = ft.margin.all(8)
         self.alignment = ft.alignment.center
         self.border_radius = ft.border_radius.all(30)
-        self.border = ft.border.all(1, ft.colors('teal900'))
+        self.border = ft.border.all(1, ft.colors('white12'))
         self.expand = True
         self.blur = (60, 60)
 

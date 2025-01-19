@@ -1172,6 +1172,19 @@ class header_container(ft.Container):
             vertical_alignment=ft.CrossAxisAlignment.END,
             controls=[
                 ft.Container(
+                    ink=True,
+                    ink_color='yellow',
+                    padding=ft.padding.only(left=12,right=12),
+                    border_radius=ft.border_radius.all(8),
+                    url='https://www.youtube.com/watch?v=zhkZSDT7G64&list=PLf-eyYYdB6O-DZ33CXECbKqr8txkl4Wew',
+                    content=ft.Text(
+                        size=28,
+                        weight=ft.FontWeight.BOLD,
+                        value='Tutorials',)
+                ),
+                ft.Container(
+                    ink=True,
+                    ink_color='yellow',
                     padding=ft.padding.only(left=12,right=12),
                     border_radius=ft.border_radius.all(8),
                     content=ft.Text(
@@ -1181,10 +1194,10 @@ class header_container(ft.Container):
                     # on_click=lambda _:self.page.set_clipboard(value='hello'),
                 ),
                 ft.Container(
-                    padding=ft.padding.only(left=12,right=12),
-                    border_radius=ft.border_radius.all(8),
                     ink=True,
                     ink_color='yellow',
+                    padding=ft.padding.only(left=12,right=12),
+                    border_radius=ft.border_radius.all(8),
                     content=ft.Text(
                         size=28,
                         weight=ft.FontWeight.BOLD,
@@ -1192,10 +1205,10 @@ class header_container(ft.Container):
                     on_click=lambda _:self.about_place(),
                 ),
                 ft.Container(
-                    padding=ft.padding.only(left=12,right=12),
-                    border_radius=ft.border_radius.all(8),
                     ink=True,
                     ink_color='yellow',
+                    padding=ft.padding.only(left=12,right=12),
+                    border_radius=ft.border_radius.all(8),
                     content=ft.Text(
                         size=28,
                         weight=ft.FontWeight.BOLD,
@@ -1245,16 +1258,20 @@ class footer_container(ft.Container):
                         controls=[
                             ft.IconButton(
                                 # icon_color='blue',
+                                tooltip='@legend_53348#0000',
                                 icon=ft.icons('discord'),
-                                tooltip='@legend_53348#0000',),
+                                url='https://discord.com/channels/@me/@legend_53348'),
                             ft.IconButton(
-                                # icon_color='green',
-                                icon=ft.icons('chat'),
-                                tooltip='WHATSAPP GROUP',
+                                icon=ft.icons('flutter_dash_rounded'),
+                                tooltip='Github',
+                                url='https://github.com/xavier53348/Flet-Box.git'),
+                            ft.IconButton(
+                                icon=ft.icons('speaker_notes_rounded'),
+                                tooltip='Whatsapp Group',
                                 url='https://chat.whatsapp.com/ELFB8fSbdMS2chOjXiYAMo'),
                             ft.IconButton(
                                 # icon_color='blue',
-                                icon=ft.icons('email_rounded'),
+                                icon=ft.icons('alternate_email_rounded'),
                                 tooltip='xavier53348@gmail.com',
                                 url='mailto:xavier53348@gmail.com'),
                             ft.IconButton(
@@ -1263,9 +1280,10 @@ class footer_container(ft.Container):
                                 tooltip='(+53) 54448442',),
                             ft.IconButton(
                                 # icon_color='red',
-                                icon=ft.icons('video_collection'),
-                                tooltip='YOUTUBE',
+                                icon=ft.icons('smart_display_rounded'),
+                                tooltip='Youtube channel',
                                 url='https://www.youtube.com/@flet-box'),
+
                         ],),
                 ),
             ]

@@ -39,12 +39,9 @@ class profile_container(ft.Container):
                     content=ft.Row(
                         controls=[
                             ft.IconButton(
-                                icon=ft.icons('facebook'),
-                                tooltip='FACEBOOK',
-                                url='https://facebook.com/groups/315046001621078/?mibextid=rS40aB7S9Ucbxw6v',),
-                            ft.IconButton(
                                 icon=ft.icons('discord'),
-                                tooltip='@legend_53348#0000',),
+                                tooltip='@legend_53348#0000',
+                                url='https://discord.com/channels/@me/@legend_53348'),
                             ft.IconButton(
                                 icon=ft.icons('chat'),
                                 tooltip='WHATSAPP GROUP',
