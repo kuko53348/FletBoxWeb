@@ -1,11 +1,36 @@
 import json
 import re
 import requests
+import flet as ft
 
+from ..external_library.async_requests import async_requests
 from .widget_templates import widget_templates
 from ..external_library.sqlite_db import sqlite_db
 
 request_session = requests.Session()
+
+def on_developing(self, name_seccion: str = str(), body_string: str = str()):
+    # NEED IMPLEMENT YET
+    if body_string == "":
+        self.data = f"""Hello, User!\n\n{name_seccion.upper()}\n{body_string}"""
+    else:
+        # self.data = body_string
+        self.data = f"""Hello, User!\n\n{name_seccion.upper()}\n\n{body_string}"""
+
+    self.dialog_alert = ft.AlertDialog(
+        on_dismiss=lambda e: print("Dialog dismissed!"),
+        title=ft.Text(
+            value=self.data,
+            size=15
+        ),
+    )
+    if self.page.overlay:
+        self.page.overlay.pop()
+
+    self.page.overlay.insert(0, self.dialog_alert)
+    self.page.overlay[0].open = True
+    self.page.update()
+    # print(self.page.overlay)
 
 class refactory_flet_box:
     """
@@ -761,30 +786,50 @@ class refactory_flet_box:
                 self.dragg_template = self.dragg_template.replace("'",'"')
                 self.app_dragg_template = self.app_dragg_template.replace("'",'"')
 
-                data_returned = request_session.put(f'{self.page.session.get("api_server")}update_widgets',
-                                                    data=json.dumps({
-                                                        'user_name': self.user_name,
-                                                        'dragg_widget' : self.dragg_template,
-                                                        'app_widget' : self.app_dragg_template,
+                try:
+                    data_returned = request_session.put(f'{self.page.session.get("api_server")}update_widgets',
+                                                        data=json.dumps({
+                                                            'user_name': self.user_name,
+                                                            'dragg_widget' : self.dragg_template,
+                                                            'app_widget' : self.app_dragg_template,
 
-                                                    }))
-                # print(data_returned.text)
+                                                        }))
+                except Exception as e:
+                    # kuko53348@gmail.com
+                    on_developing(
+                            self=self,
+                            name_seccion='Connection Error',
+                            body_string="Connection error between render.com and endpoint pythoneverywhere.com\nTry agan in flew seconds "
+                        )
+
+                    save_project_module = False
+                    return False
+
                 if save_project_module:
                     # print('testing save project')
+                    try:
+                        data_request: dict={
+                            'user_name':self.user_name,
+                            'project_tab':column_tab_db,
+                            'name_project':name_project_db,
+                            'ranking_app':'0',
+                            'dragg_screen':self.dragg_template,
+                            'app_screen':self.app_dragg_template,
+                            'time_created':time_created_db
+                        }
 
-                    data_request: dict={
-                        'user_name':self.user_name,
-                        'project_tab':column_tab_db,
-                        'name_project':name_project_db,
-                        'ranking_app':'0',
-                        'dragg_screen':self.dragg_template,
-                        'app_screen':self.app_dragg_template,
-                        'time_created':time_created_db
-                    }
+                        data_module_returned = request_session.post(f'{self.page.session.get("api_server")}save_module_widgets',
+                                        data=json.dumps(data_request))
+                    except Exception as e:
+                        # kuko53348@gmail.com
+                        on_developing(
+                                self=self,
+                                name_seccion='Connection Error',
+                                body_string="Connection error between render.com and endpoint pythoneverywhere.com\nTry agan in flew seconds "
+                            )
 
-                    data_module_returned = request_session.post(f'{self.page.session.get("api_server")}save_module_widgets',
-                                    data=json.dumps(data_request))
-
+                        save_project_module = False
+                        return False
             else:
                 # WRITE DATA TO LOCAL DB BUT NOT WRITE IN PROJECT
                 sqlite_obj = sqlite_db()

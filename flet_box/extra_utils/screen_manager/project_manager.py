@@ -7,8 +7,32 @@ request_session = requests.Session()
 testing = False
 
 # COMENT THIS 2 LINES IN TESTING
+from ..external_library.async_requests import async_requests
 from ..external_library.sqlite_db import sqlite_db
 # testing = True
+
+def on_developing(self, name_seccion: str = str(), body_string: str = str()):
+    # NEED IMPLEMENT YET
+    if body_string == "":
+        self.data = f"""Hello, User!\n\n{name_seccion.upper()}\n{body_string}"""
+    else:
+        # self.data = body_string
+        self.data = f"""Hello, User!\n\n{name_seccion.upper()}\n\n{body_string}"""
+
+    self.dialog_alert = ft.AlertDialog(
+        on_dismiss=lambda e: print("Dialog dismissed!"),
+        title=ft.Text(
+            value=self.data,
+            size=15
+        ),
+    )
+    if self.page.overlay:
+        self.page.overlay.pop()
+
+    self.page.overlay.insert(0, self.dialog_alert)
+    self.page.overlay[0].open = True
+    self.page.update()
+    # print(self.page.overlay)
 
 class code_editor(ft.Container):
     opacity_markdown: float= 0.9
@@ -18,8 +42,10 @@ class code_editor(ft.Container):
         paren_widget: object = None,
         md_code: str=str(),
         visible: bool=False,
+        page: object=None,
         ):
         super().__init__()
+        self.page=page
         self.visible = visible
         self.paren_widget = paren_widget
         self.margin = ft.margin.all(0)
@@ -225,6 +251,9 @@ class lite_screen_manager(ft.Container):
 
     def update_drop_items(self):
         self.list_user_screen()
+        if not self.obtion_list:
+            return
+
         self.drop_down.options = [
             ft.dropdown.Option(key=f"Screen number: {self.obtion_list[0]}"),
             # ft.dropdown.Option(key=f"Screen number: {_}") for _ in self.obtion_list
@@ -241,9 +270,27 @@ class lite_screen_manager(ft.Container):
             # print(self.session_user_name)
             # return
 
-            data_returned = request_session.get(f'{self.page.session.get("api_server")}get_widgets', params={'user_name': self.session_user_name})
+            # data_returned = request_session.get(f'{self.page.session.get("api_server")}get_widgets', params={'user_name': self.session_user_name})
 
-            for index, _ in enumerate(data_returned.json()):
+            # kuko53348@gmail.com
+            payload={'user_name': self.session_user_name}
+            data_returned = async_requests(
+                type='get',
+                path='get_widgets',
+                url=self.page.session.get("api_server"),
+                payload=payload,
+            )
+
+            if not data_returned:
+                on_developing(
+                        self=self,
+                        name_seccion='Connection Error',
+                        body_string="Connection error between render.com and endpoint pythoneverywhere.com\nTry agan in flew seconds "
+                    )
+
+                return
+
+            for index, _ in enumerate(data_returned):
                 if not _ == "None" and index > 0:
                     print(f'index {index} Container')
                     self.obtion_list.append(index) # self.obtion_list.append(index)
@@ -277,9 +324,28 @@ class lite_screen_manager(ft.Container):
         self.tmp_session_user_name = self.page.session.get('user_name').get('user_name')
 
         if self.page.session.get('flet_box_api'):
-            data_returned = request_session.get(f'{self.page.session.get("api_server")}get_widgets', params={'user_name': self.tmp_session_user_name})
-            self.data_selected = data_returned.json()[1]
-            self.app_data_selected = data_returned.json()[2]
+            # data_returned = request_session.get(f'{self.page.session.get("api_server")}get_widgets', params={'user_name': self.tmp_session_user_name})
+            # self.data_selected = data_returned.json()[1]
+            # self.app_data_selected = data_returned.json()[2]
+            # kuko53348@gmail.com
+            payload={'user_name': self.tmp_session_user_name}
+            data_returned = async_requests(
+                type='get',
+                path='get_widgets',
+                url=self.page.session.get("api_server"),
+                payload=payload,
+            )
+
+            if not data_returned:
+                # on_developing = self.page.session.get('on_dev')
+                # on_developing(
+                #         self=self.page,
+                #         name_seccion='Connection Error',
+                #         body_string="Connection error between render.com and endpoint pythoneverywhere.com\nTry agan in flew seconds "
+                #     )
+                return
+            self.data_selected = data_returned[1]
+            self.app_data_selected = data_returned[2]
 
         else:
             sqlite_obj = sqlite_db()
@@ -895,6 +961,24 @@ class project_manager(ft.Stack):
 
                 data_returned = request_session.get(f'{self.page.session.get("api_server")}get_projects_widgets', params={'table_name': table_name})
                 data_returned = data_returned.json()
+
+                # kuko53348@gmail.com
+                # payload={'table_name': table_name}
+                # data_returned = async_requests(
+                #     type='get',
+                #     path='get_projects_widgets',
+                #     url=self.page.session.get("api_server"),
+                #     payload=payload,
+                # )
+
+                # if not data_returned:
+                #     on_developing(
+                #             self=self,
+                #             name_seccion='Connection Error',
+                #             body_string="Connection error between render.com and endpoint pythoneverywhere.com\nTry agan in flew seconds "
+                #         )
+
+                #     return
 
             except Exception as error:
                 import os

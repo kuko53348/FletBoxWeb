@@ -249,15 +249,14 @@ class menu_save_container(ft.Container):
 
         # save_project_module will set save as a module True
 
-        self.save_project(
+        data_returned = self.save_project(
                 save_project_module=True,
                 column_tab_db=column_tab,
                 name_project_db=project_name,
                 time_created_db=str(datetime.now())
         )
-
-        # self.go_home_page()
-        self.page.go('/congratulation')
+        if data_returned:
+            self.page.go('/congratulation')
 
     def save_project(self,save_project_module: bool= False , column_tab_db: str=str(), name_project_db: str=str(), time_created_db: str=str()):
 
@@ -299,7 +298,7 @@ class menu_save_container(ft.Container):
             # one_file=True, will have all in one screen
 
             # ONLY APP WIDGET
-            code_returned.save_all_data(
+            data_returned = code_returned.save_all_data(
                         save_project_module=save_project_module,
                         one_file=True,
 
@@ -313,7 +312,7 @@ class menu_save_container(ft.Container):
 
         else:
 
-            code_returned.save_all_data(
+            data_returned = code_returned.save_all_data(
                         screen_name='main_screen',
                         container_attributes=self.dict_attributes,
                         one_file=True,
@@ -322,7 +321,11 @@ class menu_save_container(ft.Container):
         # self.save_column.visible=False
         # self.congratulation_container.visible=True
         # self.update()
-        self.page.go('/congratulation')
+        if data_returned == None:
+            # print('<<<<<<<<< here')
+            self.page.go('/congratulation')
+        else:
+            return False
 
 if __name__ == '__main__':
     def main(page: ft.Page):
