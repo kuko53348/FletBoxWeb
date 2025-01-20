@@ -323,7 +323,10 @@ class menu_save_container(ft.Container):
         # self.update()
         if data_returned == None:
             # print('<<<<<<<<< here')
-            self.page.go('/congratulation')
+            try:
+                self.page.go('/congratulation')
+            except Exception as e:
+                return
         else:
             return False
 

@@ -27,7 +27,26 @@ phone_style_widget: dict = {
 }
 
 #: STYLES IN SCREEN_STYLE
-styles = {}
+styles = {
+    "Container_22498":  {
+        "alignment":  {"x": 0, "y": 0},
+        "border":  {"l": {"w": 2, "c": "transparent"},
+                    "t": {"w": 2, "c": "transparent"},
+                    "r": {"w": 2, "c": "transparent"},
+                    "b": {"w": 2, "c": "transparent"}
+                    },
+        "height":  148,
+        "ink":  True,
+        "margin":  {"l": 0, "t": 0, "r": 0, "b": 0},
+        "padding":  {"l": 6, "t": 6, "r": 6, "b": 6},
+        "ink_color":  "red"
+    },
+    "Image_22499":  {
+        "fit":  "fill",
+        "src":  "logo.png",
+        "border_radius":  {"bl": 18.0, "br": 18.0, "tl": 18.0, "tr": 18.0}
+    }
+}
 
 
 class main_screen(ft.DragTarget):
@@ -54,6 +73,20 @@ class main_screen(ft.DragTarget):
         #: DRAGG_CONTROLS
         list_controls: list = [
             
+            #: DRAG-BOX-CONTENT [ID: 22497]
+            self.draggin_framework(
+                content=ft.Container(
+                    **self.dict_style("Container_22498"),
+                    on_click=lambda dragg_item: self.dragg_event(
+                                     selected_widget=dragg_item,),
+
+                    content=ft.Image(
+                        **self.dict_style("Image_22499"),
+                        # on_click= lambda tmp_widget: event_22499(
+                        #        payload="Image_22499",
+                        #        page= self.page ),
+                    ),
+                ),),
         ]
 
         #: DRAGGIN CONTENT WIDGETS

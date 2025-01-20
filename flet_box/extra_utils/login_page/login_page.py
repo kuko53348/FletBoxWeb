@@ -1,9 +1,6 @@
 import re
 import requests
-import json
 import flet as ft
-
-
 from datetime import datetime
 
 from ..external_library.sqlite_db import sqlite_db
@@ -282,6 +279,7 @@ class recover_login(ft.Container):
             margin=ft.margin.all(8),
             width=460,
             content=self.column_data,
+
         )
 
     def recover_email_password(self):
@@ -292,7 +290,6 @@ class recover_login(ft.Container):
             # tmp_data = request_session.get(f'{self.page.session.get("api_server")}email_recover',params={'user_email': self.payload_textfield})
             # data_returned = tmp_data.json()
 
-            # kuko53348@gmail.com
             payload={'user_email': self.payload_textfield }
             data_returned = async_requests(
                 type='get',
@@ -604,21 +601,8 @@ class formulary_login(ft.Container):
         self.pasword = self.pasword_textfield
 
         if self.page.session.get('flet_box_api'):
-            # kuko53348@gmail.com
-            payload={'user_email': self.email_user.strip(),'user_password':self.pasword.strip()}
-            data_returned = async_requests(
-                type='get',
-                path='login',
-                url=self.page.session.get("api_server"),
-                payload=payload,
-            )
-            if not data_returned:
-                on_developing(
-                        self=self,
-                        name_seccion='Connection Error',
-                        body_string="Connection error between render.com and endpoint pythoneverywhere.com\nTry agan in flew seconds "
-                    )
-                return
+            tmp_data = request_session.get(f'{self.page.session.get("api_server")}login',params={'user_email': self.email_user.strip(),'user_password':self.pasword.strip()})
+            data_returned = tmp_data.json()
 
         else:
             sqlite_obj = sqlite_db()
@@ -910,42 +894,18 @@ class formulary_register(ft.Container):
             is_valid_email = self.check_email(email=self.email_register_str)
 
             if self.page.session.get('flet_box_api'):
-                # payload={'user_name': self.user_register_str,'user_email':self.email_register_str}
-                # tmp_data = request_session.get(f'{self.page.session.get("api_server")}/validation_account',params=payload)
-                # data_returned = tmp_data.json()
-
-                # kuko53348@gmail.com
-                payload={'user_name': self.user_register_str,'user_email':self.email_register_str}
-                data_returned = async_requests(
-                    type='get',
-                    path='validation_account',
-                    url=self.page.session.get("api_server"),
-                    payload=payload,
-                )
-
-                if not data_returned:
-                    on_developing(
-                            self=self,
-                            name_seccion='Connection Error',
-                            body_string="Connection error between render.com and endpoint pythoneverywhere.com\nTry agan in flew seconds "
-                        )
-                    return
+                tmp_data = request_session.get(f'{self.page.session.get("api_server")}/validation_account',params={'user_name': self.user_register_str,'user_email':self.email_register_str})
+                data_returned = tmp_data.json()
 
                 if is_valid_email:
+                    # print(data_returned,"<<<<")
+                    # user_name = False
+                    # user_enail = False
                     self.validate = data_returned.get('validated_account',False)
                     if self.validate:
                         # REGISTER ACCOUNT
-                        # validation = {'user_name': str(self.user_register_str),'user_email':str(self.email_register_str), 'user_password': str(self.password_register_str)}
-                        # requests.post(f'{self.page.session.get("api_server")}register_account',params=validation)
-
-                        # kuko53348@gmail.com
                         validation = {'user_name': str(self.user_register_str),'user_email':str(self.email_register_str), 'user_password': str(self.password_register_str)}
-                        data_returned = async_requests(
-                            type='post',
-                            path='register_account',
-                            url=self.page.session.get("api_server"),
-                            payload=validation,
-                        )
+                        requests.post(f'{self.page.session.get("api_server")}register_account',params=validation)
 
                         self.middle_box.content.controls.pop()
                         self.middle_box.content.controls.append(
