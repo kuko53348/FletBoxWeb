@@ -16,7 +16,6 @@ from extra_utils import menu_save_container
 from extra_utils import send_email
 from extra_utils import send_attach_email
 
-from extra_utils import congratulation_menu
 from extra_utils import sponsor_page
 from extra_utils import about_page
 
@@ -284,6 +283,7 @@ class flet_box:
                     ],
                 )
             )
+
             if self.page.route == "/home":
                 self.page.views.append(
                     ft.View(
@@ -295,19 +295,6 @@ class flet_box:
                             column_container(page=self.page),
                             project_manager(page=self.page, visible=False),
                             menu_save_container(page=self.page, visible=False)
-                        ],
-                    )
-                )
-
-            if self.page.route == "/congratulation":
-                self.page.views.append(
-                    ft.View(
-                        horizontal_alignment=ft.CrossAxisAlignment.CENTER,
-                        vertical_alignment=ft.MainAxisAlignment.CENTER,
-                        padding=0,
-                        route="/congratulation",
-                        controls=[
-                            congratulation_menu(page=self.page)
                         ],
                     )
                 )
@@ -338,20 +325,28 @@ class flet_box:
                     )
                 )
 
-                self.page.update()
+                # self.page.update()
+
+            # try:
+            #     self.page.update()
+            # except Exception as e:
+            #     self.page.go('/home')
+            #     return
 
             self.page.update()
 
+                # print(e)
         # NEVER ERASE THIS INVITED PERSON
         # self.page.session.set('user_name', {'user_name': 'invited'})
+
         self.page.on_route_change=route_change
         self.page.theme_mode=ft.ThemeMode.DARK
 
         # COMENT IF WILL WORK ONLINE IN WEB          <==== ONLINE IN WEB
-        self.run_in_production(page=self.page, runing_online_server=True)
+        # self.run_in_production(page=self.page, runing_online_server=True)
 
         # COMENT IF WILL WORK ONLINE IN WEB          <==== OFFLINE IN WEB
-        # self.run_in_production(page=self.page, runing_online_server=False)
+        self.run_in_production(page=self.page, runing_online_server=False)
 
         # JUMP TO DEV ACCOUNT
         # self.page.go('/home')             # <<< TO TESTING
@@ -403,7 +398,7 @@ class flet_box:
 if __name__ == "__main__":
     ft.app(
         target = flet_box,
-        assets_dir = "assets",
+        assets_dir = "flet_box/assets/project_assets/",
         # port=8081,
         # view=ft.AppView.WEB_BROWSER, #
         # view=ft.WEB_BROWSER,

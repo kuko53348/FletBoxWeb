@@ -3,13 +3,14 @@ import os
 
 
 class PhotoSelection(ft.Container):
-    def __init__(self, photo_selection: str = "", index_data: int=int()):
+    def __init__(self, photo_selection: str = "", index_data: int=int(), tmp_path: str=str()):
         super().__init__()
         self.tooltip = f"{index_data}"
         self.photo_selection = photo_selection
         self.width = 50
         self.height = 50
         self.border_radius = ft.border_radius.all(12)
+        self.tmp_path = tmp_path
 
         self.shadow = ft.BoxShadow(
             spread_radius=1,
@@ -20,10 +21,12 @@ class PhotoSelection(ft.Container):
         )
 
     def build(self):
+        # print(self.tmp_path)
         self.container = ft.Container(
             image=ft.DecorationImage(
                 fit=ft.ImageFit.COVER,
-                src=self.photo_selection,
+                # src=self.photo_selection,
+                src=f"project_assets/{self.tmp_path}",
             ),
             padding=ft.padding.all(0),
             margin=ft.margin.all(0),
@@ -78,7 +81,8 @@ class PhotoSelection(ft.Container):
             self.phone_image.update()
 
             self.phone_image.image = ft.DecorationImage(
-                   src=self.photo_selection,
+                #    src=self.photo_selection,
+                    src=f"project_assets/{self.tmp_path}",
                     fit=ft.ImageFit.COVER,  #: CONTAIN, FILL, FIT_WIDTH, SCALE_DOWN, COVER, FIT_HEIGHT, NONE
                     # opacity=0.06,
                 )
@@ -87,7 +91,8 @@ class PhotoSelection(ft.Container):
         if attribute_name_image == "image_src":
             # ONLY IMAGE IN CONTAINER
             edit_widget_image.image = ft.DecorationImage(
-                src=self.photo_selection,
+                # src=self.photo_selection,
+                src=f"project_assets/{self.tmp_path}",
                 fit=ft.ImageFit.COVER,  #: CONTAIN, FILL, FIT_WIDTH, SCALE_DOWN, COVER, FIT_HEIGHT, NONE
                 # opacity=0.06,
             )
@@ -99,7 +104,8 @@ class PhotoSelection(ft.Container):
             #     fit=ft.ImageFit.COVER,  #: CONTAIN, FILL, FIT_WIDTH, SCALE_DOWN, COVER, FIT_HEIGHT, NONE
             #     # opacity=0.06,
             # )
-            edit_widget_image.src = self.photo_selection
+            # edit_widget_image.src = self.photo_selection
+            edit_widget_image.src = f"project_assets/{self.tmp_path}"
             self.page.session.set('image_fit',edit_widget_image)
 
             # edit_widget_image.fit = ft.ImageFit.CONTAIN
@@ -164,6 +170,7 @@ class ScreenPhotoSelection(ft.Container):
         current_dir_path = os.path.relpath(
             # path="./test/proyect_name/proyect_name/assets"
             path="flet_box/assets/project_assets"
+            # path="flet_box/assets"
         )
         basename_dict = self.selection_photo_files(
             path_to_check_filename=current_dir_path
@@ -172,7 +179,13 @@ class ScreenPhotoSelection(ft.Container):
         for index, _ in enumerate(basename_dict):
             tmp_path = basename_dict.get(_)
             full_path = os.path.join(current_dir_path, tmp_path)
-            screen_1.controls.append(PhotoSelection(photo_selection=full_path, index_data=index))
+
+            screen_1.controls.append(
+                PhotoSelection(
+                                tmp_path=tmp_path,
+                                photo_selection=full_path,
+                                index_data=index
+            ))
 
     def show_menu_tab_editor(self):
         "CLICK IN PHOTO SELECTION"

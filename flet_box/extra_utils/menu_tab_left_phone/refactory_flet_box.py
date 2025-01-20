@@ -608,10 +608,12 @@ class refactory_flet_box:
         while "'_" in self.edit_data:
             tab += 3
             self.recursive_nested(tab=tab)
+            # await asyncio.sleep(0.02)
 
-        while "'_" in self.app_edit_data:
-            tab += 3
-            self.recursive_nested(tab=tab)
+        # while "'_" in self.app_edit_data:
+        #     tab += 3
+            # self.recursive_nested(tab=tab)
+
 
         self.edit_data = self.edit_data.replace("'],", ']').replace("['", "[").replace("', '", '')
         self.app_edit_data = self.app_edit_data.replace("'],", ']').replace("['", "[").replace("', '", '')

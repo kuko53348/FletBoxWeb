@@ -3,25 +3,12 @@ import flet as ft
 
 class congratulation_menu(ft.Container):
 
-    def __init__(self, page: object = None):
+    def __init__(self, page: object = None, visible: bool=False, hide_widget: object=None):
         super().__init__()
         self.page = page
-        # self.expand = True
-        self.ink = False
-        self.bgcolor = ft.colors('black12')
-        self.padding = ft.padding.all(8)
-        self.margin = ft.margin.all(8)
-        self.alignment = ft.alignment.center
-        self.border_radius = ft.border_radius.all(30)
-        self.border = ft.border.all(0.5, ft.colors('white12'))
-        self.width = 480
-        self.shadow = ft.BoxShadow(
-            spread_radius=1,
-            blur_radius=15,
-            color=ft.colors('black45'),
-            offset=ft.Offset(0, 0),
-            blur_style=ft.ShadowBlurStyle.OUTER,
-        )
+        self.visible = visible
+        self.hide_widget = hide_widget
+
     def build(self,):
         content_container=ft.Column(
             controls=[
@@ -45,7 +32,7 @@ class congratulation_menu(ft.Container):
                         weight=ft.FontWeight.BOLD,
                         # font_family="Consolas",
                         color=ft.colors('yellow'),
-                        value="🌟 A Heartfelt Thank You to the Flet Development Team! 🌟"
+                        value="A Heartfelt Thank You to the Flet Development Team!"
 
                     )
                 ),
@@ -96,4 +83,11 @@ class congratulation_menu(ft.Container):
         self.content = content_container
 
     def go_home_page(self):
-        self.page.go('/home')
+        # RESET ALL VIEW BY DEFAULD
+        self.hide_widget.visible = True
+        self.visible = False
+
+        self.page.views[1].controls[0].visible=True
+        self.page.views[1].controls[1].visible=False
+        self.page.views[1].controls[2].visible=False
+        self.page.views[1].update()

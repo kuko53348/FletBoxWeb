@@ -1,6 +1,7 @@
 import flet as ft
 from datetime import datetime
 
+from .congratulation_menu import congratulation_menu
 from .refactory_flet_box import refactory_flet_box
 
 class menu_save_container(ft.Container):
@@ -202,10 +203,11 @@ class menu_save_container(ft.Container):
                 self.button_save_project,
             ]
         )
-
+        self.save_column_congratulation = congratulation_menu(page=self.page,visible=False, hide_widget=self.save_column)
         self.content = ft.Column(
             controls = [
                 self.save_column,
+                self.save_column_congratulation,
             ]
         )
 
@@ -282,6 +284,9 @@ class menu_save_container(ft.Container):
 
         # SAVING DATA
         code_returned = refactory_flet_box(page=self.page)
+        # print(f'<<<<< {self.page.session}')
+        # self.page.session.set('user_name', {'user_name': 'kuko53348'})
+        # code_returned.get_widget_attributes(widget=controls_widgets[0])
 
         for widgets_recursion in controls_widgets:
             code_returned.get_widget_attributes(widget=widgets_recursion)
@@ -317,18 +322,34 @@ class menu_save_container(ft.Container):
                         container_attributes=self.dict_attributes,
                         one_file=True,
                 )
+        data = self.page.pubsub.send_all('/congratulation')
+
+        # self.page.go('/congratulation')
+
+        # self.congratulation_container.visible=True
+        # congratulation_menu(page=self.page)
+
+        print(self.save_column.visible)
+        self.save_column.visible = False if self.save_column.visible else True
+        self.save_column_congratulation.visible = True if not self.save_column.visible else False
+
+        self.page.update()
 
         # self.save_column.visible=False
-        # self.congratulation_container.visible=True
+        # self.go_home_page(same_page=True)
+
+        # congratulation_menu(page=self.page)
+
         # self.update()
-        if data_returned == None:
-            # print('<<<<<<<<< here')
-            try:
-                self.page.go('/congratulation')
-            except Exception as e:
-                return
-        else:
-            return False
+        # if data_returned == None:
+        #     # print('<<<<<<<<< here')
+        #     # self.page.go('/congratulation')
+        #     try:
+        #         self.page.go('/congratulation')
+        #     except Exception as e:
+        #         return
+        # else:
+        #     return False
 
 if __name__ == '__main__':
     def main(page: ft.Page):

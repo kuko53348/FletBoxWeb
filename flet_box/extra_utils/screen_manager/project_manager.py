@@ -116,7 +116,7 @@ class code_editor(ft.Container):
                             ),
                         ),
                     ]
-                        ),
+                ),
 
                 ),
 
@@ -197,6 +197,7 @@ class lite_screen_manager(ft.Container):
 
         self.content = ft.Container(
             width=320,
+            # width=320,
             padding=ft.padding.all(4),
             margin=ft.margin.all(0),
             alignment=ft.alignment.center,
@@ -297,6 +298,8 @@ class lite_screen_manager(ft.Container):
                     # print(self.obtion_list)
         else:
             self.obtion_list.clear()
+            #  CHECK THI PART
+            return
 
             sqlite_obj = sqlite_db()
             data_returned = sqlite_obj.find_name(
@@ -613,6 +616,92 @@ class screen_manager(ft.Container):
             ],
         )
 
+class middle_container(ft.Container):
+    def __init__(self,title: str = str(),procces_data: list=list()):
+        super().__init__()
+        self.title = title
+        self.procces_data =procces_data
+        self.padding=ft.padding.all(8)
+
+    def build(self):
+        self.content = ft.Column(
+            controls=[
+                ft.Container(
+                    padding=ft.padding.only(left=8,top=4,right=8,bottom=4),
+                    content=ft.Text(
+                        weight=ft.FontWeight.BOLD,
+                        value=self.title
+                    )
+                ),
+                ft.Container(
+                    # expand=True,
+                    # bgcolor=ft.Colors.with_opacity(opacity=0.2,color='red'),
+                    width=340,
+                    expand=True,
+                    ink=False,
+                    border_radius=ft.border_radius.all(12),
+                    alignment=ft.alignment.top_left,
+
+                    content=ft.Row(
+                        rtl=True,
+                        scroll='auto',
+                        vertical_alignment=ft.CrossAxisAlignment.START,
+                        alignment = ft.MainAxisAlignment.START,
+                        spacing=4,
+                        run_spacing=4,
+                        wrap=True,
+                        controls=[
+
+                        ]
+                    )
+                ),
+            ]
+        )
+
+        for tmp_list in self.procces_data:
+            self.user_name = tmp_list[0]
+            self.table_name = tmp_list[1]
+            self.app_name = tmp_list[2]
+            self.ranking_stars = tmp_list[3]
+            self.dragg_widget = tmp_list[4]
+            self.code_widget = tmp_list[5]
+            self.time_created = tmp_list[6]
+            # self.grid_widget.controls.append(
+
+            self.content.controls[1].content.controls.append(
+                            ft.Container(
+                                # blur=(4,4),
+                                width=100,
+                                height=130,
+                                ink=True,
+                                ink_color=ft.colors('blue'),
+                                padding=ft.padding.all(0),
+                                margin=ft.margin.all(2),
+                                border_radius=ft.border_radius.all(12),
+                                border=ft.border.all(width=1,color=ft.colors('black12')),
+                                bgcolor=ft.colors('black38'),
+                                shadow=ft.BoxShadow(
+                                    spread_radius=1,
+                                    blur_radius=15,
+                                    color=ft.colors('black45'),
+                                    offset=ft.Offset(0, 0),
+                                    blur_style=ft.ShadowBlurStyle.OUTER,
+                                ),
+                                content=projects_made(
+                                                user_name = self.user_name,
+                                                table_name = self.table_name,
+                                                app_name = self.app_name,
+                                                ranking_stars = self.ranking_stars,
+                                                dragg_widget = self.dragg_widget,
+                                                code_widget = self.code_widget,
+                                                time_created = self.time_created.split(' ')[0],
+                                        ),
+                            on_click= lambda widget_name: print(widget_name.control),
+
+                            )
+                )
+
+
 class projects_made(ft.Container):
     def __init__(
         self,
@@ -634,30 +723,37 @@ class projects_made(ft.Container):
         self.code_widget = code_widget
         self.time_created = time_created
 
-        # self.expand = True
-        self.border_radius = ft.border_radius.all(30)
-        self.margin = ft.margin.all(0)
-        self.padding = ft.padding.all(4)
-        self.alignment = ft.alignment.center
-        self.bgcolor = ft.Colors.with_opacity(0.05, ft.colors('white'))
-        self.shadow = ft.BoxShadow(
-            spread_radius=1,
-            blur_radius=15,
-            color=ft.Colors.with_opacity(0.2, ft.colors('black')),
-            offset=ft.Offset(0, 0),
-            blur_style=ft.ShadowBlurStyle.OUTER,
-        )
-
-    def build(self):
         self.ink = True
         self.ink_color = ft.Colors.with_opacity(0.8, ft.colors('cyan'))
+        self.expand=True
+        self.image = ft.DecorationImage(
+                src='backend.webp',
+                fit=ft.ImageFit.COVER,
+                # opacity=0.5 if self.page.window.width <= 620 else 0.5,
+                opacity=0.02
+            )
+        # self.expand = True
+        # self.border_radius = ft.border_radius.all(30)
+        # self.margin = ft.margin.all(0)
+        # self.padding = ft.padding.all(4)
+        # self.alignment = ft.alignment.center
+        # self.bgcolor = ft.Colors.with_opacity(0.05, ft.colors('white'))
+        # self.shadow = ft.BoxShadow(
+        #     spread_radius=1,
+        #     blur_radius=15,
+        #     color=ft.Colors.with_opacity(0.2, ft.colors('black')),
+        #     offset=ft.Offset(0, 0),
+        #     blur_style=ft.ShadowBlurStyle.OUTER,
+        # )
+
+    def build(self):
         self.on_click = lambda widget_parent: self.activate_screen()
 
         self.content = ft.Column(
             spacing=0,
             run_spacing=0,
 
-            alignment=ft.MainAxisAlignment.CENTER,
+            alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
             horizontal_alignment=ft.CrossAxisAlignment.CENTER,
             controls=[
                 # control number 0
@@ -687,32 +783,42 @@ class projects_made(ft.Container):
                     ]
                 ),
                 # control number 1
-                ft.Text(
-                    # text_align=ft.TextAlign.LEFT,
-                    weight=ft.FontWeight.BOLD,
-                    font_family="Consolas",  # "Consolas ,RobotoSlab
-                    color=ft.Colors.with_opacity(0.7, ft.colors('cyan')),
-                    size=10,
-                    value=self.user_name,
-                ),
-                # control number 2
-                ft.Text(
-                    # text_align=ft.TextAlign.LEFT,
-                    weight=ft.FontWeight.BOLD,
-                    font_family="Consolas",  # "Consolas ,RobotoSlab
-                    color=ft.Colors.with_opacity(0.7, ft.colors('cyan')),
-                    size=10,
-                    value=self.app_name,
-                ),
-                # control number 3
-                ft.Text(
-                    # text_align=ft.TextAlign.LEFT,
-                    weight=ft.FontWeight.BOLD,
-                    font_family="Consolas",  # "Consolas ,RobotoSlab
-                    color=ft.Colors.with_opacity(0.7, ft.colors('cyan')),
-                    size=10,
-                    value=self.time_created,
-                ),
+                ft.Container(
+                    padding=ft.padding.all(4),
+                    content=ft.Column(
+                        spacing=0,
+                        run_spacing=0,
+                        controls=[
+                            ft.Text(
+                                # text_align=ft.TextAlign.LEFT,
+                                weight=ft.FontWeight.BOLD,
+                                font_family="Consolas",  # "Consolas ,RobotoSlab
+                                color=ft.Colors.with_opacity(0.7, ft.colors('white')),
+                                size=10,
+                                value=self.user_name,
+                            ),
+                            # control number 2
+                            ft.Text(
+                                # text_align=ft.TextAlign.LEFT,
+                                weight=ft.FontWeight.BOLD,
+                                font_family="Consolas",  # "Consolas ,RobotoSlab
+                                color=ft.Colors.with_opacity(0.7, ft.colors('white')),
+                                size=13,
+                                value=self.app_name,
+                            ),
+                            # control number 3
+                            ft.Text(
+                                # text_align=ft.TextAlign.LEFT,
+                                weight=ft.FontWeight.BOLD,
+                                font_family="Consolas",  # "Consolas ,RobotoSlab
+                                color=ft.Colors.with_opacity(0.7, ft.colors('white')),
+                                size=13,
+                                value=self.time_created,
+                            ),
+
+                        ]
+                    )
+                )
             ]
         )
 
@@ -762,13 +868,9 @@ class projects_made(ft.Container):
 
     def load_module_from_string(self, page, string_code: str = str()) -> object:
         import importlib.util
-        # import flet as ft
-        # import sys
-        # print(string_code)
         spec = importlib.util.spec_from_loader('dynamic_module', loader=None)
         module = importlib.util.module_from_spec(spec)
         exec(string_code, module.__dict__)
-        # sys.modules['dynamic_module'] = module
         globals()['dynamic_module'] = module
         tmp_module = dynamic_module.load_module_str() # type: ignore
         return tmp_module
@@ -777,7 +879,7 @@ class project_manager(ft.Stack):
     """
     project_tab = [
             'Splash',
-            'Introduction',
+            'Welcome',
             'Login',
             'Register',
             'Lock',
@@ -788,16 +890,16 @@ class project_manager(ft.Stack):
             'Payment',
             'Shopping',
             'Music',
-            'SettingsView',
-            'Verification',
+            'Setting',
+            'Testing',
             'About'
         ]
     """
     TABS_PROJECTS: list = {
         'Splash': ft.Icons('do_not_touch'),
-        'Introduction': ft.Icons('start'),
+        'Welcome': ft.Icons('start'),
         'Login': ft.Icons('login'),
-        'LoginRegister': ft.Icons('how_to_reg'),
+        'Register': ft.Icons('how_to_reg'),
         'Lock': ft.Icons('block'),
         'MixViews': ft.Icons('dashboard'),
         'GridView': ft.Icons('grid_view_rounded'),
@@ -806,8 +908,8 @@ class project_manager(ft.Stack):
         'Payment': ft.Icons('account_balance_wallet'),
         'Shopping': ft.Icons('shopping_bag'),
         'Music': ft.Icons('speaker_group_rounded'),
-        'SettingsView': ft.Icons('settings'),
-        'Verification': ft.Icons('verified'),
+        'Setting': ft.Icons('settings'),
+        'Testing': ft.Icons('verified'),
         'About': ft.Icons('account_box'),
     }
 
@@ -819,75 +921,106 @@ class project_manager(ft.Stack):
 
     def build(self):
 
-        self.nav_rail = ft.NavigationRail(
-            # selected_index=0,
-            label_type=ft.NavigationRailLabelType.ALL,
-            elevation=20,
-            indicator_color=ft.Colors.with_opacity(0.2, ft.colors('red')),
-            min_width=100,
-            min_extended_width=200,
-            extended=True,
-            leading=ft.FloatingActionButton(
-                height=50,
-                icon=ft.Icons('generating_tokens'),
-                text="Market Place",
-                # on_click=lambda e: self.change_rail_extended(),
-            ),
-            group_alignment=-0.9,
-            destinations=[
-                ft.NavigationRailDestination(
-                    icon=ft.Icon(self.TABS_PROJECTS.get(tabs_name)),
-                    selected_icon=ft.Icon(ft.Icons.SCREEN_SHARE),
-                    label=tabs_name,
+        # self.image = ft.DecorationImage(
+        #         src='backend.webp',
+        #         fit=ft.ImageFit.COVER,
+        #         # opacity=0.5 if self.page.window.width <= 620 else 0.5,
+        #         opacity=1
+        #     )
+        self.nav_rail = ft.Container(
+            width=80,
+            content=ft.Column(
+                scroll='hidden',
+                controls=[
+                    ft.Container(
+                        ink=True,
+                        width=80,
+                        ink_color=ft.colors('blue'),
+                        padding=ft.padding.all(10),
+                        margin=ft.margin.all(0),
+                        border_radius=ft.border_radius.all(12),
+                        border=ft.border.all(width=1,color=ft.Colors.with_opacity(opacity=0.05, color=ft.colors('white'))),
+                        bgcolor=ft.colors('black12'),
+                        shadow=ft.BoxShadow(
+                            spread_radius=1,
+                            blur_radius=15,
+                            color=ft.colors('black45'),
+                            offset=ft.Offset(1, 0),
+                            blur_style=ft.ShadowBlurStyle.OUTER,
+                        ),
+                        content=ft.Column(
+                            horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+                            alignment=ft.MainAxisAlignment.CENTER,
+                            run_spacing=0,
+                            spacing=0,
+                            controls=[
+                                ft.Icon(
+                                    name=self.TABS_PROJECTS.get(tabs_name),
+                                ),
+                                ft.Text(
+                                    value=tabs_name,
+                                    weight=ft.FontWeight.BOLD,
+                                    size=12,
+                                )
 
-                ) for tabs_name in self.TABS_PROJECTS
-            ],
-            on_change= lambda e: self.change_rail_position(
-                index_rail=e.control.selected_index
-            ),
+                            ],
+                        ),
+                    on_click= lambda widget_name: print(widget_name.control.content.controls[1].value),
+                    ) for tabs_name in self.TABS_PROJECTS
+                ]
+            )
+
         )
 
-        self.middle_container = ft.Container(
+        self.parent_middle_grid_container = ft.Row(
+            # on_scroll_interval=5,
+            # tight=True,
+            scroll='auto',
+            vertical_alignment=ft.CrossAxisAlignment.CENTER,
+            alignment = ft.MainAxisAlignment.CENTER,
+            # width=700,
             expand=True,
-            ink=False,
-            border_radius=ft.border_radius.all(32),
-            padding=ft.padding.all(8),
-            margin=ft.margin.all(8),
-            alignment=ft.alignment.center,
-            bgcolor=ft.colors('black12'),
-            shadow=ft.BoxShadow(
-                spread_radius=1,
-                blur_radius=15,
-                color=ft.colors('black'),
-                offset=ft.Offset(0, 0),
-                blur_style=ft.ShadowBlurStyle.OUTER,
-            ),
-            #: WIDGETS
-            content=ft.GridView(
-                #: PROPERTY GRIDVIEW
-                runs_count=3,
-                run_spacing=8,
-                padding=8,
-                spacing=8,
-                expand=1,
-                max_extent=100,
-                #: WIDGETS
-                controls=[
-                    # projects_made() for _ in range(20)
-                ],
-            ),
-        )  # <=== NOTE COMA
-
-        self.content = ft.Row(
             controls=[
-                # NAV RAIL
-                self.nav_rail,
-                # RIGHT WIDGETS
-                self.middle_container,
-                # screen_phone(),
-                screen_manager(page=self.page,code_editor=self)
-            ],
-            # expand=True,
+                # middle_container(title=tabs_name) for tabs_name in self.TABS_PROJECTS
+                ]
+            )
+
+
+        self.content = ft.Container(
+            image = ft.DecorationImage(
+                    src='backend.webp',
+                    fit=ft.ImageFit.COVER,
+                    # opacity=0.5 if self.page.window.width <= 620 else 0.5,
+                    opacity=0.015
+                ),
+            content=ft.Row(
+                controls=[
+                    # NAV RAIL
+                    self.nav_rail,
+                    # RIGHT WIDGETS
+                    # self.parent_middle_grid_container,
+                    ft.Column(
+                        expand=True,
+                        controls=[
+                            self.parent_middle_grid_container,
+
+                            ft.Container(
+                                ink=True,
+                                ink_color=ft.colors('blue'),
+                                padding=ft.padding.only(left=12,top=12,bottom=12,right=12),
+                                margin=ft.margin.only(left=8,top=0,bottom=8,right=8),
+                                bgcolor=ft.colors('black12'),
+                                content=ft.Icon(name='discord'),
+                                border_radius=ft.border_radius.all(18),
+                                on_click= lambda _:print(_.control)
+                            )
+                            ]
+                    ),
+                    # screen_phone(),
+                    screen_manager(page=self.page,code_editor=self)
+                ],
+                # expand=True,
+            ),
         )
         self.controls = [
                 self.content,
@@ -895,59 +1028,10 @@ class project_manager(ft.Stack):
                 code_editor(paren_widget=self, visible=False)
             ]
 
-    def change_rail_position(self, index_rail: int = int()):
-        self.grid_widget = self.middle_container.content
-        self.grid_widget.controls.clear()
+        self.loading_all_data()
+        # self.page.update()
 
-        # print(index_rail)
 
-        match index_rail:
-            case 0:
-                self.list_projects_tabs(table_name='Splash')
-
-            case 1:
-                self.list_projects_tabs(table_name='Introduction')
-
-            case 2:
-                self.list_projects_tabs(table_name='Login')
-
-            case 3:
-                self.list_projects_tabs(table_name='LoginRegister')
-
-            case 4:
-                self.list_projects_tabs(table_name='Lock')
-
-            case 5:
-                self.list_projects_tabs(table_name='MixViews')
-
-            case 6:
-                self.list_projects_tabs(table_name='GridView')
-
-            case 7:
-                self.list_projects_tabs(table_name='ListView')
-
-            case 8:
-                self.list_projects_tabs(table_name='DashBoard')
-
-            case 9:
-                self.list_projects_tabs(table_name='Payment')
-
-            case 10:
-                self.list_projects_tabs(table_name='Shopping')
-
-            case 11:
-                self.list_projects_tabs(table_name='Music')
-
-            case 12:
-                self.list_projects_tabs(table_name='SettingsView')
-
-            case 13:
-                self.list_projects_tabs(table_name='Verification')
-
-            case 14:
-                self.list_projects_tabs(table_name='About')
-
-        self.grid_widget.update()
 
     def list_projects_tabs(self, table_name: str=str()) -> list:
         """List all widgets in selected projects in database
@@ -957,65 +1041,72 @@ class project_manager(ft.Stack):
 
         """
         if self.page.session.get('flet_box_api'):
-            try:
 
+            try:
                 data_returned = request_session.get(f'{self.page.session.get("api_server")}get_projects_widgets', params={'table_name': table_name})
                 data_returned = data_returned.json()
-
-                # kuko53348@gmail.com
-                # payload={'table_name': table_name}
-                # data_returned = async_requests(
-                #     type='get',
-                #     path='get_projects_widgets',
-                #     url=self.page.session.get("api_server"),
-                #     payload=payload,
-                # )
-
-                # if not data_returned:
-                #     on_developing(
-                #             self=self,
-                #             name_seccion='Connection Error',
-                #             body_string="Connection error between render.com and endpoint pythoneverywhere.com\nTry agan in flew seconds "
-                #         )
-
-                #     return
-
+                # print(data_returned)
             except Exception as error:
                 import os
                 os.system('clear')
                 data_returned = False
                 print('CONNECT FAST API\n\n[+] >>> source .venv/bin/activate\n[+] >>> uvicorn --app-dir "./flet_box_api_server/" main:app --host 0.0.0.0 --port 8080 --reload')
 
-            # print(data_returned)
         else:
+            print('here')
             sqlite_obj = sqlite_db()
             data_returned = sqlite_obj.find_all(table_name=table_name)
 
         # return
+        # middle_container(title=tabs_name)
 
         if data_returned:
-            for tmp_list in data_returned:
-                self.user_name = tmp_list[0]
-                self.table_name = tmp_list[1]
-                self.app_name = tmp_list[2]
-                self.ranking_stars = tmp_list[3]
-                self.dragg_widget = tmp_list[4]
-                self.code_widget = tmp_list[5]
-                self.time_created = tmp_list[6]
-                self.grid_widget.controls.append(
-                    projects_made(
-                            user_name = self.user_name,
-                            table_name = self.table_name,
-                            app_name = self.app_name,
-                            ranking_stars = self.ranking_stars,
-                            dragg_widget = self.dragg_widget,
-                            code_widget = self.code_widget,
-                            time_created = self.time_created.split(' ')[0],
-                    )
-                )
+            self.parent_middle_grid_container.controls.append(middle_container(title=table_name,procces_data=data_returned))
 
-        self.page.update()
+        # if data_returned:
+        #     for tmp_list in data_returned:
+        #         self.user_name = tmp_list[0]
+        #         self.table_name = tmp_list[1]
+        #         self.app_name = tmp_list[2]
+        #         self.ranking_stars = tmp_list[3]
+        #         self.dragg_widget = tmp_list[4]
+        #         self.code_widget = tmp_list[5]
+        #         self.time_created = tmp_list[6]
+        #         # self.grid_widget.controls.append(
+        #         self.parent_middle_grid_container.controls.append(
+        #             # projects_made(
+        #             #         user_name = self.user_name,
+        #             #         table_name = self.table_name,
+        #             #         app_name = self.app_name,
+        #             #         ranking_stars = self.ranking_stars,
+        #             #         dragg_widget = self.dragg_widget,
+        #             #         code_widget = self.code_widget,
+        #             #         time_created = self.time_created.split(' ')[0],
+        #             # )
 
+
+        #         )
+
+        # self.page.update()
+
+
+    def loading_all_data(self, index_rail: int = int()):
+
+        self.list_projects_tabs(table_name='Splash')
+        # self.list_projects_tabs(table_name='Welcome')
+        self.list_projects_tabs(table_name='Login')
+        # self.list_projects_tabs(table_name='Register')
+        # self.list_projects_tabs(table_name='Lock')
+        # self.list_projects_tabs(table_name='MixViews')
+        # self.list_projects_tabs(table_name='GridView')
+        # self.list_projects_tabs(table_name='ListView')
+        # self.list_projects_tabs(table_name='DashBoard')
+        # self.list_projects_tabs(table_name='Payment')
+        self.list_projects_tabs(table_name='Shopping')
+        self.list_projects_tabs(table_name='Music')
+        # self.list_projects_tabs(table_name='Setting')
+        # self.list_projects_tabs(table_name='Testing')
+        # self.list_projects_tabs(table_name='About')
 
 if __name__ == '__main__':
 
