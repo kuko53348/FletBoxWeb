@@ -269,7 +269,6 @@ class FourEntry(ft.Stack):
                     right=int(right),
                     bottom=int(bottom),
                 )
-            # print('paddinf')
         if config_widget == "margin":
             """all values in Box Container"""
 

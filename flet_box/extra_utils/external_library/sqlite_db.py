@@ -67,7 +67,7 @@ class sqlite_db:
         Will return a new database
 
         EXEMPLE:
-        
+
         ```python
         sqlite_db = sqlite_db(path_db="./exemple.db")
         sqlite_db.create_table(table_name="register",column=data_write,)
@@ -97,7 +97,7 @@ class sqlite_db:
         Find by name if exist
 
         EXEMPLE:
-        
+
         ```python
             connection_db = Instance_mysqlite_db.sqlite_connection(namedatabase=".book_orders.db")
 
@@ -160,7 +160,7 @@ class sqlite_db:
         Return BOL True or False if not error writing data.
 
         EXEMPLE:
-        
+
         ```python
         sqlite_db.write_data(table_name='register',column=('javier53348','kuko','elanimal123'))
         ```
@@ -191,7 +191,7 @@ class sqlite_db:
         3. if data exist and match exist return true else false
 
         EXEMPLE:
-        
+
         ```python
         data_returned = sqlite_db.update_data(table_name='register',
                                               change_data=('user_name', 'javier53348'),
@@ -272,7 +272,7 @@ class sqlite_db:
     def remove_all(self, table_name=''):
         """
         EXEMPLE:
-        
+
         ```python
         data_returned = sqlite_db.remove_all(table_name='register')
         ```
@@ -290,7 +290,7 @@ class sqlite_db:
     def remove_data(self, table_name: str = '', column_name: str = '', name: str = '', match: list = []):
         """
         EXEMPLE:
-        
+
         ```python
         data_returned = sqlite_db.remove_data(
                                         table_name='register',
@@ -432,7 +432,6 @@ if __name__ == '__main__':
     #:= REMOVE ALL
     # data_returned = sqlite_db.remove_all(table_name='register')
     #
-    # print('hello')
     #:= CREATE DATABASE
     for _ in project_tab:
         # print(data_db_write)

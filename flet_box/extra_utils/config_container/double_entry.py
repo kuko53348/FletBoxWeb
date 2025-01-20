@@ -220,7 +220,6 @@ class DoubleEntry(ft.Stack):
             )
 
         if config_widget == "blur":
-            print('blur image')
             self.widget_tmp = self.page.session.get('SELECTED_SCREEN')
 
             # ERASE BLUR

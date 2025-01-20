@@ -114,7 +114,7 @@ class SelectionButtonEntry(ft.Stack):
         return Drop_SelectionButtonEntry
 
     def modify_widget_attributes(self, widget_name: str = str(), attribute_to_change: object = None):
-        print("[+] change content tab [ selection_button_entry.py ]")
+        # print("[+] change content tab [ selection_button_entry.py ]")
         # print(widget_name,"<<<<<<<<<<<<<<")
 
         if self.widget_name == "image_src" or self.widget_name == "src":
@@ -133,13 +133,12 @@ class SelectionButtonEntry(ft.Stack):
         self.tab_container.controls[2].visible = False
         self.tab_container.update()
 
-        # # <== SET (BGCOLOR, ...)
+        # <== SET (BGCOLOR, ...)
         self.page.session.set('set_attribute_image', self.widget_name)
-        # # <== SET (ft.Container, Image)
+        # <== SET (ft.Container, Image)
         self.page.session.set('set_edit_widget_image', attribute_to_change)
 
         self.phone_image = self.page.session.get("SELECTED_SCREEN")  # <== SELECTED PHONE SCREEN
-        # # print('END')
         if self.phone_image.content.content.content.image:
             self.phone_image.image = self.phone_image.content.content.content.image
 

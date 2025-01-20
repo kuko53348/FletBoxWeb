@@ -306,7 +306,7 @@ class refactory_flet_box:
         ```
         """
         is_content = self.content_attributes.get(str(widget_name), None)
-        print('[+]',is_content, widget_name)
+        # print('[+]',is_content, widget_name)
 
         if is_content == 'content':
             return {'content': widget.uid}

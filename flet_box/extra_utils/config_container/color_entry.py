@@ -106,7 +106,7 @@ class ColorEntry(ft.Stack):
 
     def validate_click(self, widget_name, attribute_to_change):
         #: ONLY PURPOSE IS HIDE CONFIG TO SHOW PALETTE COLORS AND IMAGEN
-        print("[+] change content tab [ color_entry.py ]")
+        # print("[+] change content tab [ color_entry.py ]")
 
         self.tab_container = self.page.session.get('PHOTO_SELECTION')
 

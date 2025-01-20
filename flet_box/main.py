@@ -268,7 +268,6 @@ class flet_box:
             :param      route:  The route
             :type       route:  { type_description }
             """
-            # print(self.page.window.width)
             print(f"Session id: {self.page._session_id} width: {self.page.width}")
 
             self.page.views.clear()
@@ -327,12 +326,6 @@ class flet_box:
 
                 # self.page.update()
 
-            # try:
-            #     self.page.update()
-            # except Exception as e:
-            #     self.page.go('/home')
-            #     return
-
             self.page.update()
 
                 # print(e)
@@ -343,10 +336,10 @@ class flet_box:
         self.page.theme_mode=ft.ThemeMode.DARK
 
         # COMENT IF WILL WORK ONLINE IN WEB          <==== ONLINE IN WEB
-        # self.run_in_production(page=self.page, runing_online_server=True)
+        self.run_in_production(page=self.page, runing_online_server=True)
 
         # COMENT IF WILL WORK ONLINE IN WEB          <==== OFFLINE IN WEB
-        self.run_in_production(page=self.page, runing_online_server=False)
+        # self.run_in_production(page=self.page, runing_online_server=False)
 
         # JUMP TO DEV ACCOUNT
         # self.page.go('/home')             # <<< TO TESTING

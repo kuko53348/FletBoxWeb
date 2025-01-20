@@ -1,16 +1,14 @@
 <!-- markdownserver http://localhost:8009/WIDGET.md -->
-### CAPTURE EVENT WIDGET DATA
+### CAPTURE EVENT INSIDE WIDGET DATA
 ```python
-event_widget=ft.Container(
-               on_click = lambda tmp_widget: self.edit_widget(target=tmp_widget)
-            )
-
-
-def edit_widget(self,target: object=None):
-   self.tmp_widget = target.control
-   self.tmp_widget.bgcolor=ft.colore('red')
-   self.tmp_widget.parent.update()
-
+>>> on_click=ft.Container(
+>>>          on_click = lambda tmp_widget: self.edit_widget(target=tmp_widget)
+>>>          )
+>>>
+>>> def edit_widget(self,target: object = None):
+>>>    self.tmp_widget = target.control
+>>>    self.tmp_widget.bgcolor = ft.colore('red')
+>>>    self.tmp_widget.parent.update()
 ```
 
 ### STORAGE DATA
@@ -39,7 +37,6 @@ def edit_widget(self,target: object=None):
 
 ```
 #### Get attributes by ID
-
 ```python3
 >>> page.get_control(id='_5').controls[0]
 >>> container {'width': 150,
@@ -54,7 +51,6 @@ def edit_widget(self,target: object=None):
 ```
 
 #### ERASE Controls by ID
-
 ```python3
 >>> id_widget = page.get_control(id='_5')
 >>> id_widget.controls = None
@@ -71,7 +67,6 @@ def edit_widget(self,target: object=None):
 ```
 
 #### REPLACE Controls by ID
-
 ```python3
 >>> id_widget = page.get_control(id='_5')
 >>> id_widget.controls = [ft.Widget(attributes)]
@@ -89,40 +84,39 @@ def edit_widget(self,target: object=None):
 ```
 
 #### UNIQ Class
-
 ```python
-
-class InfinityObjects(ft.Controls):
-    pass
-
-unique_object = InfinityObjects()
-
-EXEMPLE = ft.Row(
-             controls = [
-               InfinityObjects(),   # <=== NEW  OBJECT IF MODIFY MODIFY ALL DIFERENTS PROPERTIES
-             ]
- )
+>>>
+>>> class InfinityObjects(ft.Controls):
+>>>     pass
+>>>
+>>> unique_object = InfinityObjects()
+>>>
+>>> EXEMPLE = ft.Row(
+>>>              controls = [
+>>>                InfinityObjects(),   # <=== NEW  OBJECT IF MODIFY MODIFY ALL DIFERENTS PROPERTIES
+>>>              ]
+>>> )
 ```
 
 #### MAKE A PIP PACKAGE
 
-Sure, creating a simple pip package involves a few steps. Here's a basic example to create a pip package in Python 3:
+- Sure, creating a simple pip package involves a few steps. Here's a basic example to create a pip package in Python 3:
 
 1. **Project Structure:** Create a directory for your project with the following structure:
-    ```shell
+```shell
 >>>    your_project_name/
 >>>    ├── your_project_name/
 >>>    │   └── __init__.py
 >>>    ├── README.md
 >>>    ├── LICENSE
 >>>    └── setup.py
-    ```
+```
 
 2. **Code File:** Inside the inner `your_project_name` directory, create a Python file, for example, `your_module.py`, with your code.
 
 3. **setup.py:** Create or edit the `setup.py` file like so:
 
-   ```python
+```python
 >>>   from setuptools import setup, find_packages
 >>>   setup(
 >>>       name='your_project_name',
@@ -139,19 +133,20 @@ Sure, creating a simple pip package involves a few steps. Here's a basic example
 5. **README and LICENSE:** Create a `README.md` and a `LICENSE` file, including appropriate content.
 
 6. **Build the Package:** In the terminal, navigate to the outer directory (`your_project_name`) and run:
-   ```shell
->>>   python setup.py sdist bdist_wheel
-   ```
+```shell
+>>> python setup.py sdist bdist_wheel
+```
 
 7. **Publishing:** You can distribute your package to the Python Package Index (PyPI) by using `twine`:
-   ```shell
->>>   pip install twine
->>>   twine upload dist/*
-   ```
+
+```shell
+>>> pip install twine
+>>> twine upload dist/*
+```
 
 This will upload your package to PyPI, making it accessible to others using `pip install your_project_name`.
 
-Remember to replace `your_project_name` with your actual package name and adjust the version as needed.
+- Remember to replace `your_project_name` with your actual package name and adjust the version as needed.
 
 #### MAKE HACK TIPS
 
@@ -233,46 +228,61 @@ Remember to replace `your_project_name` with your actual package name and adjust
 
 #### DELETE WIDGET FROM APP
 ```
->>> tmp_data._index                                             ####<=== very important DICT OF ALL WWIDGETS
->>> del tmp_data._index[widget._Control__uid]                   ####<=== delete from index page very important
+>>> tmp_data._index                                             # <=== very important DICT OF ALL WWIDGETS
+>>> del tmp_data._index[widget._Control__uid]                   # <=== delete from index page very important
 ```
 
 #### KWON INFO ABOUT PAGE FROM EVERY WHERE
 ```shell
->>> tmp_data = Drop_Container_exemple.__dict__.get('_Control__page')    #  s.__dict__.get('_Control__page') ####<=== GET MAIN PAGE
->>> tmp_data._Page__next_control_id                                     ####<=== very important
->>> tmp_data._Page__views                                               ####<=== very important
+>>> tmp_data = Drop_Container_exemple.__dict__.get('_Control__page')    #  s.__dict__.get('_Control__page') # <=== GET MAIN PAGE
+>>> tmp_data._Page__next_control_id                                     # <=== very important
+>>> tmp_data._Page__views                                               # <=== very important
 
->>> tmp_data._index                                             ####<=== very important DICT OF ALL WWIDGETS
->>> tmp_data._index.get('_9')                                   ####<=== GET BY INDEX
->>> tmp_data.get_control(id='_5').controls                      ####<=== GET BY INDEX
+>>> tmp_data._index                                             # <=== very important DICT OF ALL WWIDGETS
+>>> tmp_data._index.get('_9')                                   # <=== GET BY INDEX
+>>> tmp_data.get_control(id='_5').controls                      # <=== GET BY INDEX
 ```
 
 #### DIFERENTS WAYS TO GET ATTRIBUTES
 ```python
-print(screen_1._Control__attrs)                     >>> {'width': (240, False), 'height': (120, False),
-print(screen_1._Container__content)                 >>> row {'wrap': True, 'n': 'content'}
-print(screen_1._get_control_name())                 >>> container
-print(screen_1._get_attr('width'))                  >>> 240
+>>> print(screen_1._Control__attrs)
+>>> return  {'width': (240, False), 'height': (120, False),
 
-print(screen_1._wrap_attr_dict({'hello':screen_1})) >>> {'hello': Container(width=240, height=120,
-print(screen_1.__str__())                           >>> container {'width': 240, 'height': 120, 'bgcolor': '#44CCCC00' <<< +++++
-print(screen_1.__repr__() )                         >>> Container(width=240, height=120, bgcolor='#44CCCC00',
+>>> print(screen_1._Container__content)
+>>> return  row {'wrap': True, 'n': 'content'}
 
+>>> print(screen_1._get_control_name())
+>>> return  container
 
- # ONLY WAY TO GET ATTRIBUTES CORRECTLY AND SET ATTRIBUTES
-data = {}                                           >>> {'alignment': '{"x":0,"y":0}', 'bgcolor': ''}
-screen_1.copy_attrs(dest=data)                      >>> {'alignment': '{"x":0,"y":0}', 'bgcolor': ''}
+>>> print(screen_1._get_attr('width'))
+>>> return  240
+>>>
+>>> print(screen_1._wrap_attr_dict({'hello':screen_1}))
+>>> return {'hello': Container(width=240, height=120,
 
-screen_1._set_attr('width',10)                      >>> 10
-screen_1.update()
+>>> print(screen_1.__str__())
+>>> return container {'width': 240, 'height': 120, 'bgcolor': '#44CCCC00' # <<< +++++
+
+>>> print(screen_1.__repr__() )
+>>> return Container(width=240, height=120, bgcolor='#44CCCC00',
+
+# ONLY WAY TO GET ATTRIBUTES CORRECTLY AND SET ATTRIBUTES
+>>> data = {}
+>>> return {'alignment': '{"x":0,"y":0}', 'bgcolor': ''}
+
+>>> screen_1.copy_attrs(dest=data)
+>>> return {'alignment': '{"x":0,"y":0}', 'bgcolor': ''}
+
+>>> screen_1._set_attr('width',10)
+>>> return 10
+
+>>> screen_1.update()
 
 ```
 
-
-
 #### TYPE RETURNED CODE
 ```python
+
 def refactory_code(self, string_widget: object = object()) -> str:
    string_widget: object = object()
    string_widget: string = str()

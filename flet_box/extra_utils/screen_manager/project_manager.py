@@ -138,8 +138,9 @@ class code_editor(ft.Container):
         self.page.update()
 
 class screen_phone(ft.Container):
-    def __init__(self,):
+    def __init__(self,page: object=None):
         super().__init__()
+        self.page = page
         self.expand = True
         self.border_radius = ft.border_radius.all(16)
         self.padding = ft.padding.all(8)
@@ -162,17 +163,16 @@ class screen_phone(ft.Container):
             ),
         )
 
-tmp_screen_phone = screen_phone()
 
 class lite_screen_manager(ft.Container):
     selected_text: str = 0
     old_payload = 0
     obtion_list = list()
 
-    def __init__(self, selected_screen: object = None, page: object = None):
+    def __init__(self, page: object = None, tmp_screen_phone: object=None):
         super().__init__()
         self.page = page
-        self.selected_screen = selected_screen
+        self.tmp_screen_phone = tmp_screen_phone
         self.ink = False
         self.alignment = ft.alignment.center
 
@@ -257,7 +257,6 @@ class lite_screen_manager(ft.Container):
 
         self.drop_down.options = [
             ft.dropdown.Option(key=f"Screen number: {self.obtion_list[0]}"),
-            # ft.dropdown.Option(key=f"Screen number: {_}") for _ in self.obtion_list
         ]
         self.drop_down.update()
 
@@ -268,10 +267,6 @@ class lite_screen_manager(ft.Container):
         if self.page.session.get('flet_box_api'):
             self.obtion_list.clear()
             self.session_user_name = self.page.session.get('user_name').get('user_name')
-            # print(self.session_user_name)
-            # return
-
-            # data_returned = request_session.get(f'{self.page.session.get("api_server")}get_widgets', params={'user_name': self.session_user_name})
 
             # kuko53348@gmail.com
             payload={'user_name': self.session_user_name}
@@ -328,8 +323,7 @@ class lite_screen_manager(ft.Container):
 
         if self.page.session.get('flet_box_api'):
             # data_returned = request_session.get(f'{self.page.session.get("api_server")}get_widgets', params={'user_name': self.tmp_session_user_name})
-            # self.data_selected = data_returned.json()[1]
-            # self.app_data_selected = data_returned.json()[2]
+
             # kuko53348@gmail.com
             payload={'user_name': self.tmp_session_user_name}
             data_returned = async_requests(
@@ -339,14 +333,15 @@ class lite_screen_manager(ft.Container):
                 payload=payload,
             )
 
-            if not data_returned:
-                # on_developing = self.page.session.get('on_dev')
-                # on_developing(
-                #         self=self.page,
-                #         name_seccion='Connection Error',
-                #         body_string="Connection error between render.com and endpoint pythoneverywhere.com\nTry agan in flew seconds "
-                #     )
-                return
+            # if not data_returned:
+            #     on_developing = self.page.session.get('on_dev')
+            #     on_developing(
+            #             self=self.page,
+            #             name_seccion='Connection Error',
+            #             body_string="Connection error between render.com and endpoint pythoneverywhere.com\nTry agan in flew seconds "
+            #         )
+            #     return
+
             self.data_selected = data_returned[1]
             self.app_data_selected = data_returned[2]
 
@@ -365,6 +360,9 @@ class lite_screen_manager(ft.Container):
             self.data_selected = data_returned[0][1]
             self.app_data_selected = data_returned[0][2]
 
+
+
+        self.selected_screen = self.tmp_screen_phone
 
         # CHANGE CONTENT OF PHONE IN SCREEN MANAGER
         # self.selected_screen.content.content = ft.Container(bgcolor="red",height=120,width=120)
@@ -494,8 +492,6 @@ class get_sources_code(ft.Container):
 
     def build(self):
         self.content = ft.Container(
-            # width=200,
-            # bgcolor=ft.colors('black12'),
             padding=ft.padding.all(8),
             margin=ft.margin.all(2),
             border_radius=ft.border_radius.all(32),
@@ -537,8 +533,6 @@ class delete_project(ft.Container):
 
     def build(self):
         self.content = ft.Container(
-            # width=200,
-            # bgcolor=ft.colors('black12'),
             padding=ft.padding.all(8),
             margin=ft.margin.all(2),
             border_radius=ft.border_radius.all(32),
@@ -562,17 +556,19 @@ class delete_project(ft.Container):
         self.page.views[1].update()
 
 class screen_manager(ft.Container):
+    # tmp_screen_phone = screen_phone()
 
-    def __init__(self, page: object = None, visible: bool = True,  code_editor: object=None):
+    def __init__(self, page: object = None, visible: bool = True,  code_editor: object=None, tmp_screen_phone: object=None):
         super().__init__()
         self.page = page
         self.visible = visible
         self.code_editor = code_editor
-        # self.bgcolor = ft.colors('black12')
         self.padding = ft.padding.all(8)
         self.margin = ft.margin.all(8)
         self.alignment = ft.alignment.center
         self.border_radius = ft.border_radius.all(32)
+
+        self.tmp_screen_phone = tmp_screen_phone
 
         self.shadow = ft.BoxShadow(
             spread_radius=1,
@@ -591,10 +587,10 @@ class screen_manager(ft.Container):
 
             controls=[
                 lite_screen_manager(
-                    selected_screen=tmp_screen_phone,
-                    page=self.page
+                    page=self.page,
+                    tmp_screen_phone=self.tmp_screen_phone,
                 ),
-                tmp_screen_phone,
+                self.tmp_screen_phone,
                 ft.Container(
                     content=ft.Row(
                         controls=[
@@ -617,11 +613,12 @@ class screen_manager(ft.Container):
         )
 
 class middle_container(ft.Container):
-    def __init__(self,title: str = str(),procces_data: list=list()):
+    def __init__(self,title: str = str(),procces_data: list=list(),tmp_screen_phone: object=None):
         super().__init__()
         self.title = title
         self.procces_data =procces_data
         self.padding=ft.padding.all(8)
+        self.tmp_screen_phone = tmp_screen_phone
 
     def build(self):
         self.content = ft.Column(
@@ -634,8 +631,6 @@ class middle_container(ft.Container):
                     )
                 ),
                 ft.Container(
-                    # expand=True,
-                    # bgcolor=ft.Colors.with_opacity(opacity=0.2,color='red'),
                     width=340,
                     expand=True,
                     ink=False,
@@ -666,11 +661,9 @@ class middle_container(ft.Container):
             self.dragg_widget = tmp_list[4]
             self.code_widget = tmp_list[5]
             self.time_created = tmp_list[6]
-            # self.grid_widget.controls.append(
 
             self.content.controls[1].content.controls.append(
                             ft.Container(
-                                # blur=(4,4),
                                 width=100,
                                 height=130,
                                 ink=True,
@@ -695,7 +688,9 @@ class middle_container(ft.Container):
                                                 dragg_widget = self.dragg_widget,
                                                 code_widget = self.code_widget,
                                                 time_created = self.time_created.split(' ')[0],
+                                                tmp_screen_phone = self.tmp_screen_phone
                                         ),
+
                             on_click= lambda widget_name: print(widget_name.control),
 
                             )
@@ -712,6 +707,7 @@ class projects_made(ft.Container):
         dragg_widget: str = str(),
         code_widget: str = str(),
         time_created: str = str(),
+        tmp_screen_phone: object = None,
     ):
         super().__init__()
 
@@ -723,31 +719,17 @@ class projects_made(ft.Container):
         self.code_widget = code_widget
         self.time_created = time_created
 
+        self.tmp_screen_phone = tmp_screen_phone
         self.ink = True
         self.ink_color = ft.Colors.with_opacity(0.8, ft.colors('cyan'))
         self.expand=True
         self.image = ft.DecorationImage(
                 src='backend.webp',
                 fit=ft.ImageFit.COVER,
-                # opacity=0.5 if self.page.window.width <= 620 else 0.5,
                 opacity=0.02
             )
-        # self.expand = True
-        # self.border_radius = ft.border_radius.all(30)
-        # self.margin = ft.margin.all(0)
-        # self.padding = ft.padding.all(4)
-        # self.alignment = ft.alignment.center
-        # self.bgcolor = ft.Colors.with_opacity(0.05, ft.colors('white'))
-        # self.shadow = ft.BoxShadow(
-        #     spread_radius=1,
-        #     blur_radius=15,
-        #     color=ft.Colors.with_opacity(0.2, ft.colors('black')),
-        #     offset=ft.Offset(0, 0),
-        #     blur_style=ft.ShadowBlurStyle.OUTER,
-        # )
 
     def build(self):
-        self.on_click = lambda widget_parent: self.activate_screen()
 
         self.content = ft.Column(
             spacing=0,
@@ -765,11 +747,10 @@ class projects_made(ft.Container):
 
                     controls=[
                         ft.IconButton(
-                            # bgcolor='white',
                             icon=ft.icons('star'),
                             selected_icon=ft.icons('star'),
                             selected=False,
-                        ),  # for _ in range(3)
+                        ),
 
                         ft.Text(
                             text_align=ft.TextAlign.CENTER,
@@ -779,7 +760,7 @@ class projects_made(ft.Container):
                             color=ft.Colors.with_opacity(
                                 0.8, ft.colors('white')),
                             value=self.ranking_stars
-                        ),  # for _ in range(3)
+                        ),
                     ]
                 ),
                 # control number 1
@@ -790,7 +771,6 @@ class projects_made(ft.Container):
                         run_spacing=0,
                         controls=[
                             ft.Text(
-                                # text_align=ft.TextAlign.LEFT,
                                 weight=ft.FontWeight.BOLD,
                                 font_family="Consolas",  # "Consolas ,RobotoSlab
                                 color=ft.Colors.with_opacity(0.7, ft.colors('white')),
@@ -799,7 +779,6 @@ class projects_made(ft.Container):
                             ),
                             # control number 2
                             ft.Text(
-                                # text_align=ft.TextAlign.LEFT,
                                 weight=ft.FontWeight.BOLD,
                                 font_family="Consolas",  # "Consolas ,RobotoSlab
                                 color=ft.Colors.with_opacity(0.7, ft.colors('white')),
@@ -808,7 +787,6 @@ class projects_made(ft.Container):
                             ),
                             # control number 3
                             ft.Text(
-                                # text_align=ft.TextAlign.LEFT,
                                 weight=ft.FontWeight.BOLD,
                                 font_family="Consolas",  # "Consolas ,RobotoSlab
                                 color=ft.Colors.with_opacity(0.7, ft.colors('white')),
@@ -822,6 +800,7 @@ class projects_made(ft.Container):
             ]
         )
 
+        self.on_click = lambda widget_parent: self.activate_screen()
 
     def activate_screen(self,) -> object():
         """Return widget screen to load
@@ -829,13 +808,12 @@ class projects_made(ft.Container):
         Args:
             widget (object, optional): _description_. Defaults to None)->object()
         """
+        tmp_screen_phone = self.tmp_screen_phone
 
         self.selected_screen = tmp_screen_phone
-        # return
 
         # NECESSARY TAKE SELECTED SCREEN
         self.data_selected = self.dragg_widget
-        # self.selected_screen.content.content = ft.Container(bgcolor="red", height=120, width=120)
 
         self.selected_screen.content.content = self.load_module_from_string(
             page=self.page,
@@ -851,9 +829,10 @@ class projects_made(ft.Container):
 
         # SET CODE IN CODE MARKDOWN
         self.page.session.set('MARK_DOWN_CODE', self.code_widget)
-
         self.Build_Phone_Editor.update()
-        self.page.update()
+
+        # self.page.update()
+        self.selected_screen.update()
 
         # run only in production
         # print('='*20)
@@ -879,9 +858,9 @@ class project_manager(ft.Stack):
     """
     project_tab = [
             'Splash',
-            'Welcome',
+            'Introduction',
             'Login',
-            'Register',
+            'LoginRegister',
             'Lock',
             'MixViews',
             'GridView',
@@ -890,16 +869,16 @@ class project_manager(ft.Stack):
             'Payment',
             'Shopping',
             'Music',
-            'Setting',
-            'Testing',
+            'SettingView',
+            'Verification',
             'About'
         ]
     """
     TABS_PROJECTS: list = {
         'Splash': ft.Icons('do_not_touch'),
-        'Welcome': ft.Icons('start'),
+        'Introduction': ft.Icons('start'),
         'Login': ft.Icons('login'),
-        'Register': ft.Icons('how_to_reg'),
+        'LoginRegister': ft.Icons('how_to_reg'),
         'Lock': ft.Icons('block'),
         'MixViews': ft.Icons('dashboard'),
         'GridView': ft.Icons('grid_view_rounded'),
@@ -908,10 +887,11 @@ class project_manager(ft.Stack):
         'Payment': ft.Icons('account_balance_wallet'),
         'Shopping': ft.Icons('shopping_bag'),
         'Music': ft.Icons('speaker_group_rounded'),
-        'Setting': ft.Icons('settings'),
-        'Testing': ft.Icons('verified'),
+        'SettingView': ft.Icons('settings'),
+        'Verification': ft.Icons('verified'),
         'About': ft.Icons('account_box'),
     }
+
 
     def __init__(self, page: object = None, visible: bool = True):
         super().__init__()
@@ -920,13 +900,8 @@ class project_manager(ft.Stack):
         self.visible = visible
 
     def build(self):
+        self.tmp_screen_phone = screen_phone(page= self.page )
 
-        # self.image = ft.DecorationImage(
-        #         src='backend.webp',
-        #         fit=ft.ImageFit.COVER,
-        #         # opacity=0.5 if self.page.window.width <= 620 else 0.5,
-        #         opacity=1
-        #     )
         self.nav_rail = ft.Container(
             width=80,
             content=ft.Column(
@@ -973,12 +948,9 @@ class project_manager(ft.Stack):
         )
 
         self.parent_middle_grid_container = ft.Row(
-            # on_scroll_interval=5,
-            # tight=True,
             scroll='auto',
             vertical_alignment=ft.CrossAxisAlignment.CENTER,
             alignment = ft.MainAxisAlignment.CENTER,
-            # width=700,
             expand=True,
             controls=[
                 # middle_container(title=tabs_name) for tabs_name in self.TABS_PROJECTS
@@ -990,7 +962,6 @@ class project_manager(ft.Stack):
             image = ft.DecorationImage(
                     src='backend.webp',
                     fit=ft.ImageFit.COVER,
-                    # opacity=0.5 if self.page.window.width <= 620 else 0.5,
                     opacity=0.015
                 ),
             content=ft.Row(
@@ -998,7 +969,6 @@ class project_manager(ft.Stack):
                     # NAV RAIL
                     self.nav_rail,
                     # RIGHT WIDGETS
-                    # self.parent_middle_grid_container,
                     ft.Column(
                         expand=True,
                         controls=[
@@ -1017,27 +987,31 @@ class project_manager(ft.Stack):
                             ]
                     ),
                     # screen_phone(),
-                    screen_manager(page=self.page,code_editor=self)
+                    screen_manager(
+                        page=self.page,
+                       code_editor=self,
+                       tmp_screen_phone=self.tmp_screen_phone
+                    )
                 ],
-                # expand=True,
             ),
         )
         self.controls = [
                 self.content,
-                # code_editor(paren_widget=self, visible=True)
                 code_editor(paren_widget=self, visible=False)
             ]
 
         self.loading_all_data()
-        # self.page.update()
-
-
 
     def list_projects_tabs(self, table_name: str=str()) -> list:
-        """List all widgets in selected projects in database
+        """
+        ### List all widgets in selected projects in database
 
-        Args:
-            ('kuko53348', 'Splash', 'exemple', '5', 'ft.DraggContainer()', 'ft.Container()', '14-15-15')
+        ```python
+
+        >>> self.list_projects_tabs(table_name='Verification')
+        ```
+        Parameters:
+        return ('kuko53348', 'Splash', 'exemple', '5', 'ft.DraggContainer()', 'ft.Container()', '14-15-15')
 
         """
         if self.page.session.get('flet_box_api'):
@@ -1053,7 +1027,6 @@ class project_manager(ft.Stack):
                 print('CONNECT FAST API\n\n[+] >>> source .venv/bin/activate\n[+] >>> uvicorn --app-dir "./flet_box_api_server/" main:app --host 0.0.0.0 --port 8080 --reload')
 
         else:
-            print('here')
             sqlite_obj = sqlite_db()
             data_returned = sqlite_obj.find_all(table_name=table_name)
 
@@ -1061,52 +1034,31 @@ class project_manager(ft.Stack):
         # middle_container(title=tabs_name)
 
         if data_returned:
-            self.parent_middle_grid_container.controls.append(middle_container(title=table_name,procces_data=data_returned))
-
-        # if data_returned:
-        #     for tmp_list in data_returned:
-        #         self.user_name = tmp_list[0]
-        #         self.table_name = tmp_list[1]
-        #         self.app_name = tmp_list[2]
-        #         self.ranking_stars = tmp_list[3]
-        #         self.dragg_widget = tmp_list[4]
-        #         self.code_widget = tmp_list[5]
-        #         self.time_created = tmp_list[6]
-        #         # self.grid_widget.controls.append(
-        #         self.parent_middle_grid_container.controls.append(
-        #             # projects_made(
-        #             #         user_name = self.user_name,
-        #             #         table_name = self.table_name,
-        #             #         app_name = self.app_name,
-        #             #         ranking_stars = self.ranking_stars,
-        #             #         dragg_widget = self.dragg_widget,
-        #             #         code_widget = self.code_widget,
-        #             #         time_created = self.time_created.split(' ')[0],
-        #             # )
-
-
-        #         )
-
-        # self.page.update()
-
+            self.parent_middle_grid_container.controls.append(
+                middle_container(
+                    title=table_name,
+                    procces_data=data_returned,
+                    tmp_screen_phone= self.tmp_screen_phone,
+                    )
+                )
 
     def loading_all_data(self, index_rail: int = int()):
 
         self.list_projects_tabs(table_name='Splash')
-        # self.list_projects_tabs(table_name='Welcome')
+        self.list_projects_tabs(table_name='Introduction')
         self.list_projects_tabs(table_name='Login')
-        # self.list_projects_tabs(table_name='Register')
-        # self.list_projects_tabs(table_name='Lock')
-        # self.list_projects_tabs(table_name='MixViews')
-        # self.list_projects_tabs(table_name='GridView')
-        # self.list_projects_tabs(table_name='ListView')
-        # self.list_projects_tabs(table_name='DashBoard')
-        # self.list_projects_tabs(table_name='Payment')
+        self.list_projects_tabs(table_name='LoginRegister')
+        self.list_projects_tabs(table_name='Lock')
+        self.list_projects_tabs(table_name='MixViews')
+        self.list_projects_tabs(table_name='GridView')
+        self.list_projects_tabs(table_name='ListView')
+        self.list_projects_tabs(table_name='DashBoard')
+        self.list_projects_tabs(table_name='Payment')
         self.list_projects_tabs(table_name='Shopping')
         self.list_projects_tabs(table_name='Music')
-        # self.list_projects_tabs(table_name='Setting')
-        # self.list_projects_tabs(table_name='Testing')
-        # self.list_projects_tabs(table_name='About')
+        self.list_projects_tabs(table_name='SettingView')
+        self.list_projects_tabs(table_name='Verification')
+        self.list_projects_tabs(table_name='About')
 
 if __name__ == '__main__':
 

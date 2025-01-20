@@ -30,9 +30,11 @@ on_developing(
 )
 
 self.page.session.set('flet_box_api',True) # <== Will have True or false
+```
 
+###  COLORS USED IN FLET_BOX
 
-
+```python
 ft.colors('blue300')
 ft.colors('cyan700')
 ft.colors('cyan800')

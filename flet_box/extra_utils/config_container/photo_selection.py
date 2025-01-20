@@ -50,7 +50,7 @@ class PhotoSelection(ft.Container):
         border_container.update()
 
     def modify_widget(self):
-        print("[+] change content tab [ photo_selection.py ]")
+        # print("[+] change content tab [ photo_selection.py ]")
 
         attribute_name_image = self.page.session.get(
             'set_attribute_image')  # <== SET (BGCOLOR, ...)

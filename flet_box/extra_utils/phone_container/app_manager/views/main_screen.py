@@ -27,7 +27,25 @@ phone_style_widget: dict = {
 }
 
 #: STYLES IN SCREEN_STYLE
-styles = {}
+styles = {
+    "Container_3942":  {
+        "alignment":  {"x": 0, "y": 0},
+        "bgcolor":  "transparent",
+        "border":  {"l": {"w": 0, "c": "transparent", "sa": None},
+                    "t": {"w": 0, "c": "transparent", "sa": None},
+                    "r": {"w": 0, "c": "transparent", "sa": None},
+                    "b": {"w": 0, "c": "transparent", "sa": None}
+                    },
+        "ink":  True,
+        "margin":  {"l": 0, "t": 0, "r": 0, "b": 0},
+        "padding":  {"l": 6, "t": 6, "r": 6, "b": 6},
+        "ink_color":  "red"
+    },
+    "Text_3943":  {
+        "size":  10,
+        "value":  "Ready to make your first app!!"
+    }
+}
 
 
 class main_screen(ft.DragTarget):
@@ -54,6 +72,20 @@ class main_screen(ft.DragTarget):
         #: DRAGG_CONTROLS
         list_controls: list = [
             
+            #: DRAG-BOX-CONTENT [ID: 3941]
+            self.draggin_framework(
+                content=ft.Container(
+                    **self.dict_style("Container_3942"),
+                    on_click=lambda dragg_item: self.dragg_event(
+                                     selected_widget=dragg_item,),
+
+                    content=ft.Text(
+                        **self.dict_style("Text_3943"),
+                        # on_click= lambda tmp_widget: event_3943(
+                        #        payload="Text_3943",
+                        #        page= self.page ),
+                    ),
+                ),),
         ]
 
         #: DRAGGIN CONTENT WIDGETS
