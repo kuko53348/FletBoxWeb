@@ -1,6 +1,7 @@
 import sqlite3
 import os
 
+
 class sqlite_db:
     """
     # lite module in python to make easy work with sqlite3
@@ -21,19 +22,22 @@ class sqlite_db:
     data_returned = sqlite_db.find_all(table_name='register')
 
     # WRITE DATA
-    data_returned = sqlite_db.write_data(table_name='register',
-                                         column=('javier53348', 'kuko', 'elanimal123'))
+    data_returned = sqlite_db.write_data(
+                table_name='register',
+                column=('javier53348', 'kuko', 'elanimal123'))
 
     # UPDATE DATA
-    data_returned = sqlite_db.update_data(table_name='register',
-                                          change_data=('user_name', 'javier53348'),
-                                          by_data=('user_name', 'xavier53348')
-                                          )
-    data_returned = sqlite_db.update_data(table_name='register',
-                                          change_data=('user_name', 'javier53348'),
-                                          by_data=('user_name', 'xavier53348'),
-                                          match=['user_email', 'email']
-                                          )
+    data_returned = sqlite_db.update_data(
+                table_name='register',
+                change_data=('user_name', 'javier53348'),
+                by_data=('user_name', 'xavier53348')
+                )
+    data_returned = sqlite_db.update_data(
+                table_name='register',
+                change_data=('user_name', 'javier53348'),
+                by_data=('user_name', 'xavier53348'),
+                match=['user_email', 'email']
+                )
 
     # CLEAN ALL
     data_returned = sqlite_db.remove_all(table_name='register')
@@ -54,15 +58,16 @@ class sqlite_db:
     >>> print(data_returned)
 
     """
-    real_pat='flet_box/extra_utils/external_library/flet_box_database.db'
+
+    real_pat = "flet_box/extra_utils/external_library/flet_box_database.db"
     current_path = os.getcwd()
-    full_current_path=os.path.join(current_path,real_pat)
+    full_current_path = os.path.join(current_path, real_pat)
 
-    def __init__(self, path_db: str = 'Erase this test'):
+    def __init__(self, path_db: str = "Erase this test"):
         super().__init__()
-        self.path_db=self.full_current_path
+        self.path_db = self.full_current_path
 
-    def create_table(self, table_name: str = '', column: dict = {}):
+    def create_table(self, table_name: str = "", column: dict = {}):
         """
         Will return a new database
 
@@ -73,7 +78,7 @@ class sqlite_db:
         sqlite_db.create_table(table_name="register",column=data_write,)
         ```
         """
-        body_str: str = ''
+        body_str: str = ""
         self.conn = sqlite3.connect(self.path_db)
 
         for _ in zip(column.keys(), column.values()):
@@ -87,12 +92,19 @@ class sqlite_db:
         try:
             cursor = self.conn.cursor()
             cursor.execute(self.command)
-            print('DATABASE WAS CREATED')
+            print("DATABASE WAS CREATED")
 
         except Exception as e:
-            print('PLESASE REMOVE OLD DATABASE TO CREATE NEW DATABASE', e)
+            print("PLESASE REMOVE OLD DATABASE TO CREATE NEW DATABASE", e)
 
-    def find_name(self, table_name: str = '', column: str = '', name: str = '', fetch: str = 'all', match: list = []):
+    def find_name(
+        self,
+        table_name: str = "",
+        column: str = "",
+        name: str = "",
+        fetch: str = "all",
+        match: list = [],
+    ):
         """
         Find by name if exist
 
@@ -108,14 +120,22 @@ class sqlite_db:
         self.conn = sqlite3.connect(self.path_db)
         cursor = self.conn.cursor()
         try:
-            cursor.execute(f'SELECT * FROM {table_name} WHERE {column}="{name}" AND {match[0]}="{match[1]}"') if match else cursor.execute(f"SELECT * FROM {table_name} WHERE {column}='{name}'")
+            (
+                cursor.execute(
+                    f'SELECT * FROM {table_name} WHERE {column}="{name}" AND {match[0]}="{match[1]}"'
+                )
+                if match
+                else cursor.execute(
+                    f"SELECT * FROM {table_name} WHERE {column}='{name}'"
+                )
+            )
         except Exception as e:
             print(f"ERROR: {e}")
             return False
 
-        if fetch == 'all':
+        if fetch == "all":
             data_finded = cursor.fetchall()
-        elif fetch == 'one':
+        elif fetch == "one":
             data_finded = cursor.fetchone()
 
         self.conn.commit(), cursor.close(), self.conn.close()
@@ -125,7 +145,7 @@ class sqlite_db:
         else:
             return False
 
-    def find_all(self, table_name: str = 'noExist'):
+    def find_all(self, table_name: str = "noExist"):
         """
         Return all datatable name in database
 
@@ -155,7 +175,7 @@ class sqlite_db:
         else:
             return False
 
-    def write_data(self, table_name: str = '', column: tuple = ()):
+    def write_data(self, table_name: str = "", column: tuple = ()):
         """
         Return BOL True or False if not error writing data.
 
@@ -182,7 +202,9 @@ class sqlite_db:
         else:
             return False
 
-    def update_data(self, table_name: str = '', by_data: str = '', change_data: str = '', match=[]):
+    def update_data(
+        self, table_name: str = "", by_data: str = "", change_data: str = "", match=[]
+    ):
         """
         how work inside:
 
@@ -193,9 +215,10 @@ class sqlite_db:
         EXEMPLE:
 
         ```python
-        data_returned = sqlite_db.update_data(table_name='register',
-                                              change_data=('user_name', 'javier53348'),
-                                              by_data=('user_name', 'xavier53348')
+        data_returned = sqlite_db.update_data(
+            table_name='register',
+            change_data=('user_name', 'javier53348'),
+            by_data=('user_name', 'xavier53348')
                         )
 
         data_returned = sqlite_db.update_data(table_name='register',
@@ -217,14 +240,16 @@ class sqlite_db:
             equal_name = crusor.fetchone()
 
             """
-            crusor.execute(f'SELECT * FROM {table_name} WHERE {change_data[0]}="{change_data[1]}"')
+            crusor.execute(
+                f'SELECT * FROM {table_name} WHERE {change_data[0]}="{change_data[1]}"'
+            )
 
             equal_name = crusor.fetchone()
 
             if equal_name:
 
                 if match:
-                    '''if match is writed'''
+                    """if match is writed"""
                     try:
                         """
                         find exist name tin match o be changed
@@ -234,11 +259,13 @@ class sqlite_db:
 
                         """
 
-                        crusor.execute(f'SELECT * FROM {table_name} WHERE {match[0]}="{match[1]}"')
+                        crusor.execute(
+                            f'SELECT * FROM {table_name} WHERE {match[0]}="{match[1]}"'
+                        )
                         equal_match = crusor.fetchone()
 
                         if equal_match:
-                            '''if equal_match appear'''
+                            """if equal_match appear"""
                             payload = f"UPDATE {table_name} SET {by_data[0]}='{by_data[1]}' WHERE {change_data[0]}='{change_data[1]}' AND {match[0]}='{match[1]}' "
                         else:
                             return False
@@ -262,14 +289,14 @@ class sqlite_db:
                 else:
                     return False
             else:
-                print('No exist')
+                print("No exist")
                 return False
 
         except Exception as e:
             print(f"ERROR: {e}")
             return False
 
-    def remove_all(self, table_name=''):
+    def remove_all(self, table_name=""):
         """
         EXEMPLE:
 
@@ -280,14 +307,20 @@ class sqlite_db:
         self.conn = sqlite3.connect(self.path_db)
         try:
             crusor = self.conn.cursor()
-            crusor.execute(f'DELETE from {table_name}').fetchall()
+            crusor.execute(f"DELETE from {table_name}").fetchall()
             self.conn.commit(), crusor.close(), self.conn.close()
 
         except Exception as e:
             print(f"ERROR: {e}")
             return False
 
-    def remove_data(self, table_name: str = '', column_name: str = '', name: str = '', match: list = []):
+    def remove_data(
+        self,
+        table_name: str = "",
+        column_name: str = "",
+        name: str = "",
+        match: list = [],
+    ):
         """
         EXEMPLE:
 
@@ -309,19 +342,21 @@ class sqlite_db:
 
         self.conn = sqlite3.connect(self.path_db)
         crusor = self.conn.cursor()
-        sql = ''
+        sql = ""
 
         if match:
-            '''
+            """
             if match is writed
 
             find_name = crusor.execute(f'SELECT * FROM {table_name} WHERE {column_name}="{name}"')
             equal_name = crusor.fetchone()
 
-            '''
+            """
             data = True
             try:
-                find_name = crusor.execute(f'SELECT * FROM {table_name} WHERE {column_name}="{name}"')
+                find_name = crusor.execute(
+                    f'SELECT * FROM {table_name} WHERE {column_name}="{name}"'
+                )
                 equal_name = crusor.fetchone()
                 # find_match = crusor.execute(f'SELECT * FROM {table_name} WHERE {match[0]}="{match[1]}"')
                 equal_match = crusor.fetchone()
@@ -330,7 +365,7 @@ class sqlite_db:
                     sql = f"DELETE from {table_name} WHERE {column_name}='{name}' AND {match[0]}='{match[1]}' "
                 else:
                     sql = f"DELETE from {table_name} WHERE {column_name}='{name}' AND {match[0]}='{match[1]}' "
-                    data = 'no exist match user'
+                    data = "no exist match user"
                     return data
 
             except Exception as e:
@@ -346,13 +381,15 @@ class sqlite_db:
                 """
                 data = True
 
-                find_name = crusor.execute(f'SELECT * FROM {table_name} WHERE {column_name}="{name}"')
+                find_name = crusor.execute(
+                    f'SELECT * FROM {table_name} WHERE {column_name}="{name}"'
+                )
                 equal_name = crusor.fetchone()
                 if equal_name:
                     sql = f"DELETE from {table_name} WHERE {column_name}='{name}'"
                 else:
-                    print('No exist')
-                    data = 'no exist match user'
+                    print("No exist")
+                    data = "no exist match user"
             except Exception as e:
                 print(f"ERROR: {e}")
                 return False
@@ -367,58 +404,58 @@ class sqlite_db:
             return False
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # from create_skelenton import data_input
 
     data_write = {
-        'user_name': 'TEXT',
-        'user_email': 'TEXT',
-        'user_password': 'TEXT',
-        'time_created': 'TEXT',
+        "user_name": "TEXT",
+        "user_email": "TEXT",
+        "user_password": "TEXT",
+        "time_created": "TEXT",
     }
     screen_write = {
-        'user_name': 'TEXT',
-        'main_screen': 'TEXT',
-        'screen_one': 'TEXT',
-        'screen_two': 'TEXT',
-        'screen_three': 'TEXT',
-        'screen_four': 'TEXT',
-        'screen_five': 'TEXT',
-        'screen_six': 'TEXT',
-        'screen_seven': 'TEXT',
-        'screen_eigth': 'TEXT',
-        'screen_nine': 'TEXT',
-        'screen_ten': 'TEXT',
-        'screen_eleven': 'TEXT',
-        'screen_twelve': 'TEXT',
+        "user_name": "TEXT",
+        "main_screen": "TEXT",
+        "screen_one": "TEXT",
+        "screen_two": "TEXT",
+        "screen_three": "TEXT",
+        "screen_four": "TEXT",
+        "screen_five": "TEXT",
+        "screen_six": "TEXT",
+        "screen_seven": "TEXT",
+        "screen_eigth": "TEXT",
+        "screen_nine": "TEXT",
+        "screen_ten": "TEXT",
+        "screen_eleven": "TEXT",
+        "screen_twelve": "TEXT",
     }
 
     data_db_write = {
-        'user_name': 'TEXT',
-        'project_tab': 'TEXT',
-        'name_project': 'TEXT',
-        'ranking_app': 'TEXT',
-        'dragg_screen': 'TEXT',
-        'app_screen': 'TEXT',
-        'time_created': 'TEXT',
+        "user_name": "TEXT",
+        "project_tab": "TEXT",
+        "name_project": "TEXT",
+        "ranking_app": "TEXT",
+        "dragg_screen": "TEXT",
+        "app_screen": "TEXT",
+        "time_created": "TEXT",
     }
 
     project_tab = [
-        'Splash',
-        'Introduction',
-        'Login',
-        'Register',
-        'Lock',
-        'MixViews',
-        'GridView',
-        'ListView',
-        'DashBoard',
-        'Payment',
-        'Shopping',
-        'Music',
-        'SettingsView',
-        'Verification',
-        'About'
+        "Splash",
+        "Introduction",
+        "Login",
+        "Register",
+        "Lock",
+        "MixViews",
+        "GridView",
+        "ListView",
+        "DashBoard",
+        "Payment",
+        "Shopping",
+        "Music",
+        "SettingsView",
+        "Verification",
+        "About",
     ]
 
     # sqlite_db = sqlite_db(path_db="./flet_box_database.db")
@@ -436,7 +473,10 @@ if __name__ == '__main__':
     for _ in project_tab:
         # print(data_db_write)
         # print(sqlite_db)
-        sqlite_db.create_table(table_name=_, column=data_db_write,)
+        sqlite_db.create_table(
+            table_name=_,
+            column=data_db_write,
+        )
     # REMOVE DATA
     # data_returned = sqlite_db.remove_data(
     #                                 table_name='register',
@@ -453,8 +493,8 @@ if __name__ == '__main__':
     # data_returned = sqlite_db.write_data(table_name='register',
     #                                      column=('javier53348', 'kuko53348@gmail.com', 'elanimal123','5444656'))
     # data_returned = sqlite_db.write_data(table_name='register',
-                                         # column=('juan', 'juan53348@gmail.com', 'juan123','54544656')
-                                         # )
+    # column=('juan', 'juan53348@gmail.com', 'juan123','54544656')
+    # )
     # data_returned = sqlite_db.write_data(table_name='user_screen',
     #                                      column=(
     #                                             'user_demo',

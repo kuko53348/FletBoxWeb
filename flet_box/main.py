@@ -19,6 +19,7 @@ from extra_utils import send_attach_email
 from extra_utils import sponsor_page
 from extra_utils import about_page
 
+
 class header_container(ft.Container):
 
     def __init__(self, page):
@@ -37,9 +38,7 @@ class header_container(ft.Container):
             vertical_alignment=ft.CrossAxisAlignment.CENTER,
             spacing=0,
             run_spacing=0,
-            controls=[
-                MenuUpContainer(page=self.page)
-            ]
+            controls=[MenuUpContainer(page=self.page)],
         )
 
 
@@ -60,7 +59,7 @@ class row_middle_container(ft.Container):
         # PHONE CONTAINER
         self.phone_container = Build_Phone_Editor(
             page=self.page,
-            color_data=ft.Colors.with_opacity(0.12, ft.colors('black')),
+            color_data=ft.Colors.with_opacity(0.12, ft.colors("black")),
         ).build()
 
         #  CONFIG PHONE CONTAINER
@@ -75,13 +74,12 @@ class row_middle_container(ft.Container):
                 vertical_alignment=ft.CrossAxisAlignment.CENTER,
                 scroll=True,
                 controls=[
-
                     Build_Editor(
                         page=self.page,
                         main_phone=self.phone_container,
                     )
-                ]
-            )
+                ],
+            ),
         )
         # # CHECK WINDOWS SIZE
         # if self.page.window.width <= 270:
@@ -97,24 +95,23 @@ class row_middle_container(ft.Container):
                 ft.Container(
                     padding=ft.padding.all(0),
                     border_radius=ft.border_radius.all(30),
-                    bgcolor=ft.Colors.with_opacity(0.02, ft.colors('white')),
+                    bgcolor=ft.Colors.with_opacity(0.02, ft.colors("white")),
                     border=ft.border.all(
-                        0.5, ft.Colors.with_opacity(0.08, ft.colors("white"))),
+                        0.5, ft.Colors.with_opacity(0.08, ft.colors("white"))
+                    ),
                     width=60,
                     blur=(16, 16),
-
                     content=ft.Column(
                         alignment=ft.MainAxisAlignment.CENTER,
                         horizontal_alignment=ft.CrossAxisAlignment.CENTER,
                         controls=[
-
                             MenuLeftContainer(
                                 page=self.page,
                                 phone_container=self.drag_container,
                                 menu_right_container=self.config_widget_container,
                             ),
-                        ]
-                    )
+                        ],
+                    ),
                 ),
                 ft.Container(
                     # visible=False,
@@ -124,8 +121,8 @@ class row_middle_container(ft.Container):
                         controls=[
                             #: drag_container/widget_drag_editor.py
                             self.drag_container
-                        ]
-                    )
+                        ],
+                    ),
                 ),
                 ft.Container(
                     padding=ft.padding.all(0),
@@ -150,11 +147,11 @@ class row_middle_container(ft.Container):
                             ft.Container(expand=True),
                             self.phone_container,
                             ft.Container(expand=True),
-                        ]
-                    )
+                        ],
+                    ),
                 ),
                 self.config_widget_container,
-            ]
+            ],
         )
 
 
@@ -176,13 +173,13 @@ class footer_container(ft.Container):
             # horizontal <=> START,CENTER,END SPACE_BETWEEN SPACE_AROUND SPACE_EVENLY
             alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
             vertical_alignment=ft.CrossAxisAlignment.CENTER,
-            spacing=0,          # space widget left right
-            run_spacing=0,      # space widget up down
+            spacing=0,  # space widget left right
+            run_spacing=0,  # space widget up down
             controls=[
                 header_container(page=self.page),
                 LiteMenuDownContainer(),
                 ft.Container(width=285),
-            ]
+            ],
         )
 
 
@@ -194,26 +191,20 @@ class column_container(ft.Container):
         self.page = page
         self.alignment = ft.alignment.center
         self.image = ft.DecorationImage(
-            src='backend.webp',
+            src="backend.webp",
             fit=ft.ImageFit.COVER,
             # opacity=0.5 if self.page.window.width <= 620 else 0.5,
-            opacity=0.8
+            opacity=0.8,
         )
         self.expand = True
         self.ink = False
         self.margin = ft.margin.all(0)
-        self.padding = ft.padding.only(
-            left=3,
-            top=8,
-            right=3,
-            bottom=8
-        )
+        self.padding = ft.padding.only(left=3, top=8, right=3, bottom=8)
 
     def build(self):
         self.content = ft.Container(
             blur=(18, 18),
-            border=ft.border.all(
-                1, ft.Colors.with_opacity(0.03, ft.colors("white"))),
+            border=ft.border.all(1, ft.Colors.with_opacity(0.03, ft.colors("white"))),
             border_radius=ft.border_radius.all(30),
             content=ft.Column(
                 spacing=8,
@@ -224,12 +215,13 @@ class column_container(ft.Container):
                     row_middle_container(page=self.page),
                     footer_container(page=self.page),
                 ],
-            ))
+            ),
+        )
 
 
 class flet_box:
     ONLY_CONTROLS_ADDING_IN_APP: list = [
-        'Row',
+        "Row",
         "GridView",
         "Column",
         "Stack",
@@ -243,15 +235,13 @@ class flet_box:
         self.main()
 
     def main(self):
-        #
-        self.page.session.set("list_filter_controls",
-                              self.ONLY_CONTROLS_ADDING_IN_APP)
+
+        self.page.session.set("list_filter_controls", self.ONLY_CONTROLS_ADDING_IN_APP)
 
         self.page.window.focused = True
         self.page.scroll = "HIDDEN"
         self.page.vertical_alignment = ft.MainAxisAlignment.CENTER
         self.page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
-        # self.page.theme_mode = ft.ThemeMode.DARK # ft.ThemeMode.LIGHT
 
         self.page.window.maximizable = True
         self.page.window.left = 3
@@ -293,7 +283,7 @@ class flet_box:
                         controls=[
                             column_container(page=self.page),
                             project_manager(page=self.page, visible=False),
-                            menu_save_container(page=self.page, visible=False)
+                            menu_save_container(page=self.page, visible=False),
                         ],
                     )
                 )
@@ -305,9 +295,7 @@ class flet_box:
                         vertical_alignment=ft.MainAxisAlignment.CENTER,
                         padding=0,
                         route="/sponsor_page",
-                        controls=[
-                            sponsor_page(page=self.page)
-                        ],
+                        controls=[sponsor_page(page=self.page)],
                     )
                 )
 
@@ -318,9 +306,7 @@ class flet_box:
                         vertical_alignment=ft.MainAxisAlignment.CENTER,
                         padding=0,
                         route="/about_page",
-                        controls=[
-                            about_page(page=self.page)
-                        ],
+                        controls=[about_page(page=self.page)],
                     )
                 )
 
@@ -328,12 +314,13 @@ class flet_box:
 
             self.page.update()
 
-                # print(e)
+            # print(e)
+
         # NEVER ERASE THIS INVITED PERSON
         # self.page.session.set('user_name', {'user_name': 'invited'})
 
-        self.page.on_route_change=route_change
-        self.page.theme_mode=ft.ThemeMode.DARK
+        self.page.on_route_change = route_change
+        self.page.theme_mode = ft.ThemeMode.DARK
 
         # COMENT IF WILL WORK ONLINE IN WEB          <==== ONLINE IN WEB
         self.run_in_production(page=self.page, runing_online_server=True)
@@ -346,7 +333,9 @@ class flet_box:
         # self.page.session.set('user_name', {'user_name': 'kuko53348'})
         self.page.update()
 
-    def run_in_production(self,runing_online_server: bool=False ,page: object=None):
+    def run_in_production(
+        self, runing_online_server: bool = False, page: object = None
+    ):
         """
         Args:
             FIRST SCREEN
@@ -364,34 +353,33 @@ class flet_box:
             self.page.go('/congratulation')        # <<< TO TESTING
         """
         page = page
-        # kuko533486@gmail.com
+        # kuko53348@gmail.com
         if runing_online_server:
-            page.session.set('api_server','https://kuko53348.pythonanywhere.com/')
-            page.session.set('flet_box_api',True)
-            page.go('/')                   # <<< TO PRODUCTION
+            page.session.set("api_server", "http://0.0.0.0:8080/")
+            # page.session.set('api_server','https://kuko53348.pythonanywhere.com/')
+            page.session.set("flet_box_api", True)
+            page.go("/")  # <<< TO PRODUCTION
 
         else:
             # if runing_offline is true will be locally
-            page.session.set('api_server','http://0.0.0.0:8080/')
-            page.session.set('flet_box_api',True)
+            page.session.set("api_server", "http://0.0.0.0:8080/")
+            page.session.set("flet_box_api", True)
 
             # page.go('/')             # <<< TO TESTING
-            page.go('/home')             # <<< TO TESTING
+            page.go("/home")  # <<< TO TESTING
             # page.go('/sponsor_page')             # <<< TO TESTING
             # page.go('/about_page')             # <<< TO TESTING
-            page.session.set('user_name', {'user_name': 'kuko53348'})
-
+            page.session.set("user_name", {"user_name": "kuko53348"})
 
     def setting_only_append_controls(self):
-        self.widgetFilter=[_.lower()
-                             for _ in self.ONLY_CONTROLS_ADDING_IN_APP]
+        self.widgetFilter = [_.lower() for _ in self.ONLY_CONTROLS_ADDING_IN_APP]
         self.page.session.set("ONLY_CONTROLS_ADDING_IN_APP", self.widgetFilter)
 
 
 if __name__ == "__main__":
     ft.app(
-        target = flet_box,
-        assets_dir = "flet_box/assets/project_assets/",
+        target=flet_box,
+        assets_dir="flet_box/assets/project_assets/",
         # port=8081,
         # view=ft.AppView.WEB_BROWSER, #
         # view=ft.WEB_BROWSER,

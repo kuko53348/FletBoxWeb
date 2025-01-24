@@ -2,6 +2,7 @@ import flet as ft
 
 # from ..settings_var.settings_widget import GLOBAL_VAR
 
+
 class FourEntry(ft.Stack):
     """
     box_layout = ft.Container(content=ft.Text())
@@ -13,21 +14,21 @@ class FourEntry(ft.Stack):
     def __init__(
         self,
         id_name_widget_dict=None,
-        config_widget: str="exemple [value,bgcolor,width,height] ....",
-        page: object=object(),
-        screen_phone: object=object(),
+        config_widget: str = "exemple [value,bgcolor,width,height] ....",
+        page: object = object(),
+        screen_phone: object = object(),
     ):
         super().__init__()
         self.page = page
         self.widget = screen_phone
 
-        self.tooltip="FourEntry"
+        self.tooltip = "FourEntry"
         self.attribute_widget = config_widget
         self.id_name_widget_dict = id_name_widget_dict
 
         # size textz
-        self.text_size = 12 #GLOBAL_VAR(get_global_var="text_size_input")
-        self.padding_only = 4 #GLOBAL_VAR(get_global_var="padding_only")
+        self.text_size = 12  # GLOBAL_VAR(get_global_var="text_size_input")
+        self.padding_only = 4  # GLOBAL_VAR(get_global_var="padding_only")
 
         #: print(self.attribute_widget)
         #: will change name of entry points
@@ -53,13 +54,13 @@ class FourEntry(ft.Stack):
     def build(self):
         packet_data = ft.Container(
             ink=False,
-            bgcolor=ft.Colors.with_opacity(0.5, ft.colors('black')),
-            blur = (8,8),
+            bgcolor=ft.Colors.with_opacity(0.5, ft.colors("black")),
+            blur=(8, 8),
             padding=ft.padding.all(4),
             margin=ft.margin.all(0),
             alignment=ft.alignment.center,
             border_radius=ft.border_radius.all(16),
-            border=ft.border.all(1.5, ft.Colors.with_opacity(0.28, ft.colors('white'))),
+            border=ft.border.all(1.5, ft.Colors.with_opacity(0.28, ft.colors("white"))),
             width=162,
             height=128,
             content=ft.Column(
@@ -67,7 +68,7 @@ class FourEntry(ft.Stack):
                 controls=[
                     ft.Container(
                         ink=False,
-                        bgcolor=ft.Colors.with_opacity(0.04, ft.colors('white')),
+                        bgcolor=ft.Colors.with_opacity(0.04, ft.colors("white")),
                         padding=ft.padding.only(left=12, top=0, right=12, bottom=0),
                         alignment=ft.alignment.center,
                         # border=ft.border.all(1, ft.Colors.with_opacity(0.04, ft.colors('white'))),
@@ -80,16 +81,18 @@ class FourEntry(ft.Stack):
                     ),
                     ft.Container(
                         ink=False,
-                        bgcolor=ft.Colors.with_opacity(0.04, ft.colors('white')),
+                        bgcolor=ft.Colors.with_opacity(0.04, ft.colors("white")),
                         padding=ft.padding.all(2),
                         alignment=ft.alignment.center,
                         border_radius=ft.border_radius.all(30),
-                        border=ft.border.all(1, ft.Colors.with_opacity(0.04, ft.colors('white'))),
+                        border=ft.border.all(
+                            1, ft.Colors.with_opacity(0.04, ft.colors("white"))
+                        ),
                         height=36,
                         gradient=ft.LinearGradient(
                             begin=ft.alignment.top_center,
                             end=ft.alignment.bottom_center,
-                            colors=[ft.colors('cyan800'), ft.colors('black38')],
+                            colors=[ft.colors("cyan800"), ft.colors("black38")],
                         ),
                         content=ft.Row(
                             spacing=8.7,
@@ -101,13 +104,14 @@ class FourEntry(ft.Stack):
                                     border_radius=ft.border_radius.all(30),
                                     content=ft.TextField(
                                         hint_text=self.attribute_widget_name_1,
-                                        border_radius =ft.border_radius.all(30),
-                                        border_color = ft.Colors('transparent'),
-                                        bgcolor=ft.Colors.with_opacity(0.04, ft.colors('white')),
+                                        border_radius=ft.border_radius.all(30),
+                                        border_color=ft.Colors("transparent"),
+                                        bgcolor=ft.Colors.with_opacity(
+                                            0.04, ft.colors("white")
+                                        ),
                                         color="YELLOW",
                                         text_size=self.text_size,
                                         content_padding=self.padding_only,
-
                                         on_change=lambda x: self.modify_widget_attributes(
                                             config_widget=self.attribute_widget,
                                             value=packet_data,
@@ -121,13 +125,14 @@ class FourEntry(ft.Stack):
                                     border_radius=ft.border_radius.all(30),
                                     content=ft.TextField(
                                         hint_text=self.attribute_widget_name_2,
-                                        border_radius =ft.border_radius.all(30),
-                                        border_color = ft.Colors('transparent'),
-                                        bgcolor=ft.Colors.with_opacity(0.04, ft.colors('white')),
+                                        border_radius=ft.border_radius.all(30),
+                                        border_color=ft.Colors("transparent"),
+                                        bgcolor=ft.Colors.with_opacity(
+                                            0.04, ft.colors("white")
+                                        ),
                                         color="YELLOW",
                                         text_size=self.text_size,
                                         content_padding=self.padding_only,
-
                                         on_change=lambda x: self.modify_widget_attributes(
                                             config_widget=self.attribute_widget,
                                             value=packet_data,
@@ -142,13 +147,15 @@ class FourEntry(ft.Stack):
                         padding=ft.padding.all(2),
                         alignment=ft.alignment.center,
                         border_radius=ft.border_radius.all(30),
-                        border=ft.border.all(1, ft.Colors.with_opacity(0.04, ft.colors('white'))),
-                        bgcolor=ft.Colors.with_opacity(0.04, ft.colors('white')),
+                        border=ft.border.all(
+                            1, ft.Colors.with_opacity(0.04, ft.colors("white"))
+                        ),
+                        bgcolor=ft.Colors.with_opacity(0.04, ft.colors("white")),
                         height=36,
                         gradient=ft.LinearGradient(
                             begin=ft.alignment.top_center,
                             end=ft.alignment.bottom_center,
-                            colors=[ft.colors('cyan800'), ft.colors('black38')],
+                            colors=[ft.colors("cyan800"), ft.colors("black38")],
                         ),
                         content=ft.Row(
                             spacing=8.7,
@@ -160,13 +167,14 @@ class FourEntry(ft.Stack):
                                     border_radius=ft.border_radius.all(30),
                                     content=ft.TextField(
                                         hint_text=self.attribute_widget_name_3,
-                                        border_radius =ft.border_radius.all(30),
-                                        border_color = ft.Colors('transparent'),
-                                        bgcolor=ft.Colors.with_opacity(0.04, ft.colors('white')),
+                                        border_radius=ft.border_radius.all(30),
+                                        border_color=ft.Colors("transparent"),
+                                        bgcolor=ft.Colors.with_opacity(
+                                            0.04, ft.colors("white")
+                                        ),
                                         color="YELLOW",
                                         text_size=self.text_size,
                                         content_padding=self.padding_only,
-
                                         on_change=lambda x: self.modify_widget_attributes(
                                             config_widget=self.attribute_widget,
                                             value=packet_data,
@@ -180,13 +188,14 @@ class FourEntry(ft.Stack):
                                     border_radius=ft.border_radius.all(30),
                                     content=ft.TextField(
                                         hint_text=self.attribute_widget_name_4,
-                                        border_radius =ft.border_radius.all(30),
-                                        border_color = ft.Colors('transparent'),
-                                        bgcolor=ft.Colors.with_opacity(0.04, ft.colors('white')),
+                                        border_radius=ft.border_radius.all(30),
+                                        border_color=ft.Colors("transparent"),
+                                        bgcolor=ft.Colors.with_opacity(
+                                            0.04, ft.colors("white")
+                                        ),
                                         color="YELLOW",
                                         text_size=self.text_size,
                                         content_padding=self.padding_only,
-
                                         # ======================= EVENTS ===========================
                                         on_change=lambda x: self.modify_widget_attributes(
                                             config_widget=self.attribute_widget,
@@ -252,8 +261,8 @@ class FourEntry(ft.Stack):
                 else 0
             )
             if self.attribute_widget == "padding ":
-                self.widget.padding=0
-                self.tab_container = self.page.session.get('SELECTED_SCREEN')
+                self.widget.padding = 0
+                self.tab_container = self.page.session.get("SELECTED_SCREEN")
                 self.tab_container.content.content.content.padding = ft.padding.only(
                     left=int(left),
                     top=int(top),
@@ -331,12 +340,9 @@ class FourEntry(ft.Stack):
             )
 
         try:
-            self.phone_container = self.page.session.get('SELECTED_SCREEN')
+            self.phone_container = self.page.session.get("SELECTED_SCREEN")
             self.phone_container.update()
             # self.widget.update()
         except Exception as error:
-            self.error_page = self.page.session.get('on_dev')
-            self.error_page(
-                name_seccion='Error by Dev',
-                body_string=error
-            )
+            self.error_page = self.page.session.get("on_dev")
+            self.error_page(name_seccion="Error by Dev", body_string=error)

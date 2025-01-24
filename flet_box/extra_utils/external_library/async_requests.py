@@ -2,12 +2,13 @@ import requests
 import asyncio
 import json
 
+
 def async_requests(
-    type: str=str(),
-    url: str=str(),
-    path: str=str(),
-    payload: str=str(),
-    ):
+    type: str = str(),
+    url: str = str(),
+    path: str = str(),
+    payload: str = str(),
+):
     """
     ### Send requests by async
     ```python
@@ -26,32 +27,32 @@ def async_requests(
     path='{url}/{path}/{payload}'
     """
 
-    url_session=url
+    url_session = url
     request_type = type.lower()
     request_session = requests.session()
 
-    full_path: str = f'{url_session}{path}'
+    full_path: str = f"{url_session}{path}"
 
     async def main():
-        if request_type == 'get':
+        if request_type == "get":
             code = request_session.get(full_path, params=payload)
 
-        if request_type == 'put':
+        if request_type == "put":
             # PUT ONLY WILL BE ON WEB
             code = request_session.put(full_path, params=payload)
 
-        if request_type == 'post':
+        if request_type == "post":
             # PUT ONLY WILL BE ON WEB
             code = request_session.post(full_path, params=payload)
 
-        if request_type == 'delete':
+        if request_type == "delete":
             ...
 
         await asyncio.sleep(0.2)
 
         # Check if state is correct
         data_request = code.status_code
-        print(data_request,'<<<<<<<< status code')
+        print(data_request, "<<<<<<<< status code")
         if data_request == 200:
             return code.json()
 
@@ -63,12 +64,13 @@ def async_requests(
     except Exception as e:
         return False
 
+
 if __name__ == "__main__":
     code_returned = async_requests(
-            type='get',
-            url='http://0.0.0.0:8080/',
-            path='login',
-            payload =  {'user_email': 'kuko53348@gmail.com','user_password':'123'},
+        type="get",
+        url="http://0.0.0.0:8080/",
+        path="login",
+        payload={"user_email": "kuko53348@gmail.com", "user_password": "123"},
     )
 
     print(f"Status code {code_returned}")

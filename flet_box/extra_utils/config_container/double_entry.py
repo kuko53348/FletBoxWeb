@@ -2,6 +2,7 @@ import flet as ft
 
 # from ..settings_var.settings_widget import GLOBAL_VAR
 
+
 class DoubleEntry(ft.Stack):
     """
     box_layout = ft.Container(content=ft.Text())
@@ -13,21 +14,20 @@ class DoubleEntry(ft.Stack):
     def __init__(
         self,
         id_name_widget_dict=None,
-        config_widget: str="exemple [value,bgcolor,width,height] ....",
-        page: object=object(),
-        screen_phone: object=object(),
+        config_widget: str = "exemple [value,bgcolor,width,height] ....",
+        page: object = object(),
+        screen_phone: object = object(),
     ):
         super().__init__()
         self.page = page
         self.widget = screen_phone
 
-        self.tooltip="DoubleEntry"
+        self.tooltip = "DoubleEntry"
         self.attribute_widget = config_widget
         self.id_name_widget_dict = id_name_widget_dict
 
-        self.text_size = 12 # GLOBAL_VAR(get_global_var="text_size_input")
-        self.padding_only = 4 # GLOBAL_VAR(get_global_var="padding_only")
-
+        self.text_size = 12  # GLOBAL_VAR(get_global_var="text_size_input")
+        self.padding_only = 4  # GLOBAL_VAR(get_global_var="padding_only")
 
         #: print(self.attribute_widget)
         #: CONTAINER STR
@@ -65,13 +65,13 @@ class DoubleEntry(ft.Stack):
     def build(self):
         Drop_DoubleEntry = ft.Container(
             ink=False,
-            bgcolor=ft.Colors.with_opacity(0.5, ft.colors('black')),
-            blur = (8,8),
+            bgcolor=ft.Colors.with_opacity(0.5, ft.colors("black")),
+            blur=(8, 8),
             padding=ft.padding.only(left=4, top=4, right=4, bottom=4),
             margin=ft.margin.all(0),
             alignment=ft.alignment.center,
             border_radius=ft.border_radius.all(16),
-            border=ft.border.all(1.5, ft.Colors.with_opacity(0.28, ft.colors('white'))),
+            border=ft.border.all(1.5, ft.Colors.with_opacity(0.28, ft.colors("white"))),
             width=165,
             height=80,
             content=ft.Column(
@@ -79,15 +79,19 @@ class DoubleEntry(ft.Stack):
                 controls=[
                     ft.Container(
                         ink=False,
-                        bgcolor=ft.Colors.with_opacity(0.04, ft.colors('white')),
+                        bgcolor=ft.Colors.with_opacity(0.04, ft.colors("white")),
                         padding=ft.padding.only(left=12, top=0, right=12, bottom=0),
                         alignment=ft.alignment.center,
                         border_radius=ft.border_radius.all(30),
                         height=20,
                         content=ft.Text(
-                            value="Width - Height"
-                            if self.attribute_widget == "width "
-                            else self.attribute_widget.capitalize().replace("_", " "),
+                            value=(
+                                "Width - Height"
+                                if self.attribute_widget == "width "
+                                else self.attribute_widget.capitalize().replace(
+                                    "_", " "
+                                )
+                            ),
                             font_family="Consolas",  # "Consolas ,RobotoSlab
                         ),
                     ),
@@ -96,7 +100,9 @@ class DoubleEntry(ft.Stack):
                         padding=ft.padding.all(2),
                         alignment=ft.alignment.center,
                         border_radius=ft.border_radius.all(30),
-                        border=ft.border.all(1, ft.Colors.with_opacity(0.04, ft.colors('white'))),
+                        border=ft.border.all(
+                            1, ft.Colors.with_opacity(0.04, ft.colors("white"))
+                        ),
                         width=154,
                         height=36,
                         tooltip="Double Entry",
@@ -117,12 +123,14 @@ class DoubleEntry(ft.Stack):
                                     border_radius=ft.border_radius.all(30),
                                     content=ft.TextField(
                                         hint_text=self.attribute_widget_name_1,
-                                        bgcolor=ft.Colors.with_opacity(0.04, ft.colors('white')),
+                                        bgcolor=ft.Colors.with_opacity(
+                                            0.04, ft.colors("white")
+                                        ),
                                         color="YELLOW",
                                         text_size=self.text_size,
                                         content_padding=self.padding_only,
-                                        border_radius =ft.border_radius.all(30),
-                                        border_color = ft.Colors('transparent'),
+                                        border_radius=ft.border_radius.all(30),
+                                        border_color=ft.Colors("transparent"),
                                         # ======================= EVENTS ===========================
                                         on_change=lambda x: self.modify_widget_attributes(
                                             config_widget=self.attribute_widget,
@@ -137,12 +145,14 @@ class DoubleEntry(ft.Stack):
                                     content=ft.TextField(
                                         # prefix_text=self.attribute_widget_name_2,
                                         hint_text=self.attribute_widget_name_2,
-                                        bgcolor=ft.Colors.with_opacity(0.04, ft.colors('white')),
+                                        bgcolor=ft.Colors.with_opacity(
+                                            0.04, ft.colors("white")
+                                        ),
                                         color="YELLOW",
                                         text_size=self.text_size,
                                         content_padding=self.padding_only,
-                                        border_radius =ft.border_radius.all(30),
-                                        border_color = ft.Colors('transparent'),
+                                        border_radius=ft.border_radius.all(30),
+                                        border_color=ft.Colors("transparent"),
                                         on_change=lambda x: self.modify_widget_attributes(
                                             config_widget=self.attribute_widget,
                                             value=Drop_DoubleEntry,
@@ -193,12 +203,16 @@ class DoubleEntry(ft.Stack):
 
         if config_widget == "blur ":
             self.widget.blur = ft.Blur(
-                int(value.content.controls[1].content.controls[0].content.value)
-                if value.content.controls[1].content.controls[0].content.value
-                else 0,
-                int(value.content.controls[1].content.controls[1].content.value)
-                if value.content.controls[1].content.controls[1].content.value
-                else 0,
+                (
+                    int(value.content.controls[1].content.controls[0].content.value)
+                    if value.content.controls[1].content.controls[0].content.value
+                    else 0
+                ),
+                (
+                    int(value.content.controls[1].content.controls[1].content.value)
+                    if value.content.controls[1].content.controls[1].content.value
+                    else 0
+                ),
                 ft.BlurTileMode.MIRROR,
             )
         if config_widget == "border ":
@@ -220,16 +234,20 @@ class DoubleEntry(ft.Stack):
             )
 
         if config_widget == "blur":
-            self.widget_tmp = self.page.session.get('SELECTED_SCREEN')
+            self.widget_tmp = self.page.session.get("SELECTED_SCREEN")
 
             # ERASE BLUR
             self.widget_tmp.content.content.content.content.blur = ft.Blur(
-                int(value.content.controls[1].content.controls[0].content.value)
-                if value.content.controls[1].content.controls[0].content.value
-                else 0,
-                int(value.content.controls[1].content.controls[1].content.value)
-                if value.content.controls[1].content.controls[1].content.value
-                else 0,
+                (
+                    int(value.content.controls[1].content.controls[0].content.value)
+                    if value.content.controls[1].content.controls[0].content.value
+                    else 0
+                ),
+                (
+                    int(value.content.controls[1].content.controls[1].content.value)
+                    if value.content.controls[1].content.controls[1].content.value
+                    else 0
+                ),
                 ft.BlurTileMode.MIRROR,
             )
             # self.widget_tmp.update()
@@ -237,12 +255,16 @@ class DoubleEntry(ft.Stack):
 
             # self.widget_tmp = self.page.session.get("SELECTED_SCREEN")  # <== SELECTED PHONE SCREEN
             self.widget_tmp.content.content.content.blur = ft.Blur(
-                int(value.content.controls[1].content.controls[0].content.value)
-                if value.content.controls[1].content.controls[0].content.value
-                else 0,
-                int(value.content.controls[1].content.controls[1].content.value)
-                if value.content.controls[1].content.controls[1].content.value
-                else 0,
+                (
+                    int(value.content.controls[1].content.controls[0].content.value)
+                    if value.content.controls[1].content.controls[0].content.value
+                    else 0
+                ),
+                (
+                    int(value.content.controls[1].content.controls[1].content.value)
+                    if value.content.controls[1].content.controls[1].content.value
+                    else 0
+                ),
                 ft.BlurTileMode.MIRROR,
             )
             self.widget = self.widget_tmp
@@ -261,13 +283,10 @@ class DoubleEntry(ft.Stack):
         #: print(self.widget.uid)
         #: UPDATE DATA
         try:
-            self.phone_container = self.page.session.get('SELECTED_SCREEN')
+            self.phone_container = self.page.session.get("SELECTED_SCREEN")
             self.phone_container.update()
             # self.widget.update()
 
         except Exception as error:
-            self.error_page = self.page.session.get('on_dev')
-            self.error_page(
-                name_seccion='Error by Dev',
-                body_string=error
-            )
+            self.error_page = self.page.session.get("on_dev")
+            self.error_page(name_seccion="Error by Dev", body_string=error)

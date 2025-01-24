@@ -9,15 +9,16 @@ class DraggWidget(ft.Stack):
     2. SET IN VARIABLE GLOBAL THE SELECTED DRAGGABLE WIDGET
     3. CLEAN THE LIST listWidgetUpdate
     """
-    dragg_border_color = ft.Colors.with_opacity(0.1, 'white')
-    dragg_shadow_color = ft.Colors.with_opacity(0.3, 'black')
-    dragg_text_color = ft.Colors.with_opacity(0.5, 'white')
-    dragg_icon_color = ft.Colors.with_opacity(0.6, 'white')
 
-    take_dragg_border_color = ft.Colors.with_opacity(0.04, 'white')
-    take_dragg_bground_color = ft.Colors.with_opacity(0.01, 'cyan')
-    take_icon_border_color = ft.Colors.with_opacity(0.4, 'white')
-    take_text_border_color = ft.Colors.with_opacity(0.4, 'white')
+    dragg_border_color = ft.Colors.with_opacity(0.1, "white")
+    dragg_shadow_color = ft.Colors.with_opacity(0.3, "black")
+    dragg_text_color = ft.Colors.with_opacity(0.5, "white")
+    dragg_icon_color = ft.Colors.with_opacity(0.6, "white")
+
+    take_dragg_border_color = ft.Colors.with_opacity(0.04, "white")
+    take_dragg_bground_color = ft.Colors.with_opacity(0.01, "cyan")
+    take_icon_border_color = ft.Colors.with_opacity(0.4, "white")
+    take_text_border_color = ft.Colors.with_opacity(0.4, "white")
 
     color_minimum: float = 0.02
     color_medium: float = 0.04
@@ -28,7 +29,8 @@ class DraggWidget(ft.Stack):
         drag_box: object = None,
         page: object = None,
         widget="type widget selected",
-        color="BLACK", icons="/icons/icon-512.png"
+        color="BLACK",
+        icons="/icons/icon-512.png",
     ):
         super().__init__()
         self.page = page
@@ -43,8 +45,7 @@ class DraggWidget(ft.Stack):
     def build(self):
         self.DropTakeDragg = ft.Draggable(
             group="GroupDragg",
-            on_drag_start=lambda _: self.SelectedWidget(
-                selected_widget=self.widget),
+            on_drag_start=lambda _: self.SelectedWidget(selected_widget=self.widget),
             # on_drag_complete = lambda _: self.ShowWidget(), # WILL SHOW VISIBLE AFTER DROP
             content=ft.Container(
                 width=90,
@@ -59,9 +60,9 @@ class DraggWidget(ft.Stack):
                     begin=ft.alignment.top_center,
                     end=ft.alignment.bottom_center,
                     colors=[
-                        ft.Colors.with_opacity(self.color_minimum, 'white'),
-                        ft.Colors.with_opacity(self.color_medium, 'black'),
-                        ft.Colors.with_opacity(self.color_minimum, 'black'),
+                        ft.Colors.with_opacity(self.color_minimum, "white"),
+                        ft.Colors.with_opacity(self.color_medium, "black"),
+                        ft.Colors.with_opacity(self.color_minimum, "black"),
                     ],
                 ),
                 # blur=(16, 16),
@@ -94,31 +95,24 @@ class DraggWidget(ft.Stack):
                 alignment=ft.alignment.bottom_center,
                 width=80,
                 height=80,
-                border=ft.border.all(
-                    0.5, self.take_dragg_border_color),
+                border=ft.border.all(0.5, self.take_dragg_border_color),
                 border_radius=23,
                 blur=(8, 8),
                 gradient=ft.LinearGradient(
                     begin=ft.alignment.top_center,
                     end=ft.alignment.bottom_center,
-                    colors=[
-                        self.take_dragg_bground_color,
-                        self.dragg_shadow_color
-                    ],
+                    colors=[self.take_dragg_bground_color, self.dragg_shadow_color],
                 ),
                 content=ft.Column(
                     spacing=0,
                     controls=[
                         ft.Container(
                             alignment=ft.alignment.center,
-                            padding=ft.padding.only(left=0,
-                                                    top=16,
-                                                    right=0,
-                                                    bottom=0),
+                            padding=ft.padding.only(left=0, top=16, right=0, bottom=0),
                             content=ft.Icon(
                                 name=self.icons,
                                 color=self.take_icon_border_color,
-                                size=50
+                                size=50,
                             ),
                         ),
                         ft.Container(
@@ -163,31 +157,29 @@ class DraggWidget(ft.Stack):
         self.widget_selected = self.page.session.get("SELECTED_CONTAINER")
 
         if not self.widget_selected == None:
-            self.widget_selected.border = ft.border.all(
-                2, ft.colors('transparent'))
+            self.widget_selected.border = ft.border.all(2, ft.colors("transparent"))
 
         self.page.session.set("SELECTED_CONTAINER", None)
 
     def reset_show_text_dragg_selected(self):
-        self.draggs_selected = self.page.session.get(
-            "SHOW_TEXT_SELECTED_DRAGG_WIDGET")
+        self.draggs_selected = self.page.session.get("SHOW_TEXT_SELECTED_DRAGG_WIDGET")
         self.draggs_selected.content.controls[1].content.spans[0].text = "None"
-        self.draggs_selected.bgcolor = ft.colors('black12')
+        self.draggs_selected.bgcolor = ft.colors("black12")
         self.draggs_selected.update()
 
     def show_text_dragg_selected(self) -> None:
         session_id = self.page._session_id
         self.name_selected = self.page.session.get(session_id)
 
-        self.widget_selected = self.page.session.get(
-            "SHOW_TEXT_SELECTED_PHONE_WIDGET")
+        self.widget_selected = self.page.session.get("SHOW_TEXT_SELECTED_PHONE_WIDGET")
         self.widget_selected.content.controls[1].content.spans[0].text = "None"
-        self.widget_selected.bgcolor = ft.colors('black12')
+        self.widget_selected.bgcolor = ft.colors("black12")
         self.widget_selected.update()
 
-        self.draggs_selected = self.page.session.get(
-            "SHOW_TEXT_SELECTED_DRAGG_WIDGET")
-        self.draggs_selected.content.controls[1].content.spans[0].text = self.name_selected
+        self.draggs_selected = self.page.session.get("SHOW_TEXT_SELECTED_DRAGG_WIDGET")
+        self.draggs_selected.content.controls[1].content.spans[
+            0
+        ].text = self.name_selected
         self.draggs_selected.bgcolor = "cyan,0.1"
         self.draggs_selected.update()
 
@@ -202,31 +194,30 @@ class DraggWidget(ft.Stack):
         session_id = self.page._session_id
         self.page.session.set(session_id, selected_widget)
 
-        print(f"{self.page.session.get(session_id)} ID: <<< SELECTED: [drag_widget.py] : selected: >>> {selected_widget}")
+        print(
+            f"{self.page.session.get(session_id)} ID: <<< SELECTED: [drag_widget.py] : selected: >>> {selected_widget}"
+        )
         # CHECK SIZE OF PAGE IF LESS VISIBLE OFF
         try:
             self.check_size_page()
         except Exception as error:
-            self.error_page = self.page.session.get('on_dev')
+            self.error_page = self.page.session.get("on_dev")
             self.error_page(
-                name_seccion='Error dragg widget line 213',
-                body_string=error
+                name_seccion="Error dragg widget line 213", body_string=error
             )
         try:
             self.reset_border_select_widget()
         except Exception as error:
-            self.error_page = self.page.session.get('on_dev')
+            self.error_page = self.page.session.get("on_dev")
             self.error_page(
-                name_seccion='Error dragg widget line 221',
-                body_string=error
+                name_seccion="Error dragg widget line 221", body_string=error
             )
         try:
             self.show_text_dragg_selected()
         except Exception as error:
-            self.error_page = self.page.session.get('on_dev')
+            self.error_page = self.page.session.get("on_dev")
             self.error_page(
-                name_seccion='Error dragg widget line 229',
-                body_string=error
+                name_seccion="Error dragg widget line 229", body_string=error
             )
         # self.check_size_page()
         # self.reset_border_select_widget()

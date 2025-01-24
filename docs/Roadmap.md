@@ -1,11 +1,11 @@
 
-# Flet-Box GUI is the integration of customizable widgets.
+# Flet-Box GUI is the integration of customizable widgets
 
 - Users can now personalize their interface by adding, removing, and arranging widgets according to their preferences.
   This enhancement not only improves user experience but also allows for greater flexibility and efficiency in navigating
   and managing tasks within the Flet-Box GUI.
 
-##   Flet-Box GUI Basic Structure.
+## Flet-Box GUI Basic Structure
 
 | Feature           | Description                                                                                     | Dev  |
 |-------------------|-------------------------------------------------------------------------------------------------|------|
@@ -29,41 +29,45 @@
 | Save              | Provide options for saving application state or user data securely.                             |  ✘   |
 | Export File       | Enable exporting of application data or content in various file formats for sharing or backup.  |  ✘   |
 
-
 # Flet Box Drag-and-Drop GUI Interface Roadmap
 
 ## Phase 1: Research and Planning
+
 - [ ] Conduct user surveys to understand user needs and preferences.
 - [ ] Research existing drag-and-drop interfaces for inspiration and best practices.
 - [ ] Define key features and functionalities required for the Flet Box GUI interface.
 
 ## Phase 2: Design and Prototyping
+
 - [ ] Create wireframes and mockups of the drag-and-drop interface.
 - [ ] Gather feedback from stakeholders and iterate on the design.
 - [ ] Develop prototypes to test usability and functionality.
 
 ## Phase 3: Development
+
 - [ ] Implement the backend infrastructure to support drag-and-drop functionality.
 - [ ] Develop frontend components for the GUI interface using modern web technologies.
 - [ ] Integrate drag-and-drop capabilities with existing Flet Box features.
 
 ## Phase 4: Testing and Optimization
+
 - [ ] Conduct thorough testing to identify and fix any bugs or usability issues.
 - [ ] Optimize performance for smooth drag-and-drop interactions.
 - [ ] Gather user feedback through beta testing and make necessary improvements.
 
 ## Phase 5: Deployment and Release
+
 - [ ] Prepare documentation and user guides for the new GUI interface.
 - [ ] Deploy the updated Flet Box with drag-and-drop functionality.
 - [ ] Monitor user feedback and address any post-release issues promptly.
 
 ## Phase 6: Future Enhancements
+
 - [ ] Continuously gather user feedback for future enhancements and features.
 - [ ] Explore integration with other platforms or tools to expand functionality.
 - [ ] Regularly update the drag-and-drop interface based on user needs and technological advancements.
 
-
-# NOTE:
+# NOTE
 
 1. **Define Requirements and Scope:**
    - Identify the specific features and functionalities required for the Flexbox GUI.

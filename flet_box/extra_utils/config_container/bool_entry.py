@@ -2,6 +2,7 @@ import flet as ft
 
 # from ..settings_var.settings_widget import GLOBAL_VAR
 
+
 class BoolEntry(ft.Stack):
     """
     box_layout = ft.Container(content=ft.Text())
@@ -14,31 +15,31 @@ class BoolEntry(ft.Stack):
     def __init__(
         self,
         id_name_widget_dict=None,
-        config_widget: str="exemple [value,bgcolor,width,height] ....",
-        page: object=object(),
-        screen_phone: object=object(),
-        ):
+        config_widget: str = "exemple [value,bgcolor,width,height] ....",
+        page: object = object(),
+        screen_phone: object = object(),
+    ):
         super().__init__()
         self.page = page
         self.widget = screen_phone
 
-        self.tooltip="BoolEntry"
+        self.tooltip = "BoolEntry"
         self.attribute_widget = config_widget
         self.id_name_widget_dict = id_name_widget_dict
         #: will change name of entry points
         # size textz
-        self.text_size =12 # GLOBAL_VAR(get_global_var="text_size_input")
-        self.padding_only = 4 #GLOBAL_VAR(get_global_var="padding_only")
+        self.text_size = 12  # GLOBAL_VAR(get_global_var="text_size_input")
+        self.padding_only = 4  # GLOBAL_VAR(get_global_var="padding_only")
 
     def build(self):
         Drop_BoolEntry = ft.Container(
             ink=False,
-            bgcolor=ft.Colors.with_opacity(0.5, ft.colors('black')),
-            blur = (8,8),
+            bgcolor=ft.Colors.with_opacity(0.5, ft.colors("black")),
+            blur=(8, 8),
             padding=ft.padding.only(left=4, top=4, right=4, bottom=4),
             margin=ft.margin.all(0),
             border_radius=ft.border_radius.all(16),
-            border=ft.border.all(1.5, ft.Colors.with_opacity(0.28, ft.colors('white'))),
+            border=ft.border.all(1.5, ft.Colors.with_opacity(0.28, ft.colors("white"))),
             width=165,
             height=80,
             content=ft.Column(
@@ -46,7 +47,7 @@ class BoolEntry(ft.Stack):
                 controls=[
                     ft.Container(
                         ink=False,
-                        bgcolor=ft.Colors.with_opacity(0.04, ft.colors('white')),
+                        bgcolor=ft.Colors.with_opacity(0.04, ft.colors("white")),
                         padding=ft.padding.only(left=12, top=0, right=12, bottom=0),
                         alignment=ft.alignment.center,
                         border_radius=ft.border_radius.all(30),
@@ -73,7 +74,12 @@ class BoolEntry(ft.Stack):
                                     ),
                                     alignment=ft.alignment.center,
                                     border_radius=ft.border_radius.all(30),
-                                    border=ft.border.all(1, ft.Colors.with_opacity(0.04, ft.colors('white'))),
+                                    border=ft.border.all(
+                                        1,
+                                        ft.Colors.with_opacity(
+                                            0.04, ft.colors("white")
+                                        ),
+                                    ),
                                     width=150,
                                     height=36,
                                     # gradient=ft.LinearGradient(
@@ -92,13 +98,18 @@ class BoolEntry(ft.Stack):
                                                 content=ft.TextField(
                                                     disabled=True,
                                                     value=self.attribute_widget,
-                                                    border_radius =ft.border_radius.all(30),
-                                                    border_color = ft.Colors('transparent'),
-                                                    bgcolor=ft.Colors.with_opacity(0.04, ft.colors('white')),
-                                                    color=ft.Colors('white'),
+                                                    border_radius=ft.border_radius.all(
+                                                        30
+                                                    ),
+                                                    border_color=ft.Colors(
+                                                        "transparent"
+                                                    ),
+                                                    bgcolor=ft.Colors.with_opacity(
+                                                        0.04, ft.colors("white")
+                                                    ),
+                                                    color=ft.Colors("white"),
                                                     text_size=self.text_size,
                                                     content_padding=self.padding_only,
-
                                                 ),
                                             ),
                                             ft.Container(
@@ -106,12 +117,14 @@ class BoolEntry(ft.Stack):
                                                 width=42,
                                                 height=30,
                                                 content=ft.CupertinoSwitch(
-                                                    value=True
-                                                    if self.attribute_widget
-                                                    == "visible "
-                                                    or self.attribute_widget
-                                                    == "visible"
-                                                    else False,
+                                                    value=(
+                                                        True
+                                                        if self.attribute_widget
+                                                        == "visible "
+                                                        or self.attribute_widget
+                                                        == "visible"
+                                                        else False
+                                                    ),
                                                     track_color="Black",
                                                     active_color="yellow",
                                                     on_change=lambda x: self.modify_widget_attributes(
@@ -142,8 +155,9 @@ class BoolEntry(ft.Stack):
 
         Will modify all attrib inside the widget that we selected
 
-        on_change= lambda x:self.modify_widget_attributes(config_widget =self.config_widget ,value = Drop_BoolEntry),
-
+        ```python
+        >>> on_change= lambda x:self.modify_widget_attributes(config_widget =self.config_widget ,value = Drop_BoolEntry),
+        ```
         EXEMPLE:
 
             width:      value
@@ -313,8 +327,10 @@ class BoolEntry(ft.Stack):
             )
         # phone container ==========
 
-        self.phone_container = self.page.session.get('SELECTED_SCREEN')
-        self.phone_column = self.phone_container.content.content.content.content.content.content.content
+        self.phone_container = self.page.session.get("SELECTED_SCREEN")
+        self.phone_column = (
+            self.phone_container.content.content.content.content.content.content.content
+        )
 
         if config_widget == "column_wrap":
             self.phone_column.wrap = bool(
@@ -344,12 +360,9 @@ class BoolEntry(ft.Stack):
         #: print(data_usage)
         #: UPDATE DATA
         try:
-            self.phone_container = self.page.session.get('SELECTED_SCREEN')
+            self.phone_container = self.page.session.get("SELECTED_SCREEN")
             self.phone_container.update()
             # self.widget.update()
         except Exception as error:
-            self.error_page = self.page.session.get('on_dev')
-            self.error_page(
-                name_seccion='Error by Dev',
-                body_string=error
-            )
+            self.error_page = self.page.session.get("on_dev")
+            self.error_page(name_seccion="Error by Dev", body_string=error)

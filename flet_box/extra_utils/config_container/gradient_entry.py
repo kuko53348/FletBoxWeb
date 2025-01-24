@@ -2,6 +2,7 @@ import flet as ft
 
 # from ..settings_var.settings_widget import GLOBAL_VAR
 
+
 class GradientEntry(ft.Stack):
     """
     box_layout = ft.Container(content=ft.Text())
@@ -62,21 +63,21 @@ class GradientEntry(ft.Stack):
     def __init__(
         self,
         id_name_widget_dict=None,
-        config_widget: str="exemple [value,bgcolor,width,height] ....",
-        page: object=object(),
-        screen_phone: object=object(),
+        config_widget: str = "exemple [value,bgcolor,width,height] ....",
+        page: object = object(),
+        screen_phone: object = object(),
     ):
         super().__init__()
         self.page = page
         self.widget = screen_phone
 
-        self.tooltip="GradientEntry"
+        self.tooltip = "GradientEntry"
         self.attribute_widget = config_widget
         self.id_name_widget_dict = id_name_widget_dict
         # print(self.widget)
         # size textz
-        self.text_size = 12 #GLOBAL_VAR(get_global_var="text_size_input")
-        self.padding_only = 4 #GLOBAL_VAR(get_global_var="padding_only")
+        self.text_size = 12  # GLOBAL_VAR(get_global_var="text_size_input")
+        self.padding_only = 4  # GLOBAL_VAR(get_global_var="padding_only")
         self.content_padding = 4  # LOBAL_VAR(get_global_var="content_padding")
 
         if self.attribute_widget == "gradient" or self.attribute_widget == "gradient ":
@@ -117,11 +118,11 @@ class GradientEntry(ft.Stack):
         self.main_gradient_widget = ft.Container(
             ink=False,
             # bgcolor=ft.Colors.with_opacity(0.5, ft.colors('black')),
-            blur = (8,8),
+            blur=(8, 8),
             padding=ft.padding.all(0),
             alignment=ft.alignment.center,
             border_radius=ft.border_radius.all(30),
-            border=ft.border.all(1, ft.Colors.with_opacity(0.04, ft.colors('white'))),
+            border=ft.border.all(1, ft.Colors.with_opacity(0.04, ft.colors("white"))),
             # width=150,
             # width=20
             expand=True,
@@ -132,7 +133,7 @@ class GradientEntry(ft.Stack):
                 content_padding=self.content_padding,
                 alignment=ft.alignment.center,
                 border_radius=ft.border_radius.all(30),
-                border_color = ft.Colors('transparent'),
+                border_color=ft.Colors("transparent"),
                 options=self.options_tmp,
                 on_change=lambda _: self.modify_widget_attributes(
                     config_widget=_.__dict__.get("data"),
@@ -143,13 +144,13 @@ class GradientEntry(ft.Stack):
         )
         Drop_GradientEntry = ft.Container(
             ink=False,
-            bgcolor=ft.Colors.with_opacity(0.5, ft.colors('black')),
-            blur = (8,8),
+            bgcolor=ft.Colors.with_opacity(0.5, ft.colors("black")),
+            blur=(8, 8),
             padding=ft.padding.all(4),
             margin=ft.margin.all(0),
             alignment=ft.alignment.center,
             border_radius=ft.border_radius.all(16),
-            border=ft.border.all(1.5, ft.Colors.with_opacity(0.28, ft.colors('white'))),
+            border=ft.border.all(1.5, ft.Colors.with_opacity(0.28, ft.colors("white"))),
             # width=360,
             expand=True,
             height=150,
@@ -158,13 +159,12 @@ class GradientEntry(ft.Stack):
                 controls=[
                     ft.Container(
                         ink=False,
-                        bgcolor=ft.Colors.with_opacity(0.04, ft.colors('white')),
+                        bgcolor=ft.Colors.with_opacity(0.04, ft.colors("white")),
                         padding=ft.padding.all(4),
                         margin=ft.margin.all(0),
                         alignment=ft.alignment.center,
                         border_radius=ft.border_radius.all(30),
                         height=38,
-
                         content=ft.Row(
                             alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
                             controls=[
@@ -180,11 +180,13 @@ class GradientEntry(ft.Stack):
                                     #     colors=[ft.colors('cyan800'), ft.colors('black38')],
                                     # ),
                                     content=ft.ElevatedButton(
-                                        bgcolor=ft.Colors.with_opacity(0.16, ft.colors('white')),
+                                        bgcolor=ft.Colors.with_opacity(
+                                            0.16, ft.colors("white")
+                                        ),
                                         text=f"Apply {self.attribute_widget.capitalize()}".replace(
                                             "_", " "
                                         ),
-                                        color=ft.colors('white'),
+                                        color=ft.colors("white"),
                                         on_click=lambda _: self.apply_gradient(),
                                     ),
                                 ),
@@ -193,9 +195,10 @@ class GradientEntry(ft.Stack):
                     ),
                     ft.Container(
                         ink=False,
-                        border=ft.border.all(1, ft.Colors.with_opacity(0.04, ft.colors('white'))),
-                        bgcolor=ft.Colors.with_opacity(0.04, ft.colors('white')),
-
+                        border=ft.border.all(
+                            1, ft.Colors.with_opacity(0.04, ft.colors("white"))
+                        ),
+                        bgcolor=ft.Colors.with_opacity(0.04, ft.colors("white")),
                         padding=ft.padding.all(2),
                         alignment=ft.alignment.center,
                         border_radius=ft.border_radius.all(30),
@@ -216,13 +219,14 @@ class GradientEntry(ft.Stack):
                                     border_radius=ft.border_radius.all(30),
                                     content=ft.TextField(
                                         hint_text=self.attribute_widget_name_1,
-                                        border_radius =ft.border_radius.all(30),
-                                        border_color = ft.Colors('transparent'),
-                                        bgcolor=ft.Colors.with_opacity(0.04, ft.colors('white')),
+                                        border_radius=ft.border_radius.all(30),
+                                        border_color=ft.Colors("transparent"),
+                                        bgcolor=ft.Colors.with_opacity(
+                                            0.04, ft.colors("white")
+                                        ),
                                         color="YELLOW",
                                         text_size=self.text_size,
                                         content_padding=self.padding_only,
-
                                         on_change=lambda x: self.modify_widget_attributes(
                                             config_widget=self.attribute_widget,
                                             value="color_1",
@@ -237,9 +241,11 @@ class GradientEntry(ft.Stack):
                                     border_radius=ft.border_radius.all(30),
                                     content=ft.TextField(
                                         hint_text=self.attribute_widget_name_2,
-                                        border_radius =ft.border_radius.all(30),
-                                        border_color = ft.Colors('transparent'),
-                                        bgcolor=ft.Colors.with_opacity(0.04, ft.colors('white')),
+                                        border_radius=ft.border_radius.all(30),
+                                        border_color=ft.Colors("transparent"),
+                                        bgcolor=ft.Colors.with_opacity(
+                                            0.04, ft.colors("white")
+                                        ),
                                         color="YELLOW",
                                         text_size=self.text_size,
                                         content_padding=self.padding_only,
@@ -253,11 +259,18 @@ class GradientEntry(ft.Stack):
                                 # ft.Container(width=18),
                                 ft.Container(
                                     ink=False,
-                                    bgcolor=ft.Colors.with_opacity(0.04, ft.colors('white')),
+                                    bgcolor=ft.Colors.with_opacity(
+                                        0.04, ft.colors("white")
+                                    ),
                                     padding=ft.padding.all(0),
                                     alignment=ft.alignment.center,
                                     border_radius=ft.border_radius.all(30),
-                                    border=ft.border.all(1, ft.Colors.with_opacity(0.04, ft.colors('white'))),
+                                    border=ft.border.all(
+                                        1,
+                                        ft.Colors.with_opacity(
+                                            0.04, ft.colors("white")
+                                        ),
+                                    ),
                                     # width=150,
                                     expand=True,
                                     height=35,
@@ -267,7 +280,7 @@ class GradientEntry(ft.Stack):
                                         content_padding=self.content_padding,
                                         alignment=ft.alignment.center_left,
                                         border_radius=ft.border_radius.all(30),
-                                        border_color = ft.Colors('transparent'),
+                                        border_color=ft.Colors("transparent"),
                                         options=self.options_tmp_1,
                                         on_change=lambda _: self.modify_widget_attributes(
                                             config_widget=_.__dict__.get("data"),
@@ -281,8 +294,10 @@ class GradientEntry(ft.Stack):
                     ),
                     ft.Container(
                         ink=False,
-                        border=ft.border.all(1, ft.Colors.with_opacity(0.04, ft.colors('white'))),
-                        bgcolor=ft.Colors.with_opacity(0.04, ft.colors('white')),
+                        border=ft.border.all(
+                            1, ft.Colors.with_opacity(0.04, ft.colors("white"))
+                        ),
+                        bgcolor=ft.Colors.with_opacity(0.04, ft.colors("white")),
                         padding=ft.padding.all(2),
                         alignment=ft.alignment.center,
                         border_radius=ft.border_radius.all(30),
@@ -303,13 +318,14 @@ class GradientEntry(ft.Stack):
                                     border_radius=ft.border_radius.all(30),
                                     content=ft.TextField(
                                         hint_text=self.attribute_widget_name_3,
-                                        border_radius =ft.border_radius.all(30),
-                                        border_color = ft.Colors('transparent'),
-                                        bgcolor=ft.Colors.with_opacity(0.04, ft.colors('white')),
+                                        border_radius=ft.border_radius.all(30),
+                                        border_color=ft.Colors("transparent"),
+                                        bgcolor=ft.Colors.with_opacity(
+                                            0.04, ft.colors("white")
+                                        ),
                                         color="YELLOW",
                                         text_size=self.text_size,
                                         content_padding=self.padding_only,
-
                                         # ======================= EVENTS ===========================
                                         on_change=lambda x: self.modify_widget_attributes(
                                             config_widget=self.attribute_widget,
@@ -325,9 +341,11 @@ class GradientEntry(ft.Stack):
                                     border_radius=ft.border_radius.all(30),
                                     content=ft.TextField(
                                         hint_text=self.attribute_widget_name_4,
-                                        border_radius =ft.border_radius.all(30),
-                                        border_color = ft.Colors('transparent'),
-                                        bgcolor=ft.Colors.with_opacity(0.04, ft.colors('white')),
+                                        border_radius=ft.border_radius.all(30),
+                                        border_color=ft.Colors("transparent"),
+                                        bgcolor=ft.Colors.with_opacity(
+                                            0.04, ft.colors("white")
+                                        ),
                                         color="YELLOW",
                                         text_size=self.text_size,
                                         content_padding=self.padding_only,
@@ -341,11 +359,18 @@ class GradientEntry(ft.Stack):
                                 # ft.Container(width=18),
                                 ft.Container(
                                     ink=False,
-                                    bgcolor=ft.Colors.with_opacity(0.04, ft.colors('white')),
+                                    bgcolor=ft.Colors.with_opacity(
+                                        0.04, ft.colors("white")
+                                    ),
                                     padding=ft.padding.all(0),
                                     alignment=ft.alignment.center,
                                     border_radius=ft.border_radius.all(30),
-                                    border=ft.border.all(1, ft.Colors.with_opacity(0.04, ft.colors('white'))),
+                                    border=ft.border.all(
+                                        1,
+                                        ft.Colors.with_opacity(
+                                            0.04, ft.colors("white")
+                                        ),
+                                    ),
                                     # width=150,
                                     expand=True,
                                     height=35,
@@ -355,7 +380,7 @@ class GradientEntry(ft.Stack):
                                         content_padding=self.content_padding,
                                         alignment=ft.alignment.center_left,
                                         border_radius=ft.border_radius.all(30),
-                                        border_color = ft.Colors('transparent'),
+                                        border_color=ft.Colors("transparent"),
                                         options=self.options_tmp_2,
                                         on_change=lambda _: self.modify_widget_attributes(
                                             config_widget=_.__dict__.get("data"),
@@ -389,7 +414,7 @@ class GradientEntry(ft.Stack):
                     self.data_color = [self.color_1, self.color_2]
 
                 if self.attribute_widget == "gradient ":
-                    self.phone_image = self.page.session.get('SELECTED_SCREEN')
+                    self.phone_image = self.page.session.get("SELECTED_SCREEN")
                     self.widget_tmp = self.phone_image
 
                     self.widget_tmp.gradient = ft.LinearGradient(
@@ -420,7 +445,7 @@ class GradientEntry(ft.Stack):
                     self.data_color = [self.color_1, self.color_2]
 
             if self.attribute_widget == "gradient ":
-                self.phone_image = self.page.session.get('SELECTED_SCREEN')
+                self.phone_image = self.page.session.get("SELECTED_SCREEN")
                 self.widget_tmp = self.phone_image
                 self.widget.gradient = ft.RadialGradient(
                     colors=self.data_color,
@@ -430,19 +455,16 @@ class GradientEntry(ft.Stack):
                     colors=self.data_color,
                 )
         elif self.main_gradient == " None ":
-            self.widget.gradient = (ft.colors('transparent'),)
+            self.widget.gradient = (ft.colors("transparent"),)
 
         #: UPDATE DATA
         try:
-            self.phone_container = self.page.session.get('SELECTED_SCREEN')
+            self.phone_container = self.page.session.get("SELECTED_SCREEN")
             self.phone_container.update()
             # self.widget.update()
         except Exception as error:
-            self.error_page = self.page.session.get('on_dev')
-            self.error_page(
-                name_seccion='Error by Dev',
-                body_string=error
-            )
+            self.error_page = self.page.session.get("on_dev")
+            self.error_page(name_seccion="Error by Dev", body_string=error)
 
     def modify_widget_attributes(self, config_widget, value, widget):
         """
@@ -459,20 +481,6 @@ class GradientEntry(ft.Stack):
             bgcolor:    value
             value:      value
         """
-        #: print(config_widget)
-        #: print(value)
-
-        #: self.widget.content.value = value if config_widget  == "value" else None
-        #: will modify attributes of the widget class in real time
-
-        #: ONLY FOR CONTAINER
-
-        # : print(self.main_gradient_widget.content.value,'asdasd')
-        #: widget.content.controls[1].disabled = False
-        #: widget.content.controls[1].content.update()
-        # : print(self.widget)
-        #: self.widget.bgcolor = 'Red'
-
         if config_widget == " None ":
             widget.content.controls[1].disabled = True
             widget.content.controls[2].disabled = True
@@ -480,7 +488,7 @@ class GradientEntry(ft.Stack):
             # self.widget.gradient = None
             widget.content.update()
 
-            self.phone_image = self.page.session.get('SELECTED_SCREEN')
+            self.phone_image = self.page.session.get("SELECTED_SCREEN")
             self.phone_image.gradient = None
             self.phone_image.update()
 

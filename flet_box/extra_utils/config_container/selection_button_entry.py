@@ -33,14 +33,13 @@ class SelectionButtonEntry(ft.Stack):
     def build(self):
         Drop_SelectionButtonEntry = ft.Container(
             ink=False,
-            bgcolor=ft.Colors.with_opacity(0.5, ft.colors('black')),
+            bgcolor=ft.Colors.with_opacity(0.5, ft.colors("black")),
             blur=(8, 8),
             padding=ft.padding.only(left=4, top=4, right=4, bottom=4),
             margin=ft.margin.all(0),
             alignment=ft.alignment.center,
             border_radius=ft.border_radius.all(16),
-            border=ft.border.all(
-                1.5, ft.Colors.with_opacity(0.28, ft.colors('white'))),
+            border=ft.border.all(1.5, ft.Colors.with_opacity(0.28, ft.colors("white"))),
             width=165,
             height=80,
             content=ft.Column(
@@ -48,9 +47,8 @@ class SelectionButtonEntry(ft.Stack):
                 controls=[
                     ft.Container(
                         ink=False,
-                        bgcolor=ft.Colors.with_opacity(0.04, ft.colors('white')),
-                        padding=ft.padding.only(
-                            left=12, top=0, right=12, bottom=0),
+                        bgcolor=ft.Colors.with_opacity(0.04, ft.colors("white")),
+                        padding=ft.padding.only(left=12, top=0, right=12, bottom=0),
                         alignment=ft.alignment.center,
                         border_radius=ft.border_radius.all(30),
                         height=20,
@@ -71,8 +69,10 @@ class SelectionButtonEntry(ft.Stack):
                         gradient=ft.LinearGradient(
                             begin=ft.alignment.top_center,
                             end=ft.alignment.bottom_center,
-                            colors=[ft.Colors.with_opacity(0.12, ft.colors('white')),
-                                    ft.Colors.with_opacity(0.04, ft.colors('white'))],
+                            colors=[
+                                ft.Colors.with_opacity(0.12, ft.colors("white")),
+                                ft.Colors.with_opacity(0.04, ft.colors("white")),
+                            ],
                         ),
                         content=ft.Row(
                             controls=[
@@ -89,15 +89,17 @@ class SelectionButtonEntry(ft.Stack):
                                         begin=ft.alignment.top_center,
                                         end=ft.alignment.center_right,
                                         colors=[
-                                            ft.colors('black12'),
-                                            ft.Colors.with_opacity(0.24, ft.colors('white')),
-                                            ft.colors('black38'),
+                                            ft.colors("black12"),
+                                            ft.Colors.with_opacity(
+                                                0.24, ft.colors("white")
+                                            ),
+                                            ft.colors("black38"),
                                         ],
                                     ),
                                     content=ft.ElevatedButton(
                                         text=self.tmp_widget_name,
                                         width=147,
-                                        bgcolor=ft.colors('transparent'),
+                                        bgcolor=ft.colors("transparent"),
                                         on_click=lambda _: self.modify_widget_attributes(
                                             widget_name=self.widget_name,
                                             attribute_to_change=self.widget,
@@ -113,19 +115,20 @@ class SelectionButtonEntry(ft.Stack):
 
         return Drop_SelectionButtonEntry
 
-    def modify_widget_attributes(self, widget_name: str = str(), attribute_to_change: object = None):
+    def modify_widget_attributes(
+        self, widget_name: str = str(), attribute_to_change: object = None
+    ):
         # print("[+] change content tab [ selection_button_entry.py ]")
         # print(widget_name,"<<<<<<<<<<<<<<")
 
         if self.widget_name == "image_src" or self.widget_name == "src":
             self.tmp_widget_name = " Open Image "
         if self.widget_name == "image_src " or self.widget_name == "src":
-            self.tab_container = self.page.session.get('PHOTO_SELECTION')
-
+            self.tab_container = self.page.session.get("PHOTO_SELECTION")
 
         # print(f"{self.widget_name}<<<<<")
 
-        self.tab_container = self.page.session.get('PHOTO_SELECTION')
+        self.tab_container = self.page.session.get("PHOTO_SELECTION")
         # # self.tab_container.update()
 
         self.tab_container.controls[0].visible = False
@@ -134,11 +137,13 @@ class SelectionButtonEntry(ft.Stack):
         self.tab_container.update()
 
         # <== SET (BGCOLOR, ...)
-        self.page.session.set('set_attribute_image', self.widget_name)
+        self.page.session.set("set_attribute_image", self.widget_name)
         # <== SET (ft.Container, Image)
-        self.page.session.set('set_edit_widget_image', attribute_to_change)
+        self.page.session.set("set_edit_widget_image", attribute_to_change)
 
-        self.phone_image = self.page.session.get("SELECTED_SCREEN")  # <== SELECTED PHONE SCREEN
+        self.phone_image = self.page.session.get(
+            "SELECTED_SCREEN"
+        )  # <== SELECTED PHONE SCREEN
         if self.phone_image.content.content.content.image:
             self.phone_image.image = self.phone_image.content.content.content.image
 
@@ -150,12 +155,9 @@ class SelectionButtonEntry(ft.Stack):
 
         # #: UPDATE DATA
         try:
-            self.phone_container = self.page.session.get('SELECTED_SCREEN')
+            self.phone_container = self.page.session.get("SELECTED_SCREEN")
             self.phone_container.update()
             # self.widget.update()
         except Exception as error:
-            self.error_page = self.page.session.get('on_dev')
-            self.error_page(
-                name_seccion='Error by Dev',
-                body_string=error
-            )
+            self.error_page = self.page.session.get("on_dev")
+            self.error_page(name_seccion="Error by Dev", body_string=error)

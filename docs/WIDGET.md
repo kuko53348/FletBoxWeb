@@ -1,5 +1,6 @@
 <!-- markdownserver http://localhost:8009/WIDGET.md -->
 ### CAPTURE EVENT INSIDE WIDGET DATA
+
 ```python
 >>> on_click=ft.Container(
 >>>          on_click = lambda tmp_widget: self.edit_widget(target=tmp_widget)
@@ -12,6 +13,7 @@
 ```
 
 ### STORAGE DATA
+
 ```python
 >>> page.session.set("key", "value")
 >>> value = page.session.get("key")
@@ -36,7 +38,9 @@
 >>> ft.Stack()
 
 ```
+
 #### Get attributes by ID
+
 ```python3
 >>> page.get_control(id='_5').controls[0]
 >>> container {'width': 150,
@@ -51,12 +55,14 @@
 ```
 
 #### ERASE Controls by ID
+
 ```python3
 >>> id_widget = page.get_control(id='_5')
 >>> id_widget.controls = None
 >>> id_widget.update()
 
 ```
+
 #### ADD Controls by ID
 
 ```python3
@@ -66,7 +72,8 @@
 
 ```
 
-#### REPLACE Controls by ID
+#### Replace Controls by ID
+
 ```python3
 >>> id_widget = page.get_control(id='_5')
 >>> id_widget.controls = [ft.Widget(attributes)]
@@ -74,16 +81,8 @@
 
 ```
 
-#### REPLACE Controls by ID
-
-```python3
->>> id_widget = page.get_control(id='_5').controls[0]
->>> id_widget.controls.bgcolor = 'Red'
->>> id_widget.update()
-
-```
-
 #### UNIQ Class
+
 ```python
 >>>
 >>> class InfinityObjects(ft.Controls):
@@ -103,7 +102,8 @@
 - Sure, creating a simple pip package involves a few steps. Here's a basic example to create a pip package in Python 3:
 
 1. **Project Structure:** Create a directory for your project with the following structure:
-```shell
+
+```python
 >>>    your_project_name/
 >>>    ├── your_project_name/
 >>>    │   └── __init__.py
@@ -133,13 +133,14 @@
 5. **README and LICENSE:** Create a `README.md` and a `LICENSE` file, including appropriate content.
 
 6. **Build the Package:** In the terminal, navigate to the outer directory (`your_project_name`) and run:
-```shell
+
+```python
 >>> python setup.py sdist bdist_wheel
 ```
 
 7. **Publishing:** You can distribute your package to the Python Package Index (PyPI) by using `twine`:
 
-```shell
+```python
 >>> pip install twine
 >>> twine upload dist/*
 ```
@@ -151,60 +152,79 @@ This will upload your package to PyPI, making it accessible to others using `pip
 #### MAKE HACK TIPS
 
 #### ATTRIBUTES
+
 - GET SPECIFIC ATTRIBUTE PASSED
-```shell
+
+```python
 >>>  tmp_data = screen_1.__getattribute__('content')
 ```
+
 - GET ATTRIBUTE OF THE WIDGET
-```shell
+
+```python
 >>> tmp_data = screen_1._Control__attrs
 ```
 
 - GET ATTIBUTE IN DICT
-```shell
+
+```python
 >>> tmp_data = screen_1._wrap_attr_dict(self.data_share)
 ```
 
 - GET ATTIBUTE LIKE STR
-```shell
+
+```python
 >>> tmp_data = screen_1.__str__()
 ```
 
 - GET ATTRIBUTE LIKE A WIDGET
-```shell
+
+```python
 >>> tmp_data = screen_1.__repr__()
 ```
 
 - GET ATTRIBUTE LIKE A DICT [ get all values <====s]
-```shell
+
+```python
 >>> tmp_data = screen_1.__dict__
 ```
+
 #### GET SPECIFIC ATTRIBUTES
+
 - GET SPECIFIC
-```shell
+
+```python
 >>> tmp_data.__getattribute__('text')
 >>> tmp_data._get_attr('text')
 ```
 
 #### DEL SPECIFIC ATTRIBUTES
+
 - DEL SPECIFIC
-```shell
+
+```python
 >>> tmp_data.__delattr__('text')
 ```
 
 #### ATTRIBUTES ID
+
 - GET ID
-```shell
+
+```python
 >>> tmp_data = screen_1.uid
 ```
 
 #### CHILDRENS PARENT
+
 - GET ONE WIDGET BEFORE
-```shell
+
+```python
 >>>  tmp_data = screen_1._Control__previous_children
 ```
+
 - GET ONE WIDGET BEFORE LIST
-```shell
+
+```python
 >>> tmp_data = screen_1.parent
 >>> tmp_data = screen_1._get_children()
 >>> tmp_data = screen_1._previous_children
@@ -212,28 +232,36 @@ This will upload your package to PyPI, making it accessible to others using `pip
 ```
 
 #### WRAP LIKE A DICT
-```shell
+
+```python
 >>> print(Drop_Make_data._wrap_attr_dict({'new_value':Drop_Make_data}))
 >>> Drop_Make_data.invoke_method('on_click')
 ```
+
 #### GET WIDGET NAME
+
 - GET NAME MODULE
-```shell
+
+```python
 >>> tmp_data = screen_1.__module__
 ```
+
 - GET NAME OF THE WIDGET
-```shell
+
+```python
 >>> tmp_data = screen_1._get_control_name()
 ```
 
 #### DELETE WIDGET FROM APP
-```
+
+```python
 >>> tmp_data._index                                             # <=== very important DICT OF ALL WWIDGETS
 >>> del tmp_data._index[widget._Control__uid]                   # <=== delete from index page very important
 ```
 
 #### KWON INFO ABOUT PAGE FROM EVERY WHERE
-```shell
+
+```python
 >>> tmp_data = Drop_Container_exemple.__dict__.get('_Control__page')    #  s.__dict__.get('_Control__page') # <=== GET MAIN PAGE
 >>> tmp_data._Page__next_control_id                                     # <=== very important
 >>> tmp_data._Page__views                                               # <=== very important
@@ -244,6 +272,7 @@ This will upload your package to PyPI, making it accessible to others using `pip
 ```
 
 #### DIFERENTS WAYS TO GET ATTRIBUTES
+
 ```python
 >>> print(screen_1._Control__attrs)
 >>> return  {'width': (240, False), 'height': (120, False),
@@ -281,6 +310,7 @@ This will upload your package to PyPI, making it accessible to others using `pip
 ```
 
 #### TYPE RETURNED CODE
+
 ```python
 
 def refactory_code(self, string_widget: object = object()) -> str:

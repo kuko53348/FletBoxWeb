@@ -38,10 +38,7 @@ class BasicMenuUp(ft.Stack):
                         margin=ft.margin.all(0),
                         alignment=ft.alignment.center,
                         border_radius=ft.border_radius.only(
-                            top_left=30,
-                            top_right=0,
-                            bottom_left=30,
-                            bottom_right=0
+                            top_left=30, top_right=0, bottom_left=30, bottom_right=0
                         ),
                         border=ft.border.all(2, ft.colors.BLACK12),
                         gradient=ft.LinearGradient(
@@ -112,10 +109,7 @@ class BasicMenuUp(ft.Stack):
                         margin=ft.margin.all(0),
                         alignment=ft.alignment.center,
                         border_radius=ft.border_radius.only(
-                            top_left=0,
-                            top_right=30,
-                            bottom_left=0,
-                            bottom_right=30
+                            top_left=0, top_right=30, bottom_left=0, bottom_right=30
                         ),
                         border=ft.border.all(2, ft.colors.BLACK12),
                         gradient=ft.LinearGradient(

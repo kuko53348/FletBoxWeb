@@ -1,4 +1,5 @@
 import flet as ft
+
 # from ..settings_var.save_export import WrapWidgetNode
 
 # from ..tree_view.tree_view import TreeView
@@ -7,15 +8,16 @@ from .refactory_flet_box import refactory_flet_box
 
 class MenuLeftContainer(ft.Stack):
     width_height = 42
-    color_minimum: float= 0.02
-    color_medium: float= 0.04
-    color_hight: float= 0.06
+    color_minimum: float = 0.02
+    color_medium: float = 0.04
+    color_hight: float = 0.06
 
-    def __init__(self,
-                 page: object = None,
-                 phone_container: object = None,
-                 menu_right_container: object = None,
-                 ):
+    def __init__(
+        self,
+        page: object = None,
+        phone_container: object = None,
+        menu_right_container: object = None,
+    ):
         super().__init__()
 
         self.page = page
@@ -25,25 +27,25 @@ class MenuLeftContainer(ft.Stack):
         self.phone_container = phone_container
         self.menu_right_container = menu_right_container
         # self.data_view = WrapWidgetNode()
-        self.page.session.set('on_dev', self.on_developing)
+        self.page.session.set("on_dev", self.on_developing)
 
     def build(self):
         self.eye_icon = ft.IconButton(
-            tooltip='Hide Dragg Container',
-            icon=ft.icons('remove_red_eye'),
+            tooltip="Hide Dragg Container",
+            icon=ft.icons("remove_red_eye"),
             on_click=lambda _: self.show_pone_container(
                 phone_container=self.phone_container,
-            )
+            ),
         )
         self.eye_icon_edit = ft.IconButton(
             # phone_container= self.phone_container,
             tooltip="Hide widget editor",
-            icon=ft.icons('edit_square'),
+            icon=ft.icons("edit_square"),
             bgcolor="RED,0.2",
             icon_color="RED,0.8",
             on_click=lambda _: self.show_edit_container(
                 menu_right_container=self.menu_right_container
-            )
+            ),
         )
 
         Drop_MenuLeftContainer = ft.Container(
@@ -55,31 +57,30 @@ class MenuLeftContainer(ft.Stack):
             margin=ft.margin.all(0),
             alignment=ft.alignment.center,
             width=45,
-            gradient = ft.LinearGradient(
+            gradient=ft.LinearGradient(
                 begin=ft.alignment.top_center,
                 end=ft.alignment.bottom_center,
                 colors=[
-                    ft.Colors.with_opacity(self.color_minimum, 'cyan'),
-                    ft.Colors.with_opacity(self.color_medium, 'yellow'),
-                    ft.Colors.with_opacity(self.color_hight, 'red'),
-                    ft.Colors.with_opacity(self.color_medium, 'yellow'),
-                    ft.Colors.with_opacity(self.color_minimum, 'white'),
-                    ft.Colors.with_opacity(self.color_medium, 'yellow'),
-                    ft.Colors.with_opacity(self.color_hight, 'red'),
-                    ft.Colors.with_opacity(self.color_medium, 'yellow'),
-                    ft.Colors.with_opacity(self.color_minimum, 'black'),
-                    ],
+                    ft.Colors.with_opacity(self.color_minimum, "cyan"),
+                    ft.Colors.with_opacity(self.color_medium, "yellow"),
+                    ft.Colors.with_opacity(self.color_hight, "red"),
+                    ft.Colors.with_opacity(self.color_medium, "yellow"),
+                    ft.Colors.with_opacity(self.color_minimum, "white"),
+                    ft.Colors.with_opacity(self.color_medium, "yellow"),
+                    ft.Colors.with_opacity(self.color_hight, "red"),
+                    ft.Colors.with_opacity(self.color_medium, "yellow"),
+                    ft.Colors.with_opacity(self.color_minimum, "black"),
+                ],
             ),
-            blur = (32, 32),
-
+            blur=(32, 32),
             border=ft.border.all(
                 0.8,
-                ft.Colors.with_opacity(0.1, ft.colors('cyan')),
+                ft.Colors.with_opacity(0.1, ft.colors("cyan")),
             ),
             shadow=ft.BoxShadow(
                 spread_radius=1,
                 blur_radius=16,
-                color=ft.Colors.with_opacity(0.8, ft.colors('black26')),
+                color=ft.Colors.with_opacity(0.8, ft.colors("black26")),
                 offset=ft.Offset(0, 0),
                 blur_style=ft.ShadowBlurStyle.OUTER,
             ),
@@ -94,18 +95,18 @@ class MenuLeftContainer(ft.Stack):
                             controls=[
                                 ft.Container(
                                     content=ft.IconButton(
-                                        tooltip='User',
-                                        icon='supervised_user_circle_rounded',
-                                        bgcolor='Black12',
+                                        tooltip="User",
+                                        icon="supervised_user_circle_rounded",
+                                        bgcolor="Black12",
                                         # on_click=lambda _:self.page.go('/')
                                     )
                                 ),
                                 ft.Container(
                                     content=ft.IconButton(
-                                        tooltip='Closing App',
-                                        icon='exit_to_app_rounded',
-                                        icon_color='red',
-                                        on_click=lambda _:self.page.go('/')
+                                        tooltip="Closing App",
+                                        icon="exit_to_app_rounded",
+                                        icon_color="red",
+                                        on_click=lambda _: self.page.go("/"),
                                     )
                                 ),
                             ]
@@ -195,32 +196,32 @@ class MenuLeftContainer(ft.Stack):
                     #                 width=self.width_height,
                     #                 border_radius=ft.border_radius.all(42),
                     #             ),
-                                # ft.Container(
-                                #     alignment=ft.alignment.center,
-                                #     tooltip="GIT-HUB",
-                                #     content=ft.IconButton(
-                                #         icon=ft.icons.DEVELOPER_MODE,
-                                #         on_click=lambda _: self.on_developing(
-                                #             "Git-Hub"
-                                #         ),
-                                #     ),
-                                #     border=ft.border.all(1, ft.colors('cyan800')),
-                                #     bgcolor=ft.colors("black45"),
-                                #     height=self.width_height,
-                                #     width=self.width_height,
-                                #     border_radius=ft.border_radius.all(42),
-                                # ),
-                                # ft.Container(alignment=ft.alignment.center,tooltip='CHAT-GPT'
-                                # ,content=ft.IconButton(icon=ft.icons.DATA_OBJECT_OUTLINED ,
-                                # on_click=lambda _:self.show_widgets(show_widget='gpt_browser')),
-                                #     border        = ft.border.all(1, ft.colors('cyan800') ),
-                                #     bgcolor       = ft.colors("black45"),
-                                #     height        = self.width_height,
-                                #     width         = self.width_height,
-                                #     border_radius = ft.border_radius.all(42)
-                                #     ),
-                            # ],
-                        # ),
+                    # ft.Container(
+                    #     alignment=ft.alignment.center,
+                    #     tooltip="GIT-HUB",
+                    #     content=ft.IconButton(
+                    #         icon=ft.icons.DEVELOPER_MODE,
+                    #         on_click=lambda _: self.on_developing(
+                    #             "Git-Hub"
+                    #         ),
+                    #     ),
+                    #     border=ft.border.all(1, ft.colors('cyan800')),
+                    #     bgcolor=ft.colors("black45"),
+                    #     height=self.width_height,
+                    #     width=self.width_height,
+                    #     border_radius=ft.border_radius.all(42),
+                    # ),
+                    # ft.Container(alignment=ft.alignment.center,tooltip='CHAT-GPT'
+                    # ,content=ft.IconButton(icon=ft.icons.DATA_OBJECT_OUTLINED ,
+                    # on_click=lambda _:self.show_widgets(show_widget='gpt_browser')),
+                    #     border        = ft.border.all(1, ft.colors('cyan800') ),
+                    #     bgcolor       = ft.colors("black45"),
+                    #     height        = self.width_height,
+                    #     width         = self.width_height,
+                    #     border_radius = ft.border_radius.all(42)
+                    #     ),
+                    # ],
+                    # ),
                     # ),
                     # ft.Container(
                     #     alignment=ft.alignment.center,
@@ -238,7 +239,6 @@ class MenuLeftContainer(ft.Stack):
                     #     width=self.width_height,
                     #     border_radius=ft.border_radius.all(42),
                     # ),
-
                     ft.Container(
                         content=ft.Column(
                             controls=[
@@ -246,12 +246,12 @@ class MenuLeftContainer(ft.Stack):
                                     alignment=ft.alignment.center,
                                     tooltip="MARKET PLACE",
                                     content=ft.IconButton(
-                                        icon=ft.icons('local_grocery_store_rounded'),
+                                        icon=ft.icons("local_grocery_store_rounded"),
                                         on_click=lambda _: self.show_widgets(
                                             show_widget="MARKET PLACE"
                                         ),
                                     ),
-                                    border=ft.border.all(1, ft.colors('cyan200')),
+                                    border=ft.border.all(1, ft.colors("cyan200")),
                                     # bgcolor=ft.colors("black45"),
                                     bgcolor="purple,0.2",
                                     height=self.width_height,
@@ -262,12 +262,12 @@ class MenuLeftContainer(ft.Stack):
                                     alignment=ft.alignment.center,
                                     tooltip="SAVE PROJECT",
                                     content=ft.IconButton(
-                                        icon=ft.icons('save_outlined'),
+                                        icon=ft.icons("save_outlined"),
                                         on_click=lambda _: self.show_widgets(
                                             show_widget="save_project"
                                         ),
                                     ),
-                                    border=ft.border.all(1, ft.colors('cyan200')),
+                                    border=ft.border.all(1, ft.colors("cyan200")),
                                     # bgcolor=ft.colors("black45"),
                                     bgcolor="Green,0.2",
                                     height=self.width_height,
@@ -277,7 +277,6 @@ class MenuLeftContainer(ft.Stack):
                             ]
                         )
                     ),
-
                     # ft.IconButton(icon=ft.icons.SETTINGS),
                 ],
             ),
@@ -292,11 +291,11 @@ class MenuLeftContainer(ft.Stack):
     def show_pone_container(self, phone_container: object = None):
 
         if phone_container.visible:
-            self.eye_icon.icon = ft.icons('code_off_rounded')
+            self.eye_icon.icon = ft.icons("code_off_rounded")
             phone_container.visible = False
 
         else:
-            self.eye_icon.icon = ft.icons('remove_red_eye')
+            self.eye_icon.icon = ft.icons("remove_red_eye")
             phone_container.visible = True
 
         phone_container.update()
@@ -304,7 +303,10 @@ class MenuLeftContainer(ft.Stack):
         self.eye_icon.update()
         # self.page.update()
 
-    def show_widgets(self, show_widget: str = str(),):
+    def show_widgets(
+        self,
+        show_widget: str = str(),
+    ):
         # print(self.page.session.get('user_name'),'function show_widget in widget_menu_left_editor.py')
         # return
 
@@ -313,9 +315,9 @@ class MenuLeftContainer(ft.Stack):
             self.reset_border_select_widget()
             # self.page.go('/save_menu')
             # print(self.page._index.get('_244'))
-            self.page.views[1].controls[0].visible=False
-            self.page.views[1].controls[1].visible=False
-            self.page.views[1].controls[2].visible=True
+            self.page.views[1].controls[0].visible = False
+            self.page.views[1].controls[1].visible = False
+            self.page.views[1].controls[2].visible = True
             self.page.views[1].update()
 
         if show_widget == "icon_browser":
@@ -326,8 +328,8 @@ class MenuLeftContainer(ft.Stack):
         if show_widget == "MARKET PLACE":
             # NEED IMPLEMENT YET
             # self.page.go('/screen_manager')
-            self.page.views[1].controls[0].visible=False
-            self.page.views[1].controls[1].visible=True
+            self.page.views[1].controls[0].visible = False
+            self.page.views[1].controls[1].visible = True
             self.page.views[1].update()
 
         if show_widget == "gpt_browser":
@@ -339,7 +341,6 @@ class MenuLeftContainer(ft.Stack):
             # NEED IMPLEMENT YET
             # self.on_developing("tree_view")
             return
-
 
         if show_widget == "text_editor":
             # NEED IMPLEMENT YET
@@ -374,7 +375,7 @@ class MenuLeftContainer(ft.Stack):
             #     body_string=error
             # )
 
-            print(f'error {error}')
+            print(f"error {error}")
 
     def action_windows(self, action):
         if action == "Close":
@@ -396,17 +397,16 @@ class MenuLeftContainer(ft.Stack):
 
         # REMOVE BORDER COLOR BEFORE SAVE
         if not self.widget_selected == None:
-            self.widget_selected.border = ft.border.all(
-                2, ft.colors('transparent'))
+            self.widget_selected.border = ft.border.all(2, ft.colors("transparent"))
 
-        self.config_tab_container = self.page.session.get(
-            "CONFIG_TABS_CONTAINERS")
+        self.config_tab_container = self.page.session.get("CONFIG_TABS_CONTAINERS")
         self.config_tab_container_content = self.page.session.get(
-            "CONFIG_TABS_CONTAINERS_CONTENT")
+            "CONFIG_TABS_CONTAINERS_CONTENT"
+        )
 
         # REMOVE VISIBLE TAB EDITOR BEFORE SAVE
-        self.config_tab_container.visible=False
-        self.config_tab_container_content.visible=False
+        self.config_tab_container.visible = False
+        self.config_tab_container_content.visible = False
 
         # RESET TO NONE TOUCH WIDGET
         self.page.session.set("SELECTED_CONTAINER", None)

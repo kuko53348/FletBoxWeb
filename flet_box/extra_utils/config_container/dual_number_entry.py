@@ -18,18 +18,19 @@ GRADIENT_COLOR = ft.LinearGradient(
     begin=ft.alignment.top_left,
     end=ft.alignment.center_right,
     colors=[
-                                ft.Colors.with_opacity(0.04, ft.colors('white')),
-                                ft.Colors.with_opacity(0.24, ft.colors('white')),
+        ft.Colors.with_opacity(0.04, ft.colors("white")),
+        ft.Colors.with_opacity(0.24, ft.colors("white")),
     ],
 )
 GRADIENT_COLOR_BUTTON = ft.LinearGradient(
     begin=ft.alignment.top_center,
     end=ft.alignment.bottom_center,
-                           colors=[
-                                ft.Colors.with_opacity(0.04, ft.colors('white')),
-                                ft.Colors.with_opacity(0.24, ft.colors('white')),
-                            ],
+    colors=[
+        ft.Colors.with_opacity(0.04, ft.colors("white")),
+        ft.Colors.with_opacity(0.24, ft.colors("white")),
+    ],
 )
+
 
 class config_number_widget(ft.Stack):
     """
@@ -48,7 +49,7 @@ class config_number_widget(ft.Stack):
         widget_to_modify="",
     ):
         super().__init__()
-        self.tooltip="config_number_widget"
+        self.tooltip = "config_number_widget"
         self.config_widget = label_widget
         self.button_name = button_name
         self.widget_new = widget_to_modify
@@ -77,13 +78,12 @@ class config_number_widget(ft.Stack):
         self.division = self.value_data.get("division")
         self.value = self.value_data.get("value")
 
-
         self.tmp_slider_count = ft.Slider(
             min=self.minimum,
             max=self.maximum,
             divisions=self.division,
             value=self.value,
-            overlay_color=ft.colors('red'),
+            overlay_color=ft.colors("red"),
             # ======================= EVENTS ===========================
             on_change=lambda x: self.modify_widget_attributes(
                 slider_value=x.control.value,
@@ -94,8 +94,8 @@ class config_number_widget(ft.Stack):
         )
         self.text_value = ft.Container(
             ink=True,
-            bgcolor=ft.Colors.with_opacity(0.5, ft.colors('black')),
-            blur = (8,8),
+            bgcolor=ft.Colors.with_opacity(0.5, ft.colors("black")),
+            blur=(8, 8),
             padding=ft.padding.only(left=0, top=0, right=0, bottom=0),
             alignment=ft.alignment.center,
             border_radius=ft.border_radius.all(30),
@@ -119,9 +119,9 @@ class config_number_widget(ft.Stack):
             padding=ft.padding.all(0),
             alignment=ft.alignment.center,
             border_radius=ft.border_radius.all(30),
-            border=ft.border.all(1.5, ft.Colors.with_opacity(0.28, ft.colors('white'))),
+            border=ft.border.all(1.5, ft.Colors.with_opacity(0.28, ft.colors("white"))),
             # ink=True,
-            ink_color=ft.colors('purple600'),
+            ink_color=ft.colors("purple600"),
             # width         = 152,
             height=36,
             gradient=GRADIENT_COLOR_BUTTON,
@@ -134,7 +134,6 @@ class config_number_widget(ft.Stack):
             spacing=8,
             run_spacing=0,
             # wrap = True,                                  # justify in all screen
-
             controls=[
                 self.text_value,
                 ft.Container(
@@ -143,7 +142,9 @@ class config_number_widget(ft.Stack):
                     padding=ft.padding.all(0),
                     alignment=ft.alignment.center,
                     border_radius=ft.border_radius.all(30),
-                    border=ft.border.all(1.5, ft.Colors.with_opacity(0.28, ft.colors('white'))),
+                    border=ft.border.all(
+                        1.5, ft.Colors.with_opacity(0.28, ft.colors("white"))
+                    ),
                     width=130,
                     height=36,
                     gradient=GRADIENT_COLOR,
@@ -162,8 +163,11 @@ class config_number_widget(ft.Stack):
                 ft.Container(expand=True),
                 self.show_info_bar,
                 ft.Container(expand=True),
-                self.Elevation_button if self.page.width >= 420 else ft.Container(expand=True),
-
+                (
+                    self.Elevation_button
+                    if self.page.width >= 420
+                    else ft.Container(expand=True)
+                ),
             ],
         )
         return main_container_config_selection
@@ -173,10 +177,10 @@ class config_number_widget(ft.Stack):
         tmp_value_configuration = personal_configuration.get(configuration).get("value")
 
         if name_id == "mix_container":
-            self.widget_to_modify = self.page.session.get('SELECTED_CONTAINER')
+            self.widget_to_modify = self.page.session.get("SELECTED_CONTAINER")
 
         if name_id == "mix_container_content":
-            self.widget_to_modify = self.page.session.get('SELECTED_CONTAINER').content
+            self.widget_to_modify = self.page.session.get("SELECTED_CONTAINER").content
 
         if configuration == "padding":
             self.widget_to_modify.padding = ft.padding.all(int(tmp_value_configuration))
@@ -185,7 +189,9 @@ class config_number_widget(ft.Stack):
             self.widget_to_modify.margin = ft.margin.all(int(tmp_value_configuration))
 
         if configuration == "radius":
-            self.widget_to_modify.border_radius = ft.border_radius.all(tmp_value_configuration)
+            self.widget_to_modify.border_radius = ft.border_radius.all(
+                tmp_value_configuration
+            )
 
         if configuration == "size":
             self.widget_to_modify.width = float(tmp_value_configuration)
@@ -212,10 +218,10 @@ class config_number_widget(ft.Stack):
             info_tex.content.value = f"{slider_value:.1f}"
 
         if name_id == "mix_container":
-            self.widget_to_modify = self.page.session.get('SELECTED_CONTAINER')
+            self.widget_to_modify = self.page.session.get("SELECTED_CONTAINER")
 
         if name_id == "mix_container_content":
-            self.widget_to_modify = self.page.session.get('SELECTED_CONTAINER').content
+            self.widget_to_modify = self.page.session.get("SELECTED_CONTAINER").content
 
         if self.widget_name == "padding":
             self.widget_to_modify.padding = ft.padding.all(int(slider_value))
@@ -231,25 +237,29 @@ class config_number_widget(ft.Stack):
 
         if self.widget_name == "border":
             self.widget_to_modify.border = slider_value
-            personal_configuration[self.widget_name]["value"] = self.widget_to_modify.border
+            personal_configuration[self.widget_name][
+                "value"
+            ] = self.widget_to_modify.border
 
         if self.widget_name == "size":
             self.widget_to_modify.width = int(slider_value)
             self.widget_to_modify.height = int(slider_value)
-            personal_configuration[self.widget_name]["value"] = self.widget_to_modify.height
+            personal_configuration[self.widget_name][
+                "value"
+            ] = self.widget_to_modify.height
 
         if self.widget_name == "offset_x":
             self.widget_to_modify.offset = (
-                                            slider_value,
-                                            personal_configuration.get("offset_y").get("value"),
-                                        )
+                slider_value,
+                personal_configuration.get("offset_y").get("value"),
+            )
             personal_configuration[self.widget_name]["value"] = slider_value
 
         if self.widget_name == "offset_y":
             self.widget_to_modify.offset = (
-                                            personal_configuration.get("offset_x").get("value"),
-                                            slider_value,
-                                        )
+                personal_configuration.get("offset_x").get("value"),
+                slider_value,
+            )
 
             personal_configuration[self.widget_name]["value"] = slider_value
 
@@ -260,16 +270,13 @@ class config_number_widget(ft.Stack):
 
         #: UPDATE DATA
         try:
-            self.phone_container = self.page.session.get('SELECTED_SCREEN')
+            self.phone_container = self.page.session.get("SELECTED_SCREEN")
             self.phone_container.update()
             # self.widget.update()
             # self.widget_to_modify.update()
         except Exception as error:
-            self.error_page = self.page.session.get('on_dev')
-            self.error_page(
-                name_seccion='Error by Dev',
-                body_string=error
-            )
+            self.error_page = self.page.session.get("on_dev")
+            self.error_page(name_seccion="Error by Dev", body_string=error)
 
 
 class DualNumeberEntry(ft.Stack):
@@ -286,9 +293,9 @@ class DualNumeberEntry(ft.Stack):
     def __init__(
         self,
         id_name_widget_dict=None,
-        config_widget: str="exemple [value,bgcolor,width,height] ....",
-        page: object=object(),
-        screen_phone: object=object(),
+        config_widget: str = "exemple [value,bgcolor,width,height] ....",
+        page: object = object(),
+        screen_phone: object = object(),
     ):
         super().__init__()
         self.page = page
@@ -302,9 +309,8 @@ class DualNumeberEntry(ft.Stack):
         TmpDualNumeberEntry = ft.Container(
             ink=False,
             expand=True,
-            border=ft.border.all(1, ft.Colors.with_opacity(0.04, ft.colors('white'))),
-            bgcolor=ft.Colors.with_opacity(0.5, ft.colors('black')),
-
+            border=ft.border.all(1, ft.Colors.with_opacity(0.04, ft.colors("white"))),
+            bgcolor=ft.Colors.with_opacity(0.5, ft.colors("black")),
             padding=ft.padding.only(left=2, top=8, right=2, bottom=2),
             margin=ft.margin.all(0),
             alignment=ft.alignment.center,
@@ -317,7 +323,9 @@ class DualNumeberEntry(ft.Stack):
             ),  # <=== NOTE COMA [NOTE]                     for x in range(1,50): widget.content.controls.append(ft.ElevatedButton("press buttom",tooltip='buttom'))
         )  # <=== NOTE COMA
         self.button_all = ft.Container(
-            content=ft.Text(value="ALL",),
+            content=ft.Text(
+                value="ALL",
+            ),
             alignment=ft.alignment.center,
             padding=0,
             margin=0,
@@ -334,14 +342,13 @@ class DualNumeberEntry(ft.Stack):
             )
         )
         self.column_data = ft.Container(
-            border=ft.border.all(1, ft.Colors.with_opacity(0.08, ft.colors('white'))),
-            bgcolor=ft.Colors.with_opacity(0.04, ft.colors('white')),
-
+            border=ft.border.all(1, ft.Colors.with_opacity(0.08, ft.colors("white"))),
+            bgcolor=ft.Colors.with_opacity(0.04, ft.colors("white")),
             width=360,
             border_radius=ft.border_radius.all(16),
             gradient=GRADIENT_COLOR_BUTTON,
             ink=True,
-            ink_color=ft.colors('red'),
+            ink_color=ft.colors("red"),
             # on_click=lambda _: print("hello"),
             padding=ft.padding.only(left=1, right=1, top=8, bottom=2),
             content=ft.Column(controls=[self.row_main_conttainer, self.button_all]),

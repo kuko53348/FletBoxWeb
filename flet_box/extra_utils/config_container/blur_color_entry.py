@@ -2,6 +2,7 @@ import flet as ft
 
 # from ..settings_var.settings_widget import GLOBAL_VAR
 
+
 class BlurColorEntry(ft.Stack):
     """
     box_layout = ft.Container(content=ft.Text())
@@ -13,21 +14,21 @@ class BlurColorEntry(ft.Stack):
     def __init__(
         self,
         id_name_widget_dict=None,
-        config_widget: str="exemple [value,bgcolor,width,height] ....",
-        page: object=None,
-        screen_phone: object=None,
+        config_widget: str = "exemple [value,bgcolor,width,height] ....",
+        page: object = None,
+        screen_phone: object = None,
     ):
         super().__init__()
         self.page = page
         self.widget = screen_phone
 
-        self.tooltip='BlurColorEntry'
+        self.tooltip = "BlurColorEntry"
         self.attribute_widget = config_widget
         self.id_name_widget_dict = id_name_widget_dict
 
         # size textz
-        self.text_size = 12 #GLOBAL_VAR(get_global_var="text_size_input")
-        self.padding_only = 4 #GLOBAL_VAR(get_global_var="padding_only")
+        self.text_size = 12  # GLOBAL_VAR(get_global_var="text_size_input")
+        self.padding_only = 4  # GLOBAL_VAR(get_global_var="padding_only")
 
     def build(self):
         Drop_DoubleEntry = ft.Container(
@@ -39,7 +40,6 @@ class BlurColorEntry(ft.Stack):
             alignment=ft.alignment.center,
             # border=ft.border.all(1.5, ft.Colors.with_opacity(0.28, ft.colors('white'))),
             # border_radius=ft.border_radius.all(14),
-
             width=165,
             height=80,
             content=ft.Column(
@@ -47,7 +47,7 @@ class BlurColorEntry(ft.Stack):
                 controls=[
                     ft.Container(
                         ink=False,
-                        bgcolor=ft.Colors.with_opacity(0.04, ft.colors('white')),
+                        bgcolor=ft.Colors.with_opacity(0.04, ft.colors("white")),
                         padding=ft.padding.only(left=12, top=0, right=12, bottom=0),
                         alignment=ft.alignment.center,
                         border_radius=ft.border_radius.all(30),
@@ -62,7 +62,9 @@ class BlurColorEntry(ft.Stack):
                         padding=ft.padding.all(2),
                         alignment=ft.alignment.center,
                         border_radius=ft.border_radius.all(30),
-                        border=ft.border.all(1, ft.Colors.with_opacity(0.04, ft.colors('white'))),
+                        border=ft.border.all(
+                            1, ft.Colors.with_opacity(0.04, ft.colors("white"))
+                        ),
                         width=154,
                         height=36,
                         tooltip="Double Entry",
@@ -79,9 +81,11 @@ class BlurColorEntry(ft.Stack):
                                     border_radius=ft.border_radius.all(30),
                                     content=ft.TextField(
                                         hint_text="Blur X",
-                                        border_radius =ft.border_radius.all(30),
-                                        border_color = ft.Colors('transparent'),
-                                        bgcolor=ft.Colors.with_opacity(0.04, ft.colors('white')),
+                                        border_radius=ft.border_radius.all(30),
+                                        border_color=ft.Colors("transparent"),
+                                        bgcolor=ft.Colors.with_opacity(
+                                            0.04, ft.colors("white")
+                                        ),
                                         color="YELLOW",
                                         text_size=self.text_size,
                                         content_padding=self.padding_only,
@@ -97,9 +101,11 @@ class BlurColorEntry(ft.Stack):
                                     width=68,
                                     content=ft.TextField(
                                         hint_text="Blur Y",
-                                        border_radius =ft.border_radius.all(30),
-                                        border_color = ft.Colors('transparent'),
-                                        bgcolor=ft.Colors.with_opacity(0.04, ft.colors('white')),
+                                        border_radius=ft.border_radius.all(30),
+                                        border_color=ft.Colors("transparent"),
+                                        bgcolor=ft.Colors.with_opacity(
+                                            0.04, ft.colors("white")
+                                        ),
                                         color="YELLOW",
                                         text_size=self.text_size,
                                         content_padding=self.padding_only,
@@ -130,7 +136,7 @@ class BlurColorEntry(ft.Stack):
                 controls=[
                     ft.Container(
                         ink=False,
-                        bgcolor=ft.Colors.with_opacity(0.04, ft.colors('white')),
+                        bgcolor=ft.Colors.with_opacity(0.04, ft.colors("white")),
                         padding=ft.padding.only(left=8, top=0, right=8, bottom=0),
                         alignment=ft.alignment.center,
                         border_radius=ft.border_radius.all(30),
@@ -145,7 +151,9 @@ class BlurColorEntry(ft.Stack):
                         padding=ft.padding.only(left=2, top=0, right=8, bottom=0),
                         alignment=ft.alignment.center,
                         border_radius=ft.border_radius.all(30),
-                        border=ft.border.all(1, ft.Colors.with_opacity(0.04, ft.colors('white'))),
+                        border=ft.border.all(
+                            1, ft.Colors.with_opacity(0.04, ft.colors("white"))
+                        ),
                         width=152,
                         height=36,
                         # gradient=ft.LinearGradient(
@@ -164,9 +172,11 @@ class BlurColorEntry(ft.Stack):
                                     border_radius=ft.border_radius.all(30),
                                     content=ft.TextField(
                                         hint_text="Blur Color",
-                                        border_radius =ft.border_radius.all(30),
-                                        border_color = ft.Colors('transparent'),
-                                        bgcolor=ft.Colors.with_opacity(0.04, ft.colors('white')),
+                                        border_radius=ft.border_radius.all(30),
+                                        border_color=ft.Colors("transparent"),
+                                        bgcolor=ft.Colors.with_opacity(
+                                            0.04, ft.colors("white")
+                                        ),
                                         color="YELLOW",
                                         text_size=self.text_size,
                                         content_padding=self.padding_only,
@@ -183,10 +193,15 @@ class BlurColorEntry(ft.Stack):
                                 ),
                                 ft.Container(
                                     ink=False,
-                                    bgcolor=ft.colors('black12'),
+                                    bgcolor=ft.colors("black12"),
                                     width=50.5,
                                     height=30,
-                                    border=ft.border.all(1, ft.Colors.with_opacity(0.04, ft.colors('white'))),
+                                    border=ft.border.all(
+                                        1,
+                                        ft.Colors.with_opacity(
+                                            0.04, ft.colors("white")
+                                        ),
+                                    ),
                                     border_radius=ft.border_radius.all(30),
                                     on_click=lambda x: self.modify_right_container_attributes(
                                         data=self.attribute_widget,
@@ -201,18 +216,16 @@ class BlurColorEntry(ft.Stack):
         )
         return ft.Container(
             ink=False,
-            bgcolor=ft.Colors.with_opacity(0.5, ft.colors('black')),
-            blur = (8,8),
+            bgcolor=ft.Colors.with_opacity(0.5, ft.colors("black")),
+            blur=(8, 8),
             padding=ft.padding.only(left=4, top=4, right=4, bottom=4),
             margin=ft.margin.all(0),
             alignment=ft.alignment.center_left,
             border_radius=ft.border_radius.all(16),
-            border=ft.border.all(1.5, ft.Colors.with_opacity(0.28, ft.colors('white'))),
-            content=ft.Row( spacing=1,
-                            wrap = True,
-                            controls=[
-                                Drop_DoubleEntry,
-                                Drop_BlurColorEntry]),
+            border=ft.border.all(1.5, ft.Colors.with_opacity(0.28, ft.colors("white"))),
+            content=ft.Row(
+                spacing=1, wrap=True, controls=[Drop_DoubleEntry, Drop_BlurColorEntry]
+            ),
         )
 
     def modify_right_container_attributes(self, data, value):
@@ -236,15 +249,12 @@ class BlurColorEntry(ft.Stack):
             )
         #: UPDATE DATA
         try:
-            self.phone_container = self.page.session.get('SELECTED_SCREEN')
+            self.phone_container = self.page.session.get("SELECTED_SCREEN")
             self.phone_container.update()
             # self.widget.update()
         except Exception as error:
-            self.error_page = self.page.session.get('on_dev')
-            self.error_page(
-                name_seccion='Error by Dev',
-                body_string=error
-            )
+            self.error_page = self.page.session.get("on_dev")
+            self.error_page(name_seccion="Error by Dev", body_string=error)
 
     def modify_widget_attributes(
         self,
@@ -290,8 +300,5 @@ class BlurColorEntry(ft.Stack):
         try:
             self.widget.update()
         except Exception as error:
-            self.error_page = self.page.session.get('on_dev')
-            self.error_page(
-                name_seccion='Error by Dev',
-                body_string=error
-            )
+            self.error_page = self.page.session.get("on_dev")
+            self.error_page(name_seccion="Error by Dev", body_string=error)

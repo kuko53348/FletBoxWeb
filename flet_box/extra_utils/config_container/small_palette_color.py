@@ -24,19 +24,19 @@ class SmallPaleteColor(ft.Container):
             # on_click=lambda _: self.modify_widget(),
         )
         self.content = self.container
-
-        self.on_click = lambda _: self.change_color_widget(
-            color=self.pallete_color)
+        self.on_click = lambda _: self.change_color_widget(color=self.pallete_color)
 
     def change_color_widget(self, color: str = ""):
-        self.attibute_color = self.page.session.get('set_attribute_color')
-        self.widget_color = self.page.session.get('set_edit_widget_color')
+        self.attibute_color = self.page.session.get("set_attribute_color")
+        self.widget_color = self.page.session.get("set_edit_widget_color")
 
         # : SET ATTRIBUTES
         if self.attibute_color == "bgcolor":
             self.widget_color.bgcolor = color
         if self.attibute_color == "bgcolor ":
-            self.widget = self.page.session.get("SELECTED_SCREEN")  # <== SELECTED PHONE SCREEN
+            self.widget = self.page.session.get(
+                "SELECTED_SCREEN"
+            )  # <== SELECTED PHONE SCREEN
             self.widget.content.content.content.bgcolor = color
             self.widget_color = self.widget
 
@@ -64,15 +64,13 @@ class SmallPaleteColor(ft.Container):
                 blur_style=ft.ShadowBlurStyle.OUTER,
             )
 
-        # print(self.widget_color)
-        # print(self.widget_color.parent)
         self.page.update()
 
     def active_border_color(self, border_container):
         border_container.border = (
-            ft.border.all(2, ft.colors('transparent'))
-            if border_container.border == ft.border.all(2, ft.colors('white'))
-            else ft.border.all(2, ft.colors('white'))
+            ft.border.all(2, ft.colors("transparent"))
+            if border_container.border == ft.border.all(2, ft.colors("white"))
+            else ft.border.all(2, ft.colors("white"))
         )
         border_container.update()
 
@@ -89,11 +87,11 @@ class Screen_palette(ft.Container):
             begin=ft.alignment.top_center,
             end=ft.alignment.center_right,
             colors=[
-                ft.colors('black12'),
-                ft.colors('blue900'),
-                ft.colors('purple800'),
-                ft.colors('blue600'),
-                ft.colors('black12'),
+                ft.colors("black12"),
+                ft.colors("blue900"),
+                ft.colors("purple800"),
+                ft.colors("blue600"),
+                ft.colors("black12"),
             ],
         )
 
@@ -110,10 +108,10 @@ class Screen_palette(ft.Container):
                     width=320,
                     padding=8,
                     content=ft.ElevatedButton(
-                        text='Close Color List',
+                        text="Close Color List",
                         icon="crisis_alert_rounded",
-                        on_click=lambda _:self.show_menu_tab_editor(),
-                    )
+                        on_click=lambda _: self.show_menu_tab_editor(),
+                    ),
                 ),
             ],
         )
@@ -130,23 +128,20 @@ class Screen_palette(ft.Container):
     def show_menu_tab_editor(self):
         "CLICK IN PHOTO SELECTION"
         print("selection data [+] photo_selection.py")
-        self.tab_container = self.page.session.get('PHOTO_SELECTION')
+        self.tab_container = self.page.session.get("PHOTO_SELECTION")
 
         self.tab_container.controls[0].visible = True
         self.tab_container.controls[1].visible = False
         self.tab_container.controls[2].visible = False
 
         try:
-            self.phone_container = self.page.session.get('SELECTED_SCREEN')
+            self.phone_container = self.page.session.get("SELECTED_SCREEN")
             self.phone_container.update()
             # self.widget.update()
             # self.tab_container.update()
         except Exception as error:
-            self.error_page = self.page.session.get('on_dev')
-            self.error_page(
-                name_seccion='Error by Dev',
-                body_string=error
-            )
+            self.error_page = self.page.session.get("on_dev")
+            self.error_page(name_seccion="Error by Dev", body_string=error)
 
 
 if __name__ == "__main__":

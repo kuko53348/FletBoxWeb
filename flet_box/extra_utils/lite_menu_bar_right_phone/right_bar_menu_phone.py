@@ -18,7 +18,7 @@ class LiteMenuUpContainer(ft.Container):
         self.ink = False
         self.alignment = ft.alignment.center
         self.border_radius = ft.border_radius.all(30)
-        self.blur = (16 ,16)
+        self.blur = (16, 16)
 
     def build(self):
         self.phone_edition = ft.Container(
@@ -32,38 +32,29 @@ class LiteMenuUpContainer(ft.Container):
                 spacing=8,
                 controls=[
                     ft.IconButton(
-                        icon=ft.icons('smartphone'),
+                        icon=ft.icons("smartphone"),
                         tooltip="SMARTPHONE",
-                        on_click=lambda _: self.action_button(
-                            action="SMARTPHONE"
-                        ),
+                        on_click=lambda _: self.action_button(action="SMARTPHONE"),
                     ),
                     ft.IconButton(
-                        icon=ft.icons('tablet_android'),
+                        icon=ft.icons("tablet_android"),
                         tooltip="TABLET",
-                        on_click=lambda _: self.action_button(
-                            action="TABLET"
-                        ),
+                        on_click=lambda _: self.action_button(action="TABLET"),
                     ),
                     ft.IconButton(
-                        icon=ft.icons('tv_outlined'),
+                        icon=ft.icons("tv_outlined"),
                         tooltip="PC",
-                        on_click=lambda _: self.action_button(
-                            action="PC"),
+                        on_click=lambda _: self.action_button(action="PC"),
                     ),
                     ft.IconButton(
-                        icon=ft.icons('screenshot_monitor'),
+                        icon=ft.icons("screenshot_monitor"),
                         tooltip="FULL SCREEN",
-                        on_click=lambda _: self.action_button(
-                            action="SHOW PC"
-                        ),
+                        on_click=lambda _: self.action_button(action="SHOW PC"),
                     ),
                     ft.IconButton(
-                        icon=ft.icons('screen_rotation'),
+                        icon=ft.icons("screen_rotation"),
                         tooltip="ROTATE",
-                        on_click=lambda _: self.action_button(
-                            action="rotation"
-                        ),
+                        on_click=lambda _: self.action_button(action="rotation"),
                     ),
                     # ft.IconButton(
                     #     icon=ft.icons.SCHEMA,
@@ -73,7 +64,8 @@ class LiteMenuUpContainer(ft.Container):
                     #     ),
                     # ),
                 ],
-            ))
+            ),
+        )
 
         self.content = ft.Row(
             alignment=ft.MainAxisAlignment.CENTER,
@@ -82,25 +74,24 @@ class LiteMenuUpContainer(ft.Container):
             controls=[
                 ft.Container(
                     ink=False,
-                    blur = (16,16),
-                    bgcolor = ft.Colors.with_opacity(0.12, 'white'),
-
+                    blur=(16, 16),
+                    bgcolor=ft.Colors.with_opacity(0.12, "white"),
                     padding=ft.padding.only(left=4, top=0, right=4, bottom=0),
                     alignment=ft.alignment.center,
                     border_radius=ft.border_radius.all(30),
-                    border = ft.border.all(2,ft.Colors.with_opacity(0.12, 'white')),
+                    border=ft.border.all(2, ft.Colors.with_opacity(0.12, "white")),
                     content=ft.Row(
                         spacing=8,
                         controls=[
                             ft.IconButton(
-                                icon=ft.icons('edit_square'),
+                                icon=ft.icons("edit_square"),
                                 tooltip="EDIT WIDGET",
                                 on_click=lambda _: self.modify_widget_in_phone_container(),
                                 bgcolor="Blue",
                                 icon_color="White",
                             ),
                             ft.IconButton(
-                                icon=ft.icons('touch_app'),
+                                icon=ft.icons("touch_app"),
                                 tooltip="UN SELECT\nBORDER WIDGET",
                                 on_click=lambda _: self.action_button(
                                     action="UNSELECT"
@@ -109,25 +100,21 @@ class LiteMenuUpContainer(ft.Container):
                                 icon_color="White",
                             ),
                             ft.IconButton(
-                                icon=ft.icons('deblur'),
+                                icon=ft.icons("deblur"),
                                 tooltip="LIGHT / DARK",
                                 on_click=lambda _: self.action_button(
                                     action="LIGHT / DARK"
                                 ),
                             ),
                             ft.IconButton(
-                                icon=ft.icons('delete_sweep_outlined'),
+                                icon=ft.icons("delete_sweep_outlined"),
                                 tooltip="DELETE_",
-                                on_click=lambda _: self.action_button(
-                                    action="delete"
-                                ),
+                                on_click=lambda _: self.action_button(action="delete"),
                             ),
                             ft.IconButton(
-                                icon=ft.icons('recycling'),
+                                icon=ft.icons("recycling"),
                                 tooltip="CLEAR",
-                                on_click=lambda _: self.action_button(
-                                    action="clear"
-                                ),
+                                on_click=lambda _: self.action_button(action="clear"),
                                 bgcolor=ft.colors("red900"),
                             ),
                             self.phone_edition,
@@ -135,7 +122,6 @@ class LiteMenuUpContainer(ft.Container):
                     ),
                 ),  # <=== NOTE COMA
                 # self.phone_edition
-
             ],
         )
 
@@ -155,7 +141,7 @@ class LiteMenuUpContainer(ft.Container):
 
     def modify_widget_in_phone_container(self):
         """
-       GLOBAL VARS:
+        GLOBAL VARS:
             config_tab_container
             self.config_tab_container_content
 
@@ -180,7 +166,9 @@ class LiteMenuUpContainer(ft.Container):
         self.config_tab_container = self.page.session.get("CONFIG_TABS_CONTAINERS")
 
         # TAB BOX EDITION OF CONTAINER CONTENT WIDGET
-        self.config_tab_container_content = self.page.session.get("CONFIG_TABS_CONTAINERS_CONTENT")
+        self.config_tab_container_content = self.page.session.get(
+            "CONFIG_TABS_CONTAINERS_CONTENT"
+        )
 
         is_selected = False
 
@@ -192,7 +180,9 @@ class LiteMenuUpContainer(ft.Container):
             self.control_tab_2 = self.config_tab_container.content.controls
             self.control_tab_3 = self.config_tab_container_content.content.controls
 
-            print(f"[Selected] to edit: [{self.select_droped_widget.tooltip}] ID: right_bar_menu_phone.py")
+            print(
+                f"[Selected] to edit: [{self.select_droped_widget.tooltip}] ID: right_bar_menu_phone.py"
+            )
 
             self.menu_right_container.visible = True
             self.menu_right_container.update()
@@ -200,14 +190,11 @@ class LiteMenuUpContainer(ft.Container):
 
             #  'left', 'top', 'right', 'bottom', 'rotate', 'scale', 'offset'
             self.list_wdiget_content_attribute = []
-            self.list_wdiget_content_attribute: list = self.select_droped_widget_CONTENT.__dir__()
-
-            list_range: tuple = (
-                "2_0",
-                "2_1",
-                "2_2",
-                "2_3"
+            self.list_wdiget_content_attribute: list = (
+                self.select_droped_widget_CONTENT.__dir__()
             )
+
+            list_range: tuple = ("2_0", "2_1", "2_2", "2_3")
 
             list_range_tab_3: tuple = (
                 "3_0",
@@ -217,7 +204,7 @@ class LiteMenuUpContainer(ft.Container):
                 "3_4",
                 "3_5",
                 "3_6",
-                "3_7"
+                "3_7",
             )
 
         if is_selected:
@@ -235,7 +222,7 @@ class LiteMenuUpContainer(ft.Container):
                 self.insert_data_in_box_container(
                     column_tab=tab_name,
                     tab_control=self.control_tab_2[index],
-                    widget_name=self.select_droped_widget
+                    widget_name=self.select_droped_widget,
                 )
 
             # #: TAB 3 <== CALLING METHOD VISIBLE OR ONT VISIBLE
@@ -252,7 +239,7 @@ class LiteMenuUpContainer(ft.Container):
                 self.insert_data_in_box_container_content(
                     column_tab=tab_name,
                     tab_control=self.control_tab_3[index],
-                    widget_name=self.select_droped_widget_CONTENT
+                    widget_name=self.select_droped_widget_CONTENT,
                 )
 
         else:
@@ -280,7 +267,8 @@ class LiteMenuUpContainer(ft.Container):
         if action == "UNSELECT":
             if not self.select_droped_widget == None:
                 self.select_droped_widget.border = ft.border.all(
-                    2, ft.colors("transparent"))
+                    2, ft.colors("transparent")
+                )
                 self.select_droped_widget.update()
 
         if action == "clear":
@@ -306,25 +294,31 @@ class LiteMenuUpContainer(ft.Container):
 
             if self.phone_widget_container.width >= 600:
                 self.menu_right_container.visible = (
-                    False
-                    if self.menu_right_container.visible
-                    else True
+                    False if self.menu_right_container.visible else True
                 )
                 self.menu_left_container.visible = (
-                    False
-                    if self.menu_right_container.visible
-                    else True
+                    False if self.menu_right_container.visible else True
                 )
                 self.menu_left_container.update()
                 self.menu_right_container.update()
 
         if action == "LIGHT / DARK":
-            self.light_color = ft.Colors.with_opacity(0.1,ft.colors.SURFACE_VARIANT)
-            self.dark_color  = ft.Colors.with_opacity(0.6,ft.colors('black'))
-            self.phone_widget_container.dark_theme = ft.Theme(color_scheme_seed=ft.Colors.YELLOW)
+            self.light_color = ft.Colors.with_opacity(0.1, ft.colors.SURFACE_VARIANT)
+            self.dark_color = ft.Colors.with_opacity(0.6, ft.colors("black"))
+            self.phone_widget_container.dark_theme = ft.Theme(
+                color_scheme_seed=ft.Colors.YELLOW
+            )
 
-            self.phone_widget_container.theme_mode = ft.ThemeMode.DARK if self.phone_widget_container.theme_mode == ft.ThemeMode.LIGHT else ft.ThemeMode.LIGHT
-            self.phone_widget_container.bgcolor = self.dark_color if self.phone_widget_container.bgcolor == self.light_color else self.light_color
+            self.phone_widget_container.theme_mode = (
+                ft.ThemeMode.DARK
+                if self.phone_widget_container.theme_mode == ft.ThemeMode.LIGHT
+                else ft.ThemeMode.LIGHT
+            )
+            self.phone_widget_container.bgcolor = (
+                self.dark_color
+                if self.phone_widget_container.bgcolor == self.light_color
+                else self.light_color
+            )
             self.phone_widget_container.update()
 
         if action == "SMARTPHONE":
@@ -393,10 +387,8 @@ class LiteMenuUpContainer(ft.Container):
                     self.phone_widget_blur_cont.height = (
                         self.phone_widget_container.height
                     )
-
                     self.phone_widget_blur_cont.update()
                     self.phone_widget_container.update()
-
                 self.menu_left_container.visible = True
                 self.menu_right_container.visible = True
 
@@ -427,10 +419,12 @@ class LiteMenuUpContainer(ft.Container):
         column_controls = tab_control  #
         return column_controls.content.controls[1].content.controls
 
-    def insert_data_in_box_container(self,
-                                     column_tab: str = "",
-                                     tab_control: list = list(),
-                                     widget_name: object = object()):
+    def insert_data_in_box_container(
+        self,
+        column_tab: str = "",
+        tab_control: list = list(),
+        widget_name: object = object(),
+    ):
         """
         - WALK ALL TABS TO INSERT THE VALUE THAT WE
         CHECK IF HAVE CURRENT SELECTED WIDGET HAVE OWN CORRECT VALUES
@@ -474,10 +468,12 @@ class LiteMenuUpContainer(ft.Container):
             _.widget = widget_name
             _.update()
 
-    def insert_data_in_box_container_content(self,
-                                             column_tab: str = "",
-                                             tab_control: list = list(),
-                                             widget_name: object = object()):
+    def insert_data_in_box_container_content(
+        self,
+        column_tab: str = "",
+        tab_control: list = list(),
+        widget_name: object = object(),
+    ):
         """
         - WALK ALL TABS TO INSERT THE VALUE THAT WE
         CHECK IF HAVE CURRENT SELECTED WIDGET HAVE OWN CORRECT VALUES
@@ -530,7 +526,7 @@ class LiteMenuUpContainer(ft.Container):
 
         for _ in tmp_value:
 
-            if (_.id_name_widget_dict in self.list_wdiget_content_attribute):
+            if _.id_name_widget_dict in self.list_wdiget_content_attribute:
                 _.visible = True
                 _.widget = widget_name
                 _.update()  # :<==== update exactly widget <<<
@@ -548,10 +544,12 @@ class LiteMenuUpContainer(ft.Container):
         self.phone_widget_container.update()
 
     def clear_all_phone_widgets(self):
-        main_phone = self.page.session.get('SELECTED_SCREEN')
+        main_phone = self.page.session.get("SELECTED_SCREEN")
         # self.control_phone_page = main_phone.content.content.content.content.controls
 
-        self.controls_column = main_phone.content.content.content.content.content.content.content.controls
+        self.controls_column = (
+            main_phone.content.content.content.content.content.content.content.controls
+        )
         self.control_phone_page = self.controls_column
 
         for _ in self.control_phone_page:
@@ -584,14 +582,15 @@ class LiteMenuUpContainer(ft.Container):
                     # print(_)
                     if _.uid == self.select_container.parent.parent.uid:
                         cover_widget.controls.remove(
-                            self.select_container.parent.parent)
+                            self.select_container.parent.parent
+                        )
 
             else:
                 # print(cover_widget._get_control_name(),"<<<<< ======================")
                 if cover_widget._get_control_name() == "container":
                     print(self.page.session.get_keys())
-                    self.show_warning  =self.page.session.get('on_dev')
-                    self.show_warning('You may not erase main dragg column..')
+                    self.show_warning = self.page.session.get("on_dev")
+                    self.show_warning("You may not erase main dragg column..")
                     return
 
                 cover_widget.controls.remove(self.select_container.parent)
@@ -607,6 +606,7 @@ class LiteMenuUpContainer(ft.Container):
 
 
 if __name__ == "__main__":
+
     def main(page: ft.Page):
         page.scroll = "HIDDEN"  # AUTO ADAPTIVE ALWAYS HIDDEN
         page.vertical_alignment = ft.MainAxisAlignment.CENTER

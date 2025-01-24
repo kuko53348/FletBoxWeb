@@ -1,5 +1,4 @@
 widget_templates: dict = {
-
     "app_content": """
 [+]#: DRAG-BOX-CONTENT [ID: NUMBER_DRAGG]
 [+]ft.Container(
@@ -13,7 +12,6 @@ widget_templates: dict = {
 [+]        #        page= self.page ),
 [+]    ),
 [+]),""",
-
     "app_controls": """
 [+]#: DRAG-BOX-CONTROLS [ID: NUMBER_DRAGG]
 [+]ft.Container(
@@ -25,7 +23,6 @@ widget_templates: dict = {
 [+]        controls=CHANGE_CONTROLS,
 [+]    ),
 [+]),""",
-
     "dragg_content": """
 [+]#: DRAG-BOX-CONTENT [ID: NUMBER_DRAGG]
 [+]self.draggin_framework(
@@ -41,7 +38,6 @@ widget_templates: dict = {
 [+]            #        page= self.page ),
 [+]        ),
 [+]    ),),""",
-
     "dragg_controls": """
 [+]#: DRAG-BOX-CONTROLS [ID: NUMBER_DRAGG]
 [+]self.draggin_framework(
@@ -55,20 +51,16 @@ widget_templates: dict = {
 [+]            controls=CHANGE_CONTROLS,
 [+]        ),
 [+]    ),),""",
-
     "event_dragg_target": "on_click= lambda dragg_item: self.dragg_event(selected_widget= dragg_item),",
-
     "frame_content": """
 CHANGE_NAME(
     content= CHANGE_WIDGET
             ),""",
-
     "frame_controls": """
 CHANGE_NAME(
     controls=[
         CHANGE_WIDGET
             ],),""",
-
     "screen_event": """
 '''
 EVENT MANAGER WILL CONTENT ALL APP EVENT IN ONE PLACE TO MAKE A EASY USABILITY
@@ -87,7 +79,6 @@ def CONTEN_ID(payload: str = str(), page: object = None):  # ID: CONTEN_ID
     #                 page=page
     #                 )
     print(f"Demo App: {payload} CONTEN_ID")""",
-
     "widget_reference": """
 self.widget_reference: dict() line 248
 
@@ -99,7 +90,6 @@ exemple:
         'container':'Container'
 
 }""",
-
     "screen_class": """
 #: MAIN WIDGET SCREEN CLASS
 import flet as ft
@@ -323,7 +313,6 @@ if __name__ == "__main__":
         target=main,
     )
 """,
-
     "app_screen_class": """
 #: MAIN WIDGET SCREEN CLASS
 import flet as ft
@@ -412,5 +401,4 @@ if __name__ == "__main__":
         target=main,
     )
 """,
-
 }

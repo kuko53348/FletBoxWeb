@@ -7,7 +7,6 @@ class SingleNumeberEntry(ft.Stack):
 
     Double_Widget = DoubleEntry
     Double_Widget(config_widget='value',widget = box_layout),
-
     """
 
     widget_content = "data"
@@ -47,8 +46,18 @@ class SingleNumeberEntry(ft.Stack):
             "max_lines": {"minimum": 0, "maximum": 300, "division": 300, "value": 0},
             "runs_count": {"minimum": 0, "maximum": 300, "division": 300, "value": 0},
             "run_spacing": {"minimum": 0, "maximum": 300, "division": 300, "value": 0},
-            "rn_space_wrap_true": {"minimum": 0, "maximum": 300, "division": 300, "value": 0},
-            "column_spacing": {"minimum": 0, "maximum": 300, "division": 300, "value": 0},
+            "rn_space_wrap_true": {
+                "minimum": 0,
+                "maximum": 300,
+                "division": 300,
+                "value": 0,
+            },
+            "column_spacing": {
+                "minimum": 0,
+                "maximum": 300,
+                "division": 300,
+                "value": 0,
+            },
             "spacing": {"minimum": 0, "maximum": 300, "division": 300, "value": 0},
             "max_extent": {"minimum": 0, "maximum": 100, "division": 100, "value": 0},
             "border_width": {"minimum": 0, "maximum": 100, "division": 100, "value": 0},
@@ -76,7 +85,7 @@ class SingleNumeberEntry(ft.Stack):
             max=self.maximum,
             divisions=self.division,
             value=self.value,
-            overlay_color=ft.colors('red'),
+            overlay_color=ft.colors("red"),
             # ======================= EVENTS ===========================
             # on_change   = lambda x:self.modify_widget_attributes(config_widget =self.attribute_widget ,value = SingleNumeberEntry),
             on_change=lambda x: self.modify_widget_attributes(
@@ -86,14 +95,13 @@ class SingleNumeberEntry(ft.Stack):
         )
         SingleNumeberEntry = ft.Container(
             ink=False,
-            bgcolor=ft.Colors.with_opacity(0.5, ft.colors('black')),
+            bgcolor=ft.Colors.with_opacity(0.5, ft.colors("black")),
             blur=(8, 8),
             padding=ft.padding.only(left=4, top=4, right=4, bottom=4),
             margin=ft.margin.all(0),
             alignment=ft.alignment.center,
             border_radius=ft.border_radius.all(16),
-            border=ft.border.all(
-                1.5, ft.Colors.with_opacity(0.28, ft.colors('white'))),
+            border=ft.border.all(1.5, ft.Colors.with_opacity(0.28, ft.colors("white"))),
             width=165,
             height=80,
             content=ft.Column(
@@ -101,10 +109,8 @@ class SingleNumeberEntry(ft.Stack):
                 controls=[
                     ft.Container(
                         ink=False,
-                        bgcolor=ft.Colors.with_opacity(
-                            0.04, ft.colors('white')),
-                        padding=ft.padding.only(
-                            left=12, top=0, right=12, bottom=0),
+                        bgcolor=ft.Colors.with_opacity(0.04, ft.colors("white")),
+                        padding=ft.padding.only(left=12, top=0, right=12, bottom=0),
                         alignment=ft.alignment.center,
                         border_radius=ft.border_radius.all(30),
                         height=20,
@@ -120,18 +126,17 @@ class SingleNumeberEntry(ft.Stack):
                         alignment=ft.alignment.center,
                         border_radius=ft.border_radius.all(30),
                         border=ft.border.all(
-                            1, ft.Colors.with_opacity(0.04, ft.colors('white'))),
+                            1, ft.Colors.with_opacity(0.04, ft.colors("white"))
+                        ),
                         width=152,
                         height=36,
                         gradient=ft.LinearGradient(
                             begin=ft.alignment.top_center,
                             end=ft.alignment.center_right,
                             colors=[
-                                ft.Colors.with_opacity(
-                                    0.04, ft.colors('white')),
-                                ft.Colors.with_opacity(
-                                    0.24, ft.colors('white')),
-                                ft.colors('black38'),
+                                ft.Colors.with_opacity(0.04, ft.colors("white")),
+                                ft.Colors.with_opacity(0.24, ft.colors("white")),
+                                ft.colors("black38"),
                             ],
                         ),
                         content=ft.Row(
@@ -162,7 +167,7 @@ class SingleNumeberEntry(ft.Stack):
                 self.widget.image.opacity = 1 - slider_value
 
         if self.widget_name == "image_opacity ":
-            self.phone_image = self.page.session.get('SELECTED_SCREEN')
+            self.phone_image = self.page.session.get("SELECTED_SCREEN")
             if self.phone_image.content.content.content.image:
                 # self.phone_image.image = None
                 self.widget = self.phone_image.content.content.content
@@ -173,7 +178,7 @@ class SingleNumeberEntry(ft.Stack):
 
             if not self.widget.image == None:
                 if type(self.widget.image) == type(dict()):
-                    self.widget.image['opacity'] = 1 - slider_value
+                    self.widget.image["opacity"] = 1 - slider_value
                 else:
                     self.widget.image.opacity = 1 - slider_value
 
@@ -212,9 +217,10 @@ class SingleNumeberEntry(ft.Stack):
         if self.widget_name == "rotate":
             self.widget.rotate = slider_value
 
-
-        self.phone_container = self.page.session.get('SELECTED_SCREEN')
-        self.phone_column = self.phone_container.content.content.content.content.content.content.content
+        self.phone_container = self.page.session.get("SELECTED_SCREEN")
+        self.phone_column = (
+            self.phone_container.content.content.content.content.content.content.content
+        )
 
         # PHONE COLUMN
         if self.widget_name == "column_spacing":
@@ -225,15 +231,12 @@ class SingleNumeberEntry(ft.Stack):
         #: UPDATE DATA
 
         try:
-            self.phone_container = self.page.session.get('SELECTED_SCREEN')
+            self.phone_container = self.page.session.get("SELECTED_SCREEN")
             self.phone_container.update()
             # self.widget.update()
         except Exception as error:
-            self.error_page = self.page.session.get('on_dev')
-            self.error_page(
-                name_seccion='Error by Dev',
-                body_string=error
-            )
+            self.error_page = self.page.session.get("on_dev")
+            self.error_page(name_seccion="Error by Dev", body_string=error)
 
 
 if __name__ == "__main__":

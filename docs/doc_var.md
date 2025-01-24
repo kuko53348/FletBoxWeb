@@ -1,4 +1,5 @@
-###  VAR USED IN FLET_BOX
+### VAR USED IN FLET_BOX
+
 ```python
 self.page.session.set('MARK_DOWN_CODE', self.data_selected)    # <== MARKDOWN CODE IN PHONE SCREEN
 
@@ -24,6 +25,7 @@ self.page.session.set('user_name', {'user_name': user_name, 'pasword': pasword})
 self.page.session.set('user_name_phone', self.Build_Phone_Editor)  # <== SET MAIN PHONE
 
 self.page.session.set('on_dev',error) # <== error fron config widgets
+
 on_developing(
     name_seccion='Email was sent',
     body_string=f"Mensage was sent sucessfully check your spam email: {email}"
@@ -32,7 +34,7 @@ on_developing(
 self.page.session.set('flet_box_api',True) # <== Will have True or false
 ```
 
-###  COLORS USED IN FLET_BOX
+### COLORS USED IN FLET_BOX
 
 ```python
 ft.colors('blue300')

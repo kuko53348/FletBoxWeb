@@ -2,7 +2,14 @@ import smtplib
 from email.mime.text import MIMEText
 
 
-def send_email(send_user: str = str(), send_to: str = str(), title: str = "hi there!!!", password: str = str(), personal_code: int = int(), user_name: str = str()):
+def send_email(
+    send_user: str = str(),
+    send_to: str = str(),
+    title: str = "hi there!!!",
+    password: str = str(),
+    personal_code: int = int(),
+    user_name: str = str(),
+):
     """EXEMPLE:
 
     ```python
@@ -89,24 +96,24 @@ def send_email(send_user: str = str(), send_to: str = str(), title: str = "hi th
             </footer>
         </html>
         """
-    msg = MIMEText(html, 'html')
-    msg['From'] = user
-    msg['To'] = send_to
-    msg['Subject'] = title
+    msg = MIMEText(html, "html")
+    msg["From"] = user
+    msg["To"] = send_to
+    msg["Subject"] = title
 
-    with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp_server:
+    with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp_server:
         smtp_server.login(user, password)
         smtp_server.sendmail(send_user, send_to, msg.as_string())
 
     return True
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # pass
     # EXEMPLE: of use
     send_email(
-                user_name='name',
-                send_to='kuko53348@gmail.com',
-                title='JustOneClick ',
-                personal_code=45545454655,
-               )
+        user_name="name",
+        send_to="kuko53348@gmail.com",
+        title="JustOneClick ",
+        personal_code=45545454655,
+    )

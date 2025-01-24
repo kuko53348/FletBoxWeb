@@ -13,18 +13,17 @@ class SelectionEntry(ft.Stack):
     def __init__(
         self,
         id_name_widget_dict=None,
-        config_widget: str="exemple [value,bgcolor,width,height] ....",
-        page: object=None,
-        screen_phone: object=None,
-        ):
+        config_widget: str = "exemple [value,bgcolor,width,height] ....",
+        page: object = None,
+        screen_phone: object = None,
+    ):
         super().__init__()
         self.page = page
         self.widget = screen_phone
 
-        self.tooltip: str="SelectionEntry"
+        self.tooltip: str = "SelectionEntry"
         self.attribute_widget = config_widget
         self.id_name_widget_dict = id_name_widget_dict
-
 
         #: will change name of entry points
         #: ONLY FOR CONTAINER
@@ -56,9 +55,7 @@ class SelectionEntry(ft.Stack):
             ]
         #: ONLY FOR CONTENT <<<=========== *********
         #: image_fit
-        if (
-            self.attribute_widget == "image_fit "
-        ):
+        if self.attribute_widget == "image_fit ":
             self.alignment_tmp_name = " Contain"
             self.alignment_tmp = [
                 ft.dropdown.Option(" Contain"),
@@ -168,13 +165,13 @@ class SelectionEntry(ft.Stack):
     def build(self):
         Drop_SelectionEntry = ft.Container(
             ink=False,
-            bgcolor=ft.Colors.with_opacity(0.5, ft.colors('black')),
-            blur = (8,8),
+            bgcolor=ft.Colors.with_opacity(0.5, ft.colors("black")),
+            blur=(8, 8),
             padding=ft.padding.only(left=4, top=4, right=4, bottom=4),
             margin=ft.margin.all(0),
             alignment=ft.alignment.center,
             border_radius=ft.border_radius.all(16),
-            border=ft.border.all(1.5, ft.Colors.with_opacity(0.28, ft.colors('white'))),
+            border=ft.border.all(1.5, ft.Colors.with_opacity(0.28, ft.colors("white"))),
             width=165,
             height=80,
             content=ft.Column(
@@ -183,7 +180,7 @@ class SelectionEntry(ft.Stack):
                     ft.Container(
                         ink=False,
                         # border=ft.border.all(1, ft.Colors.with_opacity(0.04, ft.colors('white'))),
-                        bgcolor=ft.Colors.with_opacity(0.04, ft.colors('white')),
+                        bgcolor=ft.Colors.with_opacity(0.04, ft.colors("white")),
                         padding=ft.padding.only(left=12, top=0, right=12, bottom=0),
                         alignment=ft.alignment.center,
                         border_radius=ft.border_radius.all(30),
@@ -195,23 +192,27 @@ class SelectionEntry(ft.Stack):
                     ),
                     ft.Container(
                         ink=False,
-                        bgcolor=ft.Colors.with_opacity(0.04, ft.colors('white')),
+                        bgcolor=ft.Colors.with_opacity(0.04, ft.colors("white")),
                         padding=ft.padding.all(2),
                         alignment=ft.alignment.center,
                         border_radius=ft.border_radius.all(30),
-                        border=ft.border.all(1, ft.Colors.with_opacity(0.04, ft.colors('white'))),
+                        border=ft.border.all(
+                            1, ft.Colors.with_opacity(0.04, ft.colors("white"))
+                        ),
                         width=152,
                         height=36,
                         gradient=ft.LinearGradient(
                             begin=ft.alignment.top_center,
                             end=ft.alignment.bottom_center,
-                            colors=[ft.colors('cyan800'), ft.colors('black38')],
+                            colors=[ft.colors("cyan800"), ft.colors("black38")],
                         ),
                         content=ft.Row(
                             controls=[
                                 ft.Container(
                                     ink=False,
-                                    bgcolor=ft.Colors.with_opacity(0.04, ft.colors('white')),
+                                    bgcolor=ft.Colors.with_opacity(
+                                        0.04, ft.colors("white")
+                                    ),
                                     padding=ft.padding.all(0),
                                     alignment=ft.alignment.center,
                                     border_radius=ft.border_radius.all(30),
@@ -225,7 +226,7 @@ class SelectionEntry(ft.Stack):
                                         ),
                                         alignment=ft.alignment.center_left,
                                         border_radius=ft.border_radius.all(15),
-                                        border_color = ft.Colors('transparent'),
+                                        border_color=ft.Colors("transparent"),
                                         options=self.alignment_tmp,
                                         on_change=lambda _: self.modify_widget_attributes(
                                             config_widget=_.__dict__.get("data")
@@ -309,15 +310,8 @@ class SelectionEntry(ft.Stack):
                 self.widget.fit = ft.ImageFit.SCALE_DOWN
                 # self.widget.fit = ft.ImageFit("scale_down")
 
-            # self.tmp_image = self.widget.src
-            # self.widget.image = ft.DecorationImage(
-            #     src=self.tmp_image,
-            #     fit=ft.ImageFit.COVER,  #: CONTAIN, FILL, FIT_WIDTH, SCALE_DOWN, COVER, FIT_HEIGHT, NONE
-            #     # opacity=0.06,
-            # )
-
         elif self.attribute_widget == "image_fit ":
-            self.phone_image = self.page.session.get('SELECTED_SCREEN')
+            self.phone_image = self.page.session.get("SELECTED_SCREEN")
 
             if self.phone_image.content.content.content.image:
                 self.widget = self.phone_image.content.content.content
@@ -327,36 +321,36 @@ class SelectionEntry(ft.Stack):
             if not self.widget.image == None:
                 if config_widget == " Contain":
                     if type(self.widget.image) == type(dict()):
-                        self.widget.image['fit'] = ft.ImageFit.CONTAIN
+                        self.widget.image["fit"] = ft.ImageFit.CONTAIN
                     else:
                         self.widget.image.fit = ft.ImageFit.CONTAIN
                 if config_widget == " Cover":
                     if type(self.widget.image) == type(dict()):
-                        self.widget.image['fit'] = ft.ImageFit.COVER
+                        self.widget.image["fit"] = ft.ImageFit.COVER
                     else:
                         self.widget.image.fit = ft.ImageFit.COVER
 
                 if config_widget == " Fill":
                     if type(self.widget.image) == type(dict()):
-                        self.widget.image['fit'] = ft.ImageFit.FILL
+                        self.widget.image["fit"] = ft.ImageFit.FILL
                     else:
                         self.widget.image.fit = ft.ImageFit.FILL
 
                 if config_widget == " Fit Height":
                     if type(self.widget.image) == type(dict()):
-                        self.widget.image['fit'] = ft.ImageFit.FIT_HEIGHT
+                        self.widget.image["fit"] = ft.ImageFit.FIT_HEIGHT
                     else:
                         self.widget.image.fit = ft.ImageFit.FIT_HEIGHT
 
                 if config_widget == " Fit Width":
                     if type(self.widget.image) == type(dict()):
-                        self.widget.image['fit'] = ft.ImageFit.FIT_WIDTH
+                        self.widget.image["fit"] = ft.ImageFit.FIT_WIDTH
                     else:
                         self.widget.image.fit = ft.ImageFit.FIT_WIDTH
 
                 if config_widget == " Scale Down":
                     if type(self.widget.image) == type(dict()):
-                        self.widget.image['fit'] = ft.ImageFit.SCALE_DOWN
+                        self.widget.image["fit"] = ft.ImageFit.SCALE_DOWN
                     else:
                         self.widget.image.fit = ft.ImageFit.SCALE_DOWN
 
@@ -384,7 +378,6 @@ class SelectionEntry(ft.Stack):
             if config_widget == " Scale Down":
                 if self.widget.image:
                     self.widget.image.fit = ft.ImageFit.SCALE_DOWN
-
 
         #: CONTAINER.content = ft.Widget()
         #: VERTICAL ALIGMENT
@@ -490,10 +483,11 @@ class SelectionEntry(ft.Stack):
         if config_widget == " Weight W_900":
             self.widget.weight = ft.FontWeight.W_900
 
-
         # PHONE =============================================
-        self.phone_container = self.page.session.get('SELECTED_SCREEN')
-        self.phone_column = self.phone_container.content.content.content.content.content.content.content
+        self.phone_container = self.page.session.get("SELECTED_SCREEN")
+        self.phone_column = (
+            self.phone_container.content.content.content.content.content.content.content
+        )
         if config_widget == "Column Start":
             self.phone_column.horizontal_alignment = ft.CrossAxisAlignment.START
         if config_widget == "Column Center":
@@ -521,17 +515,12 @@ class SelectionEntry(ft.Stack):
             self.phone_column.alignment = ft.MainAxisAlignment.SPACE_EVENLY
 
         #: only in production
-        #: print(self.widget.uid)
-        # print(self.phone_column)
-
         #: UPDATE DATA
+
         try:
-            self.phone_container = self.page.session.get('SELECTED_SCREEN')
+            self.phone_container = self.page.session.get("SELECTED_SCREEN")
             self.phone_container.update()
             # self.widget.update()
         except Exception as error:
-            self.error_page = self.page.session.get('on_dev')
-            self.error_page(
-                name_seccion='Error by Dev',
-                body_string=error
-            )
+            self.error_page = self.page.session.get("on_dev")
+            self.error_page(name_seccion="Error by Dev", body_string=error)

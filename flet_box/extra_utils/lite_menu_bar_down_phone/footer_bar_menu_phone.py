@@ -14,14 +14,16 @@ class LiteMenuDownContainer(ft.Container):
 
         # Drop_LiteMenuDownContainer = ft.Container(
         self.ink = False
-        self.bgcolor = ft.Colors.with_opacity(0.12, 'white'),
+        self.bgcolor = (ft.Colors.with_opacity(0.12, "white"),)
 
         self.padding = ft.padding.all(4)
         self.margin = ft.margin.all(0)  # outside box
         self.alignment = ft.alignment.center
         self.border_radius = ft.border_radius.all(30)
         self.border = ft.border.all(
-            0.2, ft.Colors.with_opacity(0.12, 'white'),)
+            0.2,
+            ft.Colors.with_opacity(0.12, "white"),
+        )
         # self.expand = True
         self.blur = (32, 32)
 
@@ -46,12 +48,10 @@ class LiteMenuDownContainer(ft.Container):
 
     def build(self):
         self.page.session.set(
-            "SHOW_TEXT_SELECTED_DRAGG_WIDGET",
-            self.selected_dragg_container
+            "SHOW_TEXT_SELECTED_DRAGG_WIDGET", self.selected_dragg_container
         )
         self.page.session.set(
-            "SHOW_TEXT_SELECTED_PHONE_WIDGET",
-            self.selected_phone_container
+            "SHOW_TEXT_SELECTED_PHONE_WIDGET", self.selected_phone_container
         )
         # GLOBAL_VAR(
         #     set_global_var={
