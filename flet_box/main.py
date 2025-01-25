@@ -193,7 +193,6 @@ class column_container(ft.Container):
         self.image = ft.DecorationImage(
             src="backend.webp",
             fit=ft.ImageFit.COVER,
-            # opacity=0.5 if self.page.window.width <= 620 else 0.5,
             opacity=0.8,
         )
         self.expand = True
@@ -311,7 +310,6 @@ class flet_box:
                 )
 
                 # self.page.update()
-
             self.page.update()
 
             # print(e)
@@ -355,8 +353,8 @@ class flet_box:
         page = page
         # kuko53348@gmail.com
         if runing_online_server:
-            page.session.set("api_server", "http://0.0.0.0:8080/")
-            # page.session.set('api_server','https://kuko53348.pythonanywhere.com/')
+            # page.session.set("api_server", "http://0.0.0.0:8080/")
+            page.session.set("api_server", "https://kuko53348.pythonanywhere.com/")
             page.session.set("flet_box_api", True)
             page.go("/")  # <<< TO PRODUCTION
 
@@ -379,10 +377,10 @@ class flet_box:
 if __name__ == "__main__":
     ft.app(
         target=flet_box,
-        assets_dir="flet_box/assets/project_assets/",
-        # port=8081,
-        # view=ft.AppView.WEB_BROWSER, #
-        # view=ft.WEB_BROWSER,
-        # web_renderer=ft.WebRenderer.HTML
-        # view=ft.AppView.FLET_APP_HIDDEN
+        name="Fletbox App",
+        assets_dir="assets",
+        route_url_strategy="assets/project_assets/",
+        use_color_emoji=False,
+        web_renderer=ft.WebRenderer.CANVAS_KIT,
+        port=8081,
     )

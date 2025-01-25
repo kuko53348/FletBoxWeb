@@ -1,4 +1,5 @@
 <!-- markdownserver http://localhost:8009/WIDGET.md -->
+
 ### CAPTURE EVENT INSIDE WIDGET DATA
 
 ```python
@@ -43,15 +44,16 @@
 
 ```python3
 >>> page.get_control(id='_5').controls[0]
->>> container {'width': 150,
-               'bgcolor': 'cyan',
-               'ink': False,
-               'onhover': True,
-               'margin': '{"l":8,"t":8,"r":8,"b":8}',
-               'padding': '{"l":8,"t":8,"r":8,"b":8}',
-               'alignment': '{"x":0,"y":0}'
-            }
-
+>>> container {
+>>>      'width': 150,
+>>>      'bgcolor': 'cyan',
+>>>      'ink': False,
+>>>      'onhover': True,
+>>>      'margin': '{"l":8,"t":8,"r":8,"b":8}',
+>>>      'padding': '{"l":8,"t":8,"r":8,"b":8}',
+>>>      'alignment': '{"x":0,"y":0}'
+>>>}
+>>>
 ```
 
 #### ERASE Controls by ID
@@ -101,7 +103,7 @@
 
 - Sure, creating a simple pip package involves a few steps. Here's a basic example to create a pip package in Python 3:
 
-1. **Project Structure:** Create a directory for your project with the following structure:
+- **Project Structure:** Create a directory for your project with the following structure:
 
 ```python
 >>>    your_project_name/
@@ -112,9 +114,9 @@
 >>>    └── setup.py
 ```
 
-2. **Code File:** Inside the inner `your_project_name` directory, create a Python file, for example, `your_module.py`, with your code.
+- **Code File:** Inside the inner `your_project_name` directory, create a Python file, for example, `your_module.py`, with your code.
 
-3. **setup.py:** Create or edit the `setup.py` file like so:
+- **setup.py:** Create or edit the `setup.py` file like so:
 
 ```python
 >>>   from setuptools import setup, find_packages
@@ -128,17 +130,17 @@
 >>>   )
    ```
 
-4. **Package File:** Inside the inner `your_project_name` directory, create an empty `__init__.py` file. If your package has modules, you can include them here.
+- **Package File:** Inside the inner `your_project_name` directory, create an empty `__init__.py` file. If your package has modules, you can include them here.
 
-5. **README and LICENSE:** Create a `README.md` and a `LICENSE` file, including appropriate content.
+- **README and LICENSE:** Create a `README.md` and a `LICENSE` file, including appropriate content.
 
-6. **Build the Package:** In the terminal, navigate to the outer directory (`your_project_name`) and run:
+- **Build the Package:** In the terminal, navigate to the outer directory (`your_project_name`) and run:
 
 ```python
 >>> python setup.py sdist bdist_wheel
 ```
 
-7. **Publishing:** You can distribute your package to the Python Package Index (PyPI) by using `twine`:
+- **Publishing:** You can distribute your package to the Python Package Index (PyPI) by using `twine`:
 
 ```python
 >>> pip install twine
@@ -275,7 +277,7 @@ This will upload your package to PyPI, making it accessible to others using `pip
 
 ```python
 >>> print(screen_1._Control__attrs)
->>> return  {'width': (240, False), 'height': (120, False),
+>>> return  {'width': (240, False), 'height': (120, False),}
 
 >>> print(screen_1._Container__content)
 >>> return  row {'wrap': True, 'n': 'content'}
@@ -287,13 +289,13 @@ This will upload your package to PyPI, making it accessible to others using `pip
 >>> return  240
 >>>
 >>> print(screen_1._wrap_attr_dict({'hello':screen_1}))
->>> return {'hello': Container(width=240, height=120,
+>>> return {'hello': Container(width=240, height=120,)...}
 
 >>> print(screen_1.__str__())
->>> return container {'width': 240, 'height': 120, 'bgcolor': '#44CCCC00' # <<< +++++
+>>> return container {'width': 240, 'height': 120, 'bgcolor': '#44CCCC00'...} # <<< +++++
 
 >>> print(screen_1.__repr__() )
->>> return Container(width=240, height=120, bgcolor='#44CCCC00',
+>>> return Container(width=240, height=120, bgcolor='#44CCCC00',...)
 
 # ONLY WAY TO GET ATTRIBUTES CORRECTLY AND SET ATTRIBUTES
 >>> data = {}
@@ -312,14 +314,13 @@ This will upload your package to PyPI, making it accessible to others using `pip
 #### TYPE RETURNED CODE
 
 ```python
-
-def refactory_code(self, string_widget: object = object()) -> str:
-   string_widget: object = object()
-   string_widget: string = str()
-   string_widget: tuple = tuple()
-   string_widget: dict = dict()
-   string_widget: float = float()
-   string_widget: int = int()
-   string_widget: set = set()
-   string_widget: bool = bool()
+>>> def refactory_code(self, string_widget: object = object()) -> str:
+>>>    string_widget: object = object()
+>>>    string_widget: string = str()
+>>>    string_widget: tuple = tuple()
+>>>    string_widget: dict = dict()
+>>>    string_widget: float = float()
+>>>    string_widget: int = int()
+>>>    string_widget: set = set()
+>>>    string_widget: bool = bool()
 ```
