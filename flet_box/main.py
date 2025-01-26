@@ -377,10 +377,10 @@ class flet_box:
 if __name__ == "__main__":
     ft.app(
         target=flet_box,
-        name="Fletbox App",
         assets_dir="assets",
-        route_url_strategy="assets/project_assets/",
-        use_color_emoji=False,
-        web_renderer=ft.WebRenderer.CANVAS_KIT,
-        port=8081,
+        # name="Flet-Box",
+        # route_url_strategy="assets/project_assets/",
+        # use_color_emoji=True,
+        # web_renderer=ft.WebRenderer.CANVAS_KIT,
+        # port=8081,
     )
