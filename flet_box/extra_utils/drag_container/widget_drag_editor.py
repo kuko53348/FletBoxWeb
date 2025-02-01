@@ -91,6 +91,15 @@ class Build_Drag_Editor(ft.Container):
         #: icons.FORMAT_COLOR_FILL_ROUNDED <== color
 
         #: CONTAINERS LAYOUTS
+
+        self.Test = DraggWidget(
+            page=self.page,
+            drag_box=self.drag_box,
+            widget="Test",
+            color="PURPLE",
+            icons=ft.icons("home"),
+        )
+
         self.RespDragg = DraggWidget(
             page=self.page,
             drag_box=self.drag_box,
@@ -409,6 +418,7 @@ class Build_Drag_Editor(ft.Container):
                         spacing=8,
                         expand=1,
                         controls=[
+                            self.Test,
                             self.RespDragg,
                             self.RowDragg,
                             self.ColDragg,

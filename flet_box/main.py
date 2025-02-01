@@ -226,6 +226,7 @@ class flet_box:
         "Stack",
         "ResponsiveRow",
         "ListView",
+        "Tabs",
     ]
 
     def __init__(self, page: ft.Page) -> None:
@@ -324,13 +325,13 @@ class flet_box:
         # self.run_in_production(page=self.page, runing_online_server=True)
 
         # COMENT IF WILL WORK ONLINE IN WEB          <==== OFFLINE IN WEB
-        # self.run_in_production(page=self.page, runing_online_server=False)
+        self.run_in_production(page=self.page, runing_online_server=False)
 
         # JUMP TO DEV ACCOUNT
-        self.page.go("/home")  # <<< TO ON WEB ONLINE COMMENT IN REAL WORK
-        self.page.session.set("api_server", "https://kuko53348.pythonanywhere.com/")
-        self.page.session.set("user_name", {"user_name": "kuko53348"})
-        self.page.session.set("flet_box_api", True)
+        # self.page.go("/home")  # <<< TO ON WEB ONLINE COMMENT IN REAL WORK
+        # self.page.session.set("api_server", "https://kuko53348.pythonanywhere.com/")
+        # self.page.session.set("user_name", {"user_name": "kuko53348"})
+        # self.page.session.set("flet_box_api", True)
         self.page.update()
 
     def run_in_production(

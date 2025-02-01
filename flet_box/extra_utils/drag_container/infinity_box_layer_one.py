@@ -39,6 +39,74 @@ class InfinityBoxLayerOne(ft.DragTarget):
         self.clip_behavior = ft.ClipBehavior.NONE
 
         self.widgets = {
+            "Test": [
+                ft.Container(
+                    content=ft.Tabs(
+                        divider_height=0,
+                        divider_color="transparent",
+                        indicator_thickness=0.01,
+                        indicator_color="blue",
+                        indicator_border_radius=32,
+                        indicator_tab_size=23,
+                        label_text_style=ft.TextStyle(
+                            weight=ft.FontWeight.BOLD,
+                            font_family="Arial",
+                            decoration_thickness=0,
+                            shadow=ft.BoxShadow(
+                                spread_radius=12,
+                                blur_radius=22,
+                                color=ft.colors("blue"),
+                                offset=ft.Offset(1, 0),
+                                blur_style=ft.ShadowBlurStyle.OUTER,
+                            ),
+                        ),
+                        selected_index=0,
+                        animation_duration=300,
+                        label_color=ft.colors("blue"),
+                        overlay_color=ft.Colors.with_opacity(
+                            opacity=0.1, color=ft.colors("blue")
+                        ),
+                        label_padding=ft.padding.only(
+                            left=14, top=0, right=14, bottom=0
+                        ),
+                        splash_border_radius=32,
+                        tab_alignment=ft.TabAlignment.CENTER,
+                        tabs=[
+                            ft.Tab(
+                                text="Tab 1",
+                                content=ft.Container(
+                                    alignment=ft.alignment.center,
+                                    content=ft.Column(
+                                        alignment=ft.MainAxisAlignment.SPACE_AROUND,
+                                        horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+                                        run_alignment=ft.CrossAxisAlignment.CENTER,
+                                        expand=True,
+                                        spacing=8,
+                                        run_spacing=8,
+                                        controls=[
+                                            ft.Container(
+                                                content=ft.Text(value="hello world"),
+                                            ),
+                                            ft.Container(
+                                                content=ft.Text(value="hello world"),
+                                            ),
+                                        ],
+                                    ),
+                                ),
+                            ),
+                            ft.Tab(
+                                text="Tab 2",
+                                # tab_content=ft.Icon(ft.Icons.SEARCH),
+                                content=ft.Container(
+                                    # blur=(1, 2),
+                                    content=ft.Text(value="This is Tab 2"),
+                                ),
+                            ),
+                        ],
+                        expand=1,
+                    ),
+                ),
+            ],
             #: CONTAINERS LAYOUTS
             "Row": [
                 ft.Container(
@@ -519,8 +587,8 @@ class InfinityBoxLayerOne(ft.DragTarget):
                         height=28,
                         thumb_color=ft.colors("transparent"),
                         overlay_color=ft.colors("transparent"),
-                        active_track_color=ft.colors("pink"),
-                        inactive_track_color=ft.colors("white12"),
+                        # active_track_color=ft.colors("pink"),
+                        # inactive_track_color=ft.colors("white12"),
                         # color=ft.colors("red"),
                     ),
                 ),

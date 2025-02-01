@@ -161,6 +161,7 @@ class refactory_flet_box:
         # WILL DELIMITATE TO ADD NEW WIDGET OR NOT
         self.content_attributes: dict = {
             "container": "content",
+            "tabs": "tabs",
             "dragtarget": "content",
             "dismissible": "content",
             "radiogroup": "content",
@@ -183,6 +184,7 @@ class refactory_flet_box:
         self.del_attributes: list = ["n", "tooltip", "onclick", "style", "round"]
 
         self.widget_reference: dict = {
+            "tabs": "Tabs",
             "container": "Container",
             "dragtarget": "DragTarget",
             "row": "Row",
@@ -535,6 +537,8 @@ class refactory_flet_box:
 
         dragg = widget
         container = dragg.content
+
+        # if container.content:
         container_content = container.content
 
         # # WIDGET ID
