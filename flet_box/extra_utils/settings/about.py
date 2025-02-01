@@ -282,9 +282,7 @@ class about_page(ft.Stack):
             border_radius=ft.border_radius.all(30),
             border=ft.border.all(1, ft.colors("white12")),
             expand=True,
-            image=ft.DecorationImage(
-                src="backend.webp", fit=ft.ImageFit.COVER, opacity=0.04
-            ),
+            image=ft.DecorationImage(src="../", fit=ft.ImageFit.COVER, opacity=0.04),
             on_click=lambda _: self.show_widgets(show_widget="about_page"),
             content=ft.Row(
                 alignment=ft.MainAxisAlignment.SPACE_AROUND,

@@ -262,6 +262,13 @@ class Build_Drag_Editor(ft.Container):
             color="CYAN",
             icons=ft.icons("commit_outlined"),
         )
+        self.CupSliderDragg = DraggWidget(
+            page=self.page,
+            drag_box=self.drag_box,
+            widget="CupertinoSlider",
+            color="CYAN",
+            icons=ft.icons("commit_outlined"),
+        )
         self.CupSDragg = DraggWidget(
             page=self.page,
             drag_box=self.drag_box,
@@ -593,6 +600,7 @@ class Build_Drag_Editor(ft.Container):
                             # self.CupRDragg,
                             self.CupSDragg,
                             self.ChiSDragg,
+                            self.CupSliderDragg,
                             # self.RadiDragg, #: <=== NEED WORK ON CONTROLS INSIDE THIS WIDGET
                         ],
                     ),

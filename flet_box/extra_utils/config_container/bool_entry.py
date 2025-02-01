@@ -125,8 +125,8 @@ class BoolEntry(ft.Stack):
                                                         == "visible"
                                                         else False
                                                     ),
-                                                    track_color="Black",
-                                                    active_color="yellow",
+                                                    inactive_track_color="Black",
+                                                    active_track_color="yellow",
                                                     on_change=lambda x: self.modify_widget_attributes(
                                                         config_widget=self.attribute_widget,
                                                         value=Drop_BoolEntry,

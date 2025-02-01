@@ -321,14 +321,16 @@ class flet_box:
         self.page.theme_mode = ft.ThemeMode.DARK
 
         # COMENT IF WILL WORK ONLINE IN WEB          <==== ONLINE IN WEB
-        self.run_in_production(page=self.page, runing_online_server=True)
+        # self.run_in_production(page=self.page, runing_online_server=True)
 
         # COMENT IF WILL WORK ONLINE IN WEB          <==== OFFLINE IN WEB
         # self.run_in_production(page=self.page, runing_online_server=False)
 
         # JUMP TO DEV ACCOUNT
-        # self.page.go('/home')             # <<< TO TESTING
-        # self.page.session.set('user_name', {'user_name': 'kuko53348'})
+        self.page.go("/home")  # <<< TO ON WEB ONLINE COMMENT IN REAL WORK
+        self.page.session.set("api_server", "https://kuko53348.pythonanywhere.com/")
+        self.page.session.set("user_name", {"user_name": "kuko53348"})
+        self.page.session.set("flet_box_api", True)
         self.page.update()
 
     def run_in_production(
@@ -363,7 +365,7 @@ class flet_box:
             page.session.set("api_server", "http://0.0.0.0:8080/")
             page.session.set("flet_box_api", True)
 
-            # page.go('/')             # <<< TO TESTING
+            # page.go("/")  # <<< TO TESTING
             page.go("/home")  # <<< TO TESTING
             # page.go('/sponsor_page')             # <<< TO TESTING
             # page.go('/about_page')             # <<< TO TESTING

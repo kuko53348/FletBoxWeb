@@ -860,7 +860,7 @@ class project_manager(ft.Stack):
             'Payment',
             'Shopping',
             'Music',
-            'SettingView',
+            'SettingsView',
             'Verification',
             'About'
         ]
@@ -879,7 +879,7 @@ class project_manager(ft.Stack):
         "Payment": ft.Icons("account_balance_wallet"),
         "Shopping": ft.Icons("shopping_bag"),
         "Music": ft.Icons("speaker_group_rounded"),
-        "SettingView": ft.Icons("settings"),
+        "SettingsView": ft.Icons("settings"),
         "Verification": ft.Icons("verified"),
         "About": ft.Icons("account_box"),
     }
@@ -974,10 +974,10 @@ class project_manager(ft.Stack):
                                     left=12, top=12, bottom=12, right=12
                                 ),
                                 margin=ft.margin.only(left=8, top=0, bottom=8, right=8),
-                                bgcolor=ft.colors("black12"),
-                                content=ft.Icon(name="discord"),
+                                bgcolor=ft.Colors.with_opacity(0.2, ft.colors("blue")),
+                                content=ft.Icon(name="update"),
                                 border_radius=ft.border_radius.all(18),
-                                on_click=lambda _: print(_.control),
+                                on_click=lambda _: self.update_list(),
                             ),
                         ],
                     ),
@@ -993,6 +993,11 @@ class project_manager(ft.Stack):
         self.controls = [self.content, code_editor(paren_widget=self, visible=False)]
 
         self.loading_all_data()
+
+    def update_list(self):
+        self.parent_middle_grid_container.controls.clear()
+        self.loading_all_data()
+        self.page.update()
 
     def list_projects_tabs(self, table_name: str = str()) -> list:
         """
@@ -1054,9 +1059,10 @@ class project_manager(ft.Stack):
         self.list_projects_tabs(table_name="Payment")
         self.list_projects_tabs(table_name="Shopping")
         self.list_projects_tabs(table_name="Music")
-        self.list_projects_tabs(table_name="SettingView")
+        self.list_projects_tabs(table_name="SettingsView")
         self.list_projects_tabs(table_name="Verification")
         self.list_projects_tabs(table_name="About")
+        # self.page.update()
 
 
 if __name__ == "__main__":

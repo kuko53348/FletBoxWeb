@@ -478,14 +478,14 @@ class InfinityBoxLayerOne(ft.DragTarget):
                     ),
                 ),
             ],
-            "Slider": [
+            "CupertinoSlider": [
                 ft.Container(
                     bgcolor=ft.colors("transparent"),
                     alignment=ft.alignment.center,
                     padding=ft.padding.all(6),
                     margin=ft.margin.all(0),
                     border=ft.border.all(0, ft.colors("transparent")),
-                    tooltip="CupertinoRadio",
+                    tooltip="CupertinoSlider",
                     ink=True,
                     ink_color="red",
                     on_click=lambda _: self.touch_widget_in_phone(
@@ -495,6 +495,33 @@ class InfinityBoxLayerOne(ft.DragTarget):
                         tooltip="CupertinoSlider",
                         max=100,
                         height=28,
+                    ),
+                ),
+            ],
+            "Slider": [
+                ft.Container(
+                    bgcolor=ft.colors("transparent"),
+                    alignment=ft.alignment.center,
+                    padding=ft.padding.all(6),
+                    margin=ft.margin.all(0),
+                    border=ft.border.all(0, ft.colors("transparent")),
+                    tooltip="Slider",
+                    ink=True,
+                    ink_color="red",
+                    on_click=lambda _: self.touch_widget_in_phone(
+                        selected_widget=self.infinityDropWidget
+                    ),
+                    content=ft.Slider(
+                        tooltip="Slider",
+                        round=50,
+                        mouse_cursor=ft.MouseCursor.TEXT,
+                        max=100,
+                        height=28,
+                        thumb_color=ft.colors("transparent"),
+                        overlay_color=ft.colors("transparent"),
+                        active_track_color=ft.colors("pink"),
+                        inactive_track_color=ft.colors("white12"),
+                        # color=ft.colors("red"),
                     ),
                 ),
             ],
