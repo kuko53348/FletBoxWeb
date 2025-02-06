@@ -220,7 +220,6 @@ class flet_box:
         "Stack",
         "ResponsiveRow",
         "ListView",
-        "Tabs",
     ]
 
     def __init__(self, page: ft.Page) -> None:

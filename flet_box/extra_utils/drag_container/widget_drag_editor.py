@@ -117,16 +117,19 @@ class Build_Drag_Editor(ft.Container):
         # CATEGORIES
         # categories =  {'buttons', 'text', , 'images', 'selection', 'progress', 'charts', 'layout'
         # 'tables', 'tooltips', 'divider', 'other'}
+        categorie_divider = widgets_by_categories.get("divider")
+        categorie_tabs = widgets_by_categories.get("tabs")
         categorie_layout = widgets_by_categories.get("layout")
         categorie_buttons = widgets_by_categories.get("buttons")
+        categorie_cupertino_buttons = widgets_by_categories.get("cupertino buttons")
         categorie_text = widgets_by_categories.get("text")
         categorie_images = widgets_by_categories.get("images")
         categorie_selection = widgets_by_categories.get("selection")
+        categorie_cupertino_selection = widgets_by_categories.get("cupertino selection")
         categorie_progress = widgets_by_categories.get("progress")
         categorie_charts = widgets_by_categories.get("charts")
         categorie_tables = widgets_by_categories.get("tables")
         categorie_tooltips = widgets_by_categories.get("tooltips")
-        categorie_divider = widgets_by_categories.get("divider")
         # categorie_other = widgets_by_categories.get("other")
 
         #: CHARTS LAYOUTS
@@ -134,6 +137,34 @@ class Build_Drag_Editor(ft.Container):
         self.content = ft.Column(
             scroll="HIDDEN",
             controls=[
+                categories(
+                    page=self.page,
+                    title="divider",
+                    controls_view=[
+                        DraggWidget(
+                            page=self.page,
+                            drag_box=self.drag_box,
+                            widget=_,
+                            color="CYAN",
+                            icons=ft.icons(categorie_divider.get(_)),
+                        )
+                        for _ in categorie_divider
+                    ],
+                ),
+                categories(
+                    page=self.page,
+                    title="tabs",
+                    controls_view=[
+                        DraggWidget(
+                            page=self.page,
+                            drag_box=self.drag_box,
+                            widget=_,
+                            color="CYAN",
+                            icons=ft.icons(categorie_tabs.get(_)),
+                        )
+                        for _ in categorie_tabs
+                    ],
+                ),
                 categories(
                     page=self.page,
                     title="layout",
@@ -162,118 +193,118 @@ class Build_Drag_Editor(ft.Container):
                         for _ in categorie_buttons
                     ],
                 ),
-                # categories(
-                #     page=self.page,
-                #     title="text",
-                #     controls_view=[
-                #         DraggWidget(
-                #             page=self.page,
-                #             drag_box=self.drag_box,
-                #             widget=_,
-                #             color="CYAN",
-                #             icons=ft.icons(categorie_text.get(_)),
-                #         )
-                #         for _ in categorie_text
-                #     ],
-                # ),
-                # categories(
-                #     page=self.page,
-                #     title="images",
-                #     controls_view=[
-                #         DraggWidget(
-                #             page=self.page,
-                #             drag_box=self.drag_box,
-                #             widget=_,
-                #             color="CYAN",
-                #             icons=ft.icons(categorie_images.get(_)),
-                #         )
-                #         for _ in categorie_images
-                #     ],
-                # ),
-                # categories(
-                #     page=self.page,
-                #     title="selection",
-                #     controls_view=[
-                #         DraggWidget(
-                #             page=self.page,
-                #             drag_box=self.drag_box,
-                #             widget=_,
-                #             color="CYAN",
-                #             icons=ft.icons(categorie_selection.get(_)),
-                #         )
-                #         for _ in categorie_selection
-                #     ],
-                # ),
-                # categories(
-                #     page=self.page,
-                #     title="progress",
-                #     controls_view=[
-                #         DraggWidget(
-                #             page=self.page,
-                #             drag_box=self.drag_box,
-                #             widget=_,
-                #             color="CYAN",
-                #             icons=ft.icons(categorie_progress.get(_)),
-                #         )
-                #         for _ in categorie_progress
-                #     ],
-                # ),
-                # categories(
-                #     page=self.page,
-                #     title="charts",
-                #     controls_view=[
-                #         DraggWidget(
-                #             page=self.page,
-                #             drag_box=self.drag_box,
-                #             widget=_,
-                #             color="CYAN",
-                #             icons=ft.icons(categorie_charts.get(_)),
-                #         )
-                #         for _ in categorie_charts
-                #     ],
-                # ),
-                # categories(
-                #     page=self.page,
-                #     title="tables",
-                #     controls_view=[
-                #         DraggWidget(
-                #             page=self.page,
-                #             drag_box=self.drag_box,
-                #             widget=_,
-                #             color="CYAN",
-                #             icons=ft.icons(categorie_tables.get(_)),
-                #         )
-                #         for _ in categorie_tables
-                #     ],
-                # ),
-                # categories(
-                #     page=self.page,
-                #     title="tooltips",
-                #     controls_view=[
-                #         DraggWidget(
-                #             page=self.page,
-                #             drag_box=self.drag_box,
-                #             widget=_,
-                #             color="CYAN",
-                #             icons=ft.icons(categorie_tooltips.get(_)),
-                #         )
-                #         for _ in categorie_tooltips
-                #     ],
-                # ),
-                # categories(
-                #     page=self.page,
-                #     title="divider",
-                #     controls_view=[
-                #         DraggWidget(
-                #             page=self.page,
-                #             drag_box=self.drag_box,
-                #             widget=_,
-                #             color="CYAN",
-                #             icons=ft.icons(categorie_divider.get(_)),
-                #         )
-                #         for _ in categorie_divider
-                #     ],
-                # ),
+                categories(
+                    page=self.page,
+                    title="cupertino buttons",
+                    controls_view=[
+                        DraggWidget(
+                            page=self.page,
+                            drag_box=self.drag_box,
+                            widget=_,
+                            color="CYAN",
+                            icons=ft.icons(categorie_cupertino_buttons.get(_)),
+                        )
+                        for _ in categorie_cupertino_buttons
+                    ],
+                ),
+                categories(
+                    page=self.page,
+                    title="text",
+                    controls_view=[
+                        DraggWidget(
+                            page=self.page,
+                            drag_box=self.drag_box,
+                            widget=_,
+                            color="CYAN",
+                            icons=ft.icons(categorie_text.get(_)),
+                        )
+                        for _ in categorie_text
+                    ],
+                ),
+                categories(
+                    page=self.page,
+                    title="images",
+                    controls_view=[
+                        DraggWidget(
+                            page=self.page,
+                            drag_box=self.drag_box,
+                            widget=_,
+                            color="CYAN",
+                            icons=ft.icons(categorie_images.get(_)),
+                        )
+                        for _ in categorie_images
+                    ],
+                ),
+                categories(
+                    page=self.page,
+                    title="selection",
+                    controls_view=[
+                        DraggWidget(
+                            page=self.page,
+                            drag_box=self.drag_box,
+                            widget=_,
+                            color="CYAN",
+                            icons=ft.icons(categorie_selection.get(_)),
+                        )
+                        for _ in categorie_selection
+                    ],
+                ),
+                categories(
+                    page=self.page,
+                    title="cupertino selection",
+                    controls_view=[
+                        DraggWidget(
+                            page=self.page,
+                            drag_box=self.drag_box,
+                            widget=_,
+                            color="CYAN",
+                            icons=ft.icons(categorie_cupertino_selection.get(_)),
+                        )
+                        for _ in categorie_cupertino_selection
+                    ],
+                ),
+                categories(
+                    page=self.page,
+                    title="progress",
+                    controls_view=[
+                        DraggWidget(
+                            page=self.page,
+                            drag_box=self.drag_box,
+                            widget=_,
+                            color="CYAN",
+                            icons=ft.icons(categorie_progress.get(_)),
+                        )
+                        for _ in categorie_progress
+                    ],
+                ),
+                categories(
+                    page=self.page,
+                    title="charts",
+                    controls_view=[
+                        DraggWidget(
+                            page=self.page,
+                            drag_box=self.drag_box,
+                            widget=_,
+                            color="CYAN",
+                            icons=ft.icons(categorie_charts.get(_)),
+                        )
+                        for _ in categorie_charts
+                    ],
+                ),
+                categories(
+                    page=self.page,
+                    title="tables",
+                    controls_view=[
+                        DraggWidget(
+                            page=self.page,
+                            drag_box=self.drag_box,
+                            widget=_,
+                            color="CYAN",
+                            icons=ft.icons(categorie_tables.get(_)),
+                        )
+                        for _ in categorie_tables
+                    ],
+                ),
                 # categories(
                 #     page=self.page,
                 #     title="other",

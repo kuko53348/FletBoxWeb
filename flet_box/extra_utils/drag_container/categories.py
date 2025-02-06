@@ -2,13 +2,23 @@
 # DONE
 # BUTTONS
 widgets_by_categories = {
+    "divider": {
+        "Divider": "home",
+    },
+    "tabs": {
+        "Tabs": "home",
+    },
+    "layout": {
+        "Card": "home",
+        "Column": "home",
+        "Container": "home",
+        "GridView": "home",
+        "ListView": "home",
+        "ResponsiveRow": "home",
+        "Row": "home",
+        "Stack": "home",
+    },
     "buttons": {
-        "CupertinoButton": "home",
-        "CupertinoFilledButton": "home",
-        "CupertinoSegmentedButton": "home",
-        "CupertinoSlidingSegmentedButton": "home",
-        "CupertinoContextMenu": "home",
-        "CupertinoActionSheet": "home",
         "Button": "home",
         "ElevatedButton": "home",
         "FilledButton": "home",
@@ -22,41 +32,37 @@ widgets_by_categories = {
         "SegmentedButton": "home",
         "TextButton": "home",
     },
+    "cupertino buttons": {
+        "CupertinoButton": "home",
+        "CupertinoFilledButton": "home",
+        "CupertinoSegmentedButton": "home",
+        "CupertinoSlidingSegmentedButton": "home",
+        "CupertinoContextMenu": "home",
+        "CupertinoActionSheet": "home",
+    },
     "text": {
         "CupertinoTextField": "home",
         "Markdown": "home",
         "Text": "home",
         "TextField": "home",
-        "TextSpan": "home",
-    },
-    "layout": {
-        "Card": "home",
-        "Column": "home",
-        "Container": "home",
-        "GridView": "home",
-        "ListView": "home",
-        "ResponsiveRow": "home",
-        "Row": "home",
-        "Stack": "home",
     },
     "images": {
         "Image": "home",
         "CircleAvatar": "home",
-        "ZoomableImage": "home",
     },
     "selection": {
         "AnimatedSwitcher": "home",
         "Checkbox": "home",
-        "CupertinoCheckbox": "home",
-        "CupertinoRadio": "home",
-        "CupertinoSlider": "home",
-        "CupertinoSwitch": "home",
         "Dropdown": "home",
-        "Radio": "home",
+        "Switch": "home",
         "RadioGroup": "home",
         "RangeSlider": "home",
         "Slider": "home",
-        "Switch": "home",
+    },
+    "cupertino selection": {
+        "CupertinoCheckbox": "home",
+        "CupertinoSlider": "home",
+        "CupertinoSwitch": "home",
     },
     "progress": {
         "ProgressBar": "home",
@@ -64,33 +70,25 @@ widgets_by_categories = {
     },
     "charts": {
         "BarChart": "home",
-        "BarChartGroup": "home",
-        "BarChartRod": "home",
         "LineChart": "home",
-        "LineChartData": "home",
-        "LineChartDataPoint": "home",
         "PieChart": "home",
-        "PieChartSection": "home",
+        # "LineChartDataPoint": "home",
+        # "LineChartData": "home",
+        # "PieChartSection": "home",
     },
     # "animations": {"AnimatedSwitcher":'home', "SlideTransition"},
     "tables": {
         "DataTable": "home",
-        "DataRow": "home",
-        "DataColumn": "home",
-    },
-    "tooltips": {
-        "Tooltip": "home",
-        "Hoverable": "home",
-    },
-    "divider": {
-        "VerticalDivider": "home",
-        "HorizontalDivider": "home",
+        # "DataRow": "home",
+        # "DataColumn": "home",
     },
     # "other": {
     #     "AdaptiveControl": "home",
+    #     "TextSpan": "home",
     #     "AlertDialog": "home",
     #     "AppBar": "home",
     #     "AutoComplete": "home",
+    #     "ZoomableImage": "home",
     #     "AutofillGroup": "home",
     #     "Banner": "home",
     #     "BottomAppBar": "home",
@@ -148,3 +146,9 @@ widgets_by_categories = {
     #     "TransparentPointer": "home",
     # },
 }
+
+if __name__ == "__main__":
+    for _ in widgets_by_categories.keys():
+        # with open(f"flet_box/extra_utils/drag_container/categories_{_}.py", "w") as f:
+        # f.write("")
+        ...
