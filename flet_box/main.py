@@ -72,7 +72,6 @@ class row_middle_container(ft.Container):
             content=ft.Row(
                 alignment=ft.MainAxisAlignment.CENTER,
                 vertical_alignment=ft.CrossAxisAlignment.CENTER,
-                scroll=True,
                 controls=[
                     Build_Editor(
                         page=self.page,
@@ -127,17 +126,12 @@ class row_middle_container(ft.Container):
                 ft.Container(
                     padding=ft.padding.all(0),
                     margin=ft.margin.all(0),
-                    # border_radius=ft.border_radius.all(30),
                     expand=True,
-                    # bgcolor="red",
                     content=ft.Column(
                         alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+                        expand=True,
                         horizontal_alignment=ft.CrossAxisAlignment.CENTER,
                         controls=[
-                            # header_container(page=self.page),
-                            #: phone_container/widget_phone_editor.py
-                            ft.Container(expand=True),
-                            #
                             LiteMenuUpContainer(
                                 page=self.page,
                                 menu_left_container=self.drag_container,

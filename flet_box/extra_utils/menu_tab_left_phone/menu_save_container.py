@@ -2,7 +2,23 @@ import flet as ft
 from datetime import datetime
 
 from .congratulation_menu import congratulation_menu
-from .refactory_flet_box import refactory_flet_box
+
+# from .refactory_flet_box import refactory_flet_box
+from .widget_serialization_flet_box import RobustWidgetSerializer
+
+
+class FletboxUI:
+
+    def __init__(self, page: object = None, controls: list = list()) -> None:
+        super().__init__()
+        self.page = page
+        self.controls = controls
+        self.start_app(page=self.page, control=self.controls)
+
+    def start_app(self, page: object = None, control: list = list()):
+        self.widget_data = ft.Column(controls=control)
+        # self.page.add(self.widget_data)
+        # self.page.update()
 
 
 class menu_save_container(ft.Container):
@@ -308,10 +324,22 @@ class menu_save_container(ft.Container):
         }
 
         # SAVING DATA
-        code_returned = refactory_flet_box(page=self.page)
+        # code_returned = refactory_flet_box(page=self.page)
         # print(f'<<<<< {self.page.session}')
         # self.page.session.set('user_name', {'user_name': 'kuko53348'})
         # code_returned.get_widget_attributes(widget=controls_widgets[0])
+
+        # tmp = FletboxUI(page=self.page, controls=controls_widgets)
+        self.page.add(self.screen_widget.content.content.content)
+        generator = RobustWidgetSerializer()
+        generator.serialize(
+            page=self.page,
+            filename="./flet_box/ui_robust.py",
+        )
+
+        print(controls_widgets)
+        print("here")
+        return
 
         for widgets_recursion in controls_widgets:
             code_returned.get_widget_attributes(widget=widgets_recursion)

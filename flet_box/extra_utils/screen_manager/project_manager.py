@@ -152,13 +152,13 @@ class screen_phone(ft.Container):
         self.expand = True
         self.border_radius = ft.border_radius.all(16)
         self.padding = ft.padding.all(8)
-        self.alignment = ft.alignment.center
+        # self.alignment = ft.alignment.center
 
     def build(self):
         self.content = ft.Container(
             padding=ft.padding.all(0),
             margin=ft.margin.all(0),
-            alignment=ft.alignment.center,
+            # alignment=ft.alignment.center,
             expand=True,
             width=320,
             border_radius=ft.border_radius.all(2),

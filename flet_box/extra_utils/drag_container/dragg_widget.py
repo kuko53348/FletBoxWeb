@@ -49,9 +49,9 @@ class DraggWidget(ft.Stack):
             # on_drag_complete = lambda _: self.ShowWidget(), # WILL SHOW VISIBLE AFTER DROP
             content=ft.Container(
                 width=90,
-                height=90,
-                border_radius=23,
-                padding=ft.padding.all(4),
+                height=100,
+                border_radius=12,
+                # padding=ft.padding.all(4),
                 alignment=ft.alignment.center,
                 border=ft.border.all(1, self.dragg_border_color),
                 # on_click=lambda _: self.SelectedWidget(selected_widget=self.widget),
@@ -67,8 +67,10 @@ class DraggWidget(ft.Stack):
                 ),
                 # blur=(16, 16),
                 content=ft.Column(
-                    alignment=ft.MainAxisAlignment.SPACE_AROUND,
+                    run_alignment=ft.MainAxisAlignment.CENTER,
                     horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+                    spacing=0,
+                    col=0,
                     controls=[
                         ft.Icon(
                             name=self.icons,
@@ -76,10 +78,10 @@ class DraggWidget(ft.Stack):
                             size=50,
                         ),
                         ft.Text(
-                            value=self.widget,
-                            text_align=ft.TextAlign.CENTER,
+                            value=self.widget[:12],
+                            text_align=ft.TextAlign.LEFT,
                             weight=ft.FontWeight.BOLD,
-                            size=12,
+                            size=9,
                             color=self.dragg_text_color,
                         ),
                     ],
@@ -97,12 +99,12 @@ class DraggWidget(ft.Stack):
                 height=80,
                 border=ft.border.all(0.5, self.take_dragg_border_color),
                 border_radius=23,
-                blur=(8, 8),
-                gradient=ft.LinearGradient(
-                    begin=ft.alignment.top_center,
-                    end=ft.alignment.bottom_center,
-                    colors=[self.take_dragg_bground_color, self.dragg_shadow_color],
-                ),
+                # blur=(8, 8),
+                # gradient=ft.LinearGradient(
+                #     begin=ft.alignment.top_center,
+                #     end=ft.alignment.bottom_center,
+                #     colors=[self.take_dragg_bground_color, self.dragg_shadow_color],
+                # ),
                 content=ft.Column(
                     spacing=0,
                     controls=[

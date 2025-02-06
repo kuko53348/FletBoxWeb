@@ -78,7 +78,8 @@ class Build_Editor(ft.Container):
     Tabs:
         Container:
         edit_Container: value
-       Widget:
+
+        Widget:
         edit_Widget: value
 
     NOTE:
@@ -107,9 +108,7 @@ class Build_Editor(ft.Container):
         self.border_radius = ft.border_radius.all(28)
         self.alignment = ft.alignment.center
         self.width = 355
-        self.height = 670
         self.show_tab = True
-
         self.bgcolor = ft.Colors.with_opacity(0.5, ft.colors("black"))
         self.border = ft.border.all(1, ft.Colors.with_opacity(0.08, ft.colors("black")))
         self.blur = (18, 18)
@@ -853,6 +852,7 @@ class Build_Editor(ft.Container):
         self.widget_container = ft.Container(
             padding=ft.padding.only(left=4, top=4, right=4, bottom=4),
             visible=False,
+            expand=True,
             content=ft.Column(
                 scroll="HIDDEN",
                 controls=[
@@ -1041,6 +1041,7 @@ class Build_Editor(ft.Container):
         self.color_selection = Screen_palette()
 
         self.content = ft.Stack(
+            # expand=True,
             controls=[
                 ft.Tabs(
                     label_color="BLUE",

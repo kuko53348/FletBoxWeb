@@ -112,6 +112,7 @@ class ScreenPhotoSelection(ft.Container):
                 ft.colors("black26"),
             ],
         )
+        self.expand = True
         self.shadow = ft.BoxShadow(
             spread_radius=1,
             blur_radius=18,

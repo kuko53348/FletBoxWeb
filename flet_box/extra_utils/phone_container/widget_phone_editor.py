@@ -1,5 +1,5 @@
 import flet as ft
-from ..drag_container.infinity_box_layer_one import InfinityBoxLayerOne
+from ..drag_container.infinity_box_layer_one import DragTarget
 from ..external_library.sqlite_db import sqlite_db
 
 # from .app_manager.app_screen_manager import screens
@@ -27,7 +27,7 @@ class Build_Phone_Editor(ft.Stack):
         self.page = page
         self.colored_widget = color_data
         self.screen_name_id = screen_name_id
-        self.page.session.set("infinity_box", InfinityBoxLayerOne)
+        self.page.session.set("infinity_box", DragTarget)
 
     def build(self):
         # self.user_name = self.page.session.get('user_name').get('user_name')
@@ -46,7 +46,7 @@ class Build_Phone_Editor(ft.Stack):
 
         self.Build_Phone_Editor = ft.Container(
             border_radius=ft.border_radius.all(42),
-            alignment=ft.alignment.center,
+            # alignment=ft.alignment.start,
             # content=self.data_selected,
             content=self.load_module_from_string(
                 page=self.page, string_code=self.data_selected
@@ -54,7 +54,7 @@ class Build_Phone_Editor(ft.Stack):
         )
 
         self.phone = ft.Container(
-            alignment=ft.alignment.center,
+            # alignment=ft.alignment.start,
             bgcolor=ft.Colors.with_opacity(0.60, "black"),
             border=ft.border.all(2.5, ft.colors("white")),
             border_radius=ft.border_radius.all(42),
@@ -90,7 +90,7 @@ class Build_Phone_Editor(ft.Stack):
         #: RETURNING NONE
         #: WITH THIS CONDITION WE EVOID ADD FAKE WIDGETS EMPY
         #: IS NECESARRY RESET SELECT_DRAGG TO NONE EVERY TIME THAT WE ADD ONE WIDGET NEW
-        self.InfinityBox = InfinityBoxLayerOne
+        self.InfinityBox = DragTarget
 
         session_id = self.page._session_id
         selectWidgetBox = self.page.session.get(session_id)

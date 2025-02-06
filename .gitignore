@@ -5,9 +5,9 @@ env_python.py
 making_wheel.py
 /testing_new_modules
 /flet_box_api_server
-/flet_box/extra_utils/phone_container/app_manager/views/main_screen.py
-/flet_box/extra_utils/phone_container/app_manager/views/app_main_screen.py
-/flet_box/extra_utils/external_library/flet_box_database.db
+/flet_box/extra_utils/phone_container/app_manager/views/*
+/flet_box/extra_utils/phone_container/app_manager/views/*
+*flet_box_database.db
 /flet_box/extra_utils/screen_manager/storage/*
 /made
 /testing
@@ -18,3 +18,5 @@ making_wheel.py
 __pycache__
 /__pycache__
 /__pycache__*
+/flet_box/refactorized_code.py
+/flet_box/ui_robust.py
