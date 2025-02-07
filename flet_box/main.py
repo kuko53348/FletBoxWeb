@@ -49,7 +49,7 @@ class row_middle_container(ft.Container):
         self.alignment = ft.alignment.center
         self.padding = ft.padding.all(0)
         self.margin = ft.margin.all(0)
-        self.border_radius = ft.border_radius.all(30)
+        self.border_radius = ft.border_radius.all(16)
         self.expand = True
         self.ink = False
 
@@ -64,11 +64,12 @@ class row_middle_container(ft.Container):
 
         #  CONFIG PHONE CONTAINER
         self.config_widget_container = ft.Container(
+            # bgcolor="red",
             alignment=ft.alignment.center,
             visible=False if self.page.width <= 1040 else True,
             padding=ft.padding.all(0),
             margin=ft.margin.all(0),
-            border_radius=ft.border_radius.all(30),
+            border_radius=ft.border_radius.all(16),
             content=ft.Row(
                 alignment=ft.MainAxisAlignment.CENTER,
                 vertical_alignment=ft.CrossAxisAlignment.CENTER,
@@ -114,7 +115,7 @@ class row_middle_container(ft.Container):
                 ),
                 ft.Container(
                     # visible=False,
-                    border_radius=ft.border_radius.all(48),
+                    border_radius=ft.border_radius.all(16),
                     content=ft.Row(
                         scroll="ALLWAYS",
                         controls=[
@@ -220,6 +221,7 @@ class flet_box:
         "Stack",
         "ResponsiveRow",
         "ListView",
+        "Tabs",
     ]
 
     def __init__(self, page: ft.Page) -> None:

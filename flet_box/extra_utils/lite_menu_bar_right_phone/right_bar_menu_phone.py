@@ -336,9 +336,9 @@ class LiteMenuUpContainer(ft.Container):
 
         if action == "TABLET":
             #: Phone Container offset
-            self.phone_widget_container.width = 460
+            self.phone_widget_container.width = 480
             self.phone_widget_blur_cont.width = self.phone_widget_container.width
-            self.phone_widget_container.height = 625
+            self.phone_widget_container.height = 768
             self.phone_widget_blur_cont.height = self.phone_widget_container.height
 
             self.phone_widget_blur_cont.update()
@@ -350,24 +350,24 @@ class LiteMenuUpContainer(ft.Container):
             self.menu_right_container.update()
 
         if action == "PC":
-            self.phone_widget_container.width = 780
+            self.phone_widget_container.width = 1240
             self.phone_widget_blur_cont.width = self.phone_widget_container.width
-            self.phone_widget_container.height = 525
+            self.phone_widget_container.height = 720
             self.phone_widget_blur_cont.height = self.phone_widget_container.height
             self.phone_widget_blur_cont.update()
             self.phone_widget_container.update()
 
-            self.menu_right_container.visible = (
-                False if self.menu_right_container.visible else True
-            )
-            self.menu_left_container.visible = (
-                False if self.menu_right_container.visible else True
-            )
+            # self.menu_right_container.visible = (
+            #     False if self.menu_right_container.visible else True
+            # )
+            # self.menu_left_container.visible = (
+            #     False if self.menu_right_container.visible else True
+            # )
             self.menu_left_container.update()
             self.menu_right_container.update()
 
         if action == "SHOW PC":
-            self.width_ = 780
+            self.width_ = 1024
 
             if self.menu_left_container.visible and self.menu_right_container.visible:
                 self.menu_left_container.visible = False
@@ -378,12 +378,12 @@ class LiteMenuUpContainer(ft.Container):
                 and not self.menu_right_container.visible
             ):
                 if self.phone_widget_container.width >= 500:
-                    self.phone_widget_container.width = 460
+                    self.phone_widget_container.width = 480
                     self.phone_widget_blur_cont.width = (
                         self.phone_widget_container.width
                     )
 
-                    self.phone_widget_container.height = 625
+                    self.phone_widget_container.height = 768
                     self.phone_widget_blur_cont.height = (
                         self.phone_widget_container.height
                     )

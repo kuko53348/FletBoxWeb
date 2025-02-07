@@ -1,98 +1,36 @@
 import flet as ft
+import datetime
+
 from .categories import widgets_by_categories
 
-from .categories_divider import (
-    Divider,
-)
+md1 = """## Code blocks
 
-from .categories_tabs import (
-    Tabs,
-    Tab,
-)
+Formatted Dart code looks really pretty too:
 
-from .categories_layout import (
-    Card,
-    Column,
-    Container,
-    GridView,
-    ListView,
-    ResponsiveRow,
-    Row,
-    Stack,
-)
-
-from .categories_buttons import (
-    Button,
-    ElevatedButton,
-    FilledButton,
-    FilledTonalButton,
-    FloatingActionButton,
-    IconButton,
-    Icon,
-    MenuItemButton,
-    OutlinedButton,
-    SubmenuButton,
-    SegmentedButton,
-    TextButton,
-    PopupMenuButton,
-    CupertinoButton,
-    CupertinoFilledButton,
-    CupertinoSegmentedButton,
-    CupertinoSlidingSegmentedButton,
-    CupertinoContextMenu,
-    CupertinoActionSheet,
-)
-
-from .categories_text import (
-    CupertinoTextField,
-    Markdown,
-    Text,
-    TextField,
-)
-
-from .categories_images import (
-    Image,
-    CircleAvatar,
-)
-
-from .categories_selection import (
-    AnimatedSwitcher,
-    Checkbox,
-    Dropdown,
-    RadioGroup,
-    RangeSlider,
-    Slider,
-    Switch,
-    CupertinoCheckbox,
-    CupertinoSlider,
-    CupertinoSwitch,
-)
-from .categories_progress import (
-    ProgressBar,
-    ProgressRing,
-)
-
-from .categories_charts import (
-    BarChart,
-    LineChart,
-    LineChartData,
-    LineChartDataPoint,
-    PieChart,
-    PieChartSection,
-)
-
-from .categories_tables import (
-    DataTable,
-    # DataRow,
-    # DataCell,
-    # DataColumn,
-)
-
+```
+void main() {
+    runApp(MaterialApp(
+        home: Scaffold(
+        body: ft.Markdown(data: markdownData),
+    ),
+    ));
+}
+```"""
 PRESENTATION_TEXT: str = """Ready to make your first app!!"""
 numWidget: int = 1
 
+same_image = ft.Image(
+    src="logo.png",
+    width=200,
+    height=200,
+    fit=ft.ImageFit.NONE,
+    repeat=ft.ImageRepeat.NO_REPEAT,
+    border_radius=ft.border_radius.all(10),
+)
+
 
 class Container(ft.Container):
+
     def __init__(
         self,
         page: object = ft.Page,
@@ -130,12 +68,13 @@ class DragTarget(ft.DragTarget):
 
     md1 = """# Markdown Example Markdown allows you to easily include formatted text, images, and even formatted Dart code in your app.\n## Titles"""
 
+    long_text = "Flet is a framework that allows building web, desktop and mobile applications in Python without prior experience in frontend development.\n\nYou can build a UI for your program with Flet controls which are based on Flutter by Google. Flet goes beyond merely wrapping Flutter widgets. It adds its own touch by combining smaller widgets, simplifying complexities, implementing UI best practices, and applying sensible defaults. This ensures that your applications look stylish and polished without requiring additional design efforts on your part."
+
     def __init__(self, dataPassed: str = str(), page: object = ft.Page):
         super().__init__(content=ft.Container())
         self.group = "GroupDragg"
         self.page = page
         self.dataPassed = "CLICK_EVENT"
-        # self.dataPassed = dataPassed
         self.clip_behavior = ft.ClipBehavior.NONE
 
         # self.widgets = {
@@ -157,140 +96,1680 @@ class DragTarget(ft.DragTarget):
         #         ),
         #     ],
         # }
-        categorie_layout = widgets_by_categories
 
-        self.widgets = dict()
-
-        self.modify_widge = {
-            # DIVIDERS
-            "Divider": Divider(page=self.page),
-            # TABS
-            "Tabs": Tabs(page=self.page),
-            "Tab": Tab(page=self.page),
-            # LAYOUTS
-            "Card": Card(page=self.page),
-            "Column": Column(page=self.page),
-            "Container": Container(page=self.page),
-            "GridView": GridView(page=self.page),
-            "ListView": ListView(page=self.page),
-            "ResponsiveRow": ResponsiveRow(page=self.page),
-            "Row": Row(page=self.page),
-            "Stack": Stack(page=self.page),
-            # BUTTONS
-            "Button": Button(page=self.page),
-            "ElevatedButton": ElevatedButton(page=self.page),
-            "FilledButton": FilledButton(page=self.page),
-            "FilledTonalButton": FilledTonalButton(page=self.page),
-            "FloatingActionButton": FloatingActionButton(page=self.page),
-            "IconButton": IconButton(page=self.page),
-            "Icon": Icon(page=self.page),
-            "OutlinedButton": OutlinedButton(page=self.page),
-            # CONTROLS
-            "MenuItemButton": MenuItemButton(page=self.page),
-            "SubmenuButton": SubmenuButton(page=self.page),
-            "SegmentedButton": SegmentedButton(page=self.page),
-            "TextButton": TextButton(page=self.page),
-            # CONTENT
-            "PopupMenuButton": PopupMenuButton(page=self.page),
-            # CUPERTINO CONTENT
-            "CupertinoFilledButton": CupertinoFilledButton(page=self.page),
-            # CUPERTINO CONTROLS
-            "CupertinoButton": CupertinoButton(page=self.page),
-            "CupertinoSegmentedButton": CupertinoSegmentedButton(page=self.page),
-            "CupertinoSlidingSegmentedButton": CupertinoSlidingSegmentedButton(
-                page=self.page
+        self.alert_dialog = ft.AlertDialog(
+            modal=True,
+            title=ft.Text("Please confirm"),
+            content=ft.Text("Do you really want to delete all those files?"),
+            actions=[
+                ft.TextButton("Yes", on_click=lambda _: print("hello")),
+                ft.TextButton(
+                    "No",
+                    on_click=lambda _: self.page.close(self.alert_dialog),
+                ),
+            ],
+        )
+        self.alert_barner = ft.Banner(
+            bgcolor=ft.Colors.AMBER_100,
+            leading=ft.Icon(
+                ft.Icons.WARNING_AMBER_ROUNDED, color=ft.Colors.AMBER, size=40
             ),
-            "CupertinoContextMenu": CupertinoContextMenu(page=self.page),
-            "CupertinoActionSheet": CupertinoActionSheet(page=self.page),
+            content=ft.Text(
+                value="Oops, there were some errors while trying to delete the file. What would you like me to do?",
+                color=ft.Colors.BLACK,
+            ),
+            actions=[
+                ft.TextButton(
+                    text="Retry",
+                    style=ft.ButtonStyle(color=ft.Colors.BLUE),
+                    # on_click=self.page.close(self.alert_barner),
+                ),
+                ft.TextButton(
+                    text="Ignore",
+                    style=ft.ButtonStyle(color=ft.Colors.BLUE),
+                    # on_click=self.page.close(self.alert_barner),
+                ),
+                ft.TextButton(
+                    text="Cancel",
+                    style=ft.ButtonStyle(color=ft.Colors.BLUE),
+                    # on_click=self.page.close(self.alert_barner),
+                ),
+            ],
+        )
+
+        data_1 = [
+            ft.LineChartData(
+                data_points=[
+                    ft.LineChartDataPoint(1, 1),
+                    ft.LineChartDataPoint(3, 1.5),
+                    ft.LineChartDataPoint(5, 1.4),
+                    ft.LineChartDataPoint(7, 3.4),
+                    ft.LineChartDataPoint(10, 2),
+                    ft.LineChartDataPoint(12, 2.2),
+                    ft.LineChartDataPoint(13, 1.8),
+                ],
+                stroke_width=8,
+                color=ft.Colors.LIGHT_GREEN,
+                curved=True,
+                stroke_cap_round=True,
+            ),
+            ft.LineChartData(
+                data_points=[
+                    ft.LineChartDataPoint(1, 1),
+                    ft.LineChartDataPoint(3, 2.8),
+                    ft.LineChartDataPoint(7, 1.2),
+                    ft.LineChartDataPoint(10, 2.8),
+                    ft.LineChartDataPoint(12, 2.6),
+                    ft.LineChartDataPoint(13, 3.9),
+                ],
+                color=ft.Colors.PINK,
+                below_line_bgcolor=ft.Colors.with_opacity(0, ft.Colors.PINK),
+                stroke_width=8,
+                curved=True,
+                stroke_cap_round=True,
+            ),
+            ft.LineChartData(
+                data_points=[
+                    ft.LineChartDataPoint(1, 2.8),
+                    ft.LineChartDataPoint(3, 1.9),
+                    ft.LineChartDataPoint(6, 3),
+                    ft.LineChartDataPoint(10, 1.3),
+                    ft.LineChartDataPoint(13, 2.5),
+                ],
+                color=ft.Colors.CYAN,
+                stroke_width=8,
+                curved=True,
+                stroke_cap_round=True,
+            ),
+        ]
+        self.animation_container_1 = ft.Container(
+            content=ft.Text(value="Hello!"),
+            alignment=ft.alignment.center,
+            width=200,
+            height=200,
+            bgcolor=ft.Colors.GREEN,
+            on_click=lambda _: self.animate(widget=_.control.parent),
+        )
+
+        self.animation_container_2 = ft.Container(
+            content=ft.Text(value="Bye!"),
+            alignment=ft.alignment.center,
+            width=200,
+            height=200,
+            bgcolor=ft.Colors.BLUE,
+            on_click=lambda _: self.animate(widget=_.control.parent),
+        )
+
+        self.animated_switcher = ft.AnimatedSwitcher(
+            visible=True,
+            transition=ft.AnimatedSwitcherTransition.SCALE,
+            duration=500,
+            reverse_duration=100,
+            switch_in_curve=ft.AnimationCurve.BOUNCE_OUT,
+            switch_out_curve=ft.AnimationCurve.BOUNCE_IN,
+            content=self.animation_container_1,
+        )
+        self.image = "image97.jpeg"
+
+        self.widgets = {
+            # CUSTOM BUTTON
             # TEXT
-            "CupertinoTextField": CupertinoTextField(page=self.page),
-            "Markdown": Markdown(page=self.page),
-            "Text": Text(page=self.page),
-            "TextField": TextField(page=self.page),
+            "long_text": ft.Column(
+                controls=[
+                    # Banner Title
+                    ft.Text(
+                        value="What is Flet?",
+                        size=16,
+                        weight="bold",
+                        color=ft.colors.WHITE,
+                    ),
+                    # Banner Description
+                    ft.Text(
+                        value=self.long_text,
+                        size=11,
+                        color=ft.colors.WHITE70,
+                    ),
+                ],
+                spacing=16,
+                alignment=ft.MainAxisAlignment.CENTER,
+                horizontal_alignment=ft.CrossAxisAlignment.START,
+            ),
+            "doble_l_text": ft.Row(
+                controls=[
+                    # Banner Title
+                    ft.Container(
+                        expand=True,
+                        content=ft.Text(
+                            "Cannes Film Festival",
+                            size=14,
+                            weight="bold",
+                            color=ft.colors.WHITE,
+                        ),
+                    ),
+                    # Banner Description
+                    ft.Text("May 14-25, 2024", size=11, color=ft.colors.WHITE70),
+                ],
+                spacing=5,
+                alignment=ft.MainAxisAlignment.CENTER,
+                vertical_alignment=ft.CrossAxisAlignment.CENTER,
+            ),
+            "doble_text": ft.Column(
+                controls=[
+                    # Banner Title
+                    ft.Text(
+                        "Cannes Film Festival",
+                        size=14,
+                        weight="bold",
+                        color=ft.colors.WHITE,
+                    ),
+                    # Banner Description
+                    ft.Text("May 14-25, 2024", size=11, color=ft.colors.WHITE70),
+                ],
+                spacing=5,
+                alignment=ft.MainAxisAlignment.CENTER,
+                horizontal_alignment=ft.CrossAxisAlignment.START,
+            ),
+            "triple_l_text": ft.Row(
+                controls=[
+                    ft.Column(
+                        expand=True,
+                        controls=[
+                            # Banner Title
+                            ft.Text(
+                                value="Cannes Film Festival",
+                                size=13,
+                                weight="bold",
+                                color=ft.colors.WHITE,
+                            ),
+                            # Banner Description
+                            ft.Text(
+                                value="Date: May 14-25, 2024",
+                                size=12,
+                                color=ft.colors.WHITE70,
+                            ),
+                        ],
+                        spacing=2,
+                        alignment=ft.MainAxisAlignment.CENTER,
+                        horizontal_alignment=ft.CrossAxisAlignment.START,
+                    ),
+                    ft.Text("New york ", size=11, color=ft.colors.WHITE70),
+                ],
+                spacing=2,
+                alignment=ft.MainAxisAlignment.CENTER,
+                vertical_alignment=ft.CrossAxisAlignment.CENTER,
+            ),
+            "triple_text": ft.Column(
+                controls=[
+                    # Banner Title
+                    ft.Text(
+                        value="Cannes Film Festival",
+                        size=13,
+                        weight="bold",
+                        color=ft.colors.WHITE,
+                    ),
+                    # Banner Description
+                    ft.Text(
+                        value="Date: May 14-25, 2024", size=12, color=ft.colors.WHITE70
+                    ),
+                    ft.Text(value="New york ", size=11, color=ft.colors.WHITE70),
+                ],
+                spacing=2,
+                alignment=ft.MainAxisAlignment.CENTER,
+                horizontal_alignment=ft.CrossAxisAlignment.START,
+            ),
+            # CARDS UI DESIGN
+            "film_festival_banner": ft.Container(
+                # film_festival_banner
+                width=400,
+                height=200,
+                border_radius=10,
+                gradient=ft.LinearGradient(
+                    begin=ft.alignment.top_left,
+                    end=ft.alignment.bottom_right,
+                    colors=[ft.colors.BLACK12, ft.colors.BLACK87],
+                ),
+                content=ft.Column(
+                    controls=[
+                        # Banner Title
+                        ft.Text(
+                            "Cannes Film Festival",
+                            size=24,
+                            weight="bold",
+                            color=ft.colors.WHITE,
+                        ),
+                        # Banner Description
+                        ft.Text("May 14-25, 2024", size=16, color=ft.colors.WHITE70),
+                    ],
+                    spacing=5,
+                    alignment=ft.MainAxisAlignment.CENTER,
+                    horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+                ),
+            ),
+            "left_banner": ft.Container(
+                padding=ft.padding.only(left=12, top=8, right=12, bottom=8),
+                border_radius=ft.border_radius.all(12),
+                bgcolor=ft.Colors("black45"),
+                content=ft.Row(
+                    controls=[
+                        ft.Row(
+                            controls=[
+                                ft.Image(
+                                    src=self.image,
+                                    width=40,
+                                    height=40,
+                                    fit=ft.ImageFit.COVER,
+                                    border_radius=ft.border_radius.all(32),
+                                ),
+                                ft.Column(
+                                    controls=[
+                                        # Banner Title
+                                        ft.Text(
+                                            "Cannes Film Festival",
+                                            size=11,
+                                            weight="bold",
+                                            color=ft.colors.WHITE,
+                                        ),
+                                        # Banner Description
+                                        ft.Text(
+                                            "May 14-25, 2024",
+                                            size=10,
+                                            color=ft.colors.WHITE70,
+                                        ),
+                                    ],
+                                    spacing=5,
+                                    alignment=ft.MainAxisAlignment.CENTER,
+                                    horizontal_alignment=ft.CrossAxisAlignment.START,
+                                ),
+                            ],
+                        ),
+                    ],
+                ),
+            ),
+            "sales_banner": ft.Container(
+                # height=80,
+                padding=ft.padding.only(left=12, top=8, right=12, bottom=8),
+                border_radius=ft.border_radius.all(12),
+                bgcolor=ft.Colors("black45"),
+                # width=200,
+                # gradient=ft.LinearGradient(
+                #     begin=ft.alignment.top_left,
+                #     end=ft.alignment.bottom_right,
+                #     colors=[ft.colors.PURPLE, ft.colors.BLUE],
+                # ),
+                content=ft.Row(
+                    controls=[
+                        ft.Row(
+                            controls=[
+                                ft.Image(
+                                    src=self.image,
+                                    width=40,
+                                    height=40,
+                                    fit=ft.ImageFit.COVER,
+                                    border_radius=ft.border_radius.all(32),
+                                ),
+                                ft.Column(
+                                    controls=[
+                                        # Banner Title
+                                        ft.Text(
+                                            "Cannes Film Festival",
+                                            size=11,
+                                            weight="bold",
+                                            color=ft.colors.WHITE,
+                                        ),
+                                        # Banner Description
+                                        ft.Text(
+                                            "May 14-25, 2024",
+                                            size=10,
+                                            color=ft.colors.WHITE70,
+                                        ),
+                                    ],
+                                    spacing=5,
+                                    alignment=ft.MainAxisAlignment.CENTER,
+                                    horizontal_alignment=ft.CrossAxisAlignment.START,
+                                ),
+                            ],
+                        ),
+                        ft.Container(
+                            content=ft.Text(
+                                value="$999",
+                                size=16,
+                                # color=ft.colors.BLUE,
+                                weight="bold",
+                            ),
+                            expand=True,
+                            padding=ft.padding.only(right=4),
+                            alignment=ft.alignment.center_right,
+                        ),
+                    ],
+                ),
+            ),
+            "sales_title_banner": ft.Container(
+                # height=80,
+                padding=ft.padding.only(left=12, top=8, right=12, bottom=8),
+                border_radius=ft.border_radius.all(12),
+                bgcolor=ft.Colors("black45"),
+                # width=200,
+                # gradient=ft.LinearGradient(
+                #     begin=ft.alignment.top_left,
+                #     end=ft.alignment.bottom_right,
+                #     colors=[ft.colors.PURPLE, ft.colors.BLUE],
+                # ),
+                content=ft.Row(
+                    controls=[
+                        ft.Row(
+                            controls=[
+                                ft.Image(
+                                    src=self.image,
+                                    width=40,
+                                    height=40,
+                                    fit=ft.ImageFit.COVER,
+                                    border_radius=ft.border_radius.all(32),
+                                ),
+                                ft.Column(
+                                    controls=[
+                                        # Banner Title
+                                        ft.Text(
+                                            "Cannes Film Festival",
+                                            size=11,
+                                            weight="bold",
+                                            color=ft.colors.WHITE,
+                                        ),
+                                        # Banner Description
+                                        ft.Text(
+                                            "May 14-25, 2024",
+                                            size=10,
+                                            color=ft.colors.WHITE70,
+                                        ),
+                                        ft.Row(
+                                            controls=[
+                                                ft.Icon(name="place_rounded", size=12),
+                                                ft.Text(
+                                                    value="Addres of presentation",
+                                                    size=10,
+                                                    color=ft.colors.WHITE70,
+                                                ),
+                                            ]
+                                        ),
+                                    ],
+                                    spacing=5,
+                                    alignment=ft.MainAxisAlignment.CENTER,
+                                    horizontal_alignment=ft.CrossAxisAlignment.START,
+                                ),
+                            ],
+                        ),
+                        ft.Container(
+                            content=ft.Text(
+                                value="$999",
+                                size=16,
+                                # color=ft.colors.BLUE,
+                                weight="bold",
+                            ),
+                            expand=True,
+                            padding=ft.padding.only(right=4),
+                            alignment=ft.alignment.center_right,
+                        ),
+                    ],
+                ),
+            ),
+            "right_banner": ft.Container(
+                # height=80,
+                padding=ft.padding.only(left=12, top=8, right=12, bottom=8),
+                border_radius=ft.border_radius.all(12),
+                bgcolor=ft.Colors("black45"),
+                content=ft.Row(
+                    controls=[
+                        ft.Row(
+                            controls=[
+                                ft.Column(
+                                    controls=[
+                                        # Banner Title
+                                        ft.Text(
+                                            "Cannes Film Festival",
+                                            size=11,
+                                            weight="bold",
+                                            color=ft.colors.WHITE,
+                                        ),
+                                        # Banner Description
+                                        ft.Text(
+                                            "May 14-25, 2024",
+                                            size=10,
+                                            color=ft.colors.WHITE70,
+                                        ),
+                                    ],
+                                    spacing=5,
+                                    alignment=ft.MainAxisAlignment.CENTER,
+                                    horizontal_alignment=ft.CrossAxisAlignment.START,
+                                ),
+                            ],
+                        ),
+                        ft.Image(
+                            src=self.image,
+                            width=40,
+                            height=40,
+                            fit=ft.ImageFit.COVER,
+                            border_radius=ft.border_radius.all(32),
+                        ),
+                    ],
+                    alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+                    vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                ),
+            ),
+            "upload_buttom": ft.Container(
+                expand=True,
+                padding=ft.padding.only(left=12, top=8, right=12, bottom=8),
+                border_radius=ft.border_radius.all(12),
+                bgcolor=ft.Colors("black45"),
+                content=ft.Row(
+                    controls=[
+                        ft.Icon(name="add_a_photo_rounded"),
+                        ft.Text(
+                            "Upload Picture",
+                            size=14,
+                            color=ft.colors.GREY,
+                            weight="bold",
+                        ),
+                    ],
+                    alignment=ft.MainAxisAlignment.CENTER,
+                    vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                ),
+            ),
+            "buttom_left": ft.Container(
+                expand=True,
+                padding=ft.padding.only(left=12, top=8, right=12, bottom=8),
+                border_radius=ft.border_radius.all(12),
+                width=220,
+                bgcolor=ft.Colors("black45"),
+                content=ft.Row(
+                    controls=[
+                        ft.Icon(name="navigate_next_rounded"),
+                        ft.Text(
+                            "Get Start",
+                            size=14,
+                            color=ft.colors.GREY,
+                            weight="bold",
+                        ),
+                    ],
+                    alignment=ft.MainAxisAlignment.CENTER,
+                    vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                ),
+            ),
+            "buttom_right": ft.Container(
+                expand=True,
+                padding=ft.padding.only(left=12, top=8, right=12, bottom=8),
+                width=220,
+                border_radius=ft.border_radius.all(12),
+                bgcolor=ft.Colors("black45"),
+                content=ft.Row(
+                    controls=[
+                        ft.Text(
+                            "Get Start",
+                            size=14,
+                            color=ft.colors.GREY,
+                            weight="bold",
+                        ),
+                        ft.Icon(name="navigate_next_rounded"),
+                    ],
+                    alignment=ft.MainAxisAlignment.CENTER,
+                    vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                ),
+            ),
+            "offer_card": ft.Container(
+                expand=True,
+                padding=ft.padding.only(left=12, top=12, right=12, bottom=12),
+                border_radius=ft.border_radius.all(12),
+                width=340,
+                bgcolor=ft.Colors("black45"),
+                image=ft.DecorationImage(
+                    src="Ebay icon.png",
+                    fit="cover",
+                    opacity=0.18,
+                ),
+                content=ft.Row(
+                    controls=[
+                        ft.Column(
+                            controls=[
+                                # Banner Title
+                                ft.Text(
+                                    value="35% OFF",
+                                    size=18,
+                                    weight="bold",
+                                    color=ft.colors.WHITE,
+                                ),
+                                # Banner Description
+                                ft.Text(
+                                    value="Get Best offer now",
+                                    size=12,
+                                    color=ft.colors.WHITE70,
+                                ),
+                                ft.Container(
+                                    expand=True,
+                                    margin=ft.margin.only(
+                                        top=16,
+                                    ),
+                                    padding=ft.padding.only(
+                                        left=12, top=8, right=12, bottom=8
+                                    ),
+                                    border_radius=ft.border_radius.all(12),
+                                    ink_color=ft.colors("yellow"),
+                                    alignment=ft.alignment.center,
+                                    width=100,
+                                    bgcolor=ft.Colors("black45"),
+                                    content=ft.Text(
+                                        value="Buy Now ",
+                                        size=11,
+                                        color=ft.colors.WHITE70,
+                                    ),
+                                ),
+                            ],
+                            spacing=2,
+                            alignment=ft.MainAxisAlignment.CENTER,
+                            horizontal_alignment=ft.CrossAxisAlignment.START,
+                        ),
+                        ft.Image(
+                            src=self.image,
+                            width=100,
+                            height=100,
+                            fit=ft.ImageFit.COVER,
+                            border_radius=ft.border_radius.all(32),
+                        ),
+                    ],
+                    alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+                    vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                ),
+            ),
+            "iphone_sales_card": ft.Container(
+                width=300,
+                height=250,
+                border_radius=10,
+                bgcolor=ft.colors.WHITE,
+                image=ft.DecorationImage(
+                    src="apple.png",
+                    fit="cover",
+                    opacity=0.18,
+                ),
+                padding=ft.padding.all(10),
+                shadow=ft.BoxShadow(
+                    spread_radius=1,
+                    blur_radius=15,
+                    color=ft.colors.BLACK38,
+                    offset=ft.Offset(0, 5),
+                ),
+                content=ft.Column(
+                    controls=[
+                        # iPhone Image
+                        ft.Image(
+                            src=self.image,
+                            width=300,
+                            height=150,
+                            fit=ft.ImageFit.COVER,
+                            border_radius=ft.border_radius.only(
+                                top_left=10, top_right=10
+                            ),
+                        ),
+                        # iPhone Model
+                        ft.Text(
+                            "iPhone 15 Pro",
+                            size=18,
+                            weight="bold",
+                            color=ft.colors.BLACK87,
+                        ),
+                        # Price
+                        ft.Text("$999", size=16, color=ft.colors.BLUE, weight="bold"),
+                    ],
+                    spacing=5,
+                    alignment=ft.MainAxisAlignment.START,
+                    horizontal_alignment=ft.CrossAxisAlignment.START,
+                ),
+            ),
+            "tech_conference_card": ft.Container(
+                width=300,
+                height=200,
+                border_radius=10,
+                bgcolor=ft.colors.WHITE,
+                padding=ft.padding.all(20),
+                image=ft.DecorationImage(
+                    src="apple.png",
+                    fit="cover",
+                    opacity=0.18,
+                ),
+                shadow=ft.BoxShadow(
+                    spread_radius=1,
+                    blur_radius=15,
+                    color=ft.colors.BLACK38,
+                    offset=ft.Offset(0, 5),
+                ),
+                content=ft.Column(
+                    controls=[
+                        # Conference Name
+                        ft.Text(
+                            "Tech Summit 2024",
+                            size=20,
+                            weight="bold",
+                            color=ft.colors.BLACK87,
+                        ),
+                        # Date
+                        ft.Text("October 10-12, 2024", size=14, color=ft.colors.GREY),
+                        # Location
+                        ft.Text("San Francisco, CA", size=14, color=ft.colors.GREY),
+                    ],
+                    spacing=5,
+                    alignment=ft.MainAxisAlignment.CENTER,
+                    horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+                ),
+            ),
+            "hotel_booking_card": ft.Container(
+                width=300,
+                height=200,
+                border_radius=10,
+                bgcolor=ft.colors.WHITE,
+                padding=ft.padding.all(10),
+                shadow=ft.BoxShadow(
+                    spread_radius=1,
+                    blur_radius=15,
+                    color=ft.colors.BLACK38,
+                    offset=ft.Offset(0, 5),
+                ),
+                image=ft.DecorationImage(
+                    src="apple.png",
+                    fit="cover",
+                    opacity=0.18,
+                ),
+                content=ft.Column(
+                    controls=[
+                        # Hotel Image
+                        ft.Image(
+                            src=self.image,
+                            width=300,
+                            height=150,
+                            fit=ft.ImageFit.COVER,
+                            border_radius=ft.border_radius.only(
+                                top_left=10, top_right=10
+                            ),
+                        ),
+                        # Hotel Name
+                        ft.Text(
+                            "Luxury Resort",
+                            size=18,
+                            weight="bold",
+                            color=ft.colors.BLACK87,
+                        ),
+                        # Location
+                        ft.Text("Maldives", size=14, color=ft.colors.GREY),
+                        # Price
+                        ft.Text(
+                            "$299/night",
+                            size=16,
+                            color=ft.colors.BLUE,
+                            weight="bold",
+                        ),
+                    ],
+                    spacing=5,
+                    alignment=ft.MainAxisAlignment.START,
+                    horizontal_alignment=ft.CrossAxisAlignment.START,
+                ),
+            ),
+            # 9. Event Ticket Card
+            "event_ticket_card": ft.Container(
+                width=300,
+                # height=150,
+                border_radius=10,
+                bgcolor=ft.colors.WHITE,
+                padding=ft.padding.only(left=8, top=8, right=8, bottom=18),
+                shadow=ft.BoxShadow(
+                    spread_radius=1,
+                    blur_radius=15,
+                    color=ft.colors.BLACK38,
+                    offset=ft.Offset(0, 5),
+                ),
+                image=ft.DecorationImage(
+                    src="apple.png",
+                    fit="cover",
+                    opacity=0.18,
+                ),
+                content=ft.Column(
+                    controls=[
+                        ft.Image(
+                            src=self.image,
+                            width=300,
+                            height=150,
+                            fit=ft.ImageFit.COVER,
+                            border_radius=ft.border_radius.only(
+                                top_left=10,
+                                top_right=10,
+                                bottom_left=10,
+                                bottom_right=10,
+                            ),
+                        ),
+                        # Event Name
+                        ft.Text(
+                            "Music Festival 2024",
+                            size=20,
+                            weight="bold",
+                            color=ft.colors.BLACK87,
+                        ),
+                        # Date
+                        ft.Text("June 15, 2024", size=14, color=ft.colors.GREY_600),
+                        # Price
+                        ft.Text(
+                            "$99.99", size=16, color=ft.colors.BLUE_600, weight="bold"
+                        ),
+                    ],
+                    spacing=5,
+                    alignment=ft.MainAxisAlignment.CENTER,
+                    horizontal_alignment=ft.CrossAxisAlignment.START,
+                ),
+            ),
+            "brand_showcase_card": ft.Container(
+                width=300,
+                height=200,
+                border_radius=10,
+                padding=ft.padding.all(20),
+                bgcolor=ft.colors.WHITE,
+                shadow=ft.BoxShadow(
+                    spread_radius=1,
+                    blur_radius=15,
+                    color=ft.colors.BLACK38,
+                    offset=ft.Offset(0, 5),
+                ),
+                image=ft.DecorationImage(
+                    src="image_avatar.png",
+                    fit="cover",
+                    opacity=0.3,
+                ),
+                content=ft.Column(
+                    controls=[
+                        # Brand Name
+                        ft.Text(
+                            "World Famous Brands",
+                            size=20,
+                            weight="bold",
+                            color=ft.colors.BLACK87,
+                        ),
+                        # Description
+                        ft.Text(
+                            "More Than 45 Brands", size=14, color=ft.colors.GREY_600
+                        ),
+                        # Price and Discount
+                        ft.Row(
+                            controls=[
+                                ft.Text(
+                                    "$49.00",
+                                    size=16,
+                                    color=ft.colors.GREY_600,
+                                    weight=ft.FontWeight.BOLD,
+                                ),
+                                ft.Text(
+                                    "$19.00",
+                                    size=16,
+                                    color=ft.colors.RED_600,
+                                    weight=ft.FontWeight.BOLD,
+                                ),
+                            ],
+                            alignment=ft.MainAxisAlignment.CENTER,
+                            vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                            spacing=5,
+                        ),
+                    ],
+                    spacing=10,
+                    alignment=ft.MainAxisAlignment.CENTER,
+                    horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+                ),
+            ),
+            # 4. Business Card
+            "business_card": ft.Container(
+                width=300,
+                height=150,
+                border_radius=10,
+                padding=ft.padding.all(20),
+                bgcolor=ft.colors.WHITE,
+                shadow=ft.BoxShadow(
+                    spread_radius=1,
+                    blur_radius=15,
+                    color=ft.colors.BLACK38,
+                    offset=ft.Offset(0, 5),
+                ),
+                image=ft.DecorationImage(
+                    src="apple.png",
+                    fit="cover",
+                    opacity=0.18,
+                ),
+                content=ft.Column(
+                    controls=[
+                        # Business Name
+                        ft.Text(
+                            value="Tech Solutions Inc.",
+                            size=20,
+                            weight="bold",
+                            color=ft.colors.BLACK87,
+                        ),
+                        # Contact Info
+                        ft.Text(
+                            value="Email: info@techsolutions.com",
+                            size=14,
+                            color=ft.colors.GREY_600,
+                        ),
+                        ft.Text(
+                            value="Phone: +1 234 567 890",
+                            size=14,
+                            color=ft.colors.GREY_600,
+                            weight="bold",
+                        ),
+                    ],
+                    spacing=5,
+                    alignment=ft.MainAxisAlignment.CENTER,
+                    horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+                ),
+            ),
+            # CUSTOM WIDGETS
+            "Custom Card": ft.Card(
+                elevation=12,
+                content=ft.Container(
+                    content=ft.Column(
+                        controls=[
+                            ft.ListTile(
+                                leading=ft.Icon(ft.Icons.ALBUM),
+                                title=ft.Text("The Enchanted Nightingale"),
+                                subtitle=ft.Text(
+                                    "Music by Julie Gable. Lyrics by Sidney Stein."
+                                ),
+                            ),
+                            ft.Row(
+                                [ft.TextButton("Buy tickets"), ft.TextButton("Listen")],
+                                alignment=ft.MainAxisAlignment.END,
+                            ),
+                        ]
+                    ),
+                    width=400,
+                    padding=10,
+                ),
+            ),
+            "Custom Dismissible": ft.ListView(
+                expand=True,
+                controls=[
+                    ft.Dismissible(
+                        content=ft.ListTile(title=ft.Text(f"Item {i}")),
+                        dismiss_direction=ft.DismissDirection.HORIZONTAL,
+                        background=ft.Container(bgcolor=ft.Colors.GREEN),
+                        secondary_background=ft.Container(bgcolor=ft.Colors.RED),
+                        # on_dismiss=handle_dismiss,
+                        # on_update=handle_update,
+                        # on_confirm_dismiss=handle_confirm_dismiss,
+                        dismiss_thresholds={
+                            ft.DismissDirection.END_TO_START: 0.2,
+                            ft.DismissDirection.START_TO_END: 0.2,
+                        },
+                    )
+                    for i in range(5)
+                ],
+            ),
+            # DIVIDERS
+            "Divider": ft.Divider(
+                height=1,
+                color=ft.Colors.with_opacity(
+                    opacity=0.2,
+                    color=ft.Colors("white"),
+                ),
+                thickness=3,
+            ),
+            # TABS
+            "Tabs": ft.Tabs(height=450, tabs=[]),
+            "Tab": ft.Tab(
+                text="Tab 1",
+                content=ft.Container(
+                    bgcolor="white12",
+                    content=ft.Column(),
+                ),
+            ),
+            # NAVIGATIONS
+            "NavigationRail": ft.Row(
+                controls=[
+                    ft.NavigationRail(
+                        height=800,
+                        selected_index=0,
+                        label_type=ft.NavigationRailLabelType.ALL,
+                        extended=True,
+                        min_width=50,
+                        min_extended_width=100,
+                        leading=ft.FloatingActionButton(
+                            icon=ft.Icons.CREATE, text="Add"
+                        ),
+                        group_alignment=-0.9,
+                        destinations=[
+                            ft.NavigationRailDestination(
+                                icon=ft.Icons.FAVORITE_BORDER,
+                                selected_icon=ft.Icons.FAVORITE,
+                                label="First",
+                            ),
+                            ft.NavigationRailDestination(
+                                icon=ft.Icon(ft.Icons.BOOKMARK_BORDER),
+                                selected_icon=ft.Icon(ft.Icons.BOOKMARK),
+                                label="Second",
+                            ),
+                            ft.NavigationRailDestination(
+                                icon=ft.Icons.SETTINGS_OUTLINED,
+                                selected_icon=ft.Icon(ft.Icons.SETTINGS),
+                                label_content=ft.Text("Settings"),
+                            ),
+                        ],
+                        # on_change=lambda e: print(
+                        #     "Selected destination:", e.control.selected_index
+                        # ),
+                    ),
+                ]
+            ),
+            # LAYOUTS
+            "Card": ft.Card(
+                elevation=12,
+                content=ft.Container(),
+            ),
+            "Column": ft.Column(),
+            "Container": ft.Container(),
+            "GridView": ft.GridView(
+                runs_count=2,
+                run_spacing=4,
+                padding=ft.padding.all(6),
+            ),
+            "ListView": ft.ListView(),
+            "ResponsiveRow": ft.ResponsiveRow(),
+            "Row": ft.Row(),
+            "Stack": ft.Stack(),
+            # BUTTONS
+            "Button": ft.Button(
+                text="hello world dev",
+            ),
+            "ElevatedButton": ft.ElevatedButton(
+                text="hello world dev",
+            ),
+            "FilledButton": ft.FilledButton(
+                text="hello world dev",
+            ),
+            "FilledTonalButton": ft.FilledTonalButton(
+                text="hello world dev",
+            ),
+            "FloatingActionButton": ft.FloatingActionButton(
+                icon=ft.Icons.FAVORITE,
+            ),
+            "IconButton": ft.IconButton(
+                icon=ft.Icons.FAVORITE,
+            ),
+            "Icon": ft.Icon(
+                name=ft.Icons.FAVORITE,
+            ),
+            "OutlinedButton": ft.OutlinedButton(
+                text="hello world dev",
+            ),
+            # CONTROLS
+            "MenuItemButton": ft.MenuBar(
+                controls=[
+                    ft.SubmenuButton(
+                        content=ft.Text("BgColors"),
+                        controls=[
+                            ft.MenuItemButton(
+                                content=ft.Text("Blue"),
+                                leading=ft.Icon(ft.Icons.COLORIZE),
+                                style=ft.ButtonStyle(
+                                    bgcolor={ft.ControlState.HOVERED: ft.Colors.BLUE}
+                                ),
+                            ),
+                            ft.MenuItemButton(
+                                content=ft.Text("Green"),
+                                leading=ft.Icon(ft.Icons.COLORIZE),
+                                style=ft.ButtonStyle(
+                                    bgcolor={ft.ControlState.HOVERED: ft.Colors.GREEN}
+                                ),
+                            ),
+                            ft.MenuItemButton(
+                                content=ft.Text("Red"),
+                                leading=ft.Icon(ft.Icons.COLORIZE),
+                                style=ft.ButtonStyle(
+                                    bgcolor={ft.ControlState.HOVERED: ft.Colors.RED}
+                                ),
+                            ),
+                        ],
+                    ),
+                ]
+            ),
+            "SubmenuButton": ft.MenuBar(
+                controls=[
+                    ft.SubmenuButton(
+                        content=ft.Text("BgColors"),
+                        controls=[
+                            ft.MenuItemButton(
+                                content=ft.Text("Blue"),
+                                leading=ft.Icon(ft.Icons.COLORIZE),
+                                style=ft.ButtonStyle(
+                                    bgcolor={ft.ControlState.HOVERED: ft.Colors.BLUE}
+                                ),
+                                # on_click=lambda e: print("MenuItemButton clicked!"),
+                            ),
+                            ft.MenuItemButton(
+                                content=ft.Text("Green"),
+                                leading=ft.Icon(ft.Icons.COLORIZE),
+                                style=ft.ButtonStyle(
+                                    bgcolor={ft.ControlState.HOVERED: ft.Colors.GREEN}
+                                ),
+                                # on_click=lambda e: print("MenuItemButton clicked!"),
+                            ),
+                            ft.MenuItemButton(
+                                content=ft.Text("Red"),
+                                leading=ft.Icon(ft.Icons.COLORIZE),
+                                style=ft.ButtonStyle(
+                                    bgcolor={ft.ControlState.HOVERED: ft.Colors.RED}
+                                ),
+                                # on_click=lambda e: print("MenuItemButton clicked!"),
+                            ),
+                        ],
+                    ),
+                ]
+            ),
+            "SegmentedButton": ft.SegmentedButton(
+                expand=True,
+                on_change=lambda e: print("MenuItemButton clicked!"),
+                selected_icon=ft.Icon(ft.Icons.ONETWOTHREE),
+                selected={"1", "4"},
+                allow_multiple_selection=True,
+                segments=[
+                    ft.Segment(
+                        value="1",
+                        label=ft.Text("1"),
+                        icon=ft.Icon(ft.Icons.LOOKS_ONE),
+                    ),
+                    ft.Segment(
+                        value="2",
+                        label=ft.Text("2"),
+                        icon=ft.Icon(ft.Icons.LOOKS_TWO),
+                    ),
+                    ft.Segment(
+                        value="3",
+                        label=ft.Text("3"),
+                        icon=ft.Icon(ft.Icons.LOOKS_3),
+                    ),
+                    ft.Segment(
+                        value="4",
+                        label=ft.Text("4"),
+                        icon=ft.Icon(ft.Icons.LOOKS_4),
+                    ),
+                ],
+            ),
+            "TextButton": ft.TextButton(text="hello world dev"),
+            "CupertinoTimerPicker": ft.CupertinoTimerPicker(
+                value=3600,
+                second_interval=10,
+                minute_interval=1,
+                mode=ft.CupertinoTimerPickerMode.HOUR_MINUTE_SECONDS,
+                # on_change=handle_timer_picker_change,
+            ),
+            # CONTENT
+            "PopupMenuButton": ft.PopupMenuButton(
+                content=ft.Row(
+                    controls=[
+                        ft.Icon(ft.Icons.HOURGLASS_TOP_OUTLINED),
+                        ft.Text("Item with a custom content"),
+                    ]
+                ),
+            ),
+            # CUPERTINO CONTENT
+            "CupertinoFilledButton": ft.CupertinoFilledButton(
+                opacity_on_click=0.3,
+                content=ft.Text("CupertinoFilled"),
+                # on_click = event_manager
+            ),
+            # CUPERTINO CONTROLS
+            "CupertinoButton": ft.CupertinoButton(
+                text="hello world dev",
+            ),
+            "CupertinoSegmentedButton": ft.CupertinoSegmentedButton(
+                expand=True,
+                on_change=lambda e: print("MenuItemButton clicked!"),
+                selected_color=ft.Colors.RED,
+                selected_index=0,
+                controls=[
+                    ft.Text("One"),
+                    ft.Container(
+                        padding=ft.padding.symmetric(0, 30),
+                        content=ft.Text("Two"),
+                    ),
+                    ft.Container(
+                        padding=ft.padding.symmetric(0, 10),
+                        content=ft.Text("Three"),
+                    ),
+                ],
+            ),
+            "CupertinoSlidingSegmentedButton": ft.CupertinoSlidingSegmentedButton(
+                expand=True,
+                selected_index=0,
+                thumb_color=ft.Colors.BLUE,
+                padding=ft.padding.symmetric(0, 10),
+                controls=[
+                    ft.Text("One"),
+                    ft.Text("Two"),
+                    ft.Text("Three"),
+                ],
+            ),
+            "CupertinoContextMenu": ft.CupertinoContextMenu(
+                enable_haptic_feedback=True,
+                # expand=True,
+                content=ft.Image(
+                    "splash.jpg",
+                    width=100,
+                    height=100,
+                ),
+                actions=[
+                    ft.CupertinoContextMenuAction(
+                        text="Action 1",
+                        is_default_action=True,
+                        trailing_icon=ft.Icons.CHECK,
+                        # on_click=lambda e: print("Action 1"),
+                    ),
+                    ft.CupertinoContextMenuAction(
+                        text="Action 2",
+                        trailing_icon=ft.Icons.MORE,
+                        # on_click=lambda e: print("Action 2"),
+                    ),
+                    ft.CupertinoContextMenuAction(
+                        text="Action 3",
+                        is_destructive_action=True,
+                        trailing_icon=ft.Icons.CANCEL,
+                        # on_click=lambda e: print("Action 3"),
+                    ),
+                ],
+            ),
+            "CupertinoActionSheet": ft.CupertinoActionSheet(
+                title=ft.Row(
+                    alignment=ft.MainAxisAlignment.CENTER,
+                    controls=[
+                        ft.Text("Title"),
+                    ],
+                ),
+                message=ft.Row(
+                    alignment=ft.MainAxisAlignment.CENTER,
+                    controls=[
+                        ft.Text("Description"),
+                    ],
+                ),
+                cancel=ft.CupertinoActionSheetAction(
+                    content=ft.Text("Cancel"),
+                ),
+                actions=[
+                    ft.CupertinoActionSheetAction(
+                        content=ft.Text("Default Action"),
+                        is_default_action=True,
+                        # on_click=lambda e: print("Action 3"),
+                    ),
+                    ft.CupertinoActionSheetAction(
+                        content=ft.Text("Normal Action"),
+                        # on_click=lambda e: print("Action 3"),
+                    ),
+                    ft.CupertinoActionSheetAction(
+                        content=ft.Text("Destructive Action"),
+                        is_destructive_action=True,
+                        # on_click=lambda e: print("Action 3"),
+                    ),
+                ],
+            ),
+            # ALERTS
+            "DatePicker": ft.ElevatedButton(
+                text="Pick date",
+                icon=ft.Icons.CALENDAR_MONTH,
+                on_click=lambda e: self.page.open(
+                    ft.DatePicker(
+                        first_date=datetime.datetime(year=2023, month=10, day=1),
+                        last_date=datetime.datetime(year=2024, month=10, day=1),
+                        # on_change=handle_change,
+                        # on_dismiss=handle_dismissal,
+                    )
+                ),
+            ),
+            "TimePicker": ft.ElevatedButton(
+                text="Pick time",
+                icon=ft.Icons.ACCESS_TIME_FILLED_ROUNDED,
+                on_click=lambda e: self.page.open(
+                    ft.TimePicker(
+                        confirm_text="Confirm",
+                        error_invalid_text="Time out of range",
+                        help_text="Pick your time slot",
+                        # on_change=handle_change,
+                        # on_dismiss=handle_dismissal,
+                        # on_entry_mode_change=handle_entry_mode_change,
+                    )
+                ),
+            ),
+            "AlertDialog": ft.ElevatedButton(
+                text="Alert Dialog",
+                icon=ft.Icons.ADD_ALERT_ROUNDED,
+                on_click=lambda e: self.page.open(self.alert_dialog),
+            ),
+            "Banner": ft.ElevatedButton(
+                text="Alert Barner",
+                icon=ft.Icons.ADD_ALERT_ROUNDED,
+                on_click=lambda e: self.page.open(self.alert_barner),
+            ),
+            # TEXT
+            "CupertinoTextField": ft.CupertinoTextField(
+                placeholder_text="Placeholder", bgcolor=ft.Colors("black12")
+            ),
+            "Markdown": ft.Markdown(
+                selectable=True,
+                extension_set=ft.MarkdownExtensionSet.GITHUB_WEB,
+                value=md1,
+            ),
+            "Text": ft.Text(
+                value="Size 15, Normal",
+                size=15,
+                color=ft.Colors.WHITE,
+                bgcolor=ft.Colors.ORANGE_800,
+                weight=ft.FontWeight.NORMAL,
+            ),
+            "TextField": ft.TextField(
+                bgcolor="white12",
+                label="TextField with icon",
+                icon=ft.Icons.ACCOUNT_CIRCLE_ROUNDED,
+                hint_text="Fill correct data",
+                border_radius=ft.border_radius.all(12),
+            ),
             # IMAGE
-            "Image": Image(page=self.page),
-            "CircleAvatar": CircleAvatar(page=self.page),
+            "Image": ft.Image(
+                src="logo.png",
+                width=200,
+                height=200,
+                fit=ft.ImageFit.NONE,
+                repeat=ft.ImageRepeat.NO_REPEAT,
+                border_radius=ft.border_radius.all(10),
+            ),
+            "Same Image": same_image,
+            "CircleAvatar": ft.Stack(
+                width=40,
+                height=40,
+                controls=[
+                    ft.CircleAvatar(foreground_image_src=".my_avatar.png"),
+                    ft.Container(
+                        content=ft.CircleAvatar(bgcolor=ft.Colors.YELLOW, radius=5),
+                        alignment=ft.alignment.bottom_left,
+                    ),
+                ],
+            ),
             # SELECTION
-            "AnimatedSwitcher": AnimatedSwitcher(page=self.page),
-            "Checkbox": Checkbox(page=self.page),
-            "Dropdown": Dropdown(page=self.page),
-            "RadioGroup": RadioGroup(page=self.page),
-            "RangeSlider": RangeSlider(page=self.page),
-            "Slider": Slider(page=self.page),
-            "Switch": Switch(page=self.page),
+            "AnimatedSwitcher": self.animated_switcher,
+            "Checkbox": ft.Checkbox(
+                label="Normal Checkbox",
+                label_position=ft.LabelPosition.RIGHT,
+                value=False,
+            ),
+            "Dropdown": ft.Dropdown(
+                label="Select Dropdown",
+                # label_position=ft.LabelPosition.RIGHT,
+                value="Dropdown",
+                options=[
+                    ft.dropdown.Option("Red"),
+                    ft.dropdown.Option("Green"),
+                    ft.dropdown.Option("Blue"),
+                ],
+            ),
+            "RadioGroup": ft.RadioGroup(
+                # label="Select RadioGroup",
+                # label_position=ft.LabelPosition.RIGHT,
+                value="RadioGroup",
+                content=ft.Column(
+                    alignment=ft.MainAxisAlignment.SPACE_AROUND,
+                    horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+                    run_alignment=ft.CrossAxisAlignment.CENTER,
+                    expand=True,
+                    spacing=8,
+                    run_spacing=8,
+                    controls=[
+                        ft.Radio(value="red", label="Red"),
+                        ft.Radio(value="green", label="Green"),
+                        ft.Radio(value="blue", label="Blue"),
+                    ],
+                ),
+            ),
+            "RangeSlider": ft.RangeSlider(
+                label="Range Slider",
+                min=0,
+                max=50,
+                divisions=10,
+                start_value=10,
+                end_value=20,
+                inactive_color=ft.Colors.BLACK12,
+                active_color=ft.Colors.BLUE,
+                overlay_color=ft.Colors.YELLOW,
+            ),
+            "Slider": ft.Slider(
+                label="Range Slider",
+                min=0,
+                max=50,
+                divisions=10,
+                # start_value=10,
+                # end_value=20,
+                inactive_color=ft.Colors.BLACK12,
+                active_color=ft.Colors.BLUE,
+                overlay_color=ft.Colors.YELLOW,
+            ),
+            "Switch": ft.Switch(label="Switch", value=False),
             # CUPERTINO SELECTION
-            "CupertinoCheckbox": CupertinoCheckbox(page=self.page),
-            "CupertinoSlider": CupertinoSlider(page=self.page),
+            "CupertinoCheckbox": ft.CupertinoCheckbox(
+                label="Cupertino Checkbox",
+                label_position=ft.LabelPosition.RIGHT,
+                value=False,
+            ),
+            "CupertinoSlider": ft.CupertinoSlider(
+                min=0,
+                max=50,
+                divisions=10,
+            ),
+            "CupertinoSwitch": ft.CupertinoSwitch(
+                label="Cupertino Switch",
+                value=True,
+            ),
             # PROGRESS
-            "ProgressBar": ProgressBar(page=self.page),
-            "ProgressRing": ProgressRing(page=self.page),
+            "ProgressBar": ft.ProgressBar(
+                width=400, color=ft.Colors("yellow"), bgcolor=ft.Colors("black12")
+            ),
+            "ProgressRing": ft.ProgressRing(
+                width=16,
+                height=16,
+                stroke_width=2,
+                color=ft.Colors("yellow"),
+                bgcolor=ft.Colors("black12"),
+            ),
             # CHARTS
-            "BarChart": BarChart(page=self.page),
-            "LineChart": LineChart(page=self.page),
-            "LineChartData": LineChartData(page=self.page),
-            "LineChartDataPoint": LineChartDataPoint(page=self.page),
-            "PieChart": PieChart(page=self.page),
-            "PieChartSection": PieChartSection(page=self.page),
+            "BarChart": ft.BarChart(
+                tooltip_bgcolor=ft.Colors.with_opacity(0.5, ft.Colors.GREY_300),
+                max_y=110,
+                interactive=True,
+                border=ft.border.all(1, ft.Colors.GREY_400),
+                expand=True,
+                horizontal_grid_lines=ft.ChartGridLines(
+                    color=ft.Colors.GREY_300, width=1, dash_pattern=[3, 3]
+                ),
+                bar_groups=[
+                    ft.BarChartGroup(
+                        x=0,
+                        bar_rods=[
+                            ft.BarChartRod(
+                                from_y=0,
+                                to_y=40,
+                                width=40,
+                                color=ft.Colors.AMBER,
+                                tooltip="Apple",
+                                border_radius=0,
+                            ),
+                        ],
+                    ),
+                    ft.BarChartGroup(
+                        x=1,
+                        bar_rods=[
+                            ft.BarChartRod(
+                                from_y=0,
+                                to_y=100,
+                                width=40,
+                                color=ft.Colors.BLUE,
+                                tooltip="Blueberry",
+                                border_radius=0,
+                            ),
+                        ],
+                    ),
+                    ft.BarChartGroup(
+                        x=2,
+                        bar_rods=[
+                            ft.BarChartRod(
+                                from_y=0,
+                                to_y=30,
+                                width=40,
+                                color=ft.Colors.RED,
+                                tooltip="Cherry",
+                                border_radius=0,
+                            ),
+                        ],
+                    ),
+                    ft.BarChartGroup(
+                        x=3,
+                        bar_rods=[
+                            ft.BarChartRod(
+                                from_y=0,
+                                to_y=60,
+                                width=40,
+                                color=ft.Colors.ORANGE,
+                                tooltip="Orange",
+                                border_radius=0,
+                            ),
+                        ],
+                    ),
+                ],
+                left_axis=ft.ChartAxis(
+                    labels_size=40, title=ft.Text("Fruit supply"), title_size=40
+                ),
+                bottom_axis=ft.ChartAxis(
+                    labels=[
+                        ft.ChartAxisLabel(
+                            value=0, label=ft.Container(ft.Text("Apple"), padding=10)
+                        ),
+                        ft.ChartAxisLabel(
+                            value=1,
+                            label=ft.Container(ft.Text("Blueberry"), padding=10),
+                        ),
+                        ft.ChartAxisLabel(
+                            value=2, label=ft.Container(ft.Text("Cherry"), padding=10)
+                        ),
+                        ft.ChartAxisLabel(
+                            value=3, label=ft.Container(ft.Text("Orange"), padding=10)
+                        ),
+                    ],
+                    labels_size=40,
+                ),
+            ),
+            "LineChart": ft.LineChart(
+                tooltip_bgcolor=ft.Colors.with_opacity(0.8, ft.Colors.BLUE_GREY),
+                min_y=0,
+                max_y=4,
+                min_x=0,
+                max_x=14,
+                expand=True,
+                border=ft.Border(
+                    bottom=ft.BorderSide(
+                        4, ft.Colors.with_opacity(0.5, ft.Colors.ON_SURFACE)
+                    )
+                ),
+                left_axis=ft.ChartAxis(
+                    labels=[
+                        ft.ChartAxisLabel(
+                            value=1,
+                            label=ft.Text("1m", size=14, weight=ft.FontWeight.BOLD),
+                        ),
+                        ft.ChartAxisLabel(
+                            value=2,
+                            label=ft.Text("2m", size=14, weight=ft.FontWeight.BOLD),
+                        ),
+                        ft.ChartAxisLabel(
+                            value=3,
+                            label=ft.Text("3m", size=14, weight=ft.FontWeight.BOLD),
+                        ),
+                        ft.ChartAxisLabel(
+                            value=4,
+                            label=ft.Text("4m", size=14, weight=ft.FontWeight.BOLD),
+                        ),
+                        ft.ChartAxisLabel(
+                            value=5,
+                            label=ft.Text("5m", size=14, weight=ft.FontWeight.BOLD),
+                        ),
+                        ft.ChartAxisLabel(
+                            value=6,
+                            label=ft.Text("6m", size=14, weight=ft.FontWeight.BOLD),
+                        ),
+                    ],
+                    labels_size=40,
+                ),
+                data_series=data_1,
+                bottom_axis=ft.ChartAxis(
+                    labels=[
+                        ft.ChartAxisLabel(
+                            value=2,
+                            label=ft.Container(
+                                ft.Text(
+                                    "SEP",
+                                    size=16,
+                                    weight=ft.FontWeight.BOLD,
+                                    color=ft.Colors.with_opacity(
+                                        0.5, ft.Colors.ON_SURFACE
+                                    ),
+                                ),
+                                margin=ft.margin.only(top=10),
+                            ),
+                        ),
+                        ft.ChartAxisLabel(
+                            value=7,
+                            label=ft.Container(
+                                ft.Text(
+                                    "OCT",
+                                    size=16,
+                                    weight=ft.FontWeight.BOLD,
+                                    color=ft.Colors.with_opacity(
+                                        0.5, ft.Colors.ON_SURFACE
+                                    ),
+                                ),
+                                margin=ft.margin.only(top=10),
+                            ),
+                        ),
+                        ft.ChartAxisLabel(
+                            value=12,
+                            label=ft.Container(
+                                ft.Text(
+                                    "DEC",
+                                    size=16,
+                                    weight=ft.FontWeight.BOLD,
+                                    color=ft.Colors.with_opacity(
+                                        0.5, ft.Colors.ON_SURFACE
+                                    ),
+                                ),
+                                margin=ft.margin.only(top=10),
+                            ),
+                        ),
+                    ],
+                    labels_size=32,
+                ),
+            ),
+            "LineChartData": ft.LineChartData(),
+            "LineChartDataPoint": ft.LineChartDataPoint(),
+            "PieChart": ft.PieChart(
+                sections_space=1,
+                center_space_radius=0,
+                expand=True,
+                # hovered_border = ft.BorderSide(6, ft.Colors.WHITE)
+                # on_chart_event = lambda _: print(_)
+                sections=[
+                    ft.PieChartSection(
+                        25,
+                        color=ft.Colors.BLUE,
+                        radius=80,
+                        border_side=ft.BorderSide(
+                            0, ft.Colors.with_opacity(0, ft.Colors.WHITE)
+                        ),
+                    ),
+                    ft.PieChartSection(
+                        25,
+                        color=ft.Colors.YELLOW,
+                        radius=65,
+                        border_side=ft.BorderSide(
+                            0, ft.Colors.with_opacity(0, ft.Colors.WHITE)
+                        ),
+                    ),
+                    ft.PieChartSection(
+                        25,
+                        color=ft.Colors.PINK,
+                        radius=60,
+                        border_side=ft.BorderSide(
+                            0, ft.Colors.with_opacity(0, ft.Colors.WHITE)
+                        ),
+                    ),
+                    ft.PieChartSection(
+                        25,
+                        color=ft.Colors.GREEN,
+                        radius=70,
+                        border_side=ft.BorderSide(
+                            0, ft.Colors.with_opacity(0, ft.Colors.WHITE)
+                        ),
+                    ),
+                ],
+            ),
+            "PieChartSection": ft.PieChartSection(),
             # TABLES
-            "DataTable": DataTable(page=self.page),
+            "DataTable": ft.DataTable(
+                columns=[
+                    ft.DataColumn(ft.Text("First name")),
+                    ft.DataColumn(ft.Text("Last name")),
+                    ft.DataColumn(ft.Text("Age"), numeric=True),
+                ],
+                rows=[
+                    ft.DataRow(
+                        cells=[
+                            ft.DataCell(ft.Text("John")),
+                            ft.DataCell(ft.Text("Smith")),
+                            ft.DataCell(ft.Text("43")),
+                        ],
+                    ),
+                    ft.DataRow(
+                        cells=[
+                            ft.DataCell(ft.Text("Jack")),
+                            ft.DataCell(ft.Text("Brown")),
+                            ft.DataCell(ft.Text("19")),
+                        ],
+                    ),
+                    ft.DataRow(
+                        cells=[
+                            ft.DataCell(ft.Text("Alice")),
+                            ft.DataCell(ft.Text("Wong")),
+                            ft.DataCell(ft.Text("25")),
+                        ],
+                    ),
+                ],
+            ),
         }
 
-        for full_categoryes in categorie_layout:
-            for _ in categorie_layout.get(full_categoryes):
-                check = self.modify_widge.get(_, None)
+        for full_categoryes in widgets_by_categories:
+            for _ in widgets_by_categories.get(full_categoryes):
+                check = self.widgets.get(_, None)
                 self.widgets[f"{_}"] = [
-                    Container(
-                        event_manager=lambda _: self.touch_widget_in_phone(
+                    ft.Container(
+                        tooltip=f"{_}",
+                        bgcolor=ft.Colors.with_opacity(
+                            opacity=0.2, color=ft.colors("white")
+                        ),
+                        padding=ft.padding.all(8),
+                        margin=ft.margin.all(0),
+                        border=ft.border.all(0, ft.colors("transparent")),
+                        ink=True,
+                        ink_color="red",
+                        on_click=lambda _: self.touch_widget_in_phone(
                             selected_widget=self.infinityDropWidget
                         ),
                         content=check,
                     )
                 ]
 
+    def animate(self, widget: object = None):
+        self.animated_switcher.content = (
+            self.animation_container_2
+            if self.animated_switcher.content == self.animation_container_1
+            else self.animation_container_1
+        )
+
+        self.animated_switcher.update()
+
     def build(self):
         global numWidget
 
-        """
-        check CircleAvatar, VerticalDivider
-        """
-
-        #: ALERTS STATUS
-
-        #: WIDGETS STATUS
-
-        #: ESPECIAL WIDGET
-
-        #: CHARTS LAYOUTS
-
-        # selectWidgetBox                    = GLOBAL_VAR(get_global_var='SELECT_DRAGG')
         session_id = self.page._session_id
         selectWidgetBox = self.page.session.get(session_id)
 
-        print(selectWidgetBox, "<<<<<<<")
+        print(selectWidgetBox, "<<<<<data <<")
         self.infinityDropWidget = self.widgets.get(selectWidgetBox)
-        # self.infinityDropWidget[0].id      = f"{self.dataPassed}: {numWidget}"              # OUR ID
-        # self.infinityDropWidget[0].tooltip = f"{self.dataPassed}: {numWidget}"              # TOOLTIP ID
-
-        #: SET WIDGET DROPPED TO DICT DATABASE TO EXPORT PROYECT
-        #: GLOBAL_VAR(set_global_var={'EXPORT_DATA_PHONE':{self.infinityDropWidget[0].id:self.infinityDropWidget[0]}})
-
-        # print('============')
-        # print(f"""
-        #       [+]             selected_widget: {self.dataPassed},
-        #       [+]             ID_widget: {numWidget},
-        #       [+]             UID: {self.infinityDropWidget[0].uid}
-        #       [+]             ID tooltip: {self.infinityDropWidget[0].tooltip}
-        #       [+]  Content: {self.infinityDropWidget}""")
-        # print('============')
-
         print(
-            # f"{self.dataPassed} ID: <<< drag_dropped: [infinity_box_layer_one.py]  number: {numWidget} "
             f" ID: <<< drag_dropped: [infinity_box_layer_one.py]  number: {numWidget} "
         )
 
         # MAIN WIDGET THAT WILL BE DROPPED EACH TIME THAT DRAG ACCEPT
+        print(self.infinityDropWidget[0].parent)
         self.content = self.infinityDropWidget[0]
-
         self.on_will_accept = self.drag_will_accept  # Traslate Drop
         self.on_leave = self.drag_leave  # Leafing Drop Line Border
         self.on_accept = lambda widget_passed: self.drag_accept(
@@ -303,8 +1782,6 @@ class DragTarget(ft.DragTarget):
         self.page.session.set("dict_widget", self.widgets)
 
     def show_text_dragg_selected(self, name_selected: str = "") -> None:
-        # session_id = self.page._session_id
-        # self.name_selected = self.page.session.get(session_id)
         self.name_selected = name_selected
         self.widget_selected = self.page.session.get("SHOW_TEXT_SELECTED_DRAGG_WIDGET")
         self.draggs_selected = self.page.session.get("SHOW_TEXT_SELECTED_PHONE_WIDGET")
@@ -382,73 +1859,6 @@ class DragTarget(ft.DragTarget):
         return widget_selected
 
     def drag_accept(self, DragTargetEvent: object = None) -> object:
-        """
-        NOTE:
-
-        THIS PART IS VERY IMPORTANT BECAUSE IS THE LOOP OF THE DROP WIDGET THAT WE NEED APPEND OR PASS
-        IN DEPENDENCY IF IS A CONTROLS USE APPEND AND IF IS A CONTENT WE PASS
-
-        DragTargetEvent.control.parent          << before belong [row , column , gridview]
-        DragTargetEvent.control                 << dragg_target
-        DragTargetEvent.control.content         << dragg_target content= Container
-        DragTargetEvent.control.content.content << content of Container = SelectedWidget
-
-        DragTargetEvent.control.content.content._get_control_name()
-
-        self.testing_wdiget = ft.DragTarget(
-                    group="GroupDragg",
-                    on_will_accept    = lambda dragg_item :self.dragg_on_will_accept(DragTargetEvent=dragg_item), # Traslate Drop
-                    on_leave          = lambda dragg_item :self.dragg_on_leave(DragTargetEvent=dragg_item), # Leafing Drop Line Border
-                    on_accept         = lambda dragg_item :self.dragg_on_accept(DragTargetEvent=dragg_item), # Leafing Drop Line Border
-                    content=ft.Container(width=120,height=120,bgcolor="red")
-                )
-
-        def drag_will_accept(self,DragTargetEvent: object=None):
-            DragTargetEvent.control.content.border = None
-            DragTargetEvent.control.content.border = ft.border.all(4, ft.colors('cyan900'))
-
-            DragTargetEvent.control.update()
-            self.page.update()
-
-        def dragg_on_leave(self,dragg_item: object=None):
-            DragTargetEvent.control.content.border = True
-            DragTargetEvent.control.content.border = ft.border.all(0, ft.colors('transparent'))
-
-            DragTargetEvent.control.update()
-            self.page.update()
-
-        def dragg_on_accept(self,dragg_item: object=None):
-            self.widgetFilter =  self.page.session.get("ONLY_CONTROLS_ADDING_IN_APP")
-
-            session_id = self.page._session_id
-            selectWidgetBox = self.page.session.get(session_id)
-
-            self.InstanceNewWidget = Container(dataPassed=selectWidgetBox,page=self.page)
-            self.right_control     = DragTargetEvent.control.content.content._get_control_name()
-
-            if self.right_control in self.widgetFilter:
-                # DragTargetEvent.control.content.content.controls.append(self.testing_wdiget)
-                DragTargetEvent.control.content.content.controls.append(self.InstanceNewWidget)
-
-            else:
-                if self.right_control in self.widgetFilter:
-                    DragTargetEvent.control.content.content.controls.append(self.InstanceNewWidget)
-
-                else:
-                    # SWITCH IF IS CONTENT
-                    self.over_write_selected = self.return_new_widget(selected_widget=selectWidgetBox)
-                    DragTargetEvent.control.content.content = self.over_write_selected[0].content
-
-
-            # #: UPDATE COLOR WIDGET
-            DragTargetEvent.control.content.border = True
-            DragTargetEvent.control.content.border = ft.border.all(0, ft.colors('transparent'))
-            DragTargetEvent.control.update()
-
-            self.page.update()
-
-
-        """
 
         # ROW COLUMN GRIDVIEW
         self.widgetFilter = self.page.session.get("ONLY_CONTROLS_ADDING_IN_APP")
@@ -468,7 +1878,7 @@ class DragTarget(ft.DragTarget):
             if self.is_control == "tabs":
 
                 self.payload = ft.Container(
-                    content=self.modify_widge.get("column"),
+                    content=self.widgets.get("column"),
                 )
 
                 DragTargetEvent.control.content.content.tabs.append(
@@ -516,28 +1926,7 @@ class DragTarget(ft.DragTarget):
         # print(selectWidgetBox,"==",self.right_control)
 
     def drag_will_accept(self, DragTargetEvent: object = None):
-        """
-        : UPDATE COLOR WIDGET
-        NOTE:
 
-        THIS PART IS VERY IMPORTANT BECAUSE IS THE LOOP OF THE DROP WIDGET THAT WE NEED APPEND OR PASS
-        IN DEPENDENCY IF IS A CONTROLS USE APPEND AND IF IS A CONTENT WE PASS
-
-        DragTargetEvent.control.parent          << before belong [row , column , gridview]
-        DragTargetEvent.control                 << dragg_target
-        DragTargetEvent.control.content         << dragg_target content= Container
-        DragTargetEvent.control.content.content << content of Container = SelectedWidget
-
-        DragTargetEvent.control.content.content._get_control_name()
-
-        self.testing_wdiget = ft.DragTarget(
-            group="GroupDragg",
-            on_will_accept    = lambda dragg_item :print(f"Traslate:  {dragg_item}"), # Traslate Drop
-            on_leave          = lambda dragg_item :print(f"Leaving:   {dragg_item}"), # Leafing Drop Line Border
-            on_accept         = lambda dragg_item :print(f"on_accept: {dragg_item}"), # Leafing Drop Line Border
-            content=ft.Container(width=120,height=120,bgcolor="red")
-            )
-        """
         DragTargetEvent.control.content.border = None
         DragTargetEvent.control.content.border = ft.border.all(4, ft.colors("cyan900"))
 
@@ -545,28 +1934,6 @@ class DragTarget(ft.DragTarget):
         self.page.update()
 
     def drag_leave(self, DragTargetEvent):
-        """
-        : UPDATE COLOR WIDGET
-        NOTE:
-
-        THIS PART IS VERY IMPORTANT BECAUSE IS THE LOOP OF THE DROP WIDGET THAT WE NEED APPEND OR PASS
-        IN DEPENDENCY IF IS A CONTROLS USE APPEND AND IF IS A CONTENT WE PASS
-
-        DragTargetEvent.control.parent          << before belong [row , column , gridview]
-        DragTargetEvent.control                 << dragg_target
-        DragTargetEvent.control.content         << dragg_target content= Container
-        DragTargetEvent.control.content.content << content of Container = SelectedWidget
-
-        DragTargetEvent.control.content.content._get_control_name()
-
-        self.testing_wdiget = ft.DragTarget(
-                group="GroupDragg",
-                on_will_accept    = lambda dragg_item :print(f"Traslate:  {dragg_item}"), # Traslate Drop
-                on_leave          = lambda dragg_item :print(f"Leaving:   {dragg_item}"), # Leafing Drop Line Border
-                on_accept         = lambda dragg_item :print(f"on_accept: {dragg_item}"), # Leafing Drop Line Border
-                content=ft.Container(width=120,height=120,bgcolor="red")
-                )
-        """
 
         DragTargetEvent.control.content.border = True
         DragTargetEvent.control.content.border = ft.border.all(

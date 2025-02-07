@@ -23,10 +23,6 @@ class categories(ft.Container):
         self.title = title
 
         self.ink = False
-        # self.margin = ft.margin.all(0)
-        # self.alignment = ft.alignment.center
-        # self.border_radius = ft.border_radius.all(45)
-        # self.width = 150
         self.controls_view = controls_view
         self.expand = True
 
@@ -35,12 +31,9 @@ class categories(ft.Container):
             controls=[
                 ft.Container(
                     ink=False,
-                    # bgcolor=self.drag_text_container_color,
                     padding=ft.padding.all(2),
-                    # margin=ft.margin.all(2),
                     alignment=ft.alignment.center,
                     border_radius=ft.border_radius.all(12),
-                    # border=ft.border.all(0.2, self.drag_container_border_color),
                     content=ft.Text(
                         value=self.title,
                         text_align=ft.TextAlign.LEFT,
@@ -95,7 +88,7 @@ class Build_Drag_Editor(ft.Container):
         self.padding = ft.padding.all(0)
         self.margin = ft.margin.all(3)
         self.alignment = ft.alignment.center
-        self.border_radius = ft.border_radius.all(45)
+        self.border_radius = ft.border_radius.all(16)
         self.width = 268
 
         self.bgcolor = ft.Colors.with_opacity(0.5, ft.colors("black"))
@@ -117,10 +110,11 @@ class Build_Drag_Editor(ft.Container):
         # CATEGORIES
         # categories =  {'buttons', 'text', , 'images', 'selection', 'progress', 'charts', 'layout'
         # 'tables', 'tooltips', 'divider', 'other'}
-        categorie_divider = widgets_by_categories.get("divider")
-        categorie_tabs = widgets_by_categories.get("tabs")
+        categorie_custom_widgets = widgets_by_categories.get("custom widgets")
+        categorie_navigations = widgets_by_categories.get("navigations")
         categorie_layout = widgets_by_categories.get("layout")
         categorie_buttons = widgets_by_categories.get("buttons")
+        categorie_alerts = widgets_by_categories.get("alerts")
         categorie_cupertino_buttons = widgets_by_categories.get("cupertino buttons")
         categorie_text = widgets_by_categories.get("text")
         categorie_images = widgets_by_categories.get("images")
@@ -139,30 +133,30 @@ class Build_Drag_Editor(ft.Container):
             controls=[
                 categories(
                     page=self.page,
-                    title="divider",
+                    title="custom widgets",
                     controls_view=[
                         DraggWidget(
                             page=self.page,
                             drag_box=self.drag_box,
                             widget=_,
                             color="CYAN",
-                            icons=ft.icons(categorie_divider.get(_)),
+                            icons=ft.icons(categorie_custom_widgets.get(_)),
                         )
-                        for _ in categorie_divider
+                        for _ in categorie_custom_widgets
                     ],
                 ),
                 categories(
                     page=self.page,
-                    title="tabs",
+                    title="Navigation",
                     controls_view=[
                         DraggWidget(
                             page=self.page,
                             drag_box=self.drag_box,
                             widget=_,
                             color="CYAN",
-                            icons=ft.icons(categorie_tabs.get(_)),
+                            icons=ft.icons(categorie_navigations.get(_)),
                         )
-                        for _ in categorie_tabs
+                        for _ in categorie_navigations
                     ],
                 ),
                 categories(
@@ -191,6 +185,20 @@ class Build_Drag_Editor(ft.Container):
                             icons=ft.icons(categorie_buttons.get(_)),
                         )
                         for _ in categorie_buttons
+                    ],
+                ),
+                categories(
+                    page=self.page,
+                    title="Alerts",
+                    controls_view=[
+                        DraggWidget(
+                            page=self.page,
+                            drag_box=self.drag_box,
+                            widget=_,
+                            color="CYAN",
+                            icons=ft.icons(categorie_alerts.get(_)),
+                        )
+                        for _ in categorie_alerts
                     ],
                 ),
                 categories(

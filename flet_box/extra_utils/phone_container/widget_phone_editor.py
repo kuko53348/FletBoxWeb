@@ -17,6 +17,12 @@ class Build_Phone_Editor(ft.Stack):
     color_medium: float = 0.08
     color_hight: float = 0.16
 
+    # phone_height = 768
+    # phone_width = 480
+
+    phone_height = 567
+    phone_width = 320
+
     def __init__(
         self,
         color_data=ft.colors("transparent"),
@@ -58,12 +64,12 @@ class Build_Phone_Editor(ft.Stack):
             bgcolor=ft.Colors.with_opacity(0.60, "black"),
             border=ft.border.all(2.5, ft.colors("white")),
             border_radius=ft.border_radius.all(42),
-            height=567,
+            height=self.phone_height,
+            width=self.phone_width,
             blur=(24, 24),
             ink=False,
             margin=ft.margin.all(0),
             padding=ft.padding.only(left=0, top=0, right=0, bottom=0),
-            width=320,
             content=self.Build_Phone_Editor,
         )
 

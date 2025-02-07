@@ -35,6 +35,9 @@ class GridView(ft.GridView):
     ):
         super().__init__()
         self.page = page
+        self.runs_count = 2
+        self.run_spacing = 4
+        padding = ft.padding.all(6)
 
 
 class ListView(ft.ListView):

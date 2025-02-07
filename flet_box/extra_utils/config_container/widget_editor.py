@@ -105,7 +105,7 @@ class Build_Editor(ft.Container):
         self.main_phone = main_phone
         self.padding = ft.padding.all(0)
         self.margin = ft.margin.all(3)
-        self.border_radius = ft.border_radius.all(28)
+        self.border_radius = ft.border_radius.all(16)
         self.alignment = ft.alignment.center
         self.width = 355
         self.show_tab = True

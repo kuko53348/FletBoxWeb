@@ -2,6 +2,7 @@ import flet as ft
 
 
 class Button(ft.Button):
+
     def __init__(
         self,
         page: object = ft.Page,
@@ -9,12 +10,11 @@ class Button(ft.Button):
     ):
         super().__init__()
         self.page = page
-
         self.text = "hello world dev"
-        # self.on_click = event_manager
 
 
 class ElevatedButton(ft.ElevatedButton):
+
     def __init__(
         self,
         page: object = ft.Page,
@@ -22,7 +22,6 @@ class ElevatedButton(ft.ElevatedButton):
     ):
         super().__init__()
         self.page = page
-
         self.text = "hello world dev"
         # self.on_click = event_manager
 

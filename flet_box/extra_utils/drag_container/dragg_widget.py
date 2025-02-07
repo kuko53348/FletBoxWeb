@@ -46,16 +46,13 @@ class DraggWidget(ft.Stack):
         self.DropTakeDragg = ft.Draggable(
             group="GroupDragg",
             on_drag_start=lambda _: self.SelectedWidget(selected_widget=self.widget),
-            # on_drag_complete = lambda _: self.ShowWidget(), # WILL SHOW VISIBLE AFTER DROP
             content=ft.Container(
+                padding=ft.padding.only(left=0, top=6, right=0, bottom=0),
                 width=90,
                 height=100,
                 border_radius=12,
-                # padding=ft.padding.all(4),
                 alignment=ft.alignment.center,
                 border=ft.border.all(1, self.dragg_border_color),
-                # on_click=lambda _: self.SelectedWidget(selected_widget=self.widget),
-                # on_long_press = lambda _: self.SelectedWidget(selected_widget=self.widget),
                 gradient=ft.LinearGradient(
                     begin=ft.alignment.top_center,
                     end=ft.alignment.bottom_center,
@@ -99,12 +96,6 @@ class DraggWidget(ft.Stack):
                 height=80,
                 border=ft.border.all(0.5, self.take_dragg_border_color),
                 border_radius=23,
-                # blur=(8, 8),
-                # gradient=ft.LinearGradient(
-                #     begin=ft.alignment.top_center,
-                #     end=ft.alignment.bottom_center,
-                #     colors=[self.take_dragg_bground_color, self.dragg_shadow_color],
-                # ),
                 content=ft.Column(
                     spacing=0,
                     controls=[
@@ -126,10 +117,7 @@ class DraggWidget(ft.Stack):
                                 size=16,
                                 weight=ft.FontWeight.BOLD,
                                 spans=[
-                                    ft.TextSpan(
-                                        # self.widget,
-                                        # ft.TextStyle(size=16, color=ft.colors.TRANSPARENT),
-                                    ),
+                                    ft.TextSpan(),
                                 ],
                             ),
                         ),
@@ -143,7 +131,6 @@ class DraggWidget(ft.Stack):
     def ShowWidget(self):
         self.drag_box_container.visible = True
         self.drag_box_container.update()
-        # print(self.drag_box_container,'<<<<<<<<<<<<<<<,,')
         self.reset_show_text_dragg_selected()
 
     def check_size_page(self) -> float:
@@ -185,11 +172,13 @@ class DraggWidget(ft.Stack):
         self.draggs_selected.bgcolor = "cyan,0.1"
         self.draggs_selected.update()
 
-    def SelectedWidget(self, selected_widget) -> None:
+    def SelectedWidget(self, selected_widget) -> str:
         """
-        NOTE:
+        * Note:
 
-        1. SET IN GLOBAL VAR THE SELECTED WIDGET
+        1. SET IN GLOBAL VAR THE SELECTED WIDGET THAT IS NORMAL:
+            exemple selected_widget = container
+
         2. RESET THE LIST listWidgetUpdate
 
         """
@@ -199,6 +188,7 @@ class DraggWidget(ft.Stack):
         print(
             f"{self.page.session.get(session_id)} ID: <<< SELECTED: [drag_widget.py] : selected: >>> {selected_widget}"
         )
+
         # CHECK SIZE OF PAGE IF LESS VISIBLE OFF
         try:
             self.check_size_page()
@@ -221,6 +211,3 @@ class DraggWidget(ft.Stack):
             self.error_page(
                 name_seccion="Error dragg widget line 229", body_string=error
             )
-        # self.check_size_page()
-        # self.reset_border_select_widget()
-        # self.show_text_dragg_selected()

@@ -660,7 +660,7 @@ class RobustWidgetSerializer:
                     header,
                     *declarations,
                     *assignments,
-                    "\n\t\t# Main App",
+                    "\n\t\t# Main App\n\t\t# MAKE RANGE WIDGETS\n\t\t# column_1.controls = [container_4 for _ in range(20)]",
                     *main_code,
                     full_event if not local_code else "\n",
                     footer,
