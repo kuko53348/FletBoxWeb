@@ -121,17 +121,17 @@ class DragTarget(ft.DragTarget):
             actions=[
                 ft.TextButton(
                     text="Retry",
-                    style=ft.ButtonStyle(color=ft.Colors.BLUE),
+                    style=ft.ButtonStyle(color=ft.Colors("blue")),
                     # on_click=self.page.close(self.alert_barner),
                 ),
                 ft.TextButton(
                     text="Ignore",
-                    style=ft.ButtonStyle(color=ft.Colors.BLUE),
+                    style=ft.ButtonStyle(color=ft.Colors("blue")),
                     # on_click=self.page.close(self.alert_barner),
                 ),
                 ft.TextButton(
                     text="Cancel",
-                    style=ft.ButtonStyle(color=ft.Colors.BLUE),
+                    style=ft.ButtonStyle(color=ft.Colors("blue")),
                     # on_click=self.page.close(self.alert_barner),
                 ),
             ],
@@ -196,7 +196,7 @@ class DragTarget(ft.DragTarget):
             alignment=ft.alignment.center,
             width=200,
             height=200,
-            bgcolor=ft.Colors.BLUE,
+            bgcolor=ft.Colors("blue"),
             on_click=lambda _: self.animate(widget=_.control.parent),
         )
 
@@ -210,7 +210,75 @@ class DragTarget(ft.DragTarget):
             content=self.animation_container_1,
         )
         self.image = "image97.jpeg"
-
+        self.column_swap = ft.Column(
+            width=420,
+            height=180,
+            alignment=ft.MainAxisAlignment.CENTER,
+            horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+            # spacing=16,
+            run_spacing=0,
+            spacing=12,
+            controls=[
+                ft.Container(
+                    # height=80,
+                    padding=ft.padding.only(left=8, top=8, right=8, bottom=8),
+                    border_radius=ft.border_radius.all(24),
+                    expand=True,
+                    bgcolor=ft.Colors("grey900"),
+                    content=ft.Row(
+                        controls=[
+                            ft.TextField(
+                                expand=True,
+                                bgcolor="grey900",
+                                label="You will Get",
+                                # icon=ft.Icons.ACCOUNT_CIRCLE_ROUNDED,
+                                hint_text="0",
+                                border_width=0,
+                                border_radius=ft.border_radius.all(18),
+                            ),
+                            ft.Container(
+                                border_radius=ft.border_radius.all(18),
+                                bgcolor=ft.Colors.with_opacity(
+                                    opacity=0.8,
+                                    color=ft.Colors("blue"),
+                                ),
+                                padding=ft.padding.all(8),
+                                content=ft.Icon(name="search"),
+                            ),
+                        ],
+                    ),
+                ),
+                ft.Container(
+                    # height=80,
+                    padding=ft.padding.only(left=8, top=8, right=8, bottom=8),
+                    border_radius=ft.border_radius.all(24),
+                    expand=True,
+                    bgcolor=ft.Colors("grey900"),
+                    content=ft.Row(
+                        controls=[
+                            ft.TextField(
+                                expand=True,
+                                bgcolor="grey900",
+                                label="You will Pay",
+                                # icon=ft.Icons.ACCOUNT_CIRCLE_ROUNDED,
+                                hint_text="0",
+                                border_width=0,
+                                border_radius=ft.border_radius.all(18),
+                            ),
+                            ft.Container(
+                                border_radius=ft.border_radius.all(18),
+                                bgcolor=ft.Colors.with_opacity(
+                                    opacity=0.8,
+                                    color=ft.Colors("blue"),
+                                ),
+                                padding=ft.padding.all(8),
+                                content=ft.Icon(name="search"),
+                            ),
+                        ],
+                    ),
+                ),
+            ],
+        )
         self.widgets = {
             # CUSTOM BUTTON
             # TEXT
@@ -221,13 +289,13 @@ class DragTarget(ft.DragTarget):
                         value="What is Flet?",
                         size=16,
                         weight="bold",
-                        color=ft.colors.WHITE,
+                        color=ft.Colors("white"),
                     ),
                     # Banner Description
                     ft.Text(
                         value=self.long_text,
                         size=11,
-                        color=ft.colors.WHITE70,
+                        color=ft.Colors("white70"),
                     ),
                 ],
                 spacing=16,
@@ -243,11 +311,11 @@ class DragTarget(ft.DragTarget):
                             "Cannes Film Festival",
                             size=14,
                             weight="bold",
-                            color=ft.colors.WHITE,
+                            color=ft.Colors("white"),
                         ),
                     ),
                     # Banner Description
-                    ft.Text("May 14-25, 2024", size=11, color=ft.colors.WHITE70),
+                    ft.Text("May 14-25, 2024", size=11, color=ft.Colors("white70")),
                 ],
                 spacing=5,
                 alignment=ft.MainAxisAlignment.CENTER,
@@ -260,10 +328,10 @@ class DragTarget(ft.DragTarget):
                         "Cannes Film Festival",
                         size=14,
                         weight="bold",
-                        color=ft.colors.WHITE,
+                        color=ft.Colors("white"),
                     ),
                     # Banner Description
-                    ft.Text("May 14-25, 2024", size=11, color=ft.colors.WHITE70),
+                    ft.Text("May 14-25, 2024", size=11, color=ft.Colors("white70")),
                 ],
                 spacing=5,
                 alignment=ft.MainAxisAlignment.CENTER,
@@ -279,20 +347,20 @@ class DragTarget(ft.DragTarget):
                                 value="Cannes Film Festival",
                                 size=13,
                                 weight="bold",
-                                color=ft.colors.WHITE,
+                                color=ft.Colors("white"),
                             ),
                             # Banner Description
                             ft.Text(
                                 value="Date: May 14-25, 2024",
                                 size=12,
-                                color=ft.colors.WHITE70,
+                                color=ft.Colors("white70"),
                             ),
                         ],
                         spacing=2,
                         alignment=ft.MainAxisAlignment.CENTER,
                         horizontal_alignment=ft.CrossAxisAlignment.START,
                     ),
-                    ft.Text("New york ", size=11, color=ft.colors.WHITE70),
+                    ft.Text("New york ", size=11, color=ft.Colors("white70")),
                 ],
                 spacing=2,
                 alignment=ft.MainAxisAlignment.CENTER,
@@ -305,17 +373,33 @@ class DragTarget(ft.DragTarget):
                         value="Cannes Film Festival",
                         size=13,
                         weight="bold",
-                        color=ft.colors.WHITE,
+                        color=ft.Colors("white"),
                     ),
                     # Banner Description
                     ft.Text(
-                        value="Date: May 14-25, 2024", size=12, color=ft.colors.WHITE70
+                        value="Date: May 14-25, 2024",
+                        size=12,
+                        color=ft.Colors("white70"),
                     ),
-                    ft.Text(value="New york ", size=11, color=ft.colors.WHITE70),
+                    ft.Text(value="New york ", size=11, color=ft.Colors("white70")),
                 ],
                 spacing=2,
                 alignment=ft.MainAxisAlignment.CENTER,
                 horizontal_alignment=ft.CrossAxisAlignment.START,
+            ),
+            "star": ft.Row(
+                alignment=ft.MainAxisAlignment.CENTER,
+                vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                run_alignment=ft.CrossAxisAlignment.CENTER,
+                spacing=6,
+                run_spacing=8,
+                controls=[
+                    ft.Icon(name="star_rounded", size=12),
+                    ft.Icon(name="star_rounded", size=12),
+                    ft.Icon(name="star_rounded", size=12),
+                    ft.Icon(name="star_rounded", size=12),
+                    ft.Icon(name="star_rounded", size=12),
+                ],
             ),
             # CARDS UI DESIGN
             "film_festival_banner": ft.Container(
@@ -326,7 +410,7 @@ class DragTarget(ft.DragTarget):
                 gradient=ft.LinearGradient(
                     begin=ft.alignment.top_left,
                     end=ft.alignment.bottom_right,
-                    colors=[ft.colors.BLACK12, ft.colors.BLACK87],
+                    colors=[ft.Colors("black12"), ft.Colors("black87")],
                 ),
                 content=ft.Column(
                     controls=[
@@ -335,10 +419,10 @@ class DragTarget(ft.DragTarget):
                             "Cannes Film Festival",
                             size=24,
                             weight="bold",
-                            color=ft.colors.WHITE,
+                            color=ft.Colors("white"),
                         ),
                         # Banner Description
-                        ft.Text("May 14-25, 2024", size=16, color=ft.colors.WHITE70),
+                        ft.Text("May 14-25, 2024", size=16, color=ft.Colors("white70")),
                     ],
                     spacing=5,
                     alignment=ft.MainAxisAlignment.CENTER,
@@ -367,13 +451,13 @@ class DragTarget(ft.DragTarget):
                                             "Cannes Film Festival",
                                             size=11,
                                             weight="bold",
-                                            color=ft.colors.WHITE,
+                                            color=ft.Colors("white"),
                                         ),
                                         # Banner Description
                                         ft.Text(
                                             "May 14-25, 2024",
                                             size=10,
-                                            color=ft.colors.WHITE70,
+                                            color=ft.Colors("white70"),
                                         ),
                                     ],
                                     spacing=5,
@@ -385,6 +469,74 @@ class DragTarget(ft.DragTarget):
                     ],
                 ),
             ),
+            "swap_dapp": ft.Container(
+                # height=80,
+                padding=ft.padding.only(left=8, top=8, right=8, bottom=8),
+                border_radius=ft.border_radius.all(32),
+                bgcolor=ft.Colors("black45"),
+                content=ft.Column(
+                    controls=[
+                        ft.Stack(
+                            controls=[
+                                self.column_swap,
+                                ft.Container(
+                                    border_radius=ft.border_radius.all(12),
+                                    bgcolor="black54",
+                                    left=self.column_swap.width / 2.3,
+                                    right=self.column_swap.width / 2.3,
+                                    top=self.column_swap.height / 2.4,
+                                    bottom=self.column_swap.height / 2.4,
+                                    content=ft.Icon(
+                                        name="swap_vertical_circle_rounded"
+                                    ),
+                                ),
+                            ],
+                        ),
+                        ft.Container(
+                            # height=80,
+                            width=420,
+                            padding=ft.padding.only(left=8, top=8, right=8, bottom=8),
+                            border_radius=ft.border_radius.all(24),
+                            expand=True,
+                            bgcolor=ft.Colors("grey900"),
+                            content=ft.Dropdown(
+                                autofocus=True,
+                                hint_text="1 USDT = ???? ",
+                                icon_disabled_color=True,
+                                border_width=0,
+                                options=[
+                                    ft.dropdown.Option("1 UST == 0.00064 ETH"),
+                                    ft.dropdown.Option("1 UST == 0.000000064 BTC"),
+                                    ft.dropdown.Option("1 UST == 1.5 TRX"),
+                                    ft.dropdown.Option("1 UST == 2.2 POL"),
+                                ],
+                            ),
+                        ),
+                        ft.Container(
+                            width=420,
+                            expand=True,
+                            padding=ft.padding.only(
+                                left=12, top=12, right=12, bottom=12
+                            ),
+                            border_radius=ft.border_radius.all(24),
+                            bgcolor=ft.Colors("blue900"),
+                            content=ft.Row(
+                                controls=[
+                                    ft.Text(
+                                        "Connect wallet",
+                                        size=14,
+                                        color=ft.Colors("grey"),
+                                        weight="bold",
+                                    ),
+                                    ft.Icon(name="navigate_next_rounded"),
+                                ],
+                                alignment=ft.MainAxisAlignment.CENTER,
+                                vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                            ),
+                        ),
+                    ]
+                ),
+            ),
             "sales_banner": ft.Container(
                 # height=80,
                 padding=ft.padding.only(left=12, top=8, right=12, bottom=8),
@@ -394,7 +546,7 @@ class DragTarget(ft.DragTarget):
                 # gradient=ft.LinearGradient(
                 #     begin=ft.alignment.top_left,
                 #     end=ft.alignment.bottom_right,
-                #     colors=[ft.colors.PURPLE, ft.colors.BLUE],
+                #     colors=[ft.colors.PURPLE, ft.Colors("blue")],
                 # ),
                 content=ft.Row(
                     controls=[
@@ -414,13 +566,13 @@ class DragTarget(ft.DragTarget):
                                             "Cannes Film Festival",
                                             size=11,
                                             weight="bold",
-                                            color=ft.colors.WHITE,
+                                            color=ft.Colors("white"),
                                         ),
                                         # Banner Description
                                         ft.Text(
                                             "May 14-25, 2024",
                                             size=10,
-                                            color=ft.colors.WHITE70,
+                                            color=ft.Colors("white70"),
                                         ),
                                     ],
                                     spacing=5,
@@ -433,7 +585,7 @@ class DragTarget(ft.DragTarget):
                             content=ft.Text(
                                 value="$999",
                                 size=16,
-                                # color=ft.colors.BLUE,
+                                # color=ft.Colors("blue"),
                                 weight="bold",
                             ),
                             expand=True,
@@ -452,7 +604,7 @@ class DragTarget(ft.DragTarget):
                 # gradient=ft.LinearGradient(
                 #     begin=ft.alignment.top_left,
                 #     end=ft.alignment.bottom_right,
-                #     colors=[ft.colors.PURPLE, ft.colors.BLUE],
+                #     colors=[ft.colors.PURPLE, ft.Colors("blue")],
                 # ),
                 content=ft.Row(
                     controls=[
@@ -472,13 +624,13 @@ class DragTarget(ft.DragTarget):
                                             "Cannes Film Festival",
                                             size=11,
                                             weight="bold",
-                                            color=ft.colors.WHITE,
+                                            color=ft.Colors("white"),
                                         ),
                                         # Banner Description
                                         ft.Text(
                                             "May 14-25, 2024",
                                             size=10,
-                                            color=ft.colors.WHITE70,
+                                            color=ft.Colors("white70"),
                                         ),
                                         ft.Row(
                                             controls=[
@@ -486,7 +638,7 @@ class DragTarget(ft.DragTarget):
                                                 ft.Text(
                                                     value="Addres of presentation",
                                                     size=10,
-                                                    color=ft.colors.WHITE70,
+                                                    color=ft.Colors("white70"),
                                                 ),
                                             ]
                                         ),
@@ -501,7 +653,7 @@ class DragTarget(ft.DragTarget):
                             content=ft.Text(
                                 value="$999",
                                 size=16,
-                                # color=ft.colors.BLUE,
+                                # color=ft.Colors("blue"),
                                 weight="bold",
                             ),
                             expand=True,
@@ -527,13 +679,13 @@ class DragTarget(ft.DragTarget):
                                             "Cannes Film Festival",
                                             size=11,
                                             weight="bold",
-                                            color=ft.colors.WHITE,
+                                            color=ft.Colors("white"),
                                         ),
                                         # Banner Description
                                         ft.Text(
                                             "May 14-25, 2024",
                                             size=10,
-                                            color=ft.colors.WHITE70,
+                                            color=ft.Colors("white70"),
                                         ),
                                     ],
                                     spacing=5,
@@ -554,6 +706,189 @@ class DragTarget(ft.DragTarget):
                     vertical_alignment=ft.CrossAxisAlignment.CENTER,
                 ),
             ),
+            "right_divider_banner": ft.Container(
+                # height=80,
+                padding=ft.padding.only(left=12, top=8, right=12, bottom=8),
+                border_radius=ft.border_radius.all(12),
+                bgcolor=ft.Colors("black45"),
+                content=ft.Row(
+                    controls=[
+                        ft.Row(
+                            controls=[
+                                ft.Column(
+                                    wrap=True,
+                                    controls=[
+                                        # Banner Title
+                                        ft.Text(
+                                            "Cannes Film Festival",
+                                            size=11,
+                                            weight="bold",
+                                            color=ft.Colors("white"),
+                                        ),
+                                        ft.Container(
+                                            border_radius=ft.border_radius.only(
+                                                top_left=8,
+                                                top_right=8,
+                                                bottom_left=8,
+                                                bottom_right=8,
+                                            ),
+                                            height=1,
+                                            width=140,
+                                            bgcolor=ft.Colors.with_opacity(
+                                                opacity=0.2,
+                                                color=ft.Colors("white"),
+                                            ),
+                                        ),
+                                        # Banner Description
+                                        ft.Text(
+                                            value="Flet is a framework that allows building web, \ndesktop and mobile applications in Python.",
+                                            size=10,
+                                            color=ft.Colors("white70"),
+                                        ),
+                                    ],
+                                    spacing=5,
+                                    alignment=ft.MainAxisAlignment.CENTER,
+                                    horizontal_alignment=ft.CrossAxisAlignment.START,
+                                ),
+                            ],
+                        ),
+                        ft.Image(
+                            src=self.image,
+                            width=40,
+                            height=40,
+                            fit=ft.ImageFit.COVER,
+                            border_radius=ft.border_radius.all(32),
+                        ),
+                    ],
+                    alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+                    vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                ),
+            ),
+            "custom FextField": ft.Container(
+                # height=80,
+                padding=ft.padding.only(left=8, top=8, right=8, bottom=8),
+                border_radius=ft.border_radius.all(24),
+                expand=True,
+                bgcolor=ft.Colors("black45"),
+                content=ft.Row(
+                    controls=[
+                        ft.TextField(
+                            expand=True,
+                            bgcolor="black12",
+                            label="Search",
+                            # icon=ft.Icons.ACCOUNT_CIRCLE_ROUNDED,
+                            hint_text="Fill correct data",
+                            border_width=0,
+                            border_radius=ft.border_radius.all(18),
+                        ),
+                        ft.Container(
+                            border_radius=ft.border_radius.all(18),
+                            bgcolor=ft.Colors.with_opacity(
+                                opacity=0.8,
+                                color=ft.Colors("blue"),
+                            ),
+                            padding=ft.padding.all(8),
+                            content=ft.Icon(name="search"),
+                        ),
+                    ],
+                ),
+            ),
+            "date_banner": ft.Container(
+                # height=80,
+                padding=ft.padding.only(left=12, top=18, right=12, bottom=18),
+                border_radius=ft.border_radius.all(18),
+                bgcolor=ft.Colors("black45"),
+                content=ft.Column(
+                    width=95,
+                    controls=[
+                        # Banner Title
+                        ft.Text(
+                            "21",
+                            size=50,
+                            weight="bold",
+                            color=ft.Colors("white"),
+                        ),
+                        # DIVIDER
+                        ft.Divider(
+                            height=1,
+                            color=ft.Colors.with_opacity(
+                                opacity=0.1,
+                                color=ft.Colors("white"),
+                            ),
+                            thickness=1,
+                        ),
+                        # Banner Description
+                        ft.Text(
+                            "Film Festival",
+                            size=11,
+                            weight="bold",
+                            color=ft.Colors("white"),
+                        ),
+                    ],
+                    spacing=12,
+                    alignment=ft.MainAxisAlignment.CENTER,
+                    horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+                ),
+            ),
+            "cloud_barnner": ft.Container(
+                # height=80,
+                padding=ft.padding.only(left=12, top=8, right=12, bottom=8),
+                border_radius=ft.border_radius.all(12),
+                bgcolor=ft.Colors("black45"),
+                content=ft.Row(
+                    controls=[
+                        # Banner Title
+                        ft.Container(
+                            expand=True,
+                            content=ft.Text(
+                                value="Saturday Sep 19 New york",
+                                size=13,
+                                weight="bold",
+                                color=ft.Colors("white"),
+                                width=100,
+                            ),
+                        ),
+                        # DIVIDER
+                        ft.Container(
+                            border_radius=ft.border_radius.only(
+                                top_left=8,
+                                top_right=8,
+                                bottom_left=8,
+                                bottom_right=8,
+                            ),
+                            padding=ft.padding.only(left=12, top=8, right=12, bottom=8),
+                            height=50,
+                            width=0.5,
+                            bgcolor=ft.Colors.with_opacity(
+                                opacity=0.2,
+                                color=ft.Colors("white"),
+                            ),
+                        ),
+                        # Banner Description
+                        ft.Text(
+                            value="25",
+                            size=34,
+                            color=ft.Colors("white70"),
+                        ),
+                        ft.Column(
+                            spacing=0,
+                            run_spacing=0,
+                            horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+                            alignment=ft.MainAxisAlignment.CENTER,
+                            controls=[
+                                ft.Icon(name="cloud_rounded"),
+                                ft.Text(
+                                    value="Cloud",
+                                    weight="bold",
+                                ),
+                            ],
+                        ),
+                    ],
+                    spacing=12,
+                    alignment=ft.MainAxisAlignment.CENTER,
+                    vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                ),
+            ),
             "upload_buttom": ft.Container(
                 expand=True,
                 padding=ft.padding.only(left=12, top=8, right=12, bottom=8),
@@ -565,7 +900,7 @@ class DragTarget(ft.DragTarget):
                         ft.Text(
                             "Upload Picture",
                             size=14,
-                            color=ft.colors.GREY,
+                            color=ft.Colors("grey"),
                             weight="bold",
                         ),
                     ],
@@ -585,7 +920,7 @@ class DragTarget(ft.DragTarget):
                         ft.Text(
                             "Get Start",
                             size=14,
-                            color=ft.colors.GREY,
+                            color=ft.Colors("grey"),
                             weight="bold",
                         ),
                     ],
@@ -604,7 +939,7 @@ class DragTarget(ft.DragTarget):
                         ft.Text(
                             "Get Start",
                             size=14,
-                            color=ft.colors.GREY,
+                            color=ft.Colors("grey"),
                             weight="bold",
                         ),
                         ft.Icon(name="navigate_next_rounded"),
@@ -613,12 +948,357 @@ class DragTarget(ft.DragTarget):
                     vertical_alignment=ft.CrossAxisAlignment.CENTER,
                 ),
             ),
+            "horizontal_bar": ft.Container(
+                # height=80,
+                padding=ft.padding.only(left=0, top=8, right=0, bottom=8),
+                border_radius=ft.border_radius.all(12),
+                bgcolor=ft.Colors("grey900"),
+                content=ft.Row(
+                    height=32,
+                    # height=200,
+                    alignment=ft.MainAxisAlignment.CENTER,
+                    vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                    # spacing=16,
+                    run_spacing=0,
+                    spacing=12,
+                    controls=[
+                        ft.Container(
+                            ink=True,
+                            content=ft.Column(
+                                run_spacing=0,
+                                spacing=0,
+                                horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+                                controls=[
+                                    ft.Icon(
+                                        name="account_balance_wallet", color="cyan"
+                                    ),
+                                    ft.Text(
+                                        value="wallet",
+                                        size=8,
+                                    ),
+                                ],
+                            ),
+                        ),
+                        ft.Container(
+                            ink=True,
+                            content=ft.Column(
+                                run_spacing=0,
+                                spacing=0,
+                                horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+                                controls=[
+                                    ft.Icon(name="bar_chart_rounded", color="cyan"),
+                                    ft.Text(
+                                        value="market",
+                                        size=8,
+                                    ),
+                                ],
+                            ),
+                        ),
+                        ft.Container(
+                            ink=True,
+                            content=ft.Column(
+                                run_spacing=0,
+                                spacing=0,
+                                horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+                                controls=[
+                                    ft.Icon(name="six_ft_apart_rounded", color="cyan"),
+                                    ft.Text(
+                                        value="transact",
+                                        size=8,
+                                    ),
+                                ],
+                            ),
+                        ),
+                        ft.Container(
+                            ink=True,
+                            content=ft.Column(
+                                run_spacing=0,
+                                spacing=0,
+                                horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+                                controls=[
+                                    ft.Icon(
+                                        name="flip_camera_android_rounded", color="cyan"
+                                    ),
+                                    ft.Text(
+                                        value="DApps",
+                                        size=8,
+                                    ),
+                                ],
+                            ),
+                        ),
+                        ft.Container(
+                            ink=True,
+                            content=ft.Column(
+                                run_spacing=0,
+                                spacing=0,
+                                horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+                                controls=[
+                                    ft.Icon(
+                                        name="currency_bitcoin_rounded", color="cyan"
+                                    ),
+                                    ft.Text(
+                                        value="Yield",
+                                        size=8,
+                                    ),
+                                ],
+                            ),
+                        ),
+                    ],
+                ),
+            ),
+            "vertical_bar": ft.Container(
+                # height=80,
+                padding=ft.padding.only(left=8, top=18, right=8, bottom=16),
+                border_radius=ft.border_radius.all(12),
+                bgcolor=ft.Colors("grey900"),
+                content=ft.Column(
+                    width=32,
+                    # height=200,
+                    alignment=ft.MainAxisAlignment.CENTER,
+                    horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+                    # spacing=16,
+                    run_spacing=0,
+                    spacing=12,
+                    controls=[
+                        ft.Container(
+                            ink=True,
+                            content=ft.Column(
+                                run_spacing=0,
+                                spacing=0,
+                                horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+                                controls=[
+                                    ft.Icon(
+                                        name="account_balance_wallet", color="cyan"
+                                    ),
+                                    ft.Text(
+                                        value="wallet",
+                                        size=8,
+                                    ),
+                                ],
+                            ),
+                        ),
+                        ft.Container(
+                            ink=True,
+                            content=ft.Column(
+                                run_spacing=0,
+                                spacing=0,
+                                horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+                                controls=[
+                                    ft.Icon(name="bar_chart_rounded", color="cyan"),
+                                    ft.Text(
+                                        value="market",
+                                        size=8,
+                                    ),
+                                ],
+                            ),
+                        ),
+                        ft.Container(
+                            ink=True,
+                            content=ft.Column(
+                                run_spacing=0,
+                                spacing=0,
+                                horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+                                controls=[
+                                    ft.Icon(name="six_ft_apart_rounded", color="cyan"),
+                                    ft.Text(
+                                        value="transact",
+                                        size=8,
+                                    ),
+                                ],
+                            ),
+                        ),
+                        ft.Container(
+                            ink=True,
+                            content=ft.Column(
+                                run_spacing=0,
+                                spacing=0,
+                                horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+                                controls=[
+                                    ft.Icon(
+                                        name="flip_camera_android_rounded", color="cyan"
+                                    ),
+                                    ft.Text(
+                                        value="DApps",
+                                        size=8,
+                                    ),
+                                ],
+                            ),
+                        ),
+                        ft.Container(
+                            ink=True,
+                            content=ft.Column(
+                                run_spacing=0,
+                                spacing=0,
+                                horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+                                controls=[
+                                    ft.Icon(
+                                        name="currency_bitcoin_rounded", color="cyan"
+                                    ),
+                                    ft.Text(
+                                        value="Yield",
+                                        size=8,
+                                    ),
+                                ],
+                            ),
+                        ),
+                    ],
+                ),
+            ),
+            "enter pin": ft.Container(
+                # height=80,
+                padding=ft.padding.only(left=8, top=18, right=8, bottom=16),
+                border_radius=ft.border_radius.all(24),
+                bgcolor=ft.Colors("black54"),
+                content=ft.Column(
+                    width=280,
+                    # height=200,
+                    alignment=ft.MainAxisAlignment.CENTER,
+                    horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+                    # spacing=16,
+                    run_spacing=12,
+                    controls=[
+                        ft.Container(
+                            #: [rotate,offset] , [scale,aspect_ratio] , [visible,disabled]
+                            # tooltip='Container',
+                            padding=ft.padding.only(left=8, right=8, bottom=0, top=0),
+                            # border_radius=ft.border_radius.only(top_left=8, top_right=8, bottom_left=8, bottom_right=8),
+                            # border=ft.border.all(width=2, color=ft.colors('black12')),
+                            # gradient=ft.LinearGradient(begin=ft.alignment.top_center, end=ft.alignment.bottom_center,colors=[ft.colors('transparent'), ft.colors('black12'),],),
+                            # shadow=ft.BoxShadow(spread_radius=1, blur_radius =15, color=ft.colors('bluegrey300'), offset=ft.Offset(0,0), blur_style=ft.ShadowBlurStyle.OUTER,),
+                            # height=150,
+                            # width=150,
+                            # ink=True,
+                            ink_color=ft.colors("yellow"),
+                            expand=True,
+                            alignment=ft.alignment.center_left,
+                            content=ft.IconButton(
+                                icon="navigate_before_rounded",
+                                bgcolor="black12",
+                                icon_color="red",
+                            ),
+                            # on_click=lambda tmp_widget: print(tmp_widget.controls),
+                            # on_hover=lambda tmp_widget: print(tmp_widget.controls),
+                            # on_long_press=lambda tmp_widget: print(tmp_widget.controls),
+                        ),
+                        ft.Container(
+                            padding=ft.padding.only(left=8, right=8, bottom=8, top=0),
+                            content=ft.Text(
+                                expand=True,
+                                value="Enter your pin",
+                                text_align=ft.TextAlign.CENTER,
+                                weight=ft.FontWeight.BOLD,
+                                font_family="Consolas",
+                                size=18,
+                            ),
+                        ),
+                        ft.Container(
+                            padding=ft.padding.only(left=8, right=8, bottom=8, top=0),
+                            content=ft.Row(
+                                wrap=True,
+                                alignment=ft.MainAxisAlignment.CENTER,
+                                vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                                run_alignment=ft.CrossAxisAlignment.CENTER,
+                                spacing=6,
+                                run_spacing=8,
+                                controls=[
+                                    ft.Container(
+                                        width=60,
+                                        height=60,
+                                        border_radius=ft.border_radius.all(12),
+                                        content=ft.TextField(
+                                            bgcolor="black12",
+                                            min_lines=1,
+                                            shift_enter=False,
+                                            max_length=1,
+                                            text_align=ft.TextAlign.CENTER,
+                                            text_vertical_align=ft.VerticalAlignment.CENTER,
+                                            border_width=0,
+                                            border_radius=ft.border_radius.all(18),
+                                            password=True,
+                                        ),
+                                    ),
+                                    ft.Container(
+                                        width=60,
+                                        height=60,
+                                        border_radius=ft.border_radius.all(12),
+                                        content=ft.TextField(
+                                            bgcolor="black12",
+                                            min_lines=1,
+                                            shift_enter=False,
+                                            max_length=1,
+                                            text_align=ft.TextAlign.CENTER,
+                                            text_vertical_align=ft.VerticalAlignment.CENTER,
+                                            border_width=0,
+                                            border_radius=ft.border_radius.all(18),
+                                            password=True,
+                                        ),
+                                    ),
+                                    ft.Container(
+                                        width=60,
+                                        height=60,
+                                        border_radius=ft.border_radius.all(12),
+                                        content=ft.TextField(
+                                            bgcolor="black12",
+                                            min_lines=1,
+                                            shift_enter=False,
+                                            max_length=1,
+                                            text_align=ft.TextAlign.CENTER,
+                                            text_vertical_align=ft.VerticalAlignment.CENTER,
+                                            border_width=0,
+                                            border_radius=ft.border_radius.all(18),
+                                            password=True,
+                                        ),
+                                    ),
+                                    ft.Container(
+                                        width=60,
+                                        height=60,
+                                        border_radius=ft.border_radius.all(12),
+                                        content=ft.TextField(
+                                            bgcolor="black12",
+                                            min_lines=1,
+                                            shift_enter=False,
+                                            max_length=1,
+                                            text_align=ft.TextAlign.CENTER,
+                                            text_vertical_align=ft.VerticalAlignment.CENTER,
+                                            border_width=0,
+                                            border_radius=ft.border_radius.all(18),
+                                            password=True,
+                                        ),
+                                    ),
+                                ],
+                            ),
+                        ),
+                        ft.Container(
+                            padding=ft.padding.only(
+                                left=12, top=12, right=12, bottom=12
+                            ),
+                            margin=ft.margin.only(left=8, top=0, right=8, bottom=0),
+                            # width=220,
+                            border_radius=ft.border_radius.all(18),
+                            bgcolor=ft.Colors("black45"),
+                            content=ft.Row(
+                                controls=[
+                                    ft.Text(
+                                        "Confirm",
+                                        size=14,
+                                        color=ft.Colors("grey"),
+                                        weight="bold",
+                                    ),
+                                    ft.Icon(name="navigate_next_rounded"),
+                                ],
+                                alignment=ft.MainAxisAlignment.CENTER,
+                                vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                            ),
+                        ),
+                    ],
+                ),
+            ),
             "offer_card": ft.Container(
                 expand=True,
                 padding=ft.padding.only(left=12, top=12, right=12, bottom=12),
                 border_radius=ft.border_radius.all(12),
                 width=340,
-                bgcolor=ft.Colors("black45"),
+                bgcolor=ft.Colors("bluegrey900"),
                 image=ft.DecorationImage(
                     src="Ebay icon.png",
                     fit="cover",
@@ -633,13 +1313,13 @@ class DragTarget(ft.DragTarget):
                                     value="35% OFF",
                                     size=18,
                                     weight="bold",
-                                    color=ft.colors.WHITE,
+                                    color=ft.Colors("white"),
                                 ),
                                 # Banner Description
                                 ft.Text(
                                     value="Get Best offer now",
                                     size=12,
-                                    color=ft.colors.WHITE70,
+                                    color=ft.Colors("white70"),
                                 ),
                                 ft.Container(
                                     expand=True,
@@ -657,7 +1337,7 @@ class DragTarget(ft.DragTarget):
                                     content=ft.Text(
                                         value="Buy Now ",
                                         size=11,
-                                        color=ft.colors.WHITE70,
+                                        color=ft.Colors("white70"),
                                     ),
                                 ),
                             ],
@@ -677,11 +1357,304 @@ class DragTarget(ft.DragTarget):
                     vertical_alignment=ft.CrossAxisAlignment.CENTER,
                 ),
             ),
+            "verify_password": ft.Container(
+                # height=80,
+                padding=ft.padding.only(left=12, top=16, right=12, bottom=16),
+                border_radius=ft.border_radius.all(24),
+                bgcolor=ft.Colors("grey900"),
+                content=ft.Column(
+                    alignment=ft.MainAxisAlignment.CENTER,
+                    horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+                    run_alignment=ft.CrossAxisAlignment.CENTER,
+                    spacing=8,
+                    run_spacing=12,
+                    controls=[
+                        ft.Text(value="Verify your password", weight="bold", size=18),
+                        ft.Text(
+                            width=240,
+                            value="Flet is a framework that allows building web, desktop and mobile",
+                            size=12,
+                            color="white24",
+                            text_align=ft.TextAlign.CENTER,
+                        ),
+                        ft.Container(
+                            # height=80,
+                            padding=ft.padding.only(left=8, top=8, right=8, bottom=8),
+                            border_radius=ft.border_radius.all(24),
+                            expand=True,
+                            # bgcolor=ft.Colors("black45"),
+                            content=ft.TextField(
+                                expand=True,
+                                bgcolor="black12",
+                                label="Password",
+                                # icon=ft.Icons.ACCOUNT_CIRCLE_ROUNDED,
+                                hint_text="Fill correct data",
+                                password=True,
+                                border_width=0,
+                                border_radius=ft.border_radius.all(18),
+                            ),
+                        ),
+                        ft.Column(
+                            controls=[
+                                ft.Container(
+                                    expand=True,
+                                    padding=ft.padding.only(
+                                        left=12, top=8, right=12, bottom=8
+                                    ),
+                                    border_radius=ft.border_radius.all(16),
+                                    bgcolor=ft.Colors("white"),
+                                    content=ft.Row(
+                                        controls=[
+                                            ft.Text(
+                                                "Continue",
+                                                size=14,
+                                                color=ft.Colors("grey900"),
+                                                weight="bold",
+                                            ),
+                                        ],
+                                        alignment=ft.MainAxisAlignment.CENTER,
+                                        vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                                    ),
+                                ),
+                                ft.Container(
+                                    expand=True,
+                                    padding=ft.padding.only(
+                                        left=12, top=8, right=12, bottom=8
+                                    ),
+                                    border_radius=ft.border_radius.all(16),
+                                    bgcolor=ft.Colors("red"),
+                                    content=ft.Row(
+                                        controls=[
+                                            ft.Text(
+                                                "Cancel",
+                                                size=14,
+                                                color=ft.Colors("white"),
+                                                weight="bold",
+                                            ),
+                                        ],
+                                        alignment=ft.MainAxisAlignment.CENTER,
+                                        vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                                    ),
+                                ),
+                            ]
+                        ),
+                    ],
+                ),
+            ),
+            "offer_left_card": ft.Container(
+                expand=True,
+                padding=ft.padding.only(left=12, top=12, right=12, bottom=12),
+                border_radius=ft.border_radius.all(12),
+                width=340,
+                bgcolor=ft.Colors("bluegrey900"),
+                image=ft.DecorationImage(
+                    src="Ebay icon.png",
+                    fit="cover",
+                    opacity=0.18,
+                ),
+                content=ft.Row(
+                    controls=[
+                        ft.Column(
+                            controls=[
+                                # Banner Title
+                                ft.Text(
+                                    value="35% OFF",
+                                    size=18,
+                                    weight="bold",
+                                    color=ft.Colors("white"),
+                                ),
+                                # Banner Description
+                                ft.Text(
+                                    value="Get Best offer now",
+                                    size=12,
+                                    color=ft.Colors("white70"),
+                                ),
+                            ],
+                            spacing=2,
+                            alignment=ft.MainAxisAlignment.CENTER,
+                            horizontal_alignment=ft.CrossAxisAlignment.START,
+                        ),
+                        ft.Container(
+                            expand=True,
+                            padding=ft.padding.only(left=12, top=8, right=12, bottom=8),
+                            border_radius=ft.border_radius.all(12),
+                            ink_color=ft.colors("yellow"),
+                            alignment=ft.alignment.center,
+                            width=100,
+                            bgcolor=ft.Colors("black45"),
+                            content=ft.Text(
+                                value="Buy Now ",
+                                size=11,
+                                color=ft.Colors("white70"),
+                            ),
+                        ),
+                    ],
+                    alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+                    vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                ),
+            ),
+            "temperature_button": ft.Container(
+                # height=80,
+                padding=ft.padding.only(left=12, top=16, right=12, bottom=16),
+                border_radius=ft.border_radius.all(24),
+                bgcolor=ft.Colors("grey900"),
+                content=ft.Column(
+                    alignment=ft.MainAxisAlignment.CENTER,
+                    horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+                    run_alignment=ft.CrossAxisAlignment.CENTER,
+                    spacing=8,
+                    run_spacing=12,
+                    controls=[
+                        ft.Icon(name="ac_unit_rounded"),
+                        ft.Text(value="Room", weight="bold", size=10),
+                    ],
+                ),
+            ),
+            "temperature_card": ft.Container(
+                padding=ft.padding.only(left=12, top=8, right=12, bottom=8),
+                width=160,
+                border_radius=ft.border_radius.all(12),
+                bgcolor=ft.Colors("bluegrey900"),
+                height=200,
+                image=ft.DecorationImage(
+                    src="Ebay icon.png",
+                    fit="cover",
+                    opacity=0.18,
+                ),
+                content=ft.Column(
+                    spacing=4,
+                    controls=[
+                        ft.Column(
+                            controls=[
+                                ft.Row(
+                                    controls=[
+                                        ft.Text(
+                                            value="Humidler",
+                                            size=24,
+                                            weight="bold",
+                                        ),
+                                        ft.Icon(name="water_drop_rounded"),
+                                    ],
+                                    alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+                                    vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                                ),
+                                ft.Text(
+                                    value="Humidler",
+                                    size=10,
+                                ),
+                                ft.Text(value="Air", size=11),
+                            ]
+                        ),
+                        ft.Column(
+                            controls=[
+                                ft.Divider(),
+                                ft.Row(
+                                    controls=[
+                                        ft.Text(value="On"),
+                                        ft.Switch(value=False),
+                                    ],
+                                    alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+                                    vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                                ),
+                            ],
+                        ),
+                    ],
+                    alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+                    horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+                ),
+            ),
+            "ubication_car": ft.Container(
+                # height=80,
+                padding=ft.padding.only(left=14, top=14, right=14, bottom=14),
+                border_radius=ft.border_radius.all(24),
+                bgcolor=ft.Colors("black45"),
+                content=ft.Column(
+                    alignment=ft.MainAxisAlignment.CENTER,
+                    horizontal_alignment=ft.CrossAxisAlignment.START,
+                    run_alignment=ft.CrossAxisAlignment.CENTER,
+                    spacing=8,
+                    run_spacing=12,
+                    controls=[
+                        ft.Container(
+                            bgcolor="red",
+                            border_radius=ft.border_radius.all(24),
+                            padding=ft.padding.only(left=4, top=4, right=4, bottom=4),
+                            # width=240,
+                            height=200,
+                            expand=True,
+                            image=ft.DecorationImage(
+                                src=self.image,
+                                fit=ft.ImageFit.COVER,
+                                opacity=0.8,
+                            ),
+                            content=ft.Column(
+                                spacing=8,
+                                run_spacing=8,
+                                controls=[
+                                    ft.IconButton(
+                                        icon="favorite",
+                                        bgcolor="black45",
+                                        icon_color="red",
+                                    ),
+                                    ft.Container(),
+                                ],
+                            ),
+                        ),
+                        ft.Container(
+                            padding=ft.padding.only(left=4, top=8, right=4, bottom=8),
+                            content=ft.Column(
+                                controls=[
+                                    # Banner Title
+                                    ft.Text(
+                                        "Cannes Film Festival",
+                                        size=14,
+                                        weight="bold",
+                                        color=ft.Colors("white"),
+                                    ),
+                                    # Banner Description
+                                    ft.Text(
+                                        "Flet is a framework that allows building web, desktop and mobile applications in Python.",
+                                        size=11,
+                                        color=ft.Colors("white24"),
+                                    ),
+                                ],
+                                spacing=5,
+                                alignment=ft.MainAxisAlignment.CENTER,
+                                horizontal_alignment=ft.CrossAxisAlignment.START,
+                            ),
+                        ),
+                        ft.Row(
+                            controls=[
+                                ft.TextField(
+                                    bgcolor=ft.Colors.with_opacity(
+                                        opacity=0.01,
+                                        color=ft.Colors("white"),
+                                    ),
+                                    # icon=ft.Icons.ACCOUNT_CIRCLE_ROUNDED,
+                                    hint_text="Ubication",
+                                    expand=True,
+                                    border_width=0,
+                                    border_radius=ft.border_radius.all(18),
+                                ),
+                                ft.Container(
+                                    border_radius=ft.border_radius.all(18),
+                                    bgcolor=ft.Colors.with_opacity(
+                                        opacity=0.8,
+                                        color=ft.Colors("blue"),
+                                    ),
+                                    padding=ft.padding.all(8),
+                                    content=ft.Icon(name="navigate_next_rounded"),
+                                ),
+                            ],
+                        ),
+                    ],
+                ),
+            ),
             "iphone_sales_card": ft.Container(
                 width=300,
                 height=250,
                 border_radius=10,
-                bgcolor=ft.colors.WHITE,
+                bgcolor=ft.Colors("white"),
                 image=ft.DecorationImage(
                     src="apple.png",
                     fit="cover",
@@ -691,7 +1664,7 @@ class DragTarget(ft.DragTarget):
                 shadow=ft.BoxShadow(
                     spread_radius=1,
                     blur_radius=15,
-                    color=ft.colors.BLACK38,
+                    color=ft.Colors("black38"),
                     offset=ft.Offset(0, 5),
                 ),
                 content=ft.Column(
@@ -711,10 +1684,12 @@ class DragTarget(ft.DragTarget):
                             "iPhone 15 Pro",
                             size=18,
                             weight="bold",
-                            color=ft.colors.BLACK87,
+                            color=ft.Colors("black87"),
                         ),
                         # Price
-                        ft.Text("$999", size=16, color=ft.colors.BLUE, weight="bold"),
+                        ft.Text(
+                            "$999", size=16, color=ft.Colors("blue"), weight="bold"
+                        ),
                     ],
                     spacing=5,
                     alignment=ft.MainAxisAlignment.START,
@@ -725,7 +1700,7 @@ class DragTarget(ft.DragTarget):
                 width=300,
                 height=200,
                 border_radius=10,
-                bgcolor=ft.colors.WHITE,
+                bgcolor=ft.Colors("white"),
                 padding=ft.padding.all(20),
                 image=ft.DecorationImage(
                     src="apple.png",
@@ -735,7 +1710,7 @@ class DragTarget(ft.DragTarget):
                 shadow=ft.BoxShadow(
                     spread_radius=1,
                     blur_radius=15,
-                    color=ft.colors.BLACK38,
+                    color=ft.Colors("black38"),
                     offset=ft.Offset(0, 5),
                 ),
                 content=ft.Column(
@@ -745,12 +1720,14 @@ class DragTarget(ft.DragTarget):
                             "Tech Summit 2024",
                             size=20,
                             weight="bold",
-                            color=ft.colors.BLACK87,
+                            color=ft.Colors("black87"),
                         ),
                         # Date
-                        ft.Text("October 10-12, 2024", size=14, color=ft.colors.GREY),
+                        ft.Text(
+                            "October 10-12, 2024", size=14, color=ft.Colors("grey")
+                        ),
                         # Location
-                        ft.Text("San Francisco, CA", size=14, color=ft.colors.GREY),
+                        ft.Text("San Francisco, CA", size=14, color=ft.Colors("grey")),
                     ],
                     spacing=5,
                     alignment=ft.MainAxisAlignment.CENTER,
@@ -761,12 +1738,12 @@ class DragTarget(ft.DragTarget):
                 width=300,
                 height=200,
                 border_radius=10,
-                bgcolor=ft.colors.WHITE,
+                bgcolor=ft.Colors("white"),
                 padding=ft.padding.all(10),
                 shadow=ft.BoxShadow(
                     spread_radius=1,
                     blur_radius=15,
-                    color=ft.colors.BLACK38,
+                    color=ft.Colors("black38"),
                     offset=ft.Offset(0, 5),
                 ),
                 image=ft.DecorationImage(
@@ -791,15 +1768,15 @@ class DragTarget(ft.DragTarget):
                             "Luxury Resort",
                             size=18,
                             weight="bold",
-                            color=ft.colors.BLACK87,
+                            color=ft.Colors("black87"),
                         ),
                         # Location
-                        ft.Text("Maldives", size=14, color=ft.colors.GREY),
+                        ft.Text("Maldives", size=14, color=ft.Colors("grey")),
                         # Price
                         ft.Text(
                             "$299/night",
                             size=16,
-                            color=ft.colors.BLUE,
+                            color=ft.Colors("blue"),
                             weight="bold",
                         ),
                     ],
@@ -813,12 +1790,12 @@ class DragTarget(ft.DragTarget):
                 width=300,
                 # height=150,
                 border_radius=10,
-                bgcolor=ft.colors.WHITE,
+                bgcolor=ft.Colors("white"),
                 padding=ft.padding.only(left=8, top=8, right=8, bottom=18),
                 shadow=ft.BoxShadow(
                     spread_radius=1,
                     blur_radius=15,
-                    color=ft.colors.BLACK38,
+                    color=ft.Colors("black38"),
                     offset=ft.Offset(0, 5),
                 ),
                 image=ft.DecorationImage(
@@ -845,13 +1822,13 @@ class DragTarget(ft.DragTarget):
                             "Music Festival 2024",
                             size=20,
                             weight="bold",
-                            color=ft.colors.BLACK87,
+                            color=ft.Colors("black87"),
                         ),
                         # Date
-                        ft.Text("June 15, 2024", size=14, color=ft.colors.GREY_600),
+                        ft.Text("June 15, 2024", size=14, color=ft.Colors("grey600")),
                         # Price
                         ft.Text(
-                            "$99.99", size=16, color=ft.colors.BLUE_600, weight="bold"
+                            "$99.99", size=16, color=ft.Colors("blue600"), weight="bold"
                         ),
                     ],
                     spacing=5,
@@ -859,16 +1836,291 @@ class DragTarget(ft.DragTarget):
                     horizontal_alignment=ft.CrossAxisAlignment.START,
                 ),
             ),
+            "fill_formulary": ft.Container(
+                # height=80,
+                padding=ft.padding.only(left=8, top=16, right=8, bottom=16),
+                border_radius=ft.border_radius.all(24),
+                bgcolor=ft.Colors("grey900"),
+                content=ft.Column(
+                    alignment=ft.MainAxisAlignment.CENTER,
+                    horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+                    run_alignment=ft.CrossAxisAlignment.CENTER,
+                    spacing=6,
+                    run_spacing=8,
+                    controls=[
+                        ft.Text(value="Verify your password", weight="bold", size=16),
+                        ft.Text(
+                            width=240,
+                            value="Flet is a framework that allows building web, desktop and mobile",
+                            size=12,
+                            color="white24",
+                            text_align=ft.TextAlign.CENTER,
+                        ),
+                        ft.Container(
+                            # height=80,
+                            padding=ft.padding.only(left=4, top=4, right=4, bottom=4),
+                            border_radius=ft.border_radius.all(24),
+                            expand=True,
+                            # bgcolor=ft.Colors("black45"),
+                            content=ft.TextField(
+                                expand=True,
+                                bgcolor="black12",
+                                label="Username",
+                                # icon=ft.Icons.ACCOUNT_CIRCLE_ROUNDED,
+                                hint_text="Fill correct data",
+                                border_width=0,
+                                border_radius=ft.border_radius.all(18),
+                            ),
+                        ),
+                        ft.Container(
+                            # height=80,
+                            padding=ft.padding.only(left=4, top=4, right=4, bottom=4),
+                            border_radius=ft.border_radius.all(24),
+                            expand=True,
+                            # bgcolor=ft.Colors("black45"),
+                            content=ft.TextField(
+                                expand=True,
+                                bgcolor="black12",
+                                label="Email",
+                                # icon=ft.Icons.ACCOUNT_CIRCLE_ROUNDED,
+                                hint_text="Fill correct data",
+                                border_width=0,
+                                border_radius=ft.border_radius.all(18),
+                            ),
+                        ),
+                        ft.Container(
+                            # height=80,
+                            padding=ft.padding.only(left=4, top=4, right=4, bottom=4),
+                            border_radius=ft.border_radius.all(24),
+                            expand=True,
+                            # bgcolor=ft.Colors("black45"),
+                            content=ft.TextField(
+                                expand=True,
+                                bgcolor="black12",
+                                label="Password",
+                                # icon=ft.Icons.ACCOUNT_CIRCLE_ROUNDED,
+                                hint_text="Fill correct data",
+                                password=True,
+                                border_width=0,
+                                border_radius=ft.border_radius.all(18),
+                            ),
+                        ),
+                        ft.Container(
+                            # height=80,
+                            padding=ft.padding.only(left=4, top=4, right=4, bottom=4),
+                            border_radius=ft.border_radius.all(24),
+                            expand=True,
+                            # bgcolor=ft.Colors("black45"),
+                            content=ft.TextField(
+                                expand=True,
+                                bgcolor="black12",
+                                label="Repeat password",
+                                # icon=ft.Icons.ACCOUNT_CIRCLE_ROUNDED,
+                                hint_text="Fill correct data",
+                                password=True,
+                                border_width=0,
+                                border_radius=ft.border_radius.all(18),
+                            ),
+                        ),
+                        ft.Text(value="Read fallow Roules", weight="bold", size=16),
+                        ft.Container(
+                            padding=ft.padding.only(left=4, top=4, right=4, bottom=12),
+                            content=ft.Row(
+                                controls=[
+                                    ft.RadioGroup(
+                                        # label="Select RadioGroup",
+                                        # label_position=ft.LabelPosition.RIGHT,
+                                        value="RadioGroup",
+                                        content=ft.Column(
+                                            alignment=ft.MainAxisAlignment.SPACE_AROUND,
+                                            horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+                                            run_alignment=ft.CrossAxisAlignment.CENTER,
+                                            expand=True,
+                                            spacing=8,
+                                            run_spacing=8,
+                                            controls=[
+                                                ft.Radio(
+                                                    value="Flet is a framework that allows building web, desktop and mobile",
+                                                ),
+                                            ],
+                                        ),
+                                    ),
+                                    ft.Text(
+                                        expand=True,
+                                        # width=200,
+                                        value="Flet is a framework that allows building web, desktop and mobile",
+                                        size=12,
+                                        color="white24",
+                                        text_align=ft.TextAlign.LEFT,
+                                    ),
+                                ],
+                            ),
+                        ),
+                        ft.Column(
+                            spacing=8,
+                            run_spacing=12,
+                            controls=[
+                                ft.Container(
+                                    expand=True,
+                                    padding=ft.padding.only(
+                                        left=12, top=12, right=12, bottom=12
+                                    ),
+                                    border_radius=ft.border_radius.all(18),
+                                    bgcolor=ft.Colors("white"),
+                                    content=ft.Row(
+                                        controls=[
+                                            ft.Text(
+                                                "Submit",
+                                                size=14,
+                                                color=ft.Colors("grey900"),
+                                                weight="bold",
+                                            ),
+                                        ],
+                                        alignment=ft.MainAxisAlignment.CENTER,
+                                        vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                                    ),
+                                ),
+                                ft.Container(
+                                    expand=True,
+                                    padding=ft.padding.only(
+                                        left=12, top=12, right=12, bottom=12
+                                    ),
+                                    border_radius=ft.border_radius.all(18),
+                                    bgcolor=ft.Colors("red"),
+                                    content=ft.Row(
+                                        controls=[
+                                            ft.Text(
+                                                "Cancel",
+                                                size=14,
+                                                color=ft.Colors("white"),
+                                                weight="bold",
+                                            ),
+                                        ],
+                                        alignment=ft.MainAxisAlignment.CENTER,
+                                        vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                                    ),
+                                ),
+                            ],
+                        ),
+                    ],
+                ),
+            ),
+            "travel_card": ft.Container(
+                # height=80,
+                padding=ft.padding.only(left=16, top=16, right=16, bottom=16),
+                border_radius=ft.border_radius.all(24),
+                bgcolor=ft.Colors("black45"),
+                content=ft.Column(
+                    alignment=ft.MainAxisAlignment.CENTER,
+                    horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+                    run_alignment=ft.CrossAxisAlignment.CENTER,
+                    spacing=8,
+                    run_spacing=12,
+                    controls=[
+                        ft.Row(
+                            controls=[
+                                ft.TextField(
+                                    bgcolor=ft.Colors.with_opacity(
+                                        opacity=0.01,
+                                        color=ft.Colors("white"),
+                                    ),
+                                    # icon=ft.Icons.ACCOUNT_CIRCLE_ROUNDED,
+                                    hint_text="Ubication",
+                                    expand=True,
+                                    border_width=0,
+                                    border_radius=ft.border_radius.all(18),
+                                ),
+                                ft.Container(
+                                    border_radius=ft.border_radius.all(18),
+                                    border=ft.border.all(
+                                        width=1,
+                                        color=ft.Colors.with_opacity(
+                                            opacity=0.05,
+                                            color=ft.Colors("white"),
+                                        ),
+                                    ),
+                                    padding=ft.padding.all(8),
+                                    content=ft.Icon(name="navigate_next_rounded"),
+                                ),
+                            ],
+                        ),
+                        ft.RadioGroup(
+                            # label="Select RadioGroup",
+                            # label_position=ft.LabelPosition.RIGHT,
+                            value="RadioGroup",
+                            content=ft.Column(
+                                alignment=ft.MainAxisAlignment.SPACE_AROUND,
+                                horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+                                run_alignment=ft.CrossAxisAlignment.CENTER,
+                                expand=True,
+                                spacing=8,
+                                run_spacing=8,
+                                controls=[
+                                    ft.Radio(
+                                        value="Cuba",
+                                        label="Cuba",
+                                        active_color="blue",
+                                        fill_color="blue700",
+                                    ),
+                                    ft.Radio(
+                                        value="Spain",
+                                        label="Spain",
+                                        active_color="blue",
+                                        fill_color="blue700",
+                                    ),
+                                    ft.Radio(
+                                        value="Germany",
+                                        label="Germany",
+                                        active_color="blue",
+                                        fill_color="blue700",
+                                    ),
+                                    ft.Radio(
+                                        value="Japan",
+                                        label="Japan",
+                                        active_color="blue",
+                                        fill_color="blue700",
+                                    ),
+                                ],
+                            ),
+                        ),
+                        ft.Container(
+                            expand=True,
+                            padding=ft.padding.only(
+                                left=14, top=14, right=14, bottom=14
+                            ),
+                            border_radius=ft.border_radius.all(18),
+                            # width=220,
+                            bgcolor=ft.Colors.with_opacity(
+                                opacity=0.4,
+                                color=ft.Colors("blue900"),
+                            ),
+                            content=ft.Row(
+                                controls=[
+                                    ft.Icon(name="navigate_next_rounded"),
+                                    ft.Text(
+                                        "Lets Go",
+                                        size=14,
+                                        color=ft.Colors("white"),
+                                        weight="bold",
+                                    ),
+                                ],
+                                alignment=ft.MainAxisAlignment.CENTER,
+                                vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                            ),
+                        ),
+                    ],
+                ),
+            ),
             "brand_showcase_card": ft.Container(
                 width=300,
                 height=200,
                 border_radius=10,
                 padding=ft.padding.all(20),
-                bgcolor=ft.colors.WHITE,
+                bgcolor=ft.Colors("white"),
                 shadow=ft.BoxShadow(
                     spread_radius=1,
                     blur_radius=15,
-                    color=ft.colors.BLACK38,
+                    color=ft.Colors("black38"),
                     offset=ft.Offset(0, 5),
                 ),
                 image=ft.DecorationImage(
@@ -883,11 +2135,11 @@ class DragTarget(ft.DragTarget):
                             "World Famous Brands",
                             size=20,
                             weight="bold",
-                            color=ft.colors.BLACK87,
+                            color=ft.Colors("black87"),
                         ),
                         # Description
                         ft.Text(
-                            "More Than 45 Brands", size=14, color=ft.colors.GREY_600
+                            "More Than 45 Brands", size=14, color=ft.Colors("grey600")
                         ),
                         # Price and Discount
                         ft.Row(
@@ -895,13 +2147,13 @@ class DragTarget(ft.DragTarget):
                                 ft.Text(
                                     "$49.00",
                                     size=16,
-                                    color=ft.colors.GREY_600,
+                                    color=ft.Colors("grey600"),
                                     weight=ft.FontWeight.BOLD,
                                 ),
                                 ft.Text(
                                     "$19.00",
                                     size=16,
-                                    color=ft.colors.RED_600,
+                                    color=ft.Colors("red600"),
                                     weight=ft.FontWeight.BOLD,
                                 ),
                             ],
@@ -921,11 +2173,11 @@ class DragTarget(ft.DragTarget):
                 height=150,
                 border_radius=10,
                 padding=ft.padding.all(20),
-                bgcolor=ft.colors.WHITE,
+                bgcolor=ft.Colors("white"),
                 shadow=ft.BoxShadow(
                     spread_radius=1,
                     blur_radius=15,
-                    color=ft.colors.BLACK38,
+                    color=ft.Colors("black38"),
                     offset=ft.Offset(0, 5),
                 ),
                 image=ft.DecorationImage(
@@ -940,18 +2192,18 @@ class DragTarget(ft.DragTarget):
                             value="Tech Solutions Inc.",
                             size=20,
                             weight="bold",
-                            color=ft.colors.BLACK87,
+                            color=ft.Colors("black87"),
                         ),
                         # Contact Info
                         ft.Text(
                             value="Email: info@techsolutions.com",
                             size=14,
-                            color=ft.colors.GREY_600,
+                            color=ft.Colors("grey600"),
                         ),
                         ft.Text(
                             value="Phone: +1 234 567 890",
                             size=14,
-                            color=ft.colors.GREY_600,
+                            color=ft.Colors("grey600"),
                             weight="bold",
                         ),
                     ],
@@ -989,8 +2241,8 @@ class DragTarget(ft.DragTarget):
                     ft.Dismissible(
                         content=ft.ListTile(title=ft.Text(f"Item {i}")),
                         dismiss_direction=ft.DismissDirection.HORIZONTAL,
-                        background=ft.Container(bgcolor=ft.Colors.GREEN),
-                        secondary_background=ft.Container(bgcolor=ft.Colors.RED),
+                        # background=ft.Container(bgcolor=ft.Colors("green")),
+                        secondary_background=ft.Container(bgcolor=ft.Colors("red")),
                         # on_dismiss=handle_dismiss,
                         # on_update=handle_update,
                         # on_confirm_dismiss=handle_confirm_dismiss,
@@ -1108,7 +2360,7 @@ class DragTarget(ft.DragTarget):
                                 content=ft.Text("Blue"),
                                 leading=ft.Icon(ft.Icons.COLORIZE),
                                 style=ft.ButtonStyle(
-                                    bgcolor={ft.ControlState.HOVERED: ft.Colors.BLUE}
+                                    bgcolor={ft.ControlState.HOVERED: ft.Colors("blue")}
                                 ),
                             ),
                             ft.MenuItemButton(
@@ -1138,7 +2390,7 @@ class DragTarget(ft.DragTarget):
                                 content=ft.Text("Blue"),
                                 leading=ft.Icon(ft.Icons.COLORIZE),
                                 style=ft.ButtonStyle(
-                                    bgcolor={ft.ControlState.HOVERED: ft.Colors.BLUE}
+                                    bgcolor={ft.ControlState.HOVERED: ft.Colors("blue")}
                                 ),
                                 # on_click=lambda e: print("MenuItemButton clicked!"),
                             ),
@@ -1238,7 +2490,7 @@ class DragTarget(ft.DragTarget):
             "CupertinoSlidingSegmentedButton": ft.CupertinoSlidingSegmentedButton(
                 expand=True,
                 selected_index=0,
-                thumb_color=ft.Colors.BLUE,
+                thumb_color=ft.Colors("blue"),
                 padding=ft.padding.symmetric(0, 10),
                 controls=[
                     ft.Text("One"),
@@ -1356,7 +2608,7 @@ class DragTarget(ft.DragTarget):
             "Text": ft.Text(
                 value="Size 15, Normal",
                 size=15,
-                color=ft.Colors.WHITE,
+                color=ft.Colors("white"),
                 bgcolor=ft.Colors.ORANGE_800,
                 weight=ft.FontWeight.NORMAL,
             ),
@@ -1430,8 +2682,8 @@ class DragTarget(ft.DragTarget):
                 divisions=10,
                 start_value=10,
                 end_value=20,
-                inactive_color=ft.Colors.BLACK12,
-                active_color=ft.Colors.BLUE,
+                inactive_color=ft.Colors("black12"),
+                active_color=ft.Colors("blue"),
                 overlay_color=ft.Colors.YELLOW,
             ),
             "Slider": ft.Slider(
@@ -1441,8 +2693,8 @@ class DragTarget(ft.DragTarget):
                 divisions=10,
                 # start_value=10,
                 # end_value=20,
-                inactive_color=ft.Colors.BLACK12,
-                active_color=ft.Colors.BLUE,
+                inactive_color=ft.Colors("black12"),
+                active_color=ft.Colors("blue"),
                 overlay_color=ft.Colors.YELLOW,
             ),
             "Switch": ft.Switch(label="Switch", value=False),
@@ -1474,13 +2726,13 @@ class DragTarget(ft.DragTarget):
             ),
             # CHARTS
             "BarChart": ft.BarChart(
-                tooltip_bgcolor=ft.Colors.with_opacity(0.5, ft.Colors.GREY_300),
+                tooltip_bgcolor=ft.Colors.with_opacity(0.5, ft.Colors("grey300")),
                 max_y=110,
                 interactive=True,
-                border=ft.border.all(1, ft.Colors.GREY_400),
+                border=ft.border.all(1, ft.Colors("grey400")),
                 expand=True,
                 horizontal_grid_lines=ft.ChartGridLines(
-                    color=ft.Colors.GREY_300, width=1, dash_pattern=[3, 3]
+                    color=ft.Colors("grey300"), width=1, dash_pattern=[3, 3]
                 ),
                 bar_groups=[
                     ft.BarChartGroup(
@@ -1490,7 +2742,7 @@ class DragTarget(ft.DragTarget):
                                 from_y=0,
                                 to_y=40,
                                 width=40,
-                                color=ft.Colors.AMBER,
+                                color=ft.Colors("amber"),
                                 tooltip="Apple",
                                 border_radius=0,
                             ),
@@ -1503,7 +2755,7 @@ class DragTarget(ft.DragTarget):
                                 from_y=0,
                                 to_y=100,
                                 width=40,
-                                color=ft.Colors.BLUE,
+                                color=ft.Colors("blue"),
                                 tooltip="Blueberry",
                                 border_radius=0,
                             ),
@@ -1559,7 +2811,7 @@ class DragTarget(ft.DragTarget):
                 ),
             ),
             "LineChart": ft.LineChart(
-                tooltip_bgcolor=ft.Colors.with_opacity(0.8, ft.Colors.BLUE_GREY),
+                tooltip_bgcolor=ft.Colors.with_opacity(0.8, ft.Colors("bluegrey")),
                 min_y=0,
                 max_y=4,
                 min_x=0,
@@ -1654,15 +2906,15 @@ class DragTarget(ft.DragTarget):
                 sections_space=1,
                 center_space_radius=0,
                 expand=True,
-                # hovered_border = ft.BorderSide(6, ft.Colors.WHITE)
+                # hovered_border = ft.BorderSide(6, ft.Colors("white"))
                 # on_chart_event = lambda _: print(_)
                 sections=[
                     ft.PieChartSection(
                         25,
-                        color=ft.Colors.BLUE,
+                        color=ft.Colors("blue"),
                         radius=80,
                         border_side=ft.BorderSide(
-                            0, ft.Colors.with_opacity(0, ft.Colors.WHITE)
+                            0, ft.Colors.with_opacity(0, ft.Colors("white"))
                         ),
                     ),
                     ft.PieChartSection(
@@ -1670,7 +2922,7 @@ class DragTarget(ft.DragTarget):
                         color=ft.Colors.YELLOW,
                         radius=65,
                         border_side=ft.BorderSide(
-                            0, ft.Colors.with_opacity(0, ft.Colors.WHITE)
+                            0, ft.Colors.with_opacity(0, ft.Colors("white"))
                         ),
                     ),
                     ft.PieChartSection(
@@ -1678,7 +2930,7 @@ class DragTarget(ft.DragTarget):
                         color=ft.Colors.PINK,
                         radius=60,
                         border_side=ft.BorderSide(
-                            0, ft.Colors.with_opacity(0, ft.Colors.WHITE)
+                            0, ft.Colors.with_opacity(0, ft.Colors("white"))
                         ),
                     ),
                     ft.PieChartSection(
@@ -1686,7 +2938,7 @@ class DragTarget(ft.DragTarget):
                         color=ft.Colors.GREEN,
                         radius=70,
                         border_side=ft.BorderSide(
-                            0, ft.Colors.with_opacity(0, ft.Colors.WHITE)
+                            0, ft.Colors.with_opacity(0, ft.Colors("white"))
                         ),
                     ),
                 ],

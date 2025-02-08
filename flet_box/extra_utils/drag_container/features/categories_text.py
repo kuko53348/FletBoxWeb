@@ -58,7 +58,7 @@ class Text(ft.Text):
 
         self.value = "Size 15, Normal"
         self.size = 15
-        self.color = ft.Colors.WHITE
+        self.color = ft.Colors("white")
         self.bgcolor = ft.Colors.ORANGE_800
         self.weight = ft.FontWeight.NORMAL
 

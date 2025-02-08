@@ -35,7 +35,7 @@ class AnimatedSwitcher(ft.AnimatedSwitcher):
             alignment=ft.alignment.center,
             width=200,
             height=200,
-            bgcolor=ft.Colors.BLUE,
+            bgcolor=ft.Colors("blue"),
             on_click=lambda _: self.animate(widget=_.control.parent),
         )
         self.content = self.animation_container_1
@@ -105,8 +105,8 @@ class RangeSlider(ft.RangeSlider):
         self.divisions = 10
         self.start_value = 10
         self.end_value = 20
-        self.inactive_color = ft.Colors.BLACK12
-        self.active_color = ft.Colors.BLUE
+        self.inactive_color = ft.Colors("black12")
+        self.active_color = ft.Colors("blue")
         self.overlay_color = ft.Colors.YELLOW
 
 
@@ -125,8 +125,8 @@ class Slider(ft.Slider):
         self.divisions = 10
         self.start_value = 10
         self.end_value = 20
-        self.inactive_color = ft.Colors.BLACK12
-        self.active_color = ft.Colors.BLUE
+        self.inactive_color = ft.Colors("black12")
+        self.active_color = ft.Colors("blue")
         self.overlay_color = ft.Colors.YELLOW
 
 
@@ -204,8 +204,8 @@ class CupertinoSlider(ft.CupertinoSlider):
         self.divisions = 10
         self.start_value = 10
         self.end_value = 20
-        self.inactive_color = ft.Colors.BLACK12
-        self.active_color = ft.Colors.BLUE
+        self.inactive_color = ft.Colors("black12")
+        self.active_color = ft.Colors("blue")
         self.overlay_color = ft.Colors.YELLOW
 
 

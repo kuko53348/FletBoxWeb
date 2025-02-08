@@ -110,6 +110,7 @@ class Build_Drag_Editor(ft.Container):
         # CATEGORIES
         # categories =  {'buttons', 'text', , 'images', 'selection', 'progress', 'charts', 'layout'
         # 'tables', 'tooltips', 'divider', 'other'}
+        categorie_custom_text_widgets = widgets_by_categories.get("custom text widgets")
         categorie_custom_widgets = widgets_by_categories.get("custom widgets")
         categorie_navigations = widgets_by_categories.get("navigations")
         categorie_layout = widgets_by_categories.get("layout")
@@ -131,6 +132,20 @@ class Build_Drag_Editor(ft.Container):
         self.content = ft.Column(
             scroll="HIDDEN",
             controls=[
+                categories(
+                    page=self.page,
+                    title="custom text widgets",
+                    controls_view=[
+                        DraggWidget(
+                            page=self.page,
+                            drag_box=self.drag_box,
+                            widget=_,
+                            color="CYAN",
+                            icons=ft.icons(categorie_custom_text_widgets.get(_)),
+                        )
+                        for _ in categorie_custom_text_widgets
+                    ],
+                ),
                 categories(
                     page=self.page,
                     title="custom widgets",

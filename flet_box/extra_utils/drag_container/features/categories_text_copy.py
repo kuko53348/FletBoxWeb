@@ -30,7 +30,7 @@ Markdown = ft.Markdown(
 Text = ft.Text(
     value="Size 15, Normal",
     size=15,
-    color=ft.Colors.WHITE,
+    color=ft.Colors("white"),
     bgcolor=ft.Colors.ORANGE_800,
     weight=ft.FontWeight.NORMAL,
 )

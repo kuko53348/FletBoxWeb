@@ -151,7 +151,7 @@ class MenuItemButton(ft.MenuBar):
                         content=ft.Text("Blue"),
                         leading=ft.Icon(ft.Icons.COLORIZE),
                         style=ft.ButtonStyle(
-                            bgcolor={ft.ControlState.HOVERED: ft.Colors.BLUE}
+                            bgcolor={ft.ControlState.HOVERED: ft.Colors("blue")}
                         ),
                         # on_click=lambda e: print("MenuItemButton clicked!"),
                     ),
@@ -253,7 +253,7 @@ class CupertinoSlidingSegmentedButton(ft.CupertinoSlidingSegmentedButton):
         super().__init__(controls=list())
         self.page = page
         self.expand = True
-        self.thumb_color = ft.Colors.BLUE
+        self.thumb_color = ft.Colors("blue")
         # self.on_change = lambda e: print(f"selected_index: {e.data}")
         self.padding = ft.padding.symmetric(0, 10)
 
@@ -367,7 +367,7 @@ class SubmenuButton(ft.SubmenuButton):
                     controls=[
                         ft.MenuItemButton(
                             content=ft.Text("Blue"),
-                            # style=ft.Button(bgcolor=ft.Colors.BLUE),
+                            # style=ft.Button(bgcolor=ft.Colors("blue")),
                         )
                     ],
                 ),

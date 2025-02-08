@@ -61,7 +61,7 @@ MenuItemButton = ft.MenuBar(
                     content=ft.Text("Blue"),
                     leading=ft.Icon(ft.Icons.COLORIZE),
                     style=ft.ButtonStyle(
-                        bgcolor={ft.ControlState.HOVERED: ft.Colors.BLUE}
+                        bgcolor={ft.ControlState.HOVERED: ft.Colors("blue")}
                     ),
                     # on_click=lambda e: print("MenuItemButton clicked!"),
                 ),
@@ -140,7 +140,7 @@ CupertinoSegmentedButton = ft.CupertinoSegmentedButton(
 CupertinoSlidingSegmentedButton = ft.CupertinoSlidingSegmentedButton(
     expand=True,
     selected_index=0,
-    thumb_color=ft.Colors.BLUE,
+    thumb_color=ft.Colors("blue"),
     padding=ft.padding.symmetric(0, 10),
     controls=[
         ft.Text("One"),
@@ -221,7 +221,7 @@ SubmenuButton = ft.SubmenuButton(
                 controls=[
                     ft.MenuItemButton(
                         content=ft.Text("Blue"),
-                        # style=ft.Button(bgcolor=ft.Colors.BLUE),
+                        # style=ft.Button(bgcolor=ft.Colors("blue")),
                     )
                 ],
             ),

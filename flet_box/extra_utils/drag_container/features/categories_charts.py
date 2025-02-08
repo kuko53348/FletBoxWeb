@@ -9,13 +9,13 @@ class BarChart(ft.BarChart):
     ):
         super().__init__()
         self.page = page
-        self.tooltip_bgcolor = ft.Colors.with_opacity(0.5, ft.Colors.GREY_300)
+        self.tooltip_bgcolor = ft.Colors.with_opacity(0.5, ft.Colors("grey")_300)
         self.max_y = 110
         self.interactive = True
-        self.border = ft.border.all(1, ft.Colors.GREY_400)
+        self.border = ft.border.all(1, ft.Colors("grey")_400)
         self.expand = True
         self.horizontal_grid_lines = ft.ChartGridLines(
-            color=ft.Colors.GREY_300, width=1, dash_pattern=[3, 3]
+            color=ft.Colors("grey")_300, width=1, dash_pattern=[3, 3]
         )
 
     def build(self):
@@ -40,7 +40,7 @@ class BarChart(ft.BarChart):
                         from_y=0,
                         to_y=100,
                         width=40,
-                        color=ft.Colors.BLUE,
+                        color=ft.Colors("blue"),
                         tooltip="Blueberry",
                         border_radius=0,
                     ),
@@ -103,7 +103,7 @@ class LineChart(ft.LineChart):
     ):
         super().__init__()
         self.page = page
-        self.tooltip_bgcolor = ft.Colors.with_opacity(0.8, ft.Colors.BLUE_GREY)
+        self.tooltip_bgcolor = ft.Colors.with_opacity(0.8, ft.Colors("blue")_GREY)
         self.min_y = 0
         self.max_y = 4
         self.min_x = 0
@@ -267,9 +267,9 @@ class PieChart(ft.PieChart):
         self.center_space_radius = 0
         self.expand = True
         self.normal_border = ft.BorderSide(
-            0, ft.Colors.with_opacity(0, ft.Colors.WHITE)
+            0, ft.Colors.with_opacity(0, ft.Colors("white"))
         )
-        # self.hovered_border = ft.BorderSide(6, ft.Colors.WHITE)
+        # self.hovered_border = ft.BorderSide(6, ft.Colors("white"))
         # self.on_chart_event = lambda _: print(_)
 
     def build(self):
@@ -277,7 +277,7 @@ class PieChart(ft.PieChart):
         self.sections = [
             ft.PieChartSection(
                 25,
-                color=ft.Colors.BLUE,
+                color=ft.Colors("blue"),
                 radius=80,
                 border_side=self.normal_border,
             ),

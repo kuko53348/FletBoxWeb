@@ -73,12 +73,12 @@ class LiteMenuDownContainer(ft.Container):
             controls=[
                 # ft.Container(
                 #     ink=False,
-                #     bgcolor=ft.colors.BLACK12,
+                #     bgcolor=ft.Colors("black12"),
                 #     padding=ft.padding.only(left=0, top=0, right=0, bottom=0),
                 #     margin=ft.margin.all(0),  # outside box
                 #     alignment=ft.alignment.center,
                 #     border_radius=ft.border_radius.all(30),
-                #     border=ft.border.all(2, ft.colors.BLACK12),
+                #     border=ft.border.all(2, ft.Colors("black12")),
                 #     # width         = 150,
                 #     content=ft.Row(
                 #         expand=True,
@@ -94,7 +94,7 @@ class LiteMenuDownContainer(ft.Container):
                 #             #     border=ft.border.all(2, ft.colors.TEAL_900),
                 #             #     height=38,
                 #             #     width=130,
-                #             #     bgcolor=ft.colors.WHITE10,
+                #             #     bgcolor=ft.Colors("white10"),
                 #             #     on_click=lambda _: self.action_buttons(
                 #             #         action="show"
                 #             #     ),

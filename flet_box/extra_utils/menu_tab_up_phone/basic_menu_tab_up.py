@@ -17,9 +17,9 @@ class BasicMenuUp(ft.Stack):
             margin=ft.margin.all(0),  # outside box
             alignment=ft.alignment.center,
             border_radius=ft.border_radius.all(30),
-            # border      = ft.border.all(2, ft.colors.BLACK12),
+            # border      = ft.border.all(2, ft.Colors("black12")),
             height=40,
-            border=ft.border.all(0.2, ft.colors.WHITE12),
+            border=ft.border.all(0.2, ft.Colors("white12")),
             shadow=ft.BoxShadow(
                 spread_radius=1,
                 blur_radius=4,
@@ -40,7 +40,7 @@ class BasicMenuUp(ft.Stack):
                         border_radius=ft.border_radius.only(
                             top_left=30, top_right=0, bottom_left=30, bottom_right=0
                         ),
-                        border=ft.border.all(2, ft.colors.BLACK12),
+                        border=ft.border.all(2, ft.Colors("black12")),
                         gradient=ft.LinearGradient(
                             begin=ft.alignment.top_center,
                             end=ft.alignment.bottom_center,
@@ -56,7 +56,7 @@ class BasicMenuUp(ft.Stack):
                         padding=ft.padding.all(0),
                         margin=ft.margin.all(0),
                         alignment=ft.alignment.center,
-                        border=ft.border.all(2, ft.colors.BLACK12),
+                        border=ft.border.all(2, ft.Colors("black12")),
                         gradient=ft.LinearGradient(
                             begin=ft.alignment.top_center,
                             end=ft.alignment.bottom_center,
@@ -72,7 +72,7 @@ class BasicMenuUp(ft.Stack):
                         padding=ft.padding.all(0),
                         margin=ft.margin.all(0),
                         alignment=ft.alignment.center,
-                        border=ft.border.all(2, ft.colors.BLACK12),
+                        border=ft.border.all(2, ft.Colors("black12")),
                         gradient=ft.LinearGradient(
                             begin=ft.alignment.top_center,
                             end=ft.alignment.bottom_center,
@@ -92,7 +92,7 @@ class BasicMenuUp(ft.Stack):
                         padding=ft.padding.all(0),
                         margin=ft.margin.all(0),
                         alignment=ft.alignment.center,
-                        border=ft.border.all(2, ft.colors.BLACK12),
+                        border=ft.border.all(2, ft.Colors("black12")),
                         gradient=ft.LinearGradient(
                             begin=ft.alignment.top_center,
                             end=ft.alignment.bottom_center,
@@ -111,7 +111,7 @@ class BasicMenuUp(ft.Stack):
                         border_radius=ft.border_radius.only(
                             top_left=0, top_right=30, bottom_left=0, bottom_right=30
                         ),
-                        border=ft.border.all(2, ft.colors.BLACK12),
+                        border=ft.border.all(2, ft.Colors("black12")),
                         gradient=ft.LinearGradient(
                             begin=ft.alignment.top_center,
                             end=ft.alignment.bottom_center,

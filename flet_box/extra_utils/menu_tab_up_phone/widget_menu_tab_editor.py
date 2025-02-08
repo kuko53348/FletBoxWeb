@@ -179,7 +179,7 @@ class MenuUpContainer(ft.Container):
                 #     expand=True,
                 # ),  # <=== NOTE COMA
                 # ft.Container(
-                #     bgcolor=ft.colors.BLACK38,
+                #     bgcolor=ft.Colors("black38"),
                 #     gradient=ft.LinearGradient(
                 #         begin=ft.alignment.top_center,
                 #         end=ft.alignment.bottom_center,

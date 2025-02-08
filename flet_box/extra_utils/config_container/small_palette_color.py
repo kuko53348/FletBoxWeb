@@ -17,7 +17,7 @@ class SmallPaleteColor(ft.Container):
             margin=ft.margin.all(0),
             alignment=ft.alignment.center,
             border_radius=ft.border_radius.all(6),
-            # border       = ft.border.all(1.6, ft.colors.WHITE12),
+            # border       = ft.border.all(1.6, ft.Colors("white12")),
             on_hover=lambda _: self.active_border_color(
                 border_container=self.container
             ),

@@ -21,7 +21,7 @@ animation_container_2 = (
         alignment=ft.alignment.center,
         width=200,
         height=200,
-        bgcolor=ft.Colors.BLUE,
+        bgcolor=ft.Colors("blue"),
         on_click=lambda _: animate(widget=_.control.parent),
     ),
 )
@@ -79,8 +79,8 @@ RangeSlider = ft.RangeSlider(
     divisions=10,
     start_value=10,
     end_value=20,
-    inactive_color=ft.Colors.BLACK12,
-    active_color=ft.Colors.BLUE,
+    inactive_color=ft.Colors("black12"),
+    active_color=ft.Colors("blue"),
     overlay_color=ft.Colors.YELLOW,
 )
 
@@ -91,8 +91,8 @@ Slider = ft.Slider(
     divisions=10,
     # start_value=10,
     # end_value=20,
-    inactive_color=ft.Colors.BLACK12,
-    active_color=ft.Colors.BLUE,
+    inactive_color=ft.Colors("black12"),
+    active_color=ft.Colors("blue"),
     overlay_color=ft.Colors.YELLOW,
 )
 
@@ -134,8 +134,8 @@ CupertinoSlider = ft.CupertinoSlider(
     divisions=10,
     # start_value=10,
     # end_value=20,
-    # inactive_color=ft.Colors.BLACK12,
-    # active_color=ft.Colors.BLUE,
+    # inactive_color=ft.Colors("black12"),
+    # active_color=ft.Colors("blue"),
     # overlay_color=ft.Colors.YELLOW,
 )
 

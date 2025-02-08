@@ -2,13 +2,13 @@ import flet as ft
 
 
 BarChart = ft.BarChart(
-    tooltip_bgcolor=ft.Colors.with_opacity(0.5, ft.Colors.GREY_300),
+    tooltip_bgcolor=ft.Colors.with_opacity(0.5, ft.Colors("grey300")),
     max_y=110,
     interactive=True,
-    border=ft.border.all(1, ft.Colors.GREY_400),
+    border=ft.border.all(1, ft.Colors("grey400")),
     expand=True,
     horizontal_grid_lines=ft.ChartGridLines(
-        color=ft.Colors.GREY_300, width=1, dash_pattern=[3, 3]
+        color=ft.Colors("grey300"), width=1, dash_pattern=[3, 3]
     ),
     bar_groups=[
         ft.BarChartGroup(
@@ -31,7 +31,7 @@ BarChart = ft.BarChart(
                     from_y=0,
                     to_y=100,
                     width=40,
-                    color=ft.Colors.BLUE,
+                    color=ft.Colors("blue"),
                     tooltip="Blueberry",
                     border_radius=0,
                 ),
@@ -44,7 +44,7 @@ BarChart = ft.BarChart(
                     from_y=0,
                     to_y=30,
                     width=40,
-                    color=ft.Colors.RED,
+                    color=ft.Colors("red"),
                     tooltip="Cherry",
                     border_radius=0,
                 ),
@@ -57,7 +57,7 @@ BarChart = ft.BarChart(
                     from_y=0,
                     to_y=60,
                     width=40,
-                    color=ft.Colors.ORANGE,
+                    color=ft.Colors("orange"),
                     tooltip="Orange",
                     border_radius=0,
                 ),
@@ -132,7 +132,7 @@ data_1 = [
     ),
 ]
 LineChart = ft.LineChart(
-    tooltip_bgcolor=ft.Colors.with_opacity(0.8, ft.Colors.BLUE_GREY),
+    tooltip_bgcolor=ft.Colors.with_opacity(0.8, ft.Colors("bluegrey")),
     min_y=0,
     max_y=4,
     min_x=0,
@@ -224,32 +224,32 @@ PieChart = ft.PieChart(
     sections_space=1,
     center_space_radius=0,
     expand=True,
-    # hovered_border = ft.BorderSide(6, ft.Colors.WHITE)
+    # hovered_border = ft.BorderSide(6, ft.Colors("white"))
     # on_chart_event = lambda _: print(_)
     sections=[
         ft.PieChartSection(
             25,
-            color=ft.Colors.BLUE,
+            color=ft.Colors("blue"),
             radius=80,
-            border_side=ft.BorderSide(0, ft.Colors.with_opacity(0, ft.Colors.WHITE)),
+            border_side=ft.BorderSide(0, ft.Colors.with_opacity(0, ft.Colors("white"))),
         ),
         ft.PieChartSection(
             25,
             color=ft.Colors.YELLOW,
             radius=65,
-            border_side=ft.BorderSide(0, ft.Colors.with_opacity(0, ft.Colors.WHITE)),
+            border_side=ft.BorderSide(0, ft.Colors.with_opacity(0, ft.Colors("white"))),
         ),
         ft.PieChartSection(
             25,
             color=ft.Colors.PINK,
             radius=60,
-            border_side=ft.BorderSide(0, ft.Colors.with_opacity(0, ft.Colors.WHITE)),
+            border_side=ft.BorderSide(0, ft.Colors.with_opacity(0, ft.Colors("white"))),
         ),
         ft.PieChartSection(
             25,
             color=ft.Colors.GREEN,
             radius=70,
-            border_side=ft.BorderSide(0, ft.Colors.with_opacity(0, ft.Colors.WHITE)),
+            border_side=ft.BorderSide(0, ft.Colors.with_opacity(0, ft.Colors("white"))),
         ),
     ],
 )
