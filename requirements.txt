@@ -1,4 +1,0 @@
-flet
-secure-smtplib
-mime
-requests
