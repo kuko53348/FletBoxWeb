@@ -1318,77 +1318,51 @@ if __name__ == "__main__":
     def main(page: ft.Page):
 
         widget_exemple = ft.Container(
-            bgcolor=ft.Colors("grey900"),
-            shadow=ft.BoxShadow(
-                spread_radius=1,
-                blur_radius=15,
-                color=ft.Colors("black"),
-                offset=ft.Offset(0, 5),
-            ),
-            border_radius=ft.border_radius.all(32),
-            padding=ft.padding.only(left=0, top=0, right=0, bottom=8),
+            # expand=True,
+            padding=ft.padding.only(left=4, top=4, right=4, bottom=4),
+            # border_radius=ft.border_radius.all(32),
+            width=320,
+            # bgcolor=ft.Colors("grey900"),
+            # shadow=ft.BoxShadow(
+            #     spread_radius=1,
+            #     blur_radius=15,
+            #     color=ft.Colors("black"),
+            #     offset=ft.Offset(0, 5),
+            # ),
+            # image=ft.DecorationImage(
+            #     src="clothes.jpg",
+            #     fit="cover",
+            #     opacity=0.18,
+            # ),
             content=ft.Column(
-                alignment=ft.MainAxisAlignment.SPACE_AROUND,
-                horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+                alignment=ft.MainAxisAlignment.START,
+                horizontal_alignment=ft.CrossAxisAlignment.START,
                 run_alignment=ft.CrossAxisAlignment.CENTER,
+                expand=True,
+                spacing=0,
+                run_spacing=0,
                 controls=[
                     ft.Container(
-                        # expand=True,
-                        padding=ft.padding.only(left=8, top=8, right=8, bottom=12),
-                        border_radius=ft.border_radius.all(32),
-                        width=200,
-                        height=200,
-                        image=ft.DecorationImage(
-                            src="image_search_1740143908354.jpg",
-                            fit="cover",
-                            opacity=0.8,
-                        ),
-                        content=ft.Column(
-                            alignment=ft.MainAxisAlignment.START,
-                            horizontal_alignment=ft.CrossAxisAlignment.START,
-                            run_alignment=ft.CrossAxisAlignment.CENTER,
-                            expand=True,
-                            spacing=0,
-                            run_spacing=0,
-                            controls=[
-                                ft.Container(
-                                    padding=ft.padding.only(
-                                        left=8, right=8, bottom=8, top=8
-                                    ),
-                                    bgcolor=ft.Colors.with_opacity(
-                                        opacity=0.8, color=ft.Colors("grey900")
-                                    ),
-                                    border_radius=ft.border_radius.only(
-                                        top_left=32,
-                                        top_right=32,
-                                        bottom_left=32,
-                                        bottom_right=32,
-                                    ),
-                                    # expand=True,
-                                    content=ft.Icon(
-                                        name="shopping_cart_checkout_sharp",
-                                    ),
-                                ),
-                            ],
+                        padding=ft.padding.only(left=24, top=0, right=0, bottom=0),
+                        content=ft.Text(
+                            # expand=True,
+                            # bgcolor="red",
+                            value="Volumen",
+                            text_align=ft.TextAlign.START,
+                            # weight=ft.FontWeight.BOLD,
+                            font_family="Consolas",
                         ),
                     ),
-                    ft.Column(
+                    ft.Row(
                         alignment=ft.MainAxisAlignment.SPACE_AROUND,
-                        horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+                        vertical_alignment=ft.CrossAxisAlignment.CENTER,
                         run_alignment=ft.CrossAxisAlignment.CENTER,
                         expand=True,
-                        spacing=0,
-                        run_spacing=0,
+                        spacing=8,
+                        run_spacing=8,
                         controls=[
-                            ft.Container(
-                                content=ft.Text(
-                                    text_align=ft.TextAlign.LEFT,
-                                    weight=ft.FontWeight.BOLD,
-                                    font_family="Consolas",
-                                    size=24,
-                                    value="$156.99 ",
-                                ),
-                            ),
+                            ft.Slider(expand=True, min=0, max=100, value=24),
+                            ft.Icon(name="volume_up"),
                         ],
                     ),
                 ],

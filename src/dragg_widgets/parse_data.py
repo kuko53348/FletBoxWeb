@@ -1,7 +1,7 @@
 parse_data = """
 import flet as ft
 
-# UI Custom widget edit tag name
+#  widget edit tag name
 class UIFletBox(ft.Container):
 
     def __init__(self, page: object = None) -> None:

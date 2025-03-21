@@ -131,6 +131,9 @@ def serialize_widget(widget, indent=0):
                         elif isinstance(value, ft.MainAxisAlignment):
                             value_str = f"{value}"
 
+                        elif isinstance(value, ft.BorderSide):
+                            value_str = f"{value}"
+
                         elif isinstance(value, ft.Border):
                             value_str = f"{value}"
 

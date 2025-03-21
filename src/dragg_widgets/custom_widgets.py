@@ -192,6 +192,139 @@ widget_dict = {
             horizontal_alignment=ft.CrossAxisAlignment.START,
         ),
     ),  # <
+    "Card text": ft.Container(
+        bgcolor=ft.Colors("grey900"),
+        shadow=ft.BoxShadow(
+            spread_radius=1,
+            blur_radius=15,
+            color=ft.Colors("black"),
+            offset=ft.Offset(0, 5),
+        ),
+        border=ft.border.only(
+            left=ft.border.BorderSide(8, "green"),
+            top=None,
+            right=None,
+            bottom=None,
+        ),
+        border_radius=ft.border_radius.all(12),
+        padding=ft.padding.only(left=8, top=8, right=8, bottom=8),
+        content=ft.Column(
+            controls=[
+                # Banner Title
+                ft.Text(
+                    "Cannes Film Festival",
+                    size=14,
+                    weight="bold",
+                    color=ft.Colors("white"),
+                ),
+                # Banner Description
+                ft.Text(
+                    "May 14-25, 2024",
+                    size=11,
+                    color=ft.Colors("white70"),
+                ),
+            ],
+            spacing=5,
+            alignment=ft.MainAxisAlignment.CENTER,
+            horizontal_alignment=ft.CrossAxisAlignment.START,
+        ),
+    ),  # <
+    "Volumen": ft.Container(
+        # expand=True,
+        padding=ft.padding.only(left=0, top=0, right=8, bottom=0),
+        # border_radius=ft.border_radius.all(32),
+        width=320,
+        # bgcolor=ft.Colors("grey900"),
+        # shadow=ft.BoxShadow(
+        #     spread_radius=1,
+        #     blur_radius=15,
+        #     color=ft.Colors("black"),
+        #     offset=ft.Offset(0, 5),
+        # ),
+        # image=ft.DecorationImage(
+        #     src="clothes.jpg",
+        #     fit="cover",
+        #     opacity=0.18,
+        # ),
+        content=ft.Column(
+            alignment=ft.MainAxisAlignment.START,
+            horizontal_alignment=ft.CrossAxisAlignment.START,
+            run_alignment=ft.CrossAxisAlignment.CENTER,
+            expand=True,
+            spacing=0,
+            run_spacing=0,
+            controls=[
+                ft.Container(
+                    padding=ft.padding.only(left=24, top=0, right=0, bottom=0),
+                    content=ft.Text(
+                        # expand=True,
+                        # bgcolor="red",
+                        value="Volumen",
+                        text_align=ft.TextAlign.START,
+                        # weight=ft.FontWeight.BOLD,
+                        font_family="Consolas",
+                    ),
+                ),
+                ft.Row(
+                    alignment=ft.MainAxisAlignment.SPACE_AROUND,
+                    vertical_alignment=ft.CrossAxisAlignment.START,
+                    run_alignment=ft.CrossAxisAlignment.CENTER,
+                    # expand=True,
+                    spacing=0,
+                    run_spacing=0,
+                    controls=[
+                        ft.Slider(expand=True, min=0, max=100, value=24),
+                        ft.Icon(name="volume_up"),
+                    ],
+                ),
+            ],
+        ),
+    ),  # <
+    "Add remove": ft.Container(
+        bgcolor=ft.Colors("transparent"),
+        ink=True,
+        ink_color=ft.Colors("red"),
+        opacity=1.0,
+        padding=ft.Padding(left=0, top=0, right=0, bottom=0),
+        shadow=[],
+        visible=True,
+        content=ft.Row(
+            alignment=ft.MainAxisAlignment.CENTER,
+            vertical_alignment=ft.CrossAxisAlignment.CENTER,
+            run_alignment=ft.CrossAxisAlignment.CENTER,
+            # expand=True,
+            spacing=8,
+            run_spacing=8,
+            controls=[
+                ft.Container(
+                    bgcolor=ft.Colors("grey900"),
+                    border_radius=ft.border_radius.only(
+                        top_left=32, top_right=32, bottom_left=32, bottom_right=32
+                    ),
+                    alignment=ft.alignment.center,
+                    ink=True,
+                    ink_color=ft.colors("yellow"),
+                    content=ft.Icon(name="remove_rounded"),
+                    on_click=lambda arguments: print("hello"),
+                ),
+                ft.Text(
+                    value="0",
+                    size=16,
+                ),
+                ft.Container(
+                    bgcolor=ft.Colors("grey900"),
+                    border_radius=ft.border_radius.only(
+                        top_left=32, top_right=32, bottom_left=32, bottom_right=32
+                    ),
+                    alignment=ft.alignment.center,
+                    ink=True,
+                    ink_color=ft.colors("yellow"),
+                    content=ft.Icon(name="add_rounded"),
+                    on_click=lambda arguments: print("hello"),
+                ),
+            ],
+        ),
+    ),  # <
     "Stars": ft.Container(
         width=100,
         padding=ft.padding.only(left=8, top=8, right=8, bottom=8),
@@ -1532,7 +1665,10 @@ def custom_image_dict(get_widget: str = "", keys=True):
         "Dual text": "images/dual_text.png",
         "H Triple text": "images/h_triple.png",
         "Triple text": "images/tripletext.png",
+        "Add remove": "images/add_remove.png",
         "Stars": "images/stars.png",
+        "Volumen": "images/volumen.png",
+        "Card text": "images/card_text.png",
         "Best Textfield": "images/besttextfield.png",
         "H banner": "images/bannerh.png",
         "Banner Sales": "images/barnersales.png",
@@ -1563,8 +1699,11 @@ def custom_image_dict(get_widget: str = "", keys=True):
         "Card presentation": "images/cardpresentation.png",
         "Card stadium": "images/cardstadium.png",
         "Card shoes": "images/card_shoes.png",
+        "Card shoes add stars": "images/card_add_stars.png",
+        "Card shoes add remove": "images/card_add_remove.png",
         "Card sport shoes": "images/card_sport_shoes.png",
         "Card sport shopping shoes": "images/card_shoppin_add.png",
+        "Card sport remove": "images/card_remove_product.png",
         "Card small": "images/small_card.png",
         "Card small hotel": "images/small_card_hotel.png",
         "Card small hotel starts": "images/card_only_starts.png",

@@ -142,7 +142,7 @@ class left_menu_app_container(ft.Container):
     ):
 
         full_code: str = (
-            "import flet as ft\nfrom flet import Offset, Tab, Alignment\n\n"
+            "import flet as ft\nfrom flet import Offset, Tab, Alignment, BorderSide\n\n"
         )
         full_code += class_names
         full_code += class_main

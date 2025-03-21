@@ -793,6 +793,392 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                 ],
             ),
         ),  # <
+        "Card shoes add stars": ft.Container(
+            # expand=True,
+            padding=ft.padding.only(left=4, top=4, right=4, bottom=4),
+            border_radius=ft.border_radius.all(32),
+            width=320,
+            bgcolor=ft.Colors("grey900"),
+            shadow=ft.BoxShadow(
+                spread_radius=1,
+                blur_radius=15,
+                color=ft.Colors("black"),
+                offset=ft.Offset(0, 5),
+            ),
+            image=ft.DecorationImage(
+                src="clothes.jpg",
+                fit="cover",
+                opacity=0.18,
+            ),
+            content=ft.Row(
+                controls=[
+                    ft.Image(
+                        src="shoes.jpg",
+                        width=150,
+                        height=150,
+                        fit=ft.ImageFit.COVER,
+                        border_radius=ft.border_radius.all(32),
+                    ),
+                    ft.Column(
+                        # ft.MainAxisAlignment START END CENTER SPACE_BETWEEN SPACE_AROUND SPACE_EVENLY
+                        # ft.CrossAxisAlignment START END CENTER STRETCH BASELINE
+                        alignment=ft.MainAxisAlignment.CENTER,
+                        horizontal_alignment=ft.CrossAxisAlignment.START,
+                        run_alignment=ft.CrossAxisAlignment.CENTER,
+                        # expand=True,
+                        spacing=16,
+                        run_spacing=16,
+                        controls=[
+                            # Banner Title
+                            ft.Column(
+                                alignment=ft.MainAxisAlignment.CENTER,
+                                horizontal_alignment=ft.CrossAxisAlignment.START,
+                                run_alignment=ft.CrossAxisAlignment.CENTER,
+                                spacing=0,
+                                run_spacing=0,
+                                controls=[
+                                    ft.Text(
+                                        value="Shoes",
+                                        size=24,
+                                        weight="bold",
+                                        color=ft.Colors("white70"),
+                                    ),
+                                    # Banner Description
+                                    ft.Text(
+                                        value="$149.7",
+                                        weight="bold",
+                                        size=38,
+                                        color=ft.Colors("white"),
+                                    ),
+                                    ft.Row(
+                                        # alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+                                        # vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                                        # run_alignment=ft.CrossAxisAlignment.CENTER,
+                                        # expand=True,
+                                        spacing=12,
+                                        run_spacing=12,
+                                        controls=[
+                                            ft.Row(
+                                                # expand=True,
+                                                alignment=ft.MainAxisAlignment.CENTER,
+                                                vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                                                run_alignment=ft.CrossAxisAlignment.CENTER,
+                                                spacing=4,
+                                                run_spacing=4,
+                                                controls=[
+                                                    ft.Icon(
+                                                        name="star",
+                                                        size=12,
+                                                        color=ft.Colors("yellow"),
+                                                    ),
+                                                    ft.Text(
+                                                        value="4.0",
+                                                        weight="bold",
+                                                        size=12,
+                                                        color=ft.Colors("white"),
+                                                    ),
+                                                ],
+                                            ),
+                                            ft.Row(
+                                                # expand=True,
+                                                alignment=ft.MainAxisAlignment.CENTER,
+                                                vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                                                run_alignment=ft.CrossAxisAlignment.CENTER,
+                                                spacing=4,
+                                                run_spacing=4,
+                                                controls=[
+                                                    ft.Text(
+                                                        value="343",
+                                                        weight="bold",
+                                                        size=12,
+                                                        color=ft.Colors("white"),
+                                                    ),
+                                                    ft.Text(
+                                                        value="reviews",
+                                                        weight="bold",
+                                                        size=12,
+                                                        color=ft.Colors("white"),
+                                                    ),
+                                                ],
+                                            ),
+                                        ],
+                                    ),
+                                ],
+                            ),
+                            ft.Container(
+                                bgcolor=ft.Colors("transparent"),
+                                ink=True,
+                                ink_color=ft.Colors("red"),
+                                opacity=1.0,
+                                padding=ft.Padding(left=0, top=0, right=0, bottom=0),
+                                shadow=[],
+                                visible=True,
+                                content=ft.Row(
+                                    alignment=ft.MainAxisAlignment.CENTER,
+                                    vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                                    run_alignment=ft.CrossAxisAlignment.CENTER,
+                                    # expand=True,
+                                    spacing=8,
+                                    run_spacing=8,
+                                    controls=[
+                                        ft.Container(
+                                            padding=ft.padding.all(2),
+                                            bgcolor=ft.Colors("grey700"),
+                                            border_radius=ft.border_radius.only(
+                                                top_left=32,
+                                                top_right=32,
+                                                bottom_left=32,
+                                                bottom_right=32,
+                                            ),
+                                            alignment=ft.alignment.center,
+                                            ink=True,
+                                            ink_color=ft.colors("yellow"),
+                                            content=ft.Icon(name="remove_rounded"),
+                                            on_click=lambda arguments: print("hello"),
+                                        ),
+                                        ft.Text(
+                                            value="0",
+                                            size=16,
+                                            weight=ft.FontWeight.BOLD,
+                                        ),
+                                        ft.Container(
+                                            padding=ft.padding.all(2),
+                                            bgcolor=ft.Colors("grey700"),
+                                            border_radius=ft.border_radius.only(
+                                                top_left=32,
+                                                top_right=32,
+                                                bottom_left=32,
+                                                bottom_right=32,
+                                            ),
+                                            alignment=ft.alignment.center,
+                                            ink=True,
+                                            ink_color=ft.colors("yellow"),
+                                            content=ft.Icon(name="add_rounded"),
+                                            on_click=lambda arguments: print("hello"),
+                                        ),
+                                    ],
+                                ),
+                            ),
+                        ],
+                    ),
+                ],
+            ),
+        ),  # <
+        "Card shoes add remove": ft.Container(
+            # expand=True,
+            padding=ft.padding.only(left=4, top=4, right=4, bottom=4),
+            border_radius=ft.border_radius.all(32),
+            width=320,
+            bgcolor=ft.Colors("grey900"),
+            shadow=ft.BoxShadow(
+                spread_radius=1,
+                blur_radius=15,
+                color=ft.Colors("black"),
+                offset=ft.Offset(0, 5),
+            ),
+            image=ft.DecorationImage(
+                src="clothes.jpg",
+                fit="cover",
+                opacity=0.18,
+            ),
+            content=ft.Row(
+                controls=[
+                    ft.Image(
+                        src="shoes.jpg",
+                        width=150,
+                        height=150,
+                        fit=ft.ImageFit.COVER,
+                        border_radius=ft.border_radius.all(32),
+                    ),
+                    ft.Column(
+                        # ft.MainAxisAlignment START END CENTER SPACE_BETWEEN SPACE_AROUND SPACE_EVENLY
+                        # ft.CrossAxisAlignment START END CENTER STRETCH BASELINE
+                        alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+                        horizontal_alignment=ft.CrossAxisAlignment.START,
+                        run_alignment=ft.CrossAxisAlignment.CENTER,
+                        # expand=True,
+                        spacing=16,
+                        run_spacing=16,
+                        controls=[
+                            # Banner Title
+                            ft.Column(
+                                alignment=ft.MainAxisAlignment.CENTER,
+                                horizontal_alignment=ft.CrossAxisAlignment.START,
+                                run_alignment=ft.CrossAxisAlignment.CENTER,
+                                spacing=0,
+                                run_spacing=0,
+                                controls=[
+                                    ft.Text(
+                                        value="Shoes",
+                                        size=24,
+                                        weight="bold",
+                                        color=ft.Colors("white70"),
+                                    ),
+                                    # Banner Description
+                                    ft.Text(
+                                        value="$149.7",
+                                        weight="bold",
+                                        size=38,
+                                        color=ft.Colors("white"),
+                                    ),
+                                ],
+                            ),
+                            ft.Container(
+                                bgcolor=ft.Colors("transparent"),
+                                ink=True,
+                                ink_color=ft.Colors("red"),
+                                opacity=1.0,
+                                padding=ft.Padding(left=0, top=0, right=0, bottom=0),
+                                shadow=[],
+                                visible=True,
+                                content=ft.Row(
+                                    alignment=ft.MainAxisAlignment.CENTER,
+                                    vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                                    run_alignment=ft.CrossAxisAlignment.CENTER,
+                                    # expand=True,
+                                    spacing=8,
+                                    run_spacing=8,
+                                    controls=[
+                                        ft.Container(
+                                            padding=ft.padding.all(2),
+                                            bgcolor=ft.Colors("grey700"),
+                                            border_radius=ft.border_radius.only(
+                                                top_left=32,
+                                                top_right=32,
+                                                bottom_left=32,
+                                                bottom_right=32,
+                                            ),
+                                            alignment=ft.alignment.center,
+                                            ink=True,
+                                            ink_color=ft.colors("yellow"),
+                                            content=ft.Icon(name="remove_rounded"),
+                                            on_click=lambda arguments: print("hello"),
+                                        ),
+                                        ft.Text(
+                                            value="0",
+                                            size=16,
+                                            weight=ft.FontWeight.BOLD,
+                                        ),
+                                        ft.Container(
+                                            padding=ft.padding.all(2),
+                                            bgcolor=ft.Colors("grey700"),
+                                            border_radius=ft.border_radius.only(
+                                                top_left=32,
+                                                top_right=32,
+                                                bottom_left=32,
+                                                bottom_right=32,
+                                            ),
+                                            alignment=ft.alignment.center,
+                                            ink=True,
+                                            ink_color=ft.colors("yellow"),
+                                            content=ft.Icon(name="add_rounded"),
+                                            on_click=lambda arguments: print("hello"),
+                                        ),
+                                    ],
+                                ),
+                            ),
+                        ],
+                    ),
+                ],
+            ),
+        ),  # <
+        "Card sport remove": ft.Container(
+            # expand=True,
+            padding=ft.padding.only(left=4, top=4, right=4, bottom=4),
+            border_radius=ft.border_radius.all(32),
+            width=320,
+            bgcolor=ft.Colors("grey900"),
+            shadow=ft.BoxShadow(
+                spread_radius=1,
+                blur_radius=15,
+                color=ft.Colors("black"),
+                offset=ft.Offset(0, 5),
+            ),
+            # image=ft.DecorationImage(
+            #     src="clothes.jpg",
+            #     fit="cover",
+            #     opacity=0.18,
+            # ),
+            content=ft.Row(
+                controls=[
+                    ft.Image(
+                        src="shoes.jpg",
+                        width=150,
+                        height=150,
+                        fit=ft.ImageFit.COVER,
+                        border_radius=ft.border_radius.all(32),
+                    ),
+                    ft.Column(
+                        # ft.MainAxisAlignment START END CENTER SPACE_BETWEEN SPACE_AROUND SPACE_EVENLY
+                        # ft.CrossAxisAlignment START END CENTER STRETCH BASELINE
+                        alignment=ft.MainAxisAlignment.CENTER,
+                        horizontal_alignment=ft.CrossAxisAlignment.START,
+                        run_alignment=ft.CrossAxisAlignment.CENTER,
+                        # expand=True,
+                        spacing=16,
+                        run_spacing=16,
+                        controls=[
+                            # Banner Title
+                            ft.Column(
+                                alignment=ft.MainAxisAlignment.CENTER,
+                                horizontal_alignment=ft.CrossAxisAlignment.START,
+                                run_alignment=ft.CrossAxisAlignment.CENTER,
+                                spacing=0,
+                                run_spacing=0,
+                                controls=[
+                                    ft.Column(
+                                        expand=True,
+                                        controls=[
+                                            ft.Text(
+                                                # expand=True,
+                                                value="Remove a product",
+                                                size=14,
+                                                weight="bold",
+                                                color=ft.Colors("white"),
+                                            ),
+                                            # Banner Description
+                                            ft.Text(
+                                                value="Do you want to remove fresh from your cart?",
+                                                weight="bold",
+                                                size=12,
+                                                width=160,
+                                                # expand=True,
+                                                color=ft.Colors("white70"),
+                                            ),
+                                        ],
+                                    ),
+                                ],
+                            ),
+                            ft.Container(
+                                bgcolor=ft.Colors("transparent"),
+                                ink=True,
+                                ink_color=ft.Colors("red"),
+                                opacity=1.0,
+                                padding=ft.Padding(left=0, top=0, right=0, bottom=0),
+                                shadow=[],
+                                visible=True,
+                                content=ft.Row(
+                                    alignment=ft.MainAxisAlignment.CENTER,
+                                    vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                                    run_alignment=ft.CrossAxisAlignment.CENTER,
+                                    # expand=True,
+                                    spacing=8,
+                                    run_spacing=8,
+                                    controls=[
+                                        ft.ElevatedButton(text="No", bgcolor="grey900"),
+                                        ft.ElevatedButton(
+                                            text="Remove",
+                                            bgcolor="red900",
+                                            color="white",
+                                        ),
+                                    ],
+                                ),
+                            ),
+                        ],
+                    ),
+                ],
+            ),
+        ),  # <
         "Card sport shopping shoes": ft.Container(
             bgcolor=ft.Colors("grey900"),
             shadow=ft.BoxShadow(
