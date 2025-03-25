@@ -3,6 +3,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+testing/testing_widgets.py
+src/ui_refactoy_code.py
+
 # C extensions
 *.so
 
