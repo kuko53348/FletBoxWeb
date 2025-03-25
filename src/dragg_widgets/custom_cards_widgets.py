@@ -5,6 +5,9 @@ import os
 image = "image97.jpeg"
 
 medium_text = "Flet is a framework that allows building web, desktop and mobile applications in Python without prior experience in frontend development."
+few_medium_text = (
+    "Flet is a framework that allows building web, desktop and mobile applications"
+)
 
 
 def custom_cards_witgets(get_widget: str = "", keys=True):
@@ -1343,6 +1346,224 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                 ],
             ),
         ),  # <
+        "Card shoes out prices": ft.Container(
+            # bgcolor=ft.Colors("grey900"),
+            # shadow=ft.BoxShadow(
+            #     spread_radius=1,
+            #     blur_radius=15,
+            #     color=ft.Colors("black"),
+            #     offset=ft.Offset(0, 5),
+            # ),
+            border_radius=ft.border_radius.all(32),
+            padding=ft.padding.only(left=4, top=0, right=4, bottom=18),
+            content=ft.Column(
+                alignment=ft.MainAxisAlignment.SPACE_AROUND,
+                horizontal_alignment=ft.CrossAxisAlignment.START,
+                run_alignment=ft.CrossAxisAlignment.CENTER,
+                controls=[
+                    ft.Container(
+                        # expand=True,
+                        padding=ft.padding.only(left=8, top=0, right=8, bottom=12),
+                        border_radius=ft.border_radius.all(32),
+                        width=200,
+                        height=200,
+                        image=ft.DecorationImage(
+                            src="image_search_1740143908354.jpg",
+                            fit="cover",
+                            opacity=0.8,
+                        ),
+                        bgcolor=ft.Colors("grey900"),
+                        shadow=ft.BoxShadow(
+                            spread_radius=1,
+                            blur_radius=4,
+                            color=ft.Colors("black"),
+                            offset=ft.Offset(0, 5),
+                        ),
+                        content=ft.Column(
+                            alignment=ft.MainAxisAlignment.END,
+                            horizontal_alignment=ft.CrossAxisAlignment.END,
+                            run_alignment=ft.CrossAxisAlignment.CENTER,
+                            expand=True,
+                            spacing=0,
+                            run_spacing=0,
+                            controls=[
+                                ft.Container(
+                                    padding=ft.padding.only(
+                                        left=8, right=8, bottom=8, top=8
+                                    ),
+                                    bgcolor=ft.Colors.with_opacity(
+                                        opacity=0.8, color=ft.Colors("grey900")
+                                    ),
+                                    border_radius=ft.border_radius.only(
+                                        top_left=32,
+                                        top_right=32,
+                                        bottom_left=32,
+                                        bottom_right=32,
+                                    ),
+                                    # expand=True,
+                                    content=ft.Icon(
+                                        name="shopify_rounded",
+                                    ),
+                                ),
+                            ],
+                        ),
+                    ),
+                    ft.Container(
+                        padding=ft.padding.only(left=8, right=0, bottom=0, top=0),
+                        expand=True,
+                        content=ft.Column(
+                            alignment=ft.MainAxisAlignment.START,
+                            horizontal_alignment=ft.CrossAxisAlignment.START,
+                            run_alignment=ft.CrossAxisAlignment.CENTER,
+                            expand=True,
+                            spacing=0,
+                            run_spacing=0,
+                            controls=[
+                                ft.Text(
+                                    expand=True,
+                                    value="Sport shoes",
+                                    text_align=ft.TextAlign.CENTER,
+                                    weight=ft.FontWeight.BOLD,
+                                    font_family="Consolas",
+                                    color=ft.Colors.with_opacity(
+                                        opacity=0.6, color=ft.Colors("white")
+                                    ),
+                                ),
+                                ft.Container(
+                                    content=ft.Text(
+                                        text_align=ft.TextAlign.LEFT,
+                                        weight=ft.FontWeight.BOLD,
+                                        font_family="Consolas",
+                                        size=24,
+                                        value="$156.99 ",
+                                    ),
+                                ),
+                            ],
+                        ),
+                    ),
+                ],
+            ),
+        ),  # <
+        "Card shoes out star": ft.Container(
+            # bgcolor=ft.Colors("grey900"),
+            # shadow=ft.BoxShadow(
+            #     spread_radius=1,
+            #     blur_radius=15,
+            #     color=ft.Colors("black"),
+            #     offset=ft.Offset(0, 5),
+            # ),
+            padding=ft.padding.only(left=4, top=0, right=4, bottom=18),
+            width=200,
+            content=ft.Column(
+                # width=220,
+                # alignment=ft.MainAxisAlignment.SPACE_AROUND,
+                horizontal_alignment=ft.CrossAxisAlignment.START,
+                run_alignment=ft.CrossAxisAlignment.CENTER,
+                controls=[
+                    ft.Container(
+                        # expand=True,
+                        padding=ft.padding.only(left=8, top=0, right=8, bottom=12),
+                        border_radius=ft.border_radius.all(32),
+                        width=200,
+                        height=200,
+                        image=ft.DecorationImage(
+                            src="image_search_1740143908354.jpg",
+                            fit="cover",
+                            opacity=0.8,
+                        ),
+                        bgcolor=ft.Colors("grey900"),
+                        shadow=ft.BoxShadow(
+                            spread_radius=1,
+                            blur_radius=4,
+                            color=ft.Colors("black"),
+                            offset=ft.Offset(0, 5),
+                        ),
+                        content=ft.Column(
+                            alignment=ft.MainAxisAlignment.END,
+                            horizontal_alignment=ft.CrossAxisAlignment.END,
+                            run_alignment=ft.CrossAxisAlignment.CENTER,
+                            spacing=0,
+                            run_spacing=0,
+                            controls=[
+                                ft.Container(
+                                    padding=ft.padding.only(
+                                        left=8, right=8, bottom=8, top=8
+                                    ),
+                                    bgcolor=ft.Colors.with_opacity(
+                                        opacity=0.8, color=ft.Colors("grey900")
+                                    ),
+                                    border_radius=ft.border_radius.only(
+                                        top_left=32,
+                                        top_right=32,
+                                        bottom_left=32,
+                                        bottom_right=32,
+                                    ),
+                                    # expand=True,
+                                    content=ft.Icon(
+                                        name="shopify_rounded",
+                                    ),
+                                ),
+                            ],
+                        ),
+                    ),
+                    ft.Container(
+                        padding=ft.padding.only(left=8, right=8, bottom=0, top=0),
+                        # expand=True,
+                        content=ft.Column(
+                            spacing=0,
+                            run_spacing=0,
+                            controls=[
+                                ft.Row(
+                                    alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+                                    vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                                    run_alignment=ft.CrossAxisAlignment.CENTER,
+                                    controls=[
+                                        ft.Text(
+                                            # expand=True,
+                                            value="Sport shoes",
+                                            text_align=ft.TextAlign.CENTER,
+                                            weight=ft.FontWeight.BOLD,
+                                            font_family="Consolas",
+                                            color=ft.Colors.with_opacity(
+                                                opacity=0.6, color=ft.Colors("white")
+                                            ),
+                                        ),
+                                        ft.Row(
+                                            alignment=ft.MainAxisAlignment.CENTER,
+                                            vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                                            run_alignment=ft.CrossAxisAlignment.CENTER,
+                                            spacing=2,
+                                            run_spacing=2,
+                                            controls=[
+                                                ft.Icon(
+                                                    name="star", size=12, color="yellow"
+                                                ),
+                                                ft.Text(
+                                                    text_align=ft.TextAlign.LEFT,
+                                                    weight=ft.FontWeight.BOLD,
+                                                    font_family="Consolas",
+                                                    size=12,
+                                                    value="4.0",
+                                                ),
+                                            ],
+                                        ),
+                                    ],
+                                ),
+                                ft.Container(
+                                    content=ft.Text(
+                                        text_align=ft.TextAlign.LEFT,
+                                        weight=ft.FontWeight.BOLD,
+                                        font_family="Consolas",
+                                        size=24,
+                                        value="$156.99 ",
+                                    ),
+                                ),
+                            ],
+                        ),
+                    ),
+                ],
+            ),
+        ),  # <
         "Card H amazon": ft.Container(
             expand=True,
             padding=ft.padding.only(left=12, top=12, right=12, bottom=12),
@@ -1509,6 +1730,426 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                                 ),
                             ),
                         ],
+                    ),
+                ],
+            ),
+        ),  # <
+        "Card hotel vacation details": ft.Container(
+            # expand=True,
+            padding=ft.padding.only(left=4, top=4, right=4, bottom=4),
+            border_radius=ft.border_radius.all(32),
+            width=320,
+            bgcolor=ft.Colors("grey900"),
+            shadow=ft.BoxShadow(
+                spread_radius=1,
+                blur_radius=15,
+                color=ft.Colors("black"),
+                offset=ft.Offset(0, 5),
+            ),
+            image=ft.DecorationImage(
+                src="image_search_1740142228438.jpg",
+                fit="cover",
+                opacity=0.18,
+            ),
+            content=ft.Row(
+                controls=[
+                    ft.Image(
+                        src="image_search_1740142228438.jpg",
+                        width=150,
+                        height=150,
+                        fit=ft.ImageFit.COVER,
+                        border_radius=ft.border_radius.all(32),
+                    ),
+                    ft.Column(
+                        # ft.MainAxisAlignment START END CENTER SPACE_BETWEEN SPACE_AROUND SPACE_EVENLY
+                        # ft.CrossAxisAlignment START END CENTER STRETCH BASELINE
+                        alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+                        horizontal_alignment=ft.CrossAxisAlignment.START,
+                        run_alignment=ft.CrossAxisAlignment.CENTER,
+                        expand=True,
+                        spacing=0,
+                        run_spacing=0,
+                        controls=[
+                            # Banner Title
+                            ft.Column(
+                                spacing=8,
+                                run_spacing=8,
+                                controls=[
+                                    ft.Text(
+                                        value="Global Hotel",
+                                        size=18,
+                                        weight=ft.FontWeight.W_900,
+                                        color=ft.Colors("white"),
+                                    ),
+                                    ft.Text(
+                                        value=few_medium_text,
+                                        size=11,
+                                        color=ft.Colors("white70"),
+                                    ),
+                                    ft.Container(
+                                        expand=True,
+                                        padding=ft.padding.only(
+                                            left=8, top=8, right=8, bottom=8
+                                        ),
+                                        border_radius=ft.border_radius.all(18),
+                                        ink_color=ft.colors("yellow"),
+                                        alignment=ft.alignment.center,
+                                        width=100,
+                                        bgcolor=ft.Colors("white54"),
+                                        content=ft.Text(
+                                            value="Details",
+                                            size=16,
+                                            weight="bold",
+                                            color=ft.Colors("grey900"),
+                                        ),
+                                    ),
+                                ],
+                            ),
+                        ],
+                    ),
+                ],
+            ),
+        ),  # <
+        "Card hotel vacation add ticket": ft.Container(
+            # expand=True,
+            padding=ft.padding.only(left=4, top=4, right=4, bottom=4),
+            border_radius=ft.border_radius.all(32),
+            width=320,
+            bgcolor=ft.Colors("grey900"),
+            shadow=ft.BoxShadow(
+                spread_radius=1,
+                blur_radius=15,
+                color=ft.Colors("black"),
+                offset=ft.Offset(0, 5),
+            ),
+            image=ft.DecorationImage(
+                src="image_search_1740142228438.jpg",
+                fit="cover",
+                opacity=0.18,
+            ),
+            content=ft.Row(
+                controls=[
+                    ft.Image(
+                        src="image_search_1740142228438.jpg",
+                        width=150,
+                        height=150,
+                        fit=ft.ImageFit.COVER,
+                        border_radius=ft.border_radius.all(32),
+                    ),
+                    ft.Column(
+                        # ft.MainAxisAlignment START END CENTER SPACE_BETWEEN SPACE_AROUND SPACE_EVENLY
+                        # ft.CrossAxisAlignment START END CENTER STRETCH BASELINE
+                        alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+                        horizontal_alignment=ft.CrossAxisAlignment.START,
+                        run_alignment=ft.CrossAxisAlignment.CENTER,
+                        expand=True,
+                        spacing=0,
+                        run_spacing=0,
+                        controls=[
+                            # Banner Title
+                            ft.Column(
+                                spacing=8,
+                                run_spacing=8,
+                                controls=[
+                                    ft.Text(
+                                        value="Global Hotel",
+                                        size=18,
+                                        weight=ft.FontWeight.W_900,
+                                        color=ft.Colors("white"),
+                                    ),
+                                    ft.Text(
+                                        value=few_medium_text,
+                                        size=11,
+                                        color=ft.Colors("white70"),
+                                    ),
+                                    ft.Container(
+                                        expand=True,
+                                        # border_radius=ft.border_radius.all(8),
+                                        ink_color=ft.colors("yellow"),
+                                        alignment=ft.alignment.center,
+                                        # width=100,
+                                        # padding=ft.padding.only(
+                                        #     left=0, top=0, right=0, bottom=0
+                                        # ),
+                                        # bgcolor=ft.Colors("white54"),
+                                        content=ft.Row(
+                                            # ft.MainAxisAlignment START END CENTER SPACE_BETWEEN SPACE_AROUND SPACE_EVENLY
+                                            # ft.CrossAxisAlignment START END CENTER STRETCH BASELINE
+                                            alignment=ft.MainAxisAlignment.SPACE_AROUND,
+                                            vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                                            run_alignment=ft.CrossAxisAlignment.CENTER,
+                                            # expand=True,
+                                            spacing=8,
+                                            run_spacing=8,
+                                            controls=[
+                                                # Banner Title
+                                                ft.Text(
+                                                    value="$12.00",
+                                                    size=16,
+                                                    weight="bold",
+                                                    color=ft.Colors("white"),
+                                                ),
+                                                ft.Container(
+                                                    bgcolor=ft.Colors("grey800"),
+                                                    ink=True,
+                                                    ink_color=ft.Colors("red"),
+                                                    opacity=1.0,
+                                                    padding=ft.Padding(
+                                                        left=2, top=2, right=2, bottom=2
+                                                    ),
+                                                    border_radius=ft.border_radius.all(
+                                                        8
+                                                    ),
+                                                    shadow=[],
+                                                    visible=True,
+                                                    content=ft.Row(
+                                                        alignment=ft.MainAxisAlignment.CENTER,
+                                                        vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                                                        run_alignment=ft.CrossAxisAlignment.CENTER,
+                                                        # expand=True,
+                                                        spacing=4,
+                                                        run_spacing=4,
+                                                        controls=[
+                                                            ft.Container(
+                                                                bgcolor=ft.Colors(
+                                                                    "white54"
+                                                                ),
+                                                                border_radius=ft.border_radius.only(
+                                                                    top_left=8,
+                                                                    top_right=8,
+                                                                    bottom_left=8,
+                                                                    bottom_right=8,
+                                                                ),
+                                                                alignment=ft.alignment.center,
+                                                                ink=True,
+                                                                ink_color=ft.colors(
+                                                                    "yellow"
+                                                                ),
+                                                                content=ft.Icon(
+                                                                    name="remove_rounded",
+                                                                    color=ft.Colors(
+                                                                        "grey800"
+                                                                    ),
+                                                                ),
+                                                                on_click=lambda arguments: print(
+                                                                    "hello"
+                                                                ),
+                                                            ),
+                                                            ft.Text(
+                                                                value="0",
+                                                                size=16,
+                                                            ),
+                                                            ft.Container(
+                                                                bgcolor=ft.Colors(
+                                                                    "white54"
+                                                                ),
+                                                                border_radius=ft.border_radius.only(
+                                                                    top_left=8,
+                                                                    top_right=8,
+                                                                    bottom_left=8,
+                                                                    bottom_right=8,
+                                                                ),
+                                                                alignment=ft.alignment.center,
+                                                                ink=True,
+                                                                ink_color=ft.colors(
+                                                                    "yellow"
+                                                                ),
+                                                                content=ft.Icon(
+                                                                    name="add_rounded",
+                                                                    color=ft.Colors(
+                                                                        "grey800"
+                                                                    ),
+                                                                ),
+                                                                on_click=lambda arguments: print(
+                                                                    "hello"
+                                                                ),
+                                                            ),
+                                                        ],
+                                                    ),
+                                                ),
+                                            ],
+                                        ),
+                                    ),
+                                ],
+                            ),
+                        ],
+                    ),
+                ],
+            ),
+        ),  # <
+        "Card breakfast": ft.Container(
+            bgcolor=ft.Colors("black12"),
+            border_radius=ft.BorderRadius(
+                top_left=32, top_right=32, bottom_left=32, bottom_right=32
+            ),
+            image=ft.DecorationImage(
+                src="image_search_1740143480957.webp",
+                fit=ft.ImageFit.COVER,
+                opacity=0.5,
+            ),  # NONE CONTAIN COVER FILL FIT_HEIGHT FIT_WIDTH SCALE_DOWN
+            shadow=ft.BoxShadow(
+                spread_radius=1,
+                blur_radius=15,
+                color=ft.colors("black"),
+                offset=ft.Offset(0, 0),
+                blur_style=ft.ShadowBlurStyle.OUTER,
+            ),
+            ink=True,
+            ink_color=ft.Colors("red"),
+            margin=ft.Margin(left=0, top=0, right=0, bottom=0),
+            offset=ft.Offset(x=0, y=0),
+            opacity=1.0,
+            padding=ft.Padding(left=16, top=16, right=16, bottom=16),
+            visible=True,
+            width=320.0,
+            content=ft.Column(
+                offset=ft.Offset(x=0, y=0),
+                opacity=1.0,
+                scroll=ft.ScrollMode.HIDDEN,
+                spacing=2.0,
+                visible=True,
+                controls=[
+                    ft.Container(
+                        bgcolor=ft.Colors("transparent"),
+                        border_radius=ft.BorderRadius(
+                            top_left=0, top_right=0, bottom_left=0, bottom_right=0
+                        ),
+                        ink=True,
+                        ink_color=ft.Colors("red"),
+                        margin=ft.Margin(left=0, top=0, right=0, bottom=0),
+                        offset=ft.Offset(x=0, y=0),
+                        opacity=1.0,
+                        padding=ft.Padding(left=8, top=8, right=8, bottom=8),
+                        shadow=[],
+                        visible=True,
+                        content=ft.Text(
+                            color=ft.Colors("white"),
+                            enable_interactive_selection=True,
+                            offset=ft.Offset(x=0, y=0),
+                            opacity=1.0,
+                            selection_cursor_width=2.0,
+                            size=15,
+                            value="New year sale",
+                            visible=True,
+                            weight=ft.FontWeight.W_500,
+                        ),
+                    ),
+                    ft.Container(
+                        bgcolor=ft.Colors("transparent"),
+                        border_radius=ft.BorderRadius(
+                            top_left=0, top_right=0, bottom_left=0, bottom_right=0
+                        ),
+                        ink=True,
+                        ink_color=ft.Colors("red"),
+                        margin=ft.Margin(left=0, top=0, right=0, bottom=0),
+                        offset=ft.Offset(x=0, y=0),
+                        opacity=1.0,
+                        padding=ft.Padding(left=8, top=8, right=8, bottom=8),
+                        shadow=[],
+                        visible=True,
+                        content=ft.Text(
+                            color=ft.Colors("white"),
+                            enable_interactive_selection=True,
+                            offset=ft.Offset(x=0, y=0),
+                            opacity=1.0,
+                            selection_cursor_width=2.0,
+                            size=24.0,
+                            value="Change text OFF",
+                            visible=True,
+                            weight=ft.FontWeight.W_900,
+                        ),
+                    ),
+                    ft.Container(
+                        bgcolor=ft.Colors("transparent"),
+                        ink=True,
+                        ink_color=ft.Colors("red"),
+                        opacity=1.0,
+                        padding=ft.Padding(left=8, top=8, right=8, bottom=8),
+                        shadow=[],
+                        visible=True,
+                        content=ft.Row(
+                            opacity=1.0,
+                            scroll=ft.ScrollMode.HIDDEN,
+                            spacing=10,
+                            visible=True,
+                            controls=[
+                                ft.Container(
+                                    bgcolor=ft.Colors("grey900"),
+                                    border_radius=ft.BorderRadius(
+                                        top_left=12,
+                                        top_right=12,
+                                        bottom_left=12,
+                                        bottom_right=12,
+                                    ),
+                                    padding=ft.Padding(
+                                        left=12, top=8, right=12, bottom=8
+                                    ),
+                                    shadow=[],
+                                    visible=True,
+                                    content=ft.Text(
+                                        color=ft.Colors("white"),
+                                        enable_interactive_selection=True,
+                                        offset=ft.Offset(x=0, y=0),
+                                        opacity=1.0,
+                                        selection_cursor_width=2.0,
+                                        size=15,
+                                        value="Small",
+                                        visible=True,
+                                        weight=ft.FontWeight.W_600,
+                                    ),
+                                ),
+                                ft.Container(
+                                    bgcolor=ft.Colors("grey900"),
+                                    border_radius=ft.BorderRadius(
+                                        top_left=12,
+                                        top_right=12,
+                                        bottom_left=12,
+                                        bottom_right=12,
+                                    ),
+                                    padding=ft.Padding(
+                                        left=12, top=8, right=12, bottom=8
+                                    ),
+                                    shadow=[],
+                                    visible=True,
+                                    content=ft.Text(
+                                        color=ft.Colors("white"),
+                                        enable_interactive_selection=True,
+                                        offset=ft.Offset(x=0, y=0),
+                                        opacity=1.0,
+                                        selection_cursor_width=2.0,
+                                        size=15,
+                                        value="Medium",
+                                        visible=True,
+                                        weight=ft.FontWeight.W_600,
+                                    ),
+                                ),
+                                ft.Container(
+                                    bgcolor=ft.Colors("yellow600"),
+                                    border_radius=ft.BorderRadius(
+                                        top_left=12,
+                                        top_right=12,
+                                        bottom_left=12,
+                                        bottom_right=12,
+                                    ),
+                                    padding=ft.Padding(
+                                        left=12, top=8, right=12, bottom=8
+                                    ),
+                                    shadow=[],
+                                    visible=True,
+                                    content=ft.Text(
+                                        color=ft.Colors("grey800"),
+                                        enable_interactive_selection=True,
+                                        offset=ft.Offset(x=0, y=0),
+                                        opacity=1.0,
+                                        selection_cursor_width=2.0,
+                                        size=15,
+                                        value="Extra large",
+                                        visible=True,
+                                        weight=ft.FontWeight.W_900,
+                                    ),
+                                ),
+                            ],
+                        ),
                     ),
                 ],
             ),
@@ -2030,7 +2671,7 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                             ),
                             # Banner Description
                             ft.Text(
-                                "May 14-25, 2024",
+                                value="May 14-25, 2024",
                                 size=12,
                                 color=ft.Colors("white"),
                             ),
@@ -2039,6 +2680,68 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                                 bgcolor=ft.Colors.with_opacity(
                                     opacity=0.4, color=ft.Colors("orange900")
                                 ),
+                            ),
+                        ],
+                        alignment=ft.MainAxisAlignment.END,
+                        horizontal_alignment=ft.CrossAxisAlignment.START,
+                    ),
+                ],
+            ),
+        ),  # <
+        "Card small price": ft.Container(
+            # card_music_festival
+            width=120,
+            height=120,
+            border_radius=ft.border_radius.only(
+                top_left=32, top_right=32, bottom_left=32, bottom_right=32
+            ),
+            padding=ft.padding.all(12),
+            shadow=ft.BoxShadow(
+                spread_radius=1,
+                blur_radius=15,
+                color=ft.Colors("black"),
+                offset=ft.Offset(0, 5),
+            ),
+            image=ft.DecorationImage(src="pop.jpg", fit=ft.ImageFit.COVER, opacity=0.1),
+            content=ft.Column(
+                alignment=ft.MainAxisAlignment.SPACE_AROUND,
+                horizontal_alignment=ft.CrossAxisAlignment.START,
+                run_alignment=ft.CrossAxisAlignment.CENTER,
+                expand=True,
+                spacing=8,
+                run_spacing=8,
+                controls=[
+                    ft.Container(
+                        border_radius=ft.border_radius.only(
+                            top_left=32, top_right=32, bottom_left=32, bottom_right=32
+                        ),
+                        border=ft.border.all(width=2, color=ft.colors("white12")),
+                        image=ft.DecorationImage(
+                            src="pop.jpg",
+                            fit=ft.ImageFit.COVER,
+                        ),  # NONE CONTAIN COVER FILL FIT_HEIGHT FIT_WIDTH SCALE_DOWN
+                        alignment=ft.alignment.center,
+                        height=48,
+                        width=48,
+                        ink_color=ft.colors("yellow"),
+                        bgcolor=ft.colors("black12"),
+                    ),
+                    ft.Column(
+                        spacing=0,
+                        run_spacing=0,
+                        controls=[
+                            # Banner Title
+                            ft.Text(
+                                value="UI/UIX Course",
+                                size=12,
+                                color=ft.Colors("white"),
+                            ),
+                            # Banner Description
+                            ft.Text(
+                                value="$50.00",
+                                size=17,
+                                weight="bold",
+                                color=ft.Colors("white"),
                             ),
                         ],
                         alignment=ft.MainAxisAlignment.END,

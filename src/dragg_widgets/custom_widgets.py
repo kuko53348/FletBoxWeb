@@ -5,8 +5,9 @@ import os
 
 image = "image97.jpeg"
 long_text = "Flet is a framework that allows building web, desktop and mobile applications in Python without prior experience in frontend development.\n\nYou can build a UI for your program with Flet controls which are based on Flutter by Google. Flet goes beyond merely wrapping Flutter widgets. It adds its own touch by combining smaller widgets, simplifying complexities, implementing UI best practices, and applying sensible defaults. This ensures that your applications look stylish and polished without requiring additional design efforts on your part."
-# medium_text = "Flet is a framework that allows building web, desktop and mobile applications in Python without prior experience in frontend development."
-#
+medium_text = "Flet is a framework that allows building web, desktop and mobile applications in Python without prior experience in frontend development."
+
+
 column_swap = ft.Column(
     width=420,
     height=180,
@@ -118,6 +119,28 @@ widget_dict = {
             spacing=5,
             alignment=ft.MainAxisAlignment.CENTER,
             vertical_alignment=ft.CrossAxisAlignment.CENTER,
+        ),
+    ),  # <
+    "Header text": ft.Container(
+        content=ft.Column(
+            controls=[
+                # Banner Title
+                ft.Text(
+                    value="Good day healthy body",
+                    size=32,
+                    weight=ft.FontWeight.W_900,
+                    color=ft.Colors("white"),
+                ),
+                # Banner Description
+                ft.Text(
+                    value="with this app you can try different types of activities and choose what the most enjoyable for you",
+                    size=11,
+                    color=ft.Colors("grey600"),
+                ),
+            ],
+            spacing=5,
+            alignment=ft.MainAxisAlignment.CENTER,
+            horizontal_alignment=ft.CrossAxisAlignment.START,
         ),
     ),  # <
     "Dual text": ft.Container(
@@ -625,7 +648,7 @@ widget_dict = {
             controls=[
                 ft.Icon(name="navigate_next_rounded"),
                 ft.Text(
-                    "Get Start",
+                    value="Get Started",
                     size=14,
                     color=ft.Colors("grey"),
                     weight="bold",
@@ -650,7 +673,7 @@ widget_dict = {
         content=ft.Row(
             controls=[
                 ft.Text(
-                    "Get Start",
+                    value="Get Started",
                     size=14,
                     color=ft.Colors("grey"),
                     weight="bold",
@@ -690,7 +713,7 @@ widget_dict = {
                     content=ft.Icon(name="navigate_next_rounded"),
                 ),
                 ft.Text(
-                    "Get Start",
+                    "Get Started",
                     size=14,
                     color=ft.Colors("grey"),
                     weight="bold",
@@ -1661,6 +1684,7 @@ def custom_image_dict(get_widget: str = "", keys=True):
 
     widget_dict = {
         "Long text": "images/long_text.png",
+        "Header text": "images/header_text.png",
         "H Dual text": "images/h_dual_text.png",
         "Dual text": "images/dual_text.png",
         "H Triple text": "images/h_triple.png",
@@ -1692,6 +1716,9 @@ def custom_image_dict(get_widget: str = "", keys=True):
         "Card pizza text": "images/pizza_text.png",
         "Card songs": "images/card_songs.png",
         "Card hotel vacation": "images/card_hotel.png",
+        "Card hotel vacation details": "images/card_hotel_details.png",
+        "Card hotel vacation add ticket": "images/card_vacation_add_ticket.png",
+        "Card breakfast": "images/card_saling_breakfast.png",
         "Card add songs": "images/card_add_songs.png",
         "Card amazon": "images/car_place.png",
         "Card H amazon": "images/card_amazon.png",
@@ -1701,10 +1728,13 @@ def custom_image_dict(get_widget: str = "", keys=True):
         "Card shoes": "images/card_shoes.png",
         "Card shoes add stars": "images/card_add_stars.png",
         "Card shoes add remove": "images/card_add_remove.png",
+        "Card shoes out prices": "images/card_shoes_out_price.png",
+        "Card shoes out star": "images/card_small_shoes_star.png",
         "Card sport shoes": "images/card_sport_shoes.png",
         "Card sport shopping shoes": "images/card_shoppin_add.png",
         "Card sport remove": "images/card_remove_product.png",
         "Card small": "images/small_card.png",
+        "Card small price": "images/card_small_price.png",
         "Card small hotel": "images/small_card_hotel.png",
         "Card small hotel starts": "images/card_only_starts.png",
         "Card small starts": "images/samll_card_starts.png",

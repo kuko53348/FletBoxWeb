@@ -21,248 +21,196 @@ class fletbox_ui_0(ft.Container):
         self.content = ft.Container(
             bgcolor=ft.Colors('transparent'),
             border_radius=ft.BorderRadius(
-                top_left=0, top_right=0, bottom_left=0, bottom_right=0),
+                top_left=12, top_right=12, bottom_left=12, bottom_right=12),
             ink=True,
             ink_color=ft.Colors('red'),
             margin=ft.Margin(left=0, top=0, right=0, bottom=0),
             offset=ft.Offset(x=0, y=0),
             opacity=1.0,
-            padding=ft.Padding(left=0, top=0, right=12, bottom=0),
+            padding=ft.Padding(left=16, top=16, right=16, bottom=16),
             shadow=[],
             visible=True,
-            content=ft.Container(
-                border_radius=ft.BorderRadius(
-                    top_left=0, top_right=0, bottom_left=0, bottom_right=0),
-                margin=ft.Margin(left=0, top=0, right=0, bottom=0),
+            width=320.0,
+            content=ft.Column(
                 offset=ft.Offset(x=0, y=0),
                 opacity=1.0,
-                padding=ft.Padding(left=0, top=0, right=0, bottom=0),
-                shadow=[],
+                scroll=ft.ScrollMode.HIDDEN,
+                spacing=2.0,
                 visible=True,
-                width=320,
-                content=ft.Column(
-                    alignment=ft.MainAxisAlignment.START,
-                    expand=True,
-                    horizontal_alignment=ft.CrossAxisAlignment.START,
-                    opacity=1.0,
-                    run_alignment=ft.CrossAxisAlignment.CENTER,
-                    visible=True,
-                    controls=[
-                        ft.Container(
+                controls=[
+                    ft.Container(
+                        bgcolor=ft.Colors('transparent'),
+                        border_radius=ft.BorderRadius(
+                            top_left=0, top_right=0, bottom_left=0, bottom_right=0),
+                        ink=True,
+                        ink_color=ft.Colors('red'),
+                        margin=ft.Margin(left=0, top=0, right=0, bottom=0),
+                        offset=ft.Offset(x=0, y=0),
+                        opacity=1.0,
+                        padding=ft.Padding(left=8, top=8, right=8, bottom=8),
+                        shadow=[],
+                        visible=True,
+                        content=ft.Text(
+                            color=ft.Colors('white'),
+                            enable_interactive_selection=True,
+                            offset=ft.Offset(x=0, y=0),
                             opacity=1.0,
-                            padding=ft.Padding(
-                                left=24, top=0, right=0, bottom=0),
-                            shadow=[],
+                            selection_cursor_width=2.0,
+                            size=15,
+                            value='New year sale',
                             visible=True,
-                            content=ft.Text(
-                                enable_interactive_selection=True,
-                                font_family='Consolas',
-                                opacity=1.0,
-                                selection_cursor_width=2.0,
-                                text_align=ft.TextAlign.START,
-                                value='Volumen',
-                                visible=True,
-                            ),
+                            weight=ft.FontWeight.NORMAL,
                         ),
-                        ft.Row(
-                            alignment=ft.MainAxisAlignment.SPACE_AROUND,
+                    ),
+                    ft.Container(
+                        bgcolor=ft.Colors('transparent'),
+                        border_radius=ft.BorderRadius(
+                            top_left=0, top_right=0, bottom_left=0, bottom_right=0),
+                        ink=True,
+                        ink_color=ft.Colors('red'),
+                        margin=ft.Margin(left=0, top=0, right=0, bottom=0),
+                        offset=ft.Offset(x=0, y=0),
+                        opacity=1.0,
+                        padding=ft.Padding(left=8, top=8, right=8, bottom=8),
+                        shadow=[],
+                        visible=True,
+                        content=ft.Text(
+                            color=ft.Colors('white'),
+                            enable_interactive_selection=True,
+                            offset=ft.Offset(x=0, y=0),
                             opacity=1.0,
-                            run_alignment=ft.CrossAxisAlignment.CENTER,
-                            vertical_alignment=ft.CrossAxisAlignment.START,
+                            selection_cursor_width=2.0,
+                            size=24.0,
+                            value='Change text OFF',
+                            visible=True,
+                            weight=ft.FontWeight.NORMAL,
+                        ),
+                    ),
+                    ft.Container(
+                        bgcolor=ft.Colors('transparent'),
+                        ink=True,
+                        ink_color=ft.Colors('red'),
+                        opacity=1.0,
+                        padding=ft.Padding(left=8, top=8, right=8, bottom=8),
+                        shadow=[],
+                        visible=True,
+                        content=ft.Row(
+                            opacity=1.0,
+                            scroll=ft.ScrollMode.HIDDEN,
+                            spacing=10,
                             visible=True,
                             controls=[
-                                ft.Slider(
-                                    expand=True,
-                                    max=100,
+                                ft.Container(
+                                    bgcolor=ft.Colors('transparent'),
+                                    border_radius=ft.BorderRadius(
+                                        top_left=12, top_right=12, bottom_left=12, bottom_right=12),
+                                    ink=True,
+                                    ink_color=ft.Colors('red'),
+                                    margin=ft.Margin(
+                                        left=0, top=0, right=0, bottom=0),
+                                    offset=ft.Offset(x=0, y=0),
                                     opacity=1.0,
-                                    value=37.618334540005385,
+                                    padding=ft.Padding(
+                                        left=12, top=12, right=12, bottom=12),
+                                    shadow=[],
                                     visible=True,
+                                    content=ft.Text(
+                                        color=ft.Colors('white'),
+                                        enable_interactive_selection=True,
+                                        offset=ft.Offset(x=0, y=0),
+                                        opacity=1.0,
+                                        selection_cursor_width=2.0,
+                                        size=15,
+                                        value='a',
+                                        visible=True,
+                                        weight=ft.FontWeight.NORMAL,
+                                    ),
                                 ),
-                                ft.Icon(
-                                    name='volume_up',
+                                ft.Container(
+                                    bgcolor=ft.Colors('transparent'),
+                                    border_radius=ft.BorderRadius(
+                                        top_left=12, top_right=12, bottom_left=12, bottom_right=12),
+                                    ink=True,
+                                    ink_color=ft.Colors('red'),
+                                    margin=ft.Margin(
+                                        left=0, top=0, right=0, bottom=0),
+                                    offset=ft.Offset(x=0, y=0),
                                     opacity=1.0,
+                                    padding=ft.Padding(
+                                        left=12, top=12, right=12, bottom=12),
+                                    shadow=[],
                                     visible=True,
+                                    content=ft.Text(
+                                        color=ft.Colors('white'),
+                                        enable_interactive_selection=True,
+                                        offset=ft.Offset(x=0, y=0),
+                                        opacity=1.0,
+                                        selection_cursor_width=2.0,
+                                        size=15,
+                                        value='b',
+                                        visible=True,
+                                        weight=ft.FontWeight.NORMAL,
+                                    ),
+                                ),
+                                ft.Container(
+                                    alignment=ft.Alignment(x=0, y=0),
+                                    bgcolor='red',
+                                    border_radius=ft.BorderRadius(
+                                        top_left=12, top_right=12, bottom_left=12, bottom_right=12),
+                                    height=0.01,
+                                    ink=True,
+                                    ink_color=ft.Colors('red'),
+                                    margin=ft.Margin(
+                                        left=0, top=0, right=0, bottom=0),
+                                    offset=ft.Offset(x=0, y=0),
+                                    opacity=1.0,
+                                    padding=ft.Padding(
+                                        left=0, top=0, right=0, bottom=0),
+                                    shadow=[],
+                                    visible=True,
+                                    width=0.01,
+                                    content=ft.Text(
+                                        color=ft.Colors('white'),
+                                        enable_interactive_selection=True,
+                                        offset=ft.Offset(x=0, y=0),
+                                        opacity=1.0,
+                                        selection_cursor_width=2.0,
+                                        size=15,
+                                        value='c',
+                                        visible=True,
+                                        weight=ft.FontWeight.NORMAL,
+                                    ),
+                                ),
+                                ft.Container(
+                                    bgcolor=ft.Colors('transparent'),
+                                    border_radius=ft.BorderRadius(
+                                        top_left=12, top_right=12, bottom_left=12, bottom_right=12),
+                                    ink=True,
+                                    ink_color=ft.Colors('red'),
+                                    margin=ft.Margin(
+                                        left=0, top=0, right=0, bottom=0),
+                                    offset=ft.Offset(x=0, y=0),
+                                    opacity=1.0,
+                                    padding=ft.Padding(
+                                        left=12, top=12, right=12, bottom=12),
+                                    shadow=[],
+                                    visible=True,
+                                    content=ft.Text(
+                                        color=ft.Colors('white'),
+                                        enable_interactive_selection=True,
+                                        offset=ft.Offset(x=0, y=0),
+                                        opacity=1.0,
+                                        selection_cursor_width=2.0,
+                                        size=15,
+                                        value='c',
+                                        visible=True,
+                                        weight=ft.FontWeight.NORMAL,
+                                    ),
                                 ),
                             ],
                         ),
-                    ],
-                ),
-            ),)
-
-
-class fletbox_ui_1(ft.Container):
-
-    # NONE CONTAIN COVER FILL FIT_HEIGHT FIT_WIDTH SCALE_DOWN
-    def __init__(self, page: object = None, expand: bool = True,) -> None:
-        super().__init__()
-        # self.shadow = ft.BoxShadow(spread_radius = 1, blur_radius  = 15, color = ft.colors('black'), offset = ft.Offset(0,0), blur_style = ft.ShadowBlurStyle.OUTER,)
-        # self.image = ft.DecorationImage(src='logo.png',fit=ft.ImageFit.COVER,opacity=0.02)
-        # self.margin = ft.margin.only(left=0, right=0, bottom=0, top=0)
-        # self.padding = ft.padding.only(left=0, right=0, bottom=0, top=0)
-
-        self.page = page
-        self.bgcolor = ft.colors('transparent')
-        self.expand = expand
-        # self.alignment = ft.alignment.top_center
-
-        # content of current widget
-        self.content = ft.Container(
-            bgcolor=ft.Colors('transparent'),
-            border_radius=ft.BorderRadius(
-                top_left=0, top_right=0, bottom_left=0, bottom_right=0),
-            ink=True,
-            ink_color=ft.Colors('red'),
-            margin=ft.Margin(left=0, top=0, right=0, bottom=0),
-            offset=ft.Offset(x=0, y=0),
-            opacity=1.0,
-            padding=ft.Padding(left=0, top=0, right=12, bottom=0),
-            shadow=[],
-            visible=True,
-            content=ft.Container(
-                border_radius=ft.BorderRadius(
-                    top_left=0, top_right=0, bottom_left=0, bottom_right=0),
-                margin=ft.Margin(left=0, top=0, right=0, bottom=0),
-                offset=ft.Offset(x=0, y=0),
-                opacity=1.0,
-                padding=ft.Padding(left=0, top=0, right=0, bottom=0),
-                shadow=[],
-                visible=True,
-                width=320,
-                content=ft.Column(
-                    alignment=ft.MainAxisAlignment.START,
-                    expand=True,
-                    horizontal_alignment=ft.CrossAxisAlignment.START,
-                    opacity=1.0,
-                    run_alignment=ft.CrossAxisAlignment.CENTER,
-                    visible=True,
-                    controls=[
-                        ft.Container(
-                            opacity=1.0,
-                            padding=ft.Padding(
-                                left=24, top=0, right=0, bottom=0),
-                            shadow=[],
-                            visible=True,
-                            content=ft.Text(
-                                enable_interactive_selection=True,
-                                font_family='Consolas',
-                                opacity=1.0,
-                                selection_cursor_width=2.0,
-                                text_align=ft.TextAlign.START,
-                                value='Volumen',
-                                visible=True,
-                            ),
-                        ),
-                        ft.Row(
-                            alignment=ft.MainAxisAlignment.SPACE_AROUND,
-                            opacity=1.0,
-                            run_alignment=ft.CrossAxisAlignment.CENTER,
-                            vertical_alignment=ft.CrossAxisAlignment.START,
-                            visible=True,
-                            controls=[
-                                ft.Slider(
-                                    expand=True,
-                                    max=100,
-                                    opacity=1.0,
-                                    value=37.618334540005385,
-                                    visible=True,
-                                ),
-                                ft.Icon(
-                                    name='volume_up',
-                                    opacity=1.0,
-                                    visible=True,
-                                ),
-                            ],
-                        ),
-                    ],
-                ),
-            ),)
-
-
-class fletbox_ui_2(ft.Container):
-
-    # NONE CONTAIN COVER FILL FIT_HEIGHT FIT_WIDTH SCALE_DOWN
-    def __init__(self, page: object = None, expand: bool = True,) -> None:
-        super().__init__()
-        # self.shadow = ft.BoxShadow(spread_radius = 1, blur_radius  = 15, color = ft.colors('black'), offset = ft.Offset(0,0), blur_style = ft.ShadowBlurStyle.OUTER,)
-        # self.image = ft.DecorationImage(src='logo.png',fit=ft.ImageFit.COVER,opacity=0.02)
-        # self.margin = ft.margin.only(left=0, right=0, bottom=0, top=0)
-        # self.padding = ft.padding.only(left=0, right=0, bottom=0, top=0)
-
-        self.page = page
-        self.bgcolor = ft.colors('transparent')
-        self.expand = expand
-        # self.alignment = ft.alignment.top_center
-
-        # content of current widget
-        self.content = ft.Container(
-            bgcolor=ft.Colors('transparent'),
-            border_radius=ft.BorderRadius(
-                top_left=0, top_right=0, bottom_left=0, bottom_right=0),
-            ink=True,
-            ink_color=ft.Colors('red'),
-            margin=ft.Margin(left=0, top=0, right=0, bottom=0),
-            offset=ft.Offset(x=0, y=0),
-            opacity=1.0,
-            padding=ft.Padding(left=0, top=0, right=12, bottom=0),
-            shadow=[],
-            visible=True,
-            content=ft.Container(
-                border_radius=ft.BorderRadius(
-                    top_left=0, top_right=0, bottom_left=0, bottom_right=0),
-                margin=ft.Margin(left=0, top=0, right=0, bottom=0),
-                offset=ft.Offset(x=0, y=0),
-                opacity=1.0,
-                padding=ft.Padding(left=0, top=0, right=0, bottom=0),
-                shadow=[],
-                visible=True,
-                width=320,
-                content=ft.Column(
-                    alignment=ft.MainAxisAlignment.START,
-                    expand=True,
-                    horizontal_alignment=ft.CrossAxisAlignment.START,
-                    opacity=1.0,
-                    run_alignment=ft.CrossAxisAlignment.CENTER,
-                    visible=True,
-                    controls=[
-                        ft.Container(
-                            opacity=1.0,
-                            padding=ft.Padding(
-                                left=24, top=0, right=0, bottom=0),
-                            shadow=[],
-                            visible=True,
-                            content=ft.Text(
-                                enable_interactive_selection=True,
-                                font_family='Consolas',
-                                opacity=1.0,
-                                selection_cursor_width=2.0,
-                                text_align=ft.TextAlign.START,
-                                value='Volumen',
-                                visible=True,
-                            ),
-                        ),
-                        ft.Row(
-                            alignment=ft.MainAxisAlignment.SPACE_AROUND,
-                            opacity=1.0,
-                            run_alignment=ft.CrossAxisAlignment.CENTER,
-                            vertical_alignment=ft.CrossAxisAlignment.START,
-                            visible=True,
-                            controls=[
-                                ft.Slider(
-                                    expand=True,
-                                    max=100,
-                                    opacity=1.0,
-                                    value=37.618334540005385,
-                                    visible=True,
-                                ),
-                                ft.Icon(
-                                    name='volume_up',
-                                    opacity=1.0,
-                                    visible=True,
-                                ),
-                            ],
-                        ),
-                    ],
-                ),
+                    ),
+                ],
             ),)
 
 class fletbox_ui(ft.Container):
@@ -281,7 +229,7 @@ class fletbox_ui(ft.Container):
         self.alignment = ft.alignment.top_center
 
         # all widgets
-        self.all_instances: list = [fletbox_ui_0(page=self.page,expand=False,),fletbox_ui_1(page=self.page,expand=False,),fletbox_ui_2(page=self.page,expand=False,),]
+        self.all_instances: list = [fletbox_ui_0(page=self.page,expand=False,),]
 
         # content of current widget
         self.content = ft.Column(

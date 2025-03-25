@@ -1,6 +1,10 @@
 import flet as ft
 
 medium_text = "Flet is a framework that allows building web, desktop and mobile applications in Python without prior experience in frontend development."
+long_text = "Flet is a framework that allows building web, desktop and mobile applications in Python without prior experience in frontend development.\n\nYou can build a UI for your program with Flet controls which are based on Flutter by Google. Flet goes beyond merely wrapping Flutter widgets. It adds its own touch by combining smaller widgets, simplifying complexities, implementing UI best practices, and applying sensible defaults. This ensures that your applications look stylish and polished without requiring additional design efforts on your part."
+few_medium_text = (
+    "Flet is a framework that allows building web, desktop and mobile applications"
+)
 
 
 class get_attr_from_widget:
@@ -1318,52 +1322,178 @@ if __name__ == "__main__":
     def main(page: ft.Page):
 
         widget_exemple = ft.Container(
-            # expand=True,
-            padding=ft.padding.only(left=4, top=4, right=4, bottom=4),
-            # border_radius=ft.border_radius.all(32),
-            width=320,
-            # bgcolor=ft.Colors("grey900"),
-            # shadow=ft.BoxShadow(
-            #     spread_radius=1,
-            #     blur_radius=15,
-            #     color=ft.Colors("black"),
-            #     offset=ft.Offset(0, 5),
-            # ),
-            # image=ft.DecorationImage(
-            #     src="clothes.jpg",
-            #     fit="cover",
-            #     opacity=0.18,
-            # ),
+            bgcolor=ft.Colors("black12"),
+            border_radius=ft.BorderRadius(
+                top_left=32, top_right=32, bottom_left=32, bottom_right=32
+            ),
+            image=ft.DecorationImage(
+                src="image_search_1740143480957.webp",
+                fit=ft.ImageFit.COVER,
+                opacity=0.5,
+            ),  # NONE CONTAIN COVER FILL FIT_HEIGHT FIT_WIDTH SCALE_DOWN
+            shadow=ft.BoxShadow(
+                spread_radius=1,
+                blur_radius=15,
+                color=ft.colors("black"),
+                offset=ft.Offset(0, 0),
+                blur_style=ft.ShadowBlurStyle.OUTER,
+            ),
+            ink=True,
+            ink_color=ft.Colors("red"),
+            margin=ft.Margin(left=0, top=0, right=0, bottom=0),
+            offset=ft.Offset(x=0, y=0),
+            opacity=1.0,
+            padding=ft.Padding(left=16, top=16, right=16, bottom=16),
+            visible=True,
+            width=320.0,
             content=ft.Column(
-                alignment=ft.MainAxisAlignment.START,
-                horizontal_alignment=ft.CrossAxisAlignment.START,
-                run_alignment=ft.CrossAxisAlignment.CENTER,
-                expand=True,
-                spacing=0,
-                run_spacing=0,
+                offset=ft.Offset(x=0, y=0),
+                opacity=1.0,
+                scroll=ft.ScrollMode.HIDDEN,
+                spacing=2.0,
+                visible=True,
                 controls=[
                     ft.Container(
-                        padding=ft.padding.only(left=24, top=0, right=0, bottom=0),
+                        bgcolor=ft.Colors("transparent"),
+                        border_radius=ft.BorderRadius(
+                            top_left=0, top_right=0, bottom_left=0, bottom_right=0
+                        ),
+                        ink=True,
+                        ink_color=ft.Colors("red"),
+                        margin=ft.Margin(left=0, top=0, right=0, bottom=0),
+                        offset=ft.Offset(x=0, y=0),
+                        opacity=1.0,
+                        padding=ft.Padding(left=8, top=8, right=8, bottom=8),
+                        shadow=[],
+                        visible=True,
                         content=ft.Text(
-                            # expand=True,
-                            # bgcolor="red",
-                            value="Volumen",
-                            text_align=ft.TextAlign.START,
-                            # weight=ft.FontWeight.BOLD,
-                            font_family="Consolas",
+                            color=ft.Colors("white"),
+                            enable_interactive_selection=True,
+                            offset=ft.Offset(x=0, y=0),
+                            opacity=1.0,
+                            selection_cursor_width=2.0,
+                            size=15,
+                            value="New year sale",
+                            visible=True,
+                            weight=ft.FontWeight.W_500,
                         ),
                     ),
-                    ft.Row(
-                        alignment=ft.MainAxisAlignment.SPACE_AROUND,
-                        vertical_alignment=ft.CrossAxisAlignment.CENTER,
-                        run_alignment=ft.CrossAxisAlignment.CENTER,
-                        expand=True,
-                        spacing=8,
-                        run_spacing=8,
-                        controls=[
-                            ft.Slider(expand=True, min=0, max=100, value=24),
-                            ft.Icon(name="volume_up"),
-                        ],
+                    ft.Container(
+                        bgcolor=ft.Colors("transparent"),
+                        border_radius=ft.BorderRadius(
+                            top_left=0, top_right=0, bottom_left=0, bottom_right=0
+                        ),
+                        ink=True,
+                        ink_color=ft.Colors("red"),
+                        margin=ft.Margin(left=0, top=0, right=0, bottom=0),
+                        offset=ft.Offset(x=0, y=0),
+                        opacity=1.0,
+                        padding=ft.Padding(left=8, top=8, right=8, bottom=8),
+                        shadow=[],
+                        visible=True,
+                        content=ft.Text(
+                            color=ft.Colors("white"),
+                            enable_interactive_selection=True,
+                            offset=ft.Offset(x=0, y=0),
+                            opacity=1.0,
+                            selection_cursor_width=2.0,
+                            size=24.0,
+                            value="Change text OFF",
+                            visible=True,
+                            weight=ft.FontWeight.W_900,
+                        ),
+                    ),
+                    ft.Container(
+                        bgcolor=ft.Colors("transparent"),
+                        ink=True,
+                        ink_color=ft.Colors("red"),
+                        opacity=1.0,
+                        padding=ft.Padding(left=8, top=8, right=8, bottom=8),
+                        shadow=[],
+                        visible=True,
+                        content=ft.Row(
+                            opacity=1.0,
+                            scroll=ft.ScrollMode.HIDDEN,
+                            spacing=10,
+                            visible=True,
+                            controls=[
+                                ft.Container(
+                                    bgcolor=ft.Colors("grey900"),
+                                    border_radius=ft.BorderRadius(
+                                        top_left=12,
+                                        top_right=12,
+                                        bottom_left=12,
+                                        bottom_right=12,
+                                    ),
+                                    padding=ft.Padding(
+                                        left=12, top=8, right=12, bottom=8
+                                    ),
+                                    shadow=[],
+                                    visible=True,
+                                    content=ft.Text(
+                                        color=ft.Colors("white"),
+                                        enable_interactive_selection=True,
+                                        offset=ft.Offset(x=0, y=0),
+                                        opacity=1.0,
+                                        selection_cursor_width=2.0,
+                                        size=15,
+                                        value="Small",
+                                        visible=True,
+                                        weight=ft.FontWeight.W_600,
+                                    ),
+                                ),
+                                ft.Container(
+                                    bgcolor=ft.Colors("grey900"),
+                                    border_radius=ft.BorderRadius(
+                                        top_left=12,
+                                        top_right=12,
+                                        bottom_left=12,
+                                        bottom_right=12,
+                                    ),
+                                    padding=ft.Padding(
+                                        left=12, top=8, right=12, bottom=8
+                                    ),
+                                    shadow=[],
+                                    visible=True,
+                                    content=ft.Text(
+                                        color=ft.Colors("white"),
+                                        enable_interactive_selection=True,
+                                        offset=ft.Offset(x=0, y=0),
+                                        opacity=1.0,
+                                        selection_cursor_width=2.0,
+                                        size=15,
+                                        value="Medium",
+                                        visible=True,
+                                        weight=ft.FontWeight.W_600,
+                                    ),
+                                ),
+                                ft.Container(
+                                    bgcolor=ft.Colors("yellow600"),
+                                    border_radius=ft.BorderRadius(
+                                        top_left=12,
+                                        top_right=12,
+                                        bottom_left=12,
+                                        bottom_right=12,
+                                    ),
+                                    padding=ft.Padding(
+                                        left=12, top=8, right=12, bottom=8
+                                    ),
+                                    shadow=[],
+                                    visible=True,
+                                    content=ft.Text(
+                                        color=ft.Colors("grey800"),
+                                        enable_interactive_selection=True,
+                                        offset=ft.Offset(x=0, y=0),
+                                        opacity=1.0,
+                                        selection_cursor_width=2.0,
+                                        size=15,
+                                        value="Extra large",
+                                        visible=True,
+                                        weight=ft.FontWeight.W_900,
+                                    ),
+                                ),
+                            ],
+                        ),
                     ),
                 ],
             ),
