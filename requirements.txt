@@ -1,3 +1,3 @@
-flet
+flet[all] --upgrade
 autopep8
 isort
