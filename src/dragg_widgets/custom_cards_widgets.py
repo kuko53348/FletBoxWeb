@@ -503,6 +503,118 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                 vertical_alignment=ft.CrossAxisAlignment.CENTER,
             ),
         ),  # <
+        "Card price decoration": ft.Container(
+            width=300,
+            height=200,
+            border_radius=ft.border_radius.all(32),
+            padding=ft.padding.all(20),
+            bgcolor=ft.Colors("white"),
+            shadow=ft.BoxShadow(
+                spread_radius=1,
+                blur_radius=15,
+                color=ft.Colors("black"),
+                offset=ft.Offset(0, 5),
+            ),
+            image=ft.DecorationImage(
+                src="image_avatar.png",
+                fit="cover",
+                opacity=0.3,
+            ),
+            content=ft.Column(
+                # ft.MainAxisAlignment START END CENTER SPACE_BETWEEN SPACE_AROUND SPACE_EVENLY
+                # ft.CrossAxisAlignment START END CENTER STRETCH BASELINE
+                spacing=10,
+                alignment=ft.MainAxisAlignment.SPACE_AROUND,
+                horizontal_alignment=ft.CrossAxisAlignment.START,
+                run_alignment=ft.CrossAxisAlignment.CENTER,
+                controls=[
+                    # Brand Name
+                    ft.Text(
+                        value="World Famous Brands",
+                        size=16,
+                        weight="bold",
+                        color=ft.Colors("grey600"),
+                    ),
+                    # Description
+                    ft.Text(
+                        value="More Than 45 Brands",
+                        size=28,
+                        weight=ft.FontWeight.W_900,
+                        color=ft.Colors("grey900"),
+                    ),
+                    # Price and Discount
+                    ft.Row(
+                        controls=[
+                            ft.Text(
+                                value="$19.00",
+                                size=18,
+                                color=ft.Colors("red600"),
+                                weight=ft.FontWeight.W_900,
+                                style=ft.TextStyle(
+                                    decoration=ft.TextDecoration.LINE_THROUGH,
+                                    decoration_color="red",
+                                ),  # OVERLINE, UNDERLINE, LINE_THROUGH
+                            ),
+                            ft.Text(
+                                value="$49.00",
+                                size=32,
+                                color=ft.Colors("grey600"),
+                                weight=ft.FontWeight.W_900,
+                            ),
+                        ],
+                        alignment=ft.MainAxisAlignment.END,
+                        run_alignment=ft.CrossAxisAlignment.CENTER,
+                        vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                        spacing=5,
+                    ),
+                ],
+            ),
+        ),  # <
+        "Card presentation job": ft.Container(
+            width=300,
+            height=150,
+            border_radius=ft.border_radius.all(32),
+            padding=ft.padding.all(20),
+            bgcolor=ft.Colors("white"),
+            shadow=ft.BoxShadow(
+                spread_radius=1,
+                blur_radius=15,
+                color=ft.Colors("black"),
+                offset=ft.Offset(0, 5),
+            ),
+            image=ft.DecorationImage(
+                src="apple.png",
+                fit="cover",
+                opacity=0.18,
+            ),
+            content=ft.Column(
+                controls=[
+                    # Business Name
+                    ft.Text(
+                        value="Tech Solutions Inc.",
+                        size=26,
+                        weight=ft.FontWeight.W_900,
+                        color=ft.Colors("grey800"),
+                    ),
+                    # Contact Info
+                    ft.Text(
+                        value="Email: info@techsolutions.com",
+                        size=16,
+                        weight=ft.FontWeight.W_500,
+                        color=ft.Colors("grey600"),
+                    ),
+                    ft.Text(
+                        value="Phone: +1 234 567 890",
+                        size=16,
+                        color=ft.Colors("grey600"),
+                        weight=ft.FontWeight.W_900,
+                    ),
+                ],
+                spacing=5,
+                alignment=ft.MainAxisAlignment.CENTER,
+                horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+            ),
+        ),  # <
         "Card pizza": ft.Container(
             # expand=True,
             padding=ft.padding.only(left=12, top=12, right=12, bottom=12),
@@ -1178,6 +1290,85 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                                 ),
                             ),
                         ],
+                    ),
+                ],
+            ),
+        ),  # <
+        "Card shoes simple": ft.Container(
+            bgcolor=ft.Colors("grey900"),
+            shadow=ft.BoxShadow(
+                spread_radius=1,
+                blur_radius=15,
+                color=ft.Colors("black"),
+                offset=ft.Offset(0, 5),
+            ),
+            border_radius=ft.border_radius.all(32),
+            padding=ft.padding.only(left=0, top=0, right=0, bottom=8),
+            content=ft.Column(
+                alignment=ft.MainAxisAlignment.SPACE_AROUND,
+                horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+                run_alignment=ft.CrossAxisAlignment.CENTER,
+                controls=[
+                    ft.Container(
+                        # expand=True,
+                        padding=ft.padding.only(left=8, top=8, right=8, bottom=12),
+                        border_radius=ft.border_radius.all(32),
+                        width=200,
+                        height=200,
+                        image=ft.DecorationImage(
+                            src="image_search_1740143908354.jpg",
+                            fit="cover",
+                            opacity=0.8,
+                        ),
+                        content=ft.Column(
+                            alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+                            horizontal_alignment=ft.CrossAxisAlignment.END,
+                            run_alignment=ft.CrossAxisAlignment.CENTER,
+                            expand=True,
+                            spacing=0,
+                            run_spacing=0,
+                            controls=[
+                                ft.Container(
+                                    padding=ft.padding.only(
+                                        left=8, right=8, bottom=8, top=8
+                                    ),
+                                    # bgcolor=ft.Colors.with_opacity(
+                                    #     opacity=0.8, color=ft.Colors("grey900")
+                                    # ),
+                                    border_radius=ft.border_radius.only(
+                                        top_left=32,
+                                        top_right=32,
+                                        bottom_left=32,
+                                        bottom_right=32,
+                                    ),
+                                    # expand=True,
+                                    content=ft.Icon(
+                                        name="favorite",
+                                        color=ft.Colors.with_opacity(
+                                            opacity=0.8, color=ft.Colors("red900")
+                                        ),
+                                    ),
+                                ),
+                                ft.Container(
+                                    padding=ft.padding.only(
+                                        left=8, right=8, bottom=8, top=8
+                                    ),
+                                    bgcolor=ft.Colors.with_opacity(
+                                        opacity=0.8, color=ft.Colors("grey900")
+                                    ),
+                                    border_radius=ft.border_radius.only(
+                                        top_left=32,
+                                        top_right=32,
+                                        bottom_left=32,
+                                        bottom_right=32,
+                                    ),
+                                    # expand=True,
+                                    content=ft.Icon(
+                                        name="shopping_cart_checkout_sharp",
+                                    ),
+                                ),
+                            ],
+                        ),
                     ),
                 ],
             ),

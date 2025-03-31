@@ -215,6 +215,121 @@ widget_dict = {
             horizontal_alignment=ft.CrossAxisAlignment.START,
         ),
     ),  # <
+    "Card text btn": ft.Container(
+        width=320,
+        bgcolor=ft.Colors("grey900"),
+        shadow=ft.BoxShadow(
+            spread_radius=1,
+            blur_radius=15,
+            color=ft.Colors("black"),
+            offset=ft.Offset(0, 5),
+        ),
+        border=ft.border.only(
+            left=ft.border.BorderSide(
+                8,
+                ft.Colors.with_opacity(opacity=0.6, color=ft.Colors("yellow900")),
+            ),
+            top=None,
+            right=None,
+            bottom=None,
+        ),
+        border_radius=ft.border_radius.all(12),
+        padding=ft.padding.only(left=8, top=8, right=8, bottom=8),
+        content=ft.Column(
+            controls=[
+                ft.Column(
+                    controls=[
+                        # Banner Title
+                        ft.Row(
+                            expand=True,
+                            alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+                            vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                            run_alignment=ft.CrossAxisAlignment.CENTER,
+                            controls=[
+                                ft.Text(
+                                    value="Cannes Film Festival",
+                                    size=14,
+                                    weight="bold",
+                                    color=ft.Colors("white"),
+                                ),
+                                ft.Text(
+                                    value="$68",
+                                    size=22,
+                                    weight="bold",
+                                    color=ft.Colors.with_opacity(
+                                        opacity=0.6, color=ft.Colors("yellow900")
+                                    ),
+                                ),
+                            ],
+                        ),
+                        # Banner Description
+                        ft.Text(
+                            value="May 14-25, 2024",
+                            size=11,
+                            color=ft.Colors("white70"),
+                        ),
+                    ],
+                    spacing=0,
+                    alignment=ft.MainAxisAlignment.CENTER,
+                    horizontal_alignment=ft.CrossAxisAlignment.START,
+                ),
+                ft.Row(
+                    alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+                    vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                    run_alignment=ft.CrossAxisAlignment.CENTER,
+                    controls=[
+                        ft.Row(
+                            alignment=ft.MainAxisAlignment.CENTER,
+                            vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                            run_alignment=ft.CrossAxisAlignment.CENTER,
+                            spacing=2,
+                            run_spacing=2,
+                            controls=[
+                                ft.Icon(
+                                    name="star",
+                                    size=12,
+                                    color=ft.Colors.with_opacity(
+                                        opacity=0.6, color=ft.Colors("yellow900")
+                                    ),
+                                ),
+                                ft.Text(
+                                    text_align=ft.TextAlign.LEFT,
+                                    weight=ft.FontWeight.BOLD,
+                                    font_family="Consolas",
+                                    size=12,
+                                    value="4.0",
+                                ),
+                            ],
+                        ),
+                        ft.Container(
+                            padding=ft.padding.only(left=12, right=12, bottom=8, top=8),
+                            border_radius=ft.border_radius.only(
+                                top_left=8,
+                                top_right=8,
+                                bottom_left=8,
+                                bottom_right=8,
+                            ),
+                            alignment=ft.alignment.center,
+                            ink_color=ft.colors("yellow"),
+                            bgcolor=ft.Colors.with_opacity(
+                                opacity=0.6, color=ft.Colors("yellow900")
+                            ),
+                            content=ft.Text(
+                                # expand=True,
+                                value="Sport shoes",
+                                text_align=ft.TextAlign.CENTER,
+                                weight=ft.FontWeight.BOLD,
+                                font_family="Consolas",
+                                color=ft.Colors.with_opacity(
+                                    opacity=0.6, color=ft.Colors("white")
+                                ),
+                            ),
+                        ),
+                    ],
+                ),
+            ],
+        ),
+    ),  # <
     "Card text": ft.Container(
         bgcolor=ft.Colors("grey900"),
         shadow=ft.BoxShadow(
@@ -1041,46 +1156,6 @@ widget_dict = {
             horizontal_alignment=ft.CrossAxisAlignment.CENTER,
         ),
     ),  # <
-    "Card tech": ft.Container(
-        width=300,
-        height=200,
-        border_radius=ft.border_radius.all(10),
-        bgcolor=ft.Colors("white"),
-        shadow=ft.BoxShadow(
-            spread_radius=1,
-            blur_radius=15,
-            color=ft.Colors("black"),
-            offset=ft.Offset(0, 5),
-        ),
-        padding=ft.padding.all(20),
-        image=ft.DecorationImage(
-            src="apple.png",
-            fit="cover",
-            opacity=0.18,
-        ),
-        content=ft.Column(
-            controls=[
-                # Conference Name
-                ft.Text(
-                    value="Tech Summit 2024",
-                    size=20,
-                    weight="bold",
-                    color=ft.Colors("black87"),
-                ),
-                # Date
-                ft.Text(
-                    value="October 10-12, 2024",
-                    size=14,
-                    color=ft.Colors("grey"),
-                ),
-                # Location
-                ft.Text(value="San Francisco, CA", size=14, color=ft.Colors("grey")),
-            ],
-            spacing=5,
-            alignment=ft.MainAxisAlignment.CENTER,
-            horizontal_alignment=ft.CrossAxisAlignment.CENTER,
-        ),
-    ),  # <
     "Card travel": ft.Container(
         # height=80,
         padding=ft.padding.only(left=16, top=16, right=16, bottom=16),
@@ -1187,106 +1262,6 @@ widget_dict = {
                     ),
                 ),
             ],
-        ),
-    ),  # <
-    "Card showcase": ft.Container(
-        width=300,
-        height=200,
-        border_radius=ft.border_radius.all(10),
-        padding=ft.padding.all(20),
-        bgcolor=ft.Colors("white"),
-        shadow=ft.BoxShadow(
-            spread_radius=1,
-            blur_radius=15,
-            color=ft.Colors("black"),
-            offset=ft.Offset(0, 5),
-        ),
-        image=ft.DecorationImage(
-            src="image_avatar.png",
-            fit="cover",
-            opacity=0.3,
-        ),
-        content=ft.Column(
-            controls=[
-                # Brand Name
-                ft.Text(
-                    value="World Famous Brands",
-                    size=20,
-                    weight="bold",
-                    color=ft.Colors("black87"),
-                ),
-                # Description
-                ft.Text(
-                    value="More Than 45 Brands", size=14, color=ft.Colors("grey600")
-                ),
-                # Price and Discount
-                ft.Row(
-                    controls=[
-                        ft.Text(
-                            value="$49.00",
-                            size=16,
-                            color=ft.Colors("grey600"),
-                            weight=ft.FontWeight.BOLD,
-                        ),
-                        ft.Text(
-                            value="$19.00",
-                            size=16,
-                            color=ft.Colors("red600"),
-                            weight=ft.FontWeight.BOLD,
-                        ),
-                    ],
-                    alignment=ft.MainAxisAlignment.CENTER,
-                    vertical_alignment=ft.CrossAxisAlignment.CENTER,
-                    spacing=5,
-                ),
-            ],
-            spacing=10,
-            alignment=ft.MainAxisAlignment.CENTER,
-            horizontal_alignment=ft.CrossAxisAlignment.CENTER,
-        ),
-    ),  # <
-    "Card business": ft.Container(
-        width=300,
-        height=150,
-        border_radius=ft.border_radius.all(10),
-        padding=ft.padding.all(20),
-        bgcolor=ft.Colors("white"),
-        shadow=ft.BoxShadow(
-            spread_radius=1,
-            blur_radius=15,
-            color=ft.Colors("black"),
-            offset=ft.Offset(0, 5),
-        ),
-        image=ft.DecorationImage(
-            src="apple.png",
-            fit="cover",
-            opacity=0.18,
-        ),
-        content=ft.Column(
-            controls=[
-                # Business Name
-                ft.Text(
-                    value="Tech Solutions Inc.",
-                    size=20,
-                    weight="bold",
-                    color=ft.Colors("black87"),
-                ),
-                # Contact Info
-                ft.Text(
-                    value="Email: info@techsolutions.com",
-                    size=14,
-                    color=ft.Colors("grey600"),
-                ),
-                ft.Text(
-                    value="Phone: +1 234 567 890",
-                    size=14,
-                    color=ft.Colors("grey600"),
-                    weight="bold",
-                ),
-            ],
-            spacing=5,
-            alignment=ft.MainAxisAlignment.CENTER,
-            horizontal_alignment=ft.CrossAxisAlignment.CENTER,
         ),
     ),  # <
     "Regis formulary": ft.Container(
@@ -1693,6 +1668,7 @@ def custom_image_dict(get_widget: str = "", keys=True):
         "Stars": "images/stars.png",
         "Volumen": "images/volumen.png",
         "Card text": "images/card_text.png",
+        "Card text btn": "images/card_text_btn.png",
         "Best Textfield": "images/besttextfield.png",
         "H banner": "images/bannerh.png",
         "Banner Sales": "images/barnersales.png",
@@ -1711,6 +1687,8 @@ def custom_image_dict(get_widget: str = "", keys=True):
         "Dapps app": "images/dapapp.png",
         "Dapps H bar": "images/daph.png",
         "Dapps V bar": "images/dapv.png",
+        "Card presentation job": "images/card_presentation_job.png",
+        "Card price decoration": "images/card_price_decoration.png",
         "Card pizza": "images/card_pizza.png",
         "Card pizza time": "images/pizza_time.png",
         "Card pizza text": "images/pizza_text.png",
@@ -1726,6 +1704,7 @@ def custom_image_dict(get_widget: str = "", keys=True):
         "Card presentation": "images/cardpresentation.png",
         "Card stadium": "images/cardstadium.png",
         "Card shoes": "images/card_shoes.png",
+        "Card shoes simple": "images/card_shoes_simple.png",
         "Card shoes add stars": "images/card_add_stars.png",
         "Card shoes add remove": "images/card_add_remove.png",
         "Card shoes out prices": "images/card_shoes_out_price.png",
@@ -1740,7 +1719,6 @@ def custom_image_dict(get_widget: str = "", keys=True):
         "Card small starts": "images/samll_card_starts.png",
         "Card sale pc": "images/card_sale.png",
         "Card btn pc": "images/sellin_pc_btn.png",
-        "Card tech": "images/card_tech.png",
         "Card hotel": "images/card_hote.png",
         "Card pop festival": "images/card_festival_concert.png",
         "Card music": "images/card_music.png",
@@ -1748,8 +1726,6 @@ def custom_image_dict(get_widget: str = "", keys=True):
         "Card place": "images/card_place.png",
         "Card event": "images/card_festival.png",
         "Card travel": "images/card_travel.png",
-        "Card showcase": "images/card_tech_phone.png",
-        "Card business": "images/tech_solution.png",
         "Card pop list": "images/card_music_pop.png",
         "Card pop music": "images/card_pop.png",
         "Card pop blur": "images/card_pop_blur.png",

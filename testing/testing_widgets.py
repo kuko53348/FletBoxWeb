@@ -1322,180 +1322,48 @@ if __name__ == "__main__":
     def main(page: ft.Page):
 
         widget_exemple = ft.Container(
-            bgcolor=ft.Colors("black12"),
-            border_radius=ft.BorderRadius(
-                top_left=32, top_right=32, bottom_left=32, bottom_right=32
-            ),
-            image=ft.DecorationImage(
-                src="image_search_1740143480957.webp",
-                fit=ft.ImageFit.COVER,
-                opacity=0.5,
-            ),  # NONE CONTAIN COVER FILL FIT_HEIGHT FIT_WIDTH SCALE_DOWN
+            width=300,
+            height=150,
+            border_radius=ft.border_radius.all(32),
+            padding=ft.padding.all(20),
+            bgcolor=ft.Colors("white"),
             shadow=ft.BoxShadow(
                 spread_radius=1,
                 blur_radius=15,
-                color=ft.colors("black"),
-                offset=ft.Offset(0, 0),
-                blur_style=ft.ShadowBlurStyle.OUTER,
+                color=ft.Colors("black"),
+                offset=ft.Offset(0, 5),
             ),
-            ink=True,
-            ink_color=ft.Colors("red"),
-            margin=ft.Margin(left=0, top=0, right=0, bottom=0),
-            offset=ft.Offset(x=0, y=0),
-            opacity=1.0,
-            padding=ft.Padding(left=16, top=16, right=16, bottom=16),
-            visible=True,
-            width=320.0,
+            image=ft.DecorationImage(
+                src="apple.png",
+                fit="cover",
+                opacity=0.18,
+            ),
             content=ft.Column(
-                offset=ft.Offset(x=0, y=0),
-                opacity=1.0,
-                scroll=ft.ScrollMode.HIDDEN,
-                spacing=2.0,
-                visible=True,
                 controls=[
-                    ft.Container(
-                        bgcolor=ft.Colors("transparent"),
-                        border_radius=ft.BorderRadius(
-                            top_left=0, top_right=0, bottom_left=0, bottom_right=0
-                        ),
-                        ink=True,
-                        ink_color=ft.Colors("red"),
-                        margin=ft.Margin(left=0, top=0, right=0, bottom=0),
-                        offset=ft.Offset(x=0, y=0),
-                        opacity=1.0,
-                        padding=ft.Padding(left=8, top=8, right=8, bottom=8),
-                        shadow=[],
-                        visible=True,
-                        content=ft.Text(
-                            color=ft.Colors("white"),
-                            enable_interactive_selection=True,
-                            offset=ft.Offset(x=0, y=0),
-                            opacity=1.0,
-                            selection_cursor_width=2.0,
-                            size=15,
-                            value="New year sale",
-                            visible=True,
-                            weight=ft.FontWeight.W_500,
-                        ),
+                    # Business Name
+                    ft.Text(
+                        value="Tech Solutions Inc.",
+                        size=26,
+                        weight=ft.FontWeight.W_900,
+                        color=ft.Colors("grey800"),
                     ),
-                    ft.Container(
-                        bgcolor=ft.Colors("transparent"),
-                        border_radius=ft.BorderRadius(
-                            top_left=0, top_right=0, bottom_left=0, bottom_right=0
-                        ),
-                        ink=True,
-                        ink_color=ft.Colors("red"),
-                        margin=ft.Margin(left=0, top=0, right=0, bottom=0),
-                        offset=ft.Offset(x=0, y=0),
-                        opacity=1.0,
-                        padding=ft.Padding(left=8, top=8, right=8, bottom=8),
-                        shadow=[],
-                        visible=True,
-                        content=ft.Text(
-                            color=ft.Colors("white"),
-                            enable_interactive_selection=True,
-                            offset=ft.Offset(x=0, y=0),
-                            opacity=1.0,
-                            selection_cursor_width=2.0,
-                            size=24.0,
-                            value="Change text OFF",
-                            visible=True,
-                            weight=ft.FontWeight.W_900,
-                        ),
+                    # Contact Info
+                    ft.Text(
+                        value="Email: info@techsolutions.com",
+                        size=16,
+                        weight=ft.FontWeight.W_500,
+                        color=ft.Colors("grey600"),
                     ),
-                    ft.Container(
-                        bgcolor=ft.Colors("transparent"),
-                        ink=True,
-                        ink_color=ft.Colors("red"),
-                        opacity=1.0,
-                        padding=ft.Padding(left=8, top=8, right=8, bottom=8),
-                        shadow=[],
-                        visible=True,
-                        content=ft.Row(
-                            opacity=1.0,
-                            scroll=ft.ScrollMode.HIDDEN,
-                            spacing=10,
-                            visible=True,
-                            controls=[
-                                ft.Container(
-                                    bgcolor=ft.Colors("grey900"),
-                                    border_radius=ft.BorderRadius(
-                                        top_left=12,
-                                        top_right=12,
-                                        bottom_left=12,
-                                        bottom_right=12,
-                                    ),
-                                    padding=ft.Padding(
-                                        left=12, top=8, right=12, bottom=8
-                                    ),
-                                    shadow=[],
-                                    visible=True,
-                                    content=ft.Text(
-                                        color=ft.Colors("white"),
-                                        enable_interactive_selection=True,
-                                        offset=ft.Offset(x=0, y=0),
-                                        opacity=1.0,
-                                        selection_cursor_width=2.0,
-                                        size=15,
-                                        value="Small",
-                                        visible=True,
-                                        weight=ft.FontWeight.W_600,
-                                    ),
-                                ),
-                                ft.Container(
-                                    bgcolor=ft.Colors("grey900"),
-                                    border_radius=ft.BorderRadius(
-                                        top_left=12,
-                                        top_right=12,
-                                        bottom_left=12,
-                                        bottom_right=12,
-                                    ),
-                                    padding=ft.Padding(
-                                        left=12, top=8, right=12, bottom=8
-                                    ),
-                                    shadow=[],
-                                    visible=True,
-                                    content=ft.Text(
-                                        color=ft.Colors("white"),
-                                        enable_interactive_selection=True,
-                                        offset=ft.Offset(x=0, y=0),
-                                        opacity=1.0,
-                                        selection_cursor_width=2.0,
-                                        size=15,
-                                        value="Medium",
-                                        visible=True,
-                                        weight=ft.FontWeight.W_600,
-                                    ),
-                                ),
-                                ft.Container(
-                                    bgcolor=ft.Colors("yellow600"),
-                                    border_radius=ft.BorderRadius(
-                                        top_left=12,
-                                        top_right=12,
-                                        bottom_left=12,
-                                        bottom_right=12,
-                                    ),
-                                    padding=ft.Padding(
-                                        left=12, top=8, right=12, bottom=8
-                                    ),
-                                    shadow=[],
-                                    visible=True,
-                                    content=ft.Text(
-                                        color=ft.Colors("grey800"),
-                                        enable_interactive_selection=True,
-                                        offset=ft.Offset(x=0, y=0),
-                                        opacity=1.0,
-                                        selection_cursor_width=2.0,
-                                        size=15,
-                                        value="Extra large",
-                                        visible=True,
-                                        weight=ft.FontWeight.W_900,
-                                    ),
-                                ),
-                            ],
-                        ),
+                    ft.Text(
+                        value="Phone: +1 234 567 890",
+                        size=16,
+                        color=ft.Colors("grey600"),
+                        weight=ft.FontWeight.W_900,
                     ),
                 ],
+                spacing=5,
+                alignment=ft.MainAxisAlignment.CENTER,
+                horizontal_alignment=ft.CrossAxisAlignment.CENTER,
             ),
         )  # <
 
