@@ -125,8 +125,16 @@ def serialize_widget(widget, indent=0):
                         value = _format_value(value)
 
                         if isinstance(value, ft.colors) or isinstance(value, ft.Colors):
-                            new_color = f"{value.name.lower()}"
-                            value_str = f"Colors('{new_color.replace("_", "")}')"
+                            print(value)
+                            # ================================
+                            # new_color = f"{value.name.lower()}"
+                            # new_color = new_color.replace("_", "")
+                            # value_str = f"Colors('{new_color}')"
+                            # ================================
+
+                            value_str = check_instance(
+                                value=value.name, instance_widget=ft.colors
+                            )
 
                         elif isinstance(value, ft.MainAxisAlignment):
                             value_str = f"{value}"
