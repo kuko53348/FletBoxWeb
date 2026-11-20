@@ -2,15 +2,14 @@ import flet as ft
 from itertools import takewhile
 from .re_validation_input_textfield import input_filter_by
 
-
-# for _ in dir(ft.colors):
+# for _ in dir(ft.Colors):
 #     if _ == "__add__":
 #         break
 #     list_reference_color.append(_.lower())
 
 
 list_reference_color = [
-    _.lower() for _ in list(takewhile(lambda x: x != "__add__", dir(ft.colors)))
+    _.lower() for _ in list(takewhile(lambda x: x != "__add__", dir(ft.Colors)))
 ]
 
 one_color = "transparent"
@@ -148,8 +147,8 @@ class get_linear_gradient(ft.Column):
     # ft.MainAxisAlignment START END CENTER SPACE_BETWEEN SPACE_AROUND SPACE_EVENLY
     # ft.CrossAxisAlignment START END CENTER STRETCH BASELINE
     selected_list: list = [
-        ft.colors(one_color),
-        ft.colors(second_color),
+        ft.Colors(one_color),
+        ft.Colors(second_color),
     ]
     left_selected: object = ft.alignment.top_center
     right_selected: object = ft.alignment.bottom_center
@@ -205,7 +204,7 @@ class get_linear_gradient(ft.Column):
                                                     active_color=ft.Colors.RED,
                                                 ),
                                                 ft.Radio(
-                                                    value="center_top_left",
+                                                    value="CENTER_TOP_left",
                                                     fill_color=ft.Colors.BLUE_200,
                                                     active_color=ft.Colors.BLACK,
                                                 ),
@@ -219,17 +218,17 @@ class get_linear_gradient(ft.Column):
                                         ft.Row(
                                             controls=[
                                                 ft.Radio(
-                                                    value="left_center_left",
+                                                    value="left_CENTER_LEFT",
                                                     fill_color=ft.Colors.YELLOW_500,
                                                     active_color=ft.Colors.RED,
                                                 ),
                                                 ft.Radio(
-                                                    value="center_left",
+                                                    value="CENTER_LEFT",
                                                     fill_color=ft.Colors.BLUE_500,
                                                     active_color=ft.Colors.BLACK,
                                                 ),
                                                 ft.Radio(
-                                                    value="right_center_left",
+                                                    value="right_CENTER_LEFT",
                                                     fill_color=ft.Colors.GREEN_500,
                                                     active_color=ft.Colors.CYAN,
                                                 ),
@@ -243,7 +242,7 @@ class get_linear_gradient(ft.Column):
                                                     active_color=ft.Colors.RED,
                                                 ),
                                                 ft.Radio(
-                                                    value="center_bottom_left",
+                                                    value="CENTER_BOTTOM_left",
                                                     fill_color=ft.Colors.BLUE_800,
                                                     active_color=ft.Colors.BLACK,
                                                 ),
@@ -287,7 +286,7 @@ class get_linear_gradient(ft.Column):
                                                     active_color=ft.Colors.RED,
                                                 ),
                                                 ft.Radio(
-                                                    value="center_top_right",
+                                                    value="CENTER_TOP_right",
                                                     fill_color=ft.Colors.BLUE_200,
                                                     active_color=ft.Colors.BLACK,
                                                 ),
@@ -301,17 +300,17 @@ class get_linear_gradient(ft.Column):
                                         ft.Row(
                                             controls=[
                                                 ft.Radio(
-                                                    value="left_center_right",
+                                                    value="left_CENTER_RIGHT",
                                                     fill_color=ft.Colors.YELLOW_500,
                                                     active_color=ft.Colors.RED,
                                                 ),
                                                 ft.Radio(
-                                                    value="center_right",
+                                                    value="CENTER_RIGHT",
                                                     fill_color=ft.Colors.BLUE_500,
                                                     active_color=ft.Colors.BLACK,
                                                 ),
                                                 ft.Radio(
-                                                    value="right_center_right",
+                                                    value="right_CENTER_RIGHT",
                                                     fill_color=ft.Colors.GREEN_500,
                                                     active_color=ft.Colors.CYAN,
                                                 ),
@@ -325,7 +324,7 @@ class get_linear_gradient(ft.Column):
                                                     active_color=ft.Colors.RED,
                                                 ),
                                                 ft.Radio(
-                                                    value="center_bottom_right",
+                                                    value="CENTER_BOTTOM_right",
                                                     fill_color=ft.Colors.BLUE_800,
                                                     active_color=ft.Colors.BLACK,
                                                 ),
@@ -377,19 +376,19 @@ class get_linear_gradient(ft.Column):
         # LEFT SELECTION
         if selection_radio == "left_top_left":
             self.left_selected = ft.alignment.top_left
-        elif selection_radio == "center_top_left":
+        elif selection_radio == "CENTER_TOP_left":
             self.left_selected = ft.alignment.top_center
         elif selection_radio == "right_top_left":
             self.left_selected = ft.alignment.top_right
-        elif selection_radio == "left_center_left":
+        elif selection_radio == "left_CENTER_LEFT":
             self.left_selected = ft.alignment.center_left
-        elif selection_radio == "center_left":
+        elif selection_radio == "CENTER_LEFT":
             self.left_selected = ft.alignment.center
-        elif selection_radio == "right_center_left":
+        elif selection_radio == "right_CENTER_LEFT":
             self.left_selected = ft.alignment.center_right
         elif selection_radio == "left_bottom_left":
             self.left_selected = ft.alignment.bottom_left
-        elif selection_radio == "center_bottom_left":
+        elif selection_radio == "CENTER_BOTTOM_left":
             self.left_selected = ft.alignment.bottom_right
         elif selection_radio == "right_bottom_left":
             self.left_selected = ft.alignment.bottom_center
@@ -397,19 +396,19 @@ class get_linear_gradient(ft.Column):
         # RIGHT SELECTION
         if selection_radio == "left_top_right":
             self.right_selected = ft.alignment.top_left
-        elif selection_radio == "center_top_right":
+        elif selection_radio == "CENTER_TOP_right":
             self.right_selected = ft.alignment.top_center
         elif selection_radio == "right_top_right":
             self.right_selected = ft.alignment.top_right
-        elif selection_radio == "right_center_right":
+        elif selection_radio == "right_CENTER_RIGHT":
             self.right_selected = ft.alignment.center_left
-        elif selection_radio == "center_right":
+        elif selection_radio == "CENTER_RIGHT":
             self.right_selected = ft.alignment.center
-        elif selection_radio == "right_center_right":
+        elif selection_radio == "right_CENTER_RIGHT":
             self.right_selected = ft.alignment.center_right
         elif selection_radio == "right_bottom_right":
             self.right_selected = ft.alignment.bottom_left
-        elif selection_radio == "center_bottom_right":
+        elif selection_radio == "CENTER_BOTTOM_right":
             self.right_selected = ft.alignment.bottom_right
         elif selection_radio == "right_bottom_right":
             self.right_selected = ft.alignment.bottom_center

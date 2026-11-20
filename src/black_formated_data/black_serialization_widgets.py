@@ -124,7 +124,7 @@ def serialize_widget(widget, indent=0):
                     else:
                         value = _format_value(value)
 
-                        if isinstance(value, ft.colors) or isinstance(value, ft.Colors):
+                        if isinstance(value, ft.Colors) or isinstance(value, ft.Colors):
                             print(value)
                             # ================================
                             # new_color = f"{value.name.lower()}"
@@ -133,7 +133,7 @@ def serialize_widget(widget, indent=0):
                             # ================================
 
                             value_str = check_instance(
-                                value=value.name, instance_widget=ft.colors
+                                value=value.name, instance_widget=ft.Colors
                             )
 
                         elif isinstance(value, ft.MainAxisAlignment):
@@ -326,7 +326,7 @@ def _format_value(value: Any, indent_level: int = 4) -> str:
         value.tile_mode = check_instance(
             value=value.tile_mode, instance_widget=ft.GradientTileMode
         )
-        value.colors = [_.split(" ")[0] for _ in value.colors]
+        value.Colors = [_.split(" ")[0] for _ in value.Colors]
 
         return value
 
@@ -346,7 +346,7 @@ def _format_value(value: Any, indent_level: int = 4) -> str:
 
     if isinstance(value, ft.ButtonStyle):
         tmp_widget = check_instance(value=value.bgcolor, instance_widget=ft.Colors)
-        tmp_widget = check_instance(value=value.bgcolor, instance_widget=ft.padding)
+        tmp_widget = check_instance(value=value.bgcolor, instance_widget=ft.Padding)
         tmp_widget = check_instance(
             value=value.text_style,
             instance_widget=ft.TextStyle,

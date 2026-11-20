@@ -28,15 +28,15 @@ class main_edit_container(ft.Container):
         self.shadow = ft.BoxShadow(
             spread_radius=0.02,
             blur_radius=3,
-            color=ft.colors("black"),
+            color=ft.Colors("black"),
             offset=ft.Offset(0, 0),
             blur_style=ft.ShadowBlurStyle.OUTER,
         )
         self.padding = ft.padding.only(left=12, right=8, bottom=8, top=8)
         self.ink = True
-        self.bgcolor = ft.Colors.with_opacity(opacity=0.05, color=ft.colors("white"))
+        self.bgcolor = ft.Colors.with_opacity(opacity=0.05, color=ft.Colors("white"))
         self.alignment = ft.alignment.center
-        self.ink_color = ft.colors("yellow")
+        self.ink_color = ft.Colors("yellow")
 
         self.content = ft.Column(spacing=4, run_spacing=4, controls=controls)
 
@@ -79,9 +79,9 @@ class box_with_title_container(ft.Container):
         self.page = page
         self.expand = True
         self.ink = True
-        self.bgcolor = ft.colors("black12")
+        self.bgcolor = ft.Colors("black12")
         self.alignment = ft.alignment.center
-        self.ink_color = ft.colors("yellow")
+        self.ink_color = ft.Colors("yellow")
 
         self.content = ft.Column(
             scroll=ft.ScrollMode.HIDDEN,
@@ -108,9 +108,9 @@ class tabs_menu(ft.Container):
         )
         self.expand = True
         self.ink = True
-        self.bgcolor = ft.colors("grey900")
+        self.bgcolor = ft.Colors("grey900")
         self.alignment = ft.alignment.top_center
-        self.ink_color = ft.colors("yellow")
+        self.ink_color = ft.Colors("yellow")
 
         edit_container = self.page.session.get("selected_in_phone_widget")
         # edit_container = ft.Container() if check_selection == None else check_selection
@@ -122,7 +122,7 @@ class tabs_menu(ft.Container):
             expand=1,
             tabs=[
                 ft.Tab(
-                    tab_content=ft.Icon(name="phone_android_rounded"),
+                    tab_content=ft.Icon("phone_android_rounded"),
                     height=30,
                     content=box_with_title_container(
                         page=self.page,
@@ -130,7 +130,7 @@ class tabs_menu(ft.Container):
                     ),
                 ),
                 ft.Tab(
-                    tab_content=ft.Icon(name="style_rounded"),
+                    tab_content=ft.Icon("style_rounded"),
                     content=box_with_title_container(
                         page=self.page,
                         controls=[
@@ -314,7 +314,7 @@ class tabs_menu(ft.Container):
                     ),
                 ),
                 ft.Tab(
-                    tab_content=ft.Icon(name="edit_off_rounded"),
+                    tab_content=ft.Icon("edit_off_rounded"),
                     content=box_with_title_container(
                         page=self.page,
                         controls=[],
@@ -341,7 +341,7 @@ class footer_menu(ft.Container):
         self.shadow = ft.BoxShadow(
             spread_radius=1,
             blur_radius=15,
-            color=ft.colors("black"),
+            color=ft.Colors("black"),
             offset=ft.Offset(0, 0),
             blur_style=ft.ShadowBlurStyle.OUTER,
         )
@@ -378,20 +378,20 @@ class edit_attributes_container(ft.Container):
         self.page = page
         self.ink = True
         # self.left_menu = left_menu
-        self.bgcolor = ft.colors("white12")
+        self.bgcolor = ft.Colors("white12")
         self.alignment = ft.alignment.center
-        self.ink_color = ft.colors("yellow")
+        self.ink_color = ft.Colors("yellow")
         self.width = 400
         self.padding = ft.padding.only(left=0, right=0, bottom=0, top=0)
         self.margin = ft.margin.only(left=0, right=0, bottom=0, top=0)
         self.border_radius = ft.border_radius.only(
             top_left=32, top_right=32, bottom_left=32, bottom_right=32
         )
-        self.border = ft.border.all(width=2, color=ft.colors("grey900"))
+        self.border = ft.border.all(width=2, color=ft.Colors("grey900"))
         self.gradient = ft.LinearGradient(
             begin=ft.alignment.top_center,
             end=ft.alignment.bottom_center,
-            colors=[ft.colors("transparent"), ft.colors("black12")],
+            colors=[ft.Colors("transparent"), ft.Colors("black12")],
         )
         self.image = ft.DecorationImage(
             src="image136.jpeg",
@@ -401,7 +401,7 @@ class edit_attributes_container(ft.Container):
         self.shadow = ft.BoxShadow(
             spread_radius=1,
             blur_radius=15,
-            color=ft.colors("black"),
+            color=ft.Colors("black"),
             offset=ft.Offset(0, 0),
             blur_style=ft.ShadowBlurStyle.OUTER,
         )

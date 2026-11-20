@@ -46,7 +46,7 @@ def layouts_witgets(get_widget: str = "", keys=True):
                     extended=True,
                     min_width=50,
                     min_extended_width=100,
-                    leading=ft.FloatingActionButton(icon=ft.Icons.CREATE, text="Add"),
+                    leading=ft.FloatingActionButton(icon=ft.Icons.CREATE, content="Add"),
                     group_alignment=-0.9,
                     destinations=[
                         ft.NavigationRailDestination(
@@ -62,7 +62,7 @@ def layouts_witgets(get_widget: str = "", keys=True):
                         ft.NavigationRailDestination(
                             icon=ft.Icons.SETTINGS_OUTLINED,
                             selected_icon=ft.Icon(ft.Icons.SETTINGS),
-                            label_content=ft.Text("Settings"),
+                            label=ft.Text("Settings"),
                         ),
                     ],
                     # on_change=lambda e: print(
@@ -126,9 +126,7 @@ def buttons_witgets(get_widget: str = "", keys=True):
         border_radius=ft.border_radius.all(10),
     )
     widget_dict = {
-        "DatePicker": ft.ElevatedButton(
-            text="Pick date",
-            icon=ft.Icons.CALENDAR_MONTH,
+        "DatePicker": ft.ElevatedButton("Pick date", icon=ft.Icons.CALENDAR_MONTH,
             on_click=lambda e: page.open(
                 ft.DatePicker(
                     first_date=datetime.datetime(year=2023, month=10, day=1),
@@ -138,9 +136,7 @@ def buttons_witgets(get_widget: str = "", keys=True):
                 )
             ),
         ),
-        "TimePicker": ft.ElevatedButton(
-            text="Pick time",
-            icon=ft.Icons.ACCESS_TIME_FILLED_ROUNDED,
+        "TimePicker": ft.ElevatedButton("Pick time", icon=ft.Icons.ACCESS_TIME_FILLED_ROUNDED,
             on_click=lambda e: page.open(
                 ft.TimePicker(
                     confirm_text="Confirm",
@@ -152,14 +148,10 @@ def buttons_witgets(get_widget: str = "", keys=True):
                 )
             ),
         ),
-        "AlertDialog": ft.ElevatedButton(
-            text="Alert Dialog",
-            icon=ft.Icons.ADD_ALERT_ROUNDED,
+        "AlertDialog": ft.ElevatedButton("Alert Dialog", icon=ft.Icons.ADD_ALERT_ROUNDED,
             on_click=lambda e: page.open(alert_dialog),
         ),
-        "Banner": ft.ElevatedButton(
-            text="Alert Barner",
-            icon=ft.Icons.ADD_ALERT_ROUNDED,
+        "Banner": ft.ElevatedButton("Alert Barner", icon=ft.Icons.ADD_ALERT_ROUNDED,
             on_click=lambda e: page.open(alert_barner),
         ),
         "Markdown": ft.Markdown(
@@ -202,30 +194,18 @@ def buttons_witgets(get_widget: str = "", keys=True):
             ],
         ),
         # BUTTONS
-        "Button": ft.Button(
-            text="hello world dev",
-        ),
-        "ElevatedButton": ft.ElevatedButton(
-            text="hello world dev",
-        ),
-        "FilledButton": ft.FilledButton(
-            text="hello world dev",
-        ),
-        "FilledTonalButton": ft.FilledTonalButton(
-            text="hello world dev",
-        ),
+        "Button": ft.Button("hello world dev"),
+        "ElevatedButton": ft.ElevatedButton("hello world dev"),
+        "FilledButton": ft.FilledButton("hello world dev"),
+        "FilledTonalButton": ft.FilledTonalButton("hello world dev"),
         "FloatingActionButton": ft.FloatingActionButton(
             icon=ft.Icons.FAVORITE,
         ),
         "IconButton": ft.IconButton(
             icon=ft.Icons.FAVORITE,
         ),
-        "Icon": ft.Icon(
-            name=ft.Icons.FAVORITE,
-        ),
-        "OutlinedButton": ft.OutlinedButton(
-            text="hello world dev",
-        ),
+        "Icon": ft.Icon(ft.Icons.FAVORITE),
+        "OutlinedButton": ft.OutlinedButton("hello world dev"),
         # CONTROLS
         "MenuItemButton": ft.MenuBar(
             controls=[
@@ -328,9 +308,7 @@ def buttons_witgets(get_widget: str = "", keys=True):
                 ),
             ],
         ),
-        "TextButton": ft.TextButton(
-            text="hello world dev",
-        ),
+        "TextButton": ft.TextButton("hello world dev"),
     }
 
     if keys:
@@ -357,7 +335,7 @@ def cupertino_witgets(get_widget: str = "", keys=True):
         ),
         # CUPERTINO CONTROLS
         "CupertinoButton": ft.CupertinoButton(
-            text="hello world dev",
+            content="hello world dev",
         ),
         "CupertinoSegmentedButton": ft.CupertinoSegmentedButton(
             expand=True,
@@ -367,11 +345,11 @@ def cupertino_witgets(get_widget: str = "", keys=True):
             controls=[
                 ft.Text("One"),
                 ft.Container(
-                    padding=ft.padding.symmetric(0, 30),
+                    padding=ft.padding.symmetric(vertical=0, horizontal=30),
                     content=ft.Text("Two"),
                 ),
                 ft.Container(
-                    padding=ft.padding.symmetric(0, 10),
+                    padding=ft.padding.symmetric(vertical=0, horizontal=10),
                     content=ft.Text("Three"),
                 ),
             ],
@@ -380,7 +358,7 @@ def cupertino_witgets(get_widget: str = "", keys=True):
             expand=True,
             selected_index=0,
             thumb_color=ft.Colors("blue"),
-            padding=ft.padding.symmetric(0, 10),
+            padding=ft.padding.symmetric(vertical=0, horizontal=10),
             controls=[
                 ft.Text(value="One"),
                 ft.Text(value="Two"),
@@ -397,18 +375,18 @@ def cupertino_witgets(get_widget: str = "", keys=True):
             ),
             actions=[
                 ft.CupertinoContextMenuAction(
-                    text="Action 1",
+                    content="Action 1",
                     is_default_action=True,
                     trailing_icon=ft.Icons.CHECK,
                     # on_click=lambda e: print("Action 1"),
                 ),
                 ft.CupertinoContextMenuAction(
-                    text="Action 2",
+                    content="Action 2",
                     trailing_icon=ft.Icons.MORE,
                     # on_click=lambda e: print("Action 2"),
                 ),
                 ft.CupertinoContextMenuAction(
-                    text="Action 3",
+                    content="Action 3",
                     is_destructive_action=True,
                     trailing_icon=ft.Icons.CANCEL,
                     # on_click=lambda e: print("Action 3"),

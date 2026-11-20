@@ -2,7 +2,6 @@ import flet as ft
 import ast
 import os
 
-
 image = "image97.jpeg"
 long_text = "Flet is a framework that allows building web, desktop and mobile applications in Python without prior experience in frontend development.\n\nYou can build a UI for your program with Flet controls which are based on Flutter by Google. Flet goes beyond merely wrapping Flutter widgets. It adds its own touch by combining smaller widgets, simplifying complexities, implementing UI best practices, and applying sensible defaults. This ensures that your applications look stylish and polished without requiring additional design efforts on your part."
 medium_text = "Flet is a framework that allows building web, desktop and mobile applications in Python without prior experience in frontend development."
@@ -41,7 +40,7 @@ column_swap = ft.Column(
                             color=ft.Colors("blue"),
                         ),
                         padding=ft.padding.all(8),
-                        content=ft.Icon(name="search"),
+                        content=ft.Icon("search"),
                     ),
                 ],
             ),
@@ -70,7 +69,7 @@ column_swap = ft.Column(
                             color=ft.Colors("blue"),
                         ),
                         padding=ft.padding.all(8),
-                        content=ft.Icon(name="search"),
+                        content=ft.Icon("search"),
                     ),
                 ],
             ),
@@ -286,7 +285,7 @@ widget_dict = {
                             run_spacing=2,
                             controls=[
                                 ft.Icon(
-                                    name="star",
+                                    ft.Icons.STAR_ROUNDED,
                                     size=12,
                                     color=ft.Colors.with_opacity(
                                         opacity=0.6, color=ft.Colors("yellow900")
@@ -310,7 +309,7 @@ widget_dict = {
                                 bottom_right=8,
                             ),
                             alignment=ft.alignment.center,
-                            ink_color=ft.colors("yellow"),
+                            ink_color=ft.Colors("yellow"),
                             bgcolor=ft.Colors.with_opacity(
                                 opacity=0.6, color=ft.Colors("yellow900")
                             ),
@@ -412,7 +411,7 @@ widget_dict = {
                     run_spacing=0,
                     controls=[
                         ft.Slider(expand=True, min=0, max=100, value=24),
-                        ft.Icon(name="volume_up"),
+                        ft.Icon(ft.Icons.VOLUME_UP_ROUNDED, size=16),
                     ],
                 ),
             ],
@@ -441,8 +440,8 @@ widget_dict = {
                     ),
                     alignment=ft.alignment.center,
                     ink=True,
-                    ink_color=ft.colors("yellow"),
-                    content=ft.Icon(name="remove_rounded"),
+                    ink_color=ft.Colors("yellow"),
+                    content=ft.Icon(ft.Icons.REMOVE_ROUNDED, size=16),
                     on_click=lambda arguments: print("hello"),
                 ),
                 ft.Text(
@@ -456,8 +455,8 @@ widget_dict = {
                     ),
                     alignment=ft.alignment.center,
                     ink=True,
-                    ink_color=ft.colors("yellow"),
-                    content=ft.Icon(name="add_rounded"),
+                    ink_color=ft.Colors("yellow"),
+                    content=ft.Icon(ft.Icons.ADD_ROUNDED, size=16),
                     on_click=lambda arguments: print("hello"),
                 ),
             ],
@@ -482,11 +481,11 @@ widget_dict = {
             spacing=6,
             run_spacing=8,
             controls=[
-                ft.Icon(name="star_rounded", size=12),
-                ft.Icon(name="star_rounded", size=12),
-                ft.Icon(name="star_rounded", size=12),
-                ft.Icon(name="star_rounded", size=12),
-                ft.Icon(name="star_rounded", size=12),
+                ft.Icon(ft.Icons.STAR_ROUNDED, size=12),
+                ft.Icon(ft.Icons.STAR_ROUNDED, size=12),
+                ft.Icon(ft.Icons.STAR_ROUNDED, size=12),
+                ft.Icon(ft.Icons.STAR_ROUNDED, size=12),
+                ft.Icon(ft.Icons.STAR_ROUNDED, size=12),
             ],
         ),
     ),  # <
@@ -519,7 +518,7 @@ widget_dict = {
                         color=ft.Colors("blue"),
                     ),
                     padding=ft.padding.all(8),
-                    content=ft.Icon(name="search"),
+                    content=ft.Icon(ft.Icons.SEARCH, size=16),
                 ),
             ],
         ),
@@ -542,7 +541,7 @@ widget_dict = {
             spacing=8,
             run_spacing=12,
             controls=[
-                ft.Icon(name="ac_unit_rounded"),
+                ft.Icon(ft.Icons.AC_UNIT_ROUNDED, size=16),
                 ft.Text(value="Room", weight="bold", size=10),
             ],
         ),
@@ -642,7 +641,7 @@ widget_dict = {
                     horizontal_alignment=ft.CrossAxisAlignment.CENTER,
                     alignment=ft.MainAxisAlignment.CENTER,
                     controls=[
-                        ft.Icon(name="cloud_rounded"),
+                        ft.Icon(ft.Icons.CLOUD_ROUNDED, size=16),
                         ft.Text(
                             value="Cloud",
                             weight="bold",
@@ -708,7 +707,7 @@ widget_dict = {
                         top_left=18, top_right=18, bottom_left=18, bottom_right=18
                     ),
                     alignment=ft.alignment.center,
-                    ink_color=ft.colors("yellow"),
+                    ink_color=ft.Colors("yellow"),
                     bgcolor=ft.Colors.with_opacity(
                         opacity=0.5, color=ft.Colors("yellow600")
                     ),
@@ -735,7 +734,7 @@ widget_dict = {
         ),
         content=ft.Row(
             controls=[
-                ft.Icon(name="add_a_photo_rounded"),
+                ft.Icon(ft.Icons.ADD_A_PHOTO_ROUNDED, size=16),
                 ft.Text(
                     "Upload Picture",
                     size=14,
@@ -761,7 +760,7 @@ widget_dict = {
         ),
         content=ft.Row(
             controls=[
-                ft.Icon(name="navigate_next_rounded"),
+                ft.Icon(ft.Icons.NAVIGATE_NEXT_ROUNDED, size=16),
                 ft.Text(
                     value="Get Started",
                     size=14,
@@ -793,7 +792,7 @@ widget_dict = {
                     color=ft.Colors("grey"),
                     weight="bold",
                 ),
-                ft.Icon(name="navigate_next_rounded"),
+                ft.Icon(ft.Icons.NAVIGATE_NEXT_ROUNDED, size=16),
             ],
             alignment=ft.MainAxisAlignment.CENTER,
             vertical_alignment=ft.CrossAxisAlignment.CENTER,
@@ -823,9 +822,9 @@ widget_dict = {
                         top_left=32, top_right=32, bottom_left=32, bottom_right=32
                     ),
                     alignment=ft.alignment.center,
-                    ink_color=ft.colors("yellow"),
-                    bgcolor=ft.colors("white12"),
-                    content=ft.Icon(name="navigate_next_rounded"),
+                    ink_color=ft.Colors("yellow"),
+                    bgcolor=ft.Colors("white12"),
+                    content=ft.Icon(ft.Icons.NAVIGATE_NEXT_ROUNDED, size=16),
                 ),
                 ft.Text(
                     "Get Started",
@@ -833,7 +832,7 @@ widget_dict = {
                     color=ft.Colors("grey"),
                     weight="bold",
                 ),
-                ft.Icon(name="double_arrow_rounded"),
+                ft.Icon(ft.Icons.DOUBLE_ARROW_ROUNDED, size=16),
             ],
             alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
             vertical_alignment=ft.CrossAxisAlignment.CENTER,
@@ -861,7 +860,7 @@ widget_dict = {
                             right=column_swap.width / 2.3,
                             top=column_swap.height / 2.4,
                             bottom=column_swap.height / 2.4,
-                            content=ft.Icon(name="swap_vertical_circle_rounded"),
+                            content=ft.Icon(ft.Icons.SWAP_VERT_ROUNDED, size=16),
                         ),
                     ],
                 ),
@@ -898,7 +897,7 @@ widget_dict = {
                                 color=ft.Colors("grey"),
                                 weight="bold",
                             ),
-                            ft.Icon(name="navigate_next_rounded"),
+                            ft.Icon(ft.Icons.NAVIGATE_NEXT_ROUNDED, size=16),
                         ],
                         alignment=ft.MainAxisAlignment.CENTER,
                         vertical_alignment=ft.CrossAxisAlignment.CENTER,
@@ -931,7 +930,7 @@ widget_dict = {
                         spacing=0,
                         horizontal_alignment=ft.CrossAxisAlignment.CENTER,
                         controls=[
-                            ft.Icon(name="account_balance_wallet", color="cyan"),
+                            ft.Icon(ft.Icons.WALLET, color="cyan"),
                             ft.Text(
                                 value="wallet",
                                 size=8,
@@ -946,7 +945,7 @@ widget_dict = {
                         spacing=0,
                         horizontal_alignment=ft.CrossAxisAlignment.CENTER,
                         controls=[
-                            ft.Icon(name="bar_chart_rounded", color="cyan"),
+                            ft.Icon(ft.Icons.BAR_CHART_ROUNDED, color="cyan"),
                             ft.Text(
                                 value="market",
                                 size=8,
@@ -961,7 +960,7 @@ widget_dict = {
                         spacing=0,
                         horizontal_alignment=ft.CrossAxisAlignment.CENTER,
                         controls=[
-                            ft.Icon(name="six_ft_apart_rounded", color="cyan"),
+                            ft.Icon(ft.Icons.SIX_FT_APART_ROUNDED, color="cyan"),
                             ft.Text(
                                 value="transact",
                                 size=8,
@@ -976,7 +975,7 @@ widget_dict = {
                         spacing=0,
                         horizontal_alignment=ft.CrossAxisAlignment.CENTER,
                         controls=[
-                            ft.Icon(name="flip_camera_android_rounded", color="cyan"),
+                            ft.Icon(ft.Icons.FLIP_CAMERA_ANDROID_ROUNDED, color="cyan"),
                             ft.Text(
                                 value="DApps",
                                 size=8,
@@ -991,7 +990,7 @@ widget_dict = {
                         spacing=0,
                         horizontal_alignment=ft.CrossAxisAlignment.CENTER,
                         controls=[
-                            ft.Icon(name="currency_bitcoin_rounded", color="cyan"),
+                            ft.Icon(ft.Icons.CURRENCY_BITCOIN_ROUNDED, color="cyan"),
                             ft.Text(
                                 value="Yield",
                                 size=8,
@@ -1026,7 +1025,7 @@ widget_dict = {
                         spacing=0,
                         horizontal_alignment=ft.CrossAxisAlignment.CENTER,
                         controls=[
-                            ft.Icon(name="account_balance_wallet", color="cyan"),
+                            ft.Icon(ft.Icons.ACCOUNT_BALANCE_WALLET, color="cyan"),
                             ft.Text(
                                 value="wallet",
                                 size=8,
@@ -1041,7 +1040,7 @@ widget_dict = {
                         spacing=0,
                         horizontal_alignment=ft.CrossAxisAlignment.CENTER,
                         controls=[
-                            ft.Icon(name="bar_chart_rounded", color="cyan"),
+                            ft.Icon(ft.Icons.BAR_CHART_ROUNDED, color="cyan"),
                             ft.Text(
                                 value="market",
                                 size=8,
@@ -1056,7 +1055,7 @@ widget_dict = {
                         spacing=0,
                         horizontal_alignment=ft.CrossAxisAlignment.CENTER,
                         controls=[
-                            ft.Icon(name="six_ft_apart_rounded", color="cyan"),
+                            ft.Icon(ft.Icons.SIX_FT_APART_ROUNDED, color="cyan"),
                             ft.Text(
                                 value="transact",
                                 size=8,
@@ -1071,7 +1070,7 @@ widget_dict = {
                         spacing=0,
                         horizontal_alignment=ft.CrossAxisAlignment.CENTER,
                         controls=[
-                            ft.Icon(name="flip_camera_android_rounded", color="cyan"),
+                            ft.Icon(ft.Icons.FLIP_CAMERA_ANDROID_ROUNDED, color="cyan"),
                             ft.Text(
                                 value="DApps",
                                 size=8,
@@ -1086,7 +1085,7 @@ widget_dict = {
                         spacing=0,
                         horizontal_alignment=ft.CrossAxisAlignment.CENTER,
                         controls=[
-                            ft.Icon(name="currency_bitcoin_rounded", color="cyan"),
+                            ft.Icon(ft.Icons.CURRENCY_BITCOIN_ROUNDED, color="cyan"),
                             ft.Text(
                                 value="Yield",
                                 size=8,
@@ -1126,7 +1125,7 @@ widget_dict = {
                                     size=24,
                                     weight="bold",
                                 ),
-                                ft.Icon(name="water_drop_rounded"),
+                                ft.Icon(ft.Icons.WATER_DROP_ROUNDED, size=16),
                             ],
                             alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
                             vertical_alignment=ft.CrossAxisAlignment.CENTER,
@@ -1197,7 +1196,7 @@ widget_dict = {
                                 ),
                             ),
                             padding=ft.padding.all(8),
-                            content=ft.Icon(name="navigate_next_rounded"),
+                            content=ft.Icon(ft.Icons.SEARCH, size=16),
                         ),
                     ],
                 ),
@@ -1249,7 +1248,7 @@ widget_dict = {
                     ),
                     content=ft.Row(
                         controls=[
-                            ft.Icon(name="navigate_next_rounded"),
+                            ft.Icon(ft.Icons.NAVIGATE_NEXT_ROUNDED, size=16),
                             ft.Text(
                                 "Lets Go",
                                 size=14,
@@ -1524,7 +1523,7 @@ widget_dict = {
             controls=[
                 ft.Container(
                     padding=ft.padding.only(left=8, right=8, bottom=0, top=0),
-                    ink_color=ft.colors("yellow"),
+                    ink_color=ft.Colors("yellow"),
                     expand=True,
                     alignment=ft.alignment.center_left,
                     content=ft.IconButton(
@@ -1635,7 +1634,7 @@ widget_dict = {
                                 color=ft.Colors("grey"),
                                 weight="bold",
                             ),
-                            ft.Icon(name="navigate_next_rounded"),
+                            ft.Icon("navigate_next_rounded"),
                         ],
                         alignment=ft.MainAxisAlignment.CENTER,
                         vertical_alignment=ft.CrossAxisAlignment.CENTER,

@@ -35,12 +35,12 @@ class footer_selected_widget(ft.Container):
         )
         self.border = ft.border.all(
             width=2,
-            color=ft.colors("grey900"),
+            color=ft.Colors("grey900"),
         )
         self.shadow = ft.BoxShadow(
             spread_radius=1,
             blur_radius=15,
-            color=ft.colors("black45"),
+            color=ft.Colors("black45"),
             offset=ft.Offset(0, 0),
             blur_style=ft.ShadowBlurStyle.OUTER,
         )
@@ -49,7 +49,7 @@ class footer_selected_widget(ft.Container):
             controls=[
                 ft.Container(
                     margin=ft.margin.only(left=8, top=0, right=0, bottom=0),
-                    content=ft.Icon(name=self.icon_widget),
+                    content=ft.Icon(self.icon_widget),
                 ),
                 ft.Container(
                     # width=140,
@@ -65,7 +65,7 @@ class footer_selected_widget(ft.Container):
                                 text=self.widget_selected,
                                 style=ft.TextStyle(
                                     size=17,
-                                    color=ft.colors("cyan"),
+                                    color=ft.Colors("cyan"),
                                     weight=ft.FontWeight.BOLD,
                                 ),
                             ),

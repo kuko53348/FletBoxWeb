@@ -123,7 +123,7 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                                         run_spacing=4,
                                         spacing=4,
                                         controls=[
-                                            ft.Icon(name="favorite", size=16),
+                                            ft.Icon("favorite", size=16),
                                             ft.Text(
                                                 value="15 k",
                                                 weight="bold",
@@ -178,7 +178,7 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                                     ),
                                     ft.Row(
                                         controls=[
-                                            ft.Icon(name="place_rounded", size=12),
+                                            ft.Icon("place_rounded", size=12),
                                             ft.Text(
                                                 value="Addres of presentation",
                                                 size=10,
@@ -317,8 +317,7 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                         height=60,
                         width=60,
                         border_radius=ft.border_radius.all(32),
-                        content=ft.Icon(
-                            name="mic_rounded",
+                        content=ft.Icon("mic_rounded",
                         ),
                     ),
                 ],
@@ -383,8 +382,7 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                         # height=60,
                         # width=60,
                         border_radius=ft.border_radius.all(32),
-                        content=ft.Icon(
-                            name="add_rounded",
+                        content=ft.Icon("add_rounded",
                         ),
                     ),
                 ],
@@ -654,7 +652,7 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                         ),
                         padding=ft.padding.only(left=12, top=8, right=12, bottom=8),
                         border_radius=ft.border_radius.all(12),
-                        ink_color=ft.colors("yellow"),
+                        ink_color=ft.Colors("yellow"),
                         alignment=ft.alignment.center,
                         width=100,
                         bgcolor=ft.Colors("red900"),
@@ -802,7 +800,7 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                                     left=12, top=8, right=12, bottom=8
                                 ),
                                 border_radius=ft.border_radius.all(12),
-                                ink_color=ft.colors("yellow"),
+                                ink_color=ft.Colors("yellow"),
                                 alignment=ft.alignment.center,
                                 width=100,
                                 bgcolor=ft.Colors("red900"),
@@ -892,7 +890,7 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                                     left=12, top=8, right=12, bottom=8
                                 ),
                                 border_radius=ft.border_radius.all(24),
-                                ink_color=ft.colors("yellow"),
+                                ink_color=ft.Colors("yellow"),
                                 alignment=ft.alignment.center,
                                 width=100,
                                 bgcolor=ft.Colors("red900"),
@@ -981,8 +979,7 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                                                 spacing=4,
                                                 run_spacing=4,
                                                 controls=[
-                                                    ft.Icon(
-                                                        name="star",
+                                                    ft.Icon("star",
                                                         size=12,
                                                         color=ft.Colors("yellow"),
                                                     ),
@@ -1047,8 +1044,8 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                                             ),
                                             alignment=ft.alignment.center,
                                             ink=True,
-                                            ink_color=ft.colors("yellow"),
-                                            content=ft.Icon(name="remove_rounded"),
+                                            ink_color=ft.Colors("yellow"),
+                                            content=ft.Icon("remove_rounded"),
                                             on_click=lambda arguments: print("hello"),
                                         ),
                                         ft.Text(
@@ -1067,8 +1064,8 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                                             ),
                                             alignment=ft.alignment.center,
                                             ink=True,
-                                            ink_color=ft.colors("yellow"),
-                                            content=ft.Icon(name="add_rounded"),
+                                            ink_color=ft.Colors("yellow"),
+                                            content=ft.Icon("add_rounded"),
                                             on_click=lambda arguments: print("hello"),
                                         ),
                                     ],
@@ -1165,8 +1162,8 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                                             ),
                                             alignment=ft.alignment.center,
                                             ink=True,
-                                            ink_color=ft.colors("yellow"),
-                                            content=ft.Icon(name="remove_rounded"),
+                                            ink_color=ft.Colors("yellow"),
+                                            content=ft.Icon("remove_rounded"),
                                             on_click=lambda arguments: print("hello"),
                                         ),
                                         ft.Text(
@@ -1185,8 +1182,8 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                                             ),
                                             alignment=ft.alignment.center,
                                             ink=True,
-                                            ink_color=ft.colors("yellow"),
-                                            content=ft.Icon(name="add_rounded"),
+                                            ink_color=ft.Colors("yellow"),
+                                            content=ft.Icon("add_rounded"),
                                             on_click=lambda arguments: print("hello"),
                                         ),
                                     ],
@@ -1280,12 +1277,8 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                                     spacing=8,
                                     run_spacing=8,
                                     controls=[
-                                        ft.ElevatedButton(text="No", bgcolor="grey900"),
-                                        ft.ElevatedButton(
-                                            text="Remove",
-                                            bgcolor="red900",
-                                            color="white",
-                                        ),
+                                        ft.ElevatedButton("No", bgcolor="grey900"),
+                                        ft.ElevatedButton("Remove", bgcolor="red900", color="white"),
                                     ],
                                 ),
                             ),
@@ -1342,8 +1335,7 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                                         bottom_right=32,
                                     ),
                                     # expand=True,
-                                    content=ft.Icon(
-                                        name="favorite",
+                                    content=ft.Icon("favorite",
                                         color=ft.Colors.with_opacity(
                                             opacity=0.8, color=ft.Colors("red900")
                                         ),
@@ -1363,8 +1355,7 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                                         bottom_right=32,
                                     ),
                                     # expand=True,
-                                    content=ft.Icon(
-                                        name="shopping_cart_checkout_sharp",
+                                    content=ft.Icon("shopping_cart_checkout_sharp",
                                     ),
                                 ),
                             ],
@@ -1421,8 +1412,7 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                                         bottom_right=32,
                                     ),
                                     # expand=True,
-                                    content=ft.Icon(
-                                        name="shopping_cart_checkout_sharp",
+                                    content=ft.Icon("shopping_cart_checkout_sharp",
                                     ),
                                 ),
                             ],
@@ -1498,8 +1488,7 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                                         bottom_right=32,
                                     ),
                                     # expand=True,
-                                    content=ft.Icon(
-                                        name="shopify_rounded",
+                                    content=ft.Icon("shopify_rounded",
                                     ),
                                 ),
                             ],
@@ -1592,8 +1581,7 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                                         bottom_right=32,
                                     ),
                                     # expand=True,
-                                    content=ft.Icon(
-                                        name="shopify_rounded",
+                                    content=ft.Icon("shopify_rounded",
                                     ),
                                 ),
                             ],
@@ -1690,8 +1678,7 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                                         bottom_right=32,
                                     ),
                                     # expand=True,
-                                    content=ft.Icon(
-                                        name="shopify_rounded",
+                                    content=ft.Icon("shopify_rounded",
                                     ),
                                 ),
                             ],
@@ -1726,8 +1713,7 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                                             spacing=2,
                                             run_spacing=2,
                                             controls=[
-                                                ft.Icon(
-                                                    name="star", size=12, color="yellow"
+                                                ft.Icon("star", size=12, color="yellow"
                                                 ),
                                                 ft.Text(
                                                     text_align=ft.TextAlign.LEFT,
@@ -1798,7 +1784,7 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                         expand=True,
                         padding=ft.padding.only(left=12, top=8, right=12, bottom=8),
                         border_radius=ft.border_radius.all(12),
-                        ink_color=ft.colors("yellow"),
+                        ink_color=ft.Colors("yellow"),
                         alignment=ft.alignment.center,
                         width=100,
                         bgcolor=ft.Colors("red900"),
@@ -1870,28 +1856,23 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                                             spacing=6,
                                             run_spacing=8,
                                             controls=[
-                                                ft.Icon(
-                                                    name="star_rounded",
+                                                ft.Icon("star_rounded",
                                                     size=16,
                                                     color="yellow600",
                                                 ),
-                                                ft.Icon(
-                                                    name="star_rounded",
+                                                ft.Icon("star_rounded",
                                                     size=16,
                                                     color="yellow600",
                                                 ),
-                                                ft.Icon(
-                                                    name="star_rounded",
+                                                ft.Icon("star_rounded",
                                                     size=16,
                                                     color="yellow600",
                                                 ),
-                                                ft.Icon(
-                                                    name="star_rounded",
+                                                ft.Icon("star_rounded",
                                                     size=16,
                                                     color="yellow600",
                                                 ),
-                                                ft.Icon(
-                                                    name="star_rounded",
+                                                ft.Icon("star_rounded",
                                                     size=16,
                                                     color="yellow600",
                                                 ),
@@ -1909,7 +1890,7 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                                     left=8, top=8, right=8, bottom=8
                                 ),
                                 border_radius=ft.border_radius.all(18),
-                                ink_color=ft.colors("yellow"),
+                                ink_color=ft.Colors("yellow"),
                                 alignment=ft.alignment.center,
                                 width=100,
                                 bgcolor=ft.Colors("white54"),
@@ -1983,7 +1964,7 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                                             left=8, top=8, right=8, bottom=8
                                         ),
                                         border_radius=ft.border_radius.all(18),
-                                        ink_color=ft.colors("yellow"),
+                                        ink_color=ft.Colors("yellow"),
                                         alignment=ft.alignment.center,
                                         width=100,
                                         bgcolor=ft.Colors("white54"),
@@ -2056,7 +2037,7 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                                     ft.Container(
                                         expand=True,
                                         # border_radius=ft.border_radius.all(8),
-                                        ink_color=ft.colors("yellow"),
+                                        ink_color=ft.Colors("yellow"),
                                         alignment=ft.alignment.center,
                                         # width=100,
                                         # padding=ft.padding.only(
@@ -2113,11 +2094,10 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                                                                 ),
                                                                 alignment=ft.alignment.center,
                                                                 ink=True,
-                                                                ink_color=ft.colors(
+                                                                ink_color=ft.Colors(
                                                                     "yellow"
                                                                 ),
-                                                                content=ft.Icon(
-                                                                    name="remove_rounded",
+                                                                content=ft.Icon("remove_rounded",
                                                                     color=ft.Colors(
                                                                         "grey800"
                                                                     ),
@@ -2142,11 +2122,10 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                                                                 ),
                                                                 alignment=ft.alignment.center,
                                                                 ink=True,
-                                                                ink_color=ft.colors(
+                                                                ink_color=ft.Colors(
                                                                     "yellow"
                                                                 ),
-                                                                content=ft.Icon(
-                                                                    name="add_rounded",
+                                                                content=ft.Icon("add_rounded",
                                                                     color=ft.Colors(
                                                                         "grey800"
                                                                     ),
@@ -2181,7 +2160,7 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
             shadow=ft.BoxShadow(
                 spread_radius=1,
                 blur_radius=15,
-                color=ft.colors("black"),
+                color=ft.Colors("black"),
                 offset=ft.Offset(0, 0),
                 blur_style=ft.ShadowBlurStyle.OUTER,
             ),
@@ -2658,7 +2637,7 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                                     color=ft.Colors("blue"),
                                 ),
                                 padding=ft.padding.all(8),
-                                content=ft.Icon(name="navigate_next_rounded"),
+                                content=ft.Icon("navigate_next_rounded"),
                             ),
                         ],
                     ),
@@ -2791,7 +2770,7 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                                 ),
                                 content=ft.Row(
                                     controls=[
-                                        ft.Icon(name="arrow_right"),
+                                        ft.Icon("arrow_right"),
                                         ft.Text(
                                             value="Listen now",
                                             size=14,
@@ -2838,7 +2817,7 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                         border_radius=ft.border_radius.only(
                             top_left=32, top_right=32, bottom_left=32, bottom_right=32
                         ),
-                        border=ft.border.all(width=2, color=ft.colors("white12")),
+                        border=ft.border.all(width=2, color=ft.Colors("white12")),
                         image=ft.DecorationImage(
                             src="pop.jpg",
                             fit=ft.ImageFit.COVER,
@@ -2846,8 +2825,8 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                         alignment=ft.alignment.center,
                         height=48,
                         width=48,
-                        ink_color=ft.colors("yellow"),
-                        bgcolor=ft.colors("black12"),
+                        ink_color=ft.Colors("yellow"),
+                        bgcolor=ft.Colors("black12"),
                     ),
                     ft.Column(
                         spacing=8,
@@ -2866,9 +2845,7 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                                 size=12,
                                 color=ft.Colors("white"),
                             ),
-                            ft.ElevatedButton(
-                                text="View",
-                                bgcolor=ft.Colors.with_opacity(
+                            ft.ElevatedButton("View", bgcolor=ft.Colors.with_opacity(
                                     opacity=0.4, color=ft.Colors("orange900")
                                 ),
                             ),
@@ -2906,7 +2883,7 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                         border_radius=ft.border_radius.only(
                             top_left=32, top_right=32, bottom_left=32, bottom_right=32
                         ),
-                        border=ft.border.all(width=2, color=ft.colors("white12")),
+                        border=ft.border.all(width=2, color=ft.Colors("white12")),
                         image=ft.DecorationImage(
                             src="pop.jpg",
                             fit=ft.ImageFit.COVER,
@@ -2914,8 +2891,8 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                         alignment=ft.alignment.center,
                         height=48,
                         width=48,
-                        ink_color=ft.colors("yellow"),
-                        bgcolor=ft.colors("black12"),
+                        ink_color=ft.Colors("yellow"),
+                        bgcolor=ft.Colors("black12"),
                     ),
                     ft.Column(
                         spacing=0,
@@ -3007,8 +2984,7 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                                     bottom_right=32,
                                 ),
                                 # expand=True,
-                                content=ft.Icon(
-                                    name="favorite",
+                                content=ft.Icon("favorite",
                                 ),
                             ),
                         ],
@@ -3069,11 +3045,11 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                                     spacing=6,
                                     run_spacing=8,
                                     controls=[
-                                        ft.Icon(name="star_rounded", size=12),
-                                        ft.Icon(name="star_rounded", size=12),
-                                        ft.Icon(name="star_rounded", size=12),
-                                        ft.Icon(name="star_rounded", size=12),
-                                        ft.Icon(name="star_rounded", size=12),
+                                        ft.Icon("star_rounded", size=12),
+                                        ft.Icon("star_rounded", size=12),
+                                        ft.Icon("star_rounded", size=12),
+                                        ft.Icon("star_rounded", size=12),
+                                        ft.Icon("star_rounded", size=12),
                                     ],
                                 ),
                             ),
@@ -3156,8 +3132,7 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                                                 bottom_right=32,
                                             ),
                                             # expand=True,
-                                            content=ft.Icon(
-                                                name="favorite",
+                                            content=ft.Icon("favorite",
                                             ),
                                         ),
                                     ],
@@ -3194,11 +3169,11 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                                     spacing=6,
                                     run_spacing=8,
                                     controls=[
-                                        ft.Icon(name="star_rounded", size=12),
-                                        ft.Icon(name="star_rounded", size=12),
-                                        ft.Icon(name="star_rounded", size=12),
-                                        ft.Icon(name="star_rounded", size=12),
-                                        ft.Icon(name="star_rounded", size=12),
+                                        ft.Icon("star_rounded", size=12),
+                                        ft.Icon("star_rounded", size=12),
+                                        ft.Icon("star_rounded", size=12),
+                                        ft.Icon("star_rounded", size=12),
+                                        ft.Icon("star_rounded", size=12),
                                     ],
                                 ),
                             ),
@@ -3243,8 +3218,8 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                             begin=ft.alignment.top_center,
                             end=ft.alignment.bottom_center,
                             colors=[
-                                ft.colors("transparent"),
-                                ft.colors("black"),
+                                ft.Colors("transparent"),
+                                ft.Colors("black"),
                             ],
                         ),
                         alignment=ft.alignment.center,
@@ -3260,7 +3235,7 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                                 # Banner Description
                                 ft.Row(
                                     controls=[
-                                        ft.Icon(name="share", size=15),
+                                        ft.Icon("share", size=15),
                                         ft.Text(
                                             value="8 hr with best music",
                                             size=12,
@@ -3284,20 +3259,15 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                                                 spacing=6,
                                                 run_spacing=8,
                                                 controls=[
-                                                    ft.Icon(
-                                                        name="star_rounded", size=12
+                                                    ft.Icon("star_rounded", size=12
                                                     ),
-                                                    ft.Icon(
-                                                        name="star_rounded", size=12
+                                                    ft.Icon("star_rounded", size=12
                                                     ),
-                                                    ft.Icon(
-                                                        name="star_rounded", size=12
+                                                    ft.Icon("star_rounded", size=12
                                                     ),
-                                                    ft.Icon(
-                                                        name="star_rounded", size=12
+                                                    ft.Icon("star_rounded", size=12
                                                     ),
-                                                    ft.Icon(
-                                                        name="star_rounded", size=12
+                                                    ft.Icon("star_rounded", size=12
                                                     ),
                                                 ],
                                             ),
@@ -3315,9 +3285,9 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                                                 bottom_right=32,
                                             ),
                                             alignment=ft.alignment.center,
-                                            ink_color=ft.colors("yellow"),
-                                            bgcolor=ft.colors("white12"),
-                                            content=ft.Icon(name="favorite"),
+                                            ink_color=ft.Colors("yellow"),
+                                            bgcolor=ft.Colors("white12"),
+                                            content=ft.Icon("favorite"),
                                         ),
                                     ]
                                 ),
@@ -3365,8 +3335,8 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                             begin=ft.alignment.top_center,
                             end=ft.alignment.bottom_center,
                             colors=[
-                                ft.colors("transparent"),
-                                ft.colors("black"),
+                                ft.Colors("transparent"),
+                                ft.Colors("black"),
                             ],
                         ),
                         alignment=ft.alignment.center,
@@ -3429,9 +3399,9 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                                                 bottom_right=32,
                                             ),
                                             alignment=ft.alignment.center,
-                                            ink_color=ft.colors("yellow"),
-                                            bgcolor=ft.colors("white12"),
-                                            content=ft.Icon(name="add_rounded"),
+                                            ink_color=ft.Colors("yellow"),
+                                            bgcolor=ft.Colors("white12"),
+                                            content=ft.Icon("add_rounded"),
                                         ),
                                     ]
                                 ),
@@ -3471,7 +3441,7 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                         border_radius=ft.border_radius.only(
                             top_left=32, top_right=32, bottom_left=32, bottom_right=32
                         ),
-                        border=ft.border.all(width=2, color=ft.colors("white12")),
+                        border=ft.border.all(width=2, color=ft.Colors("white12")),
                         image=ft.DecorationImage(
                             src="pop.jpg",
                             fit=ft.ImageFit.COVER,
@@ -3479,8 +3449,8 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                         alignment=ft.alignment.center,
                         height=48,
                         width=48,
-                        ink_color=ft.colors("yellow"),
-                        bgcolor=ft.colors("black12"),
+                        ink_color=ft.Colors("yellow"),
+                        bgcolor=ft.Colors("black12"),
                     ),
                     ft.Column(
                         controls=[
@@ -3526,11 +3496,11 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                 controls=[
                     ft.Container(
                         alignment=ft.alignment.top_right,
-                        ink_color=ft.colors("yellow"),
+                        ink_color=ft.Colors("yellow"),
                         padding=ft.padding.only(left=12, right=12, bottom=12, top=12),
                         expand=True,
-                        bgcolor=ft.colors("black12"),
-                        content=ft.Icon(name="favorite_rounded"),
+                        bgcolor=ft.Colors("black12"),
+                        content=ft.Icon("favorite_rounded"),
                     ),
                     ft.Container(
                         padding=ft.padding.only(left=12, right=12, bottom=12, top=12),
@@ -3538,8 +3508,8 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                             begin=ft.alignment.top_center,
                             end=ft.alignment.bottom_center,
                             colors=[
-                                ft.colors("transparent"),
-                                ft.colors("black"),
+                                ft.Colors("transparent"),
+                                ft.Colors("black"),
                             ],
                         ),
                         alignment=ft.alignment.center,
@@ -3555,7 +3525,7 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                                 # Banner Description
                                 ft.Row(
                                     controls=[
-                                        ft.Icon(name="add_location_rounded", size=15),
+                                        ft.Icon("add_location_rounded", size=15),
                                         ft.Text(
                                             "May 14-25, 2024",
                                             size=12,
@@ -3593,11 +3563,11 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                 controls=[
                     ft.Container(
                         alignment=ft.alignment.top_right,
-                        ink_color=ft.colors("yellow"),
+                        ink_color=ft.Colors("yellow"),
                         padding=ft.padding.only(left=12, right=12, bottom=12, top=12),
                         expand=True,
-                        bgcolor=ft.colors("black12"),
-                        content=ft.Icon(name="favorite_rounded"),
+                        bgcolor=ft.Colors("black12"),
+                        content=ft.Icon("favorite_rounded"),
                     ),
                     ft.Container(
                         blur=(12, 12),
@@ -3606,8 +3576,8 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                             begin=ft.alignment.top_center,
                             end=ft.alignment.bottom_center,
                             colors=[
-                                ft.colors("transparent"),
-                                ft.colors("black"),
+                                ft.Colors("transparent"),
+                                ft.Colors("black"),
                             ],
                         ),
                         alignment=ft.alignment.center,
@@ -3623,7 +3593,7 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                                 # Banner Description
                                 ft.Row(
                                     controls=[
-                                        ft.Icon(name="share", size=15),
+                                        ft.Icon("share", size=15),
                                         ft.Text(
                                             value="8 hr with best music",
                                             size=12,
@@ -3661,11 +3631,11 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                 controls=[
                     ft.Container(
                         alignment=ft.alignment.top_right,
-                        ink_color=ft.colors("yellow"),
+                        ink_color=ft.Colors("yellow"),
                         padding=ft.padding.only(left=8, right=8, bottom=8, top=8),
                         expand=True,
-                        bgcolor=ft.colors("black12"),
-                        content=ft.Icon(name="live_tv_rounded"),
+                        bgcolor=ft.Colors("black12"),
+                        content=ft.Icon("live_tv_rounded"),
                     ),
                     ft.Container(
                         # blur=(12, 12),
@@ -3692,8 +3662,7 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                                 ft.Row(
                                     expand=True,
                                     controls=[
-                                        ft.Icon(
-                                            name="local_attraction_outlined",
+                                        ft.Icon("local_attraction_outlined",
                                             # size=15,
                                         ),
                                         ft.Text(
@@ -3739,9 +3708,9 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                         border_radius=ft.border_radius.only(
                             top_left=24, top_right=24, bottom_left=24, bottom_right=120
                         ),
-                        border=ft.border.all(width=2, color=ft.colors("grey900")),
+                        border=ft.border.all(width=2, color=ft.Colors("grey900")),
                         alignment=ft.alignment.bottom_right,
-                        ink_color=ft.colors("yellow"),
+                        ink_color=ft.Colors("yellow"),
                         bgcolor=ft.Colors.with_opacity(
                             opacity=0.1, color=ft.Colors("white")
                         ),
@@ -3765,7 +3734,7 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                                 ),
                             ),
                             padding=ft.padding.all(12),
-                            content=ft.Icon(name="keyboard_arrow_right_rounded"),
+                            content=ft.Icon("keyboard_arrow_right_rounded"),
                         ),
                     ),
                     ft.Container(

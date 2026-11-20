@@ -10,13 +10,13 @@ class alert_dialog(ft.Container):
         self.alignment = ft.alignment.center
         self.ink = True
         self.visible = False
-        self.ink_color = ft.colors("yellow")
+        self.ink_color = ft.Colors("yellow")
         self.border_radius = ft.border_radius.only(
             top_left=32, top_right=32, bottom_left=32, bottom_right=32
         )
         self.width = 200
 
-        self.bgcolor = ft.colors("red")
+        self.bgcolor = ft.Colors("red")
         self.content = ft.Text(value="Sussefully copied", weight="bold", size=13)
 
 
@@ -35,11 +35,11 @@ class code_editor(ft.Container):
         self.widget = widget
         self.visible = visible
         self.margin = ft.margin.all(0)
-        self.bgcolor = ft.Colors.with_opacity(0.05, ft.colors("brown"))
+        self.bgcolor = ft.Colors.with_opacity(0.05, ft.Colors("brown"))
         self.blur = (12, 12)
         self.md_code = md_code
         self.theme_name = "solarized-dark"
-        self.bgcolor = ft.Colors.with_opacity(0.05, ft.colors("white"))
+        self.bgcolor = ft.Colors.with_opacity(0.05, ft.Colors("white"))
 
         self.Markdown = ft.Markdown(
             value=self.md_code,

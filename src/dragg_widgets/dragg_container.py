@@ -29,7 +29,7 @@ class header_menu(ft.Container):
         self.shadow = ft.BoxShadow(
             spread_radius=1,
             blur_radius=15,
-            color=ft.colors("black"),
+            color=ft.Colors("black"),
             offset=ft.Offset(0, 0),
             blur_style=ft.ShadowBlurStyle.OUTER,
         )
@@ -184,17 +184,17 @@ class dragg_box_container(ft.Container):
         self.shadow = ft.BoxShadow(
             spread_radius=1,
             blur_radius=15,
-            color=ft.colors("black"),
+            color=ft.Colors("black"),
             offset=ft.Offset(0, 0),
             blur_style=ft.ShadowBlurStyle.OUTER,
         )
 
         self.padding = ft.padding.only(left=4, right=4, bottom=4, top=4)
 
-        self.border = ft.border.all(width=2, color=ft.colors("grey900"))
+        self.border = ft.border.all(width=2, color=ft.Colors("grey900"))
         self.ink = True
         self.alignment = ft.alignment.center
-        self.ink_color = ft.colors("red")
+        self.ink_color = ft.Colors("red")
 
         tag_name = icons_widgets_dict.get(text_box, "home")
 
@@ -208,9 +208,9 @@ class dragg_box_container(ft.Container):
             self.width = 110
             self.content = ft.Container(
                 alignment=ft.alignment.top_right,
-                ink_color=ft.colors("yellow"),
+                ink_color=ft.Colors("yellow"),
                 expand=True,
-                bgcolor=ft.colors("black12"),
+                bgcolor=ft.Colors("black12"),
                 content=ft.IconButton(
                     icon="data_array_rounded",
                     bgcolor=ft.Colors.with_opacity(
@@ -221,7 +221,7 @@ class dragg_box_container(ft.Container):
                 ),
             )
         else:
-            self.bgcolor = ft.colors("grey900")
+            self.bgcolor = ft.Colors("grey900")
             self.height = 48
             self.width = 80
             self.content = ft.Column(
@@ -231,7 +231,7 @@ class dragg_box_container(ft.Container):
                 spacing=4,
                 run_spacing=0,
                 controls=[
-                    ft.Icon(name=tag_name),
+                    ft.Icon(tag_name),
                     ft.Text(
                         value=text_box,
                         size=9,
@@ -324,8 +324,8 @@ class dragg_box_container(ft.Container):
                         tooltip=self.tooltip,
                         padding=ft.padding.all(8),
                         ink=True,
-                        ink_color=ft.colors("red"),
-                        bgcolor=ft.colors("white12"),
+                        ink_color=ft.Colors("red"),
+                        bgcolor=ft.Colors("white12"),
                         on_click=lambda widget_name: self.set_widget_content(
                             payload=widget_name
                         ),
@@ -341,8 +341,8 @@ class dragg_box_container(ft.Container):
                             tooltip=self.tooltip,
                             padding=ft.padding.all(8),
                             ink=True,
-                            ink_color=ft.colors("red"),
-                            bgcolor=ft.colors("white12"),
+                            ink_color=ft.Colors("red"),
+                            bgcolor=ft.Colors("white12"),
                             on_click=lambda widget_name: self.set_widget_content(
                                 payload=widget_name
                             ),
@@ -419,7 +419,7 @@ class footer_menu(ft.Container):
         self.shadow = ft.BoxShadow(
             spread_radius=1,
             blur_radius=15,
-            color=ft.colors("black"),
+            color=ft.Colors("black"),
             offset=ft.Offset(0, 0),
             blur_style=ft.ShadowBlurStyle.OUTER,
         )
@@ -485,13 +485,13 @@ class row_container_widgets(ft.Container):
         self.text_selection_widget = text_selection_widget
         self.border = ft.border.all(
             width=1,
-            color=ft.Colors.with_opacity(opacity=0.08, color=ft.colors("white")),
+            color=ft.Colors.with_opacity(opacity=0.08, color=ft.Colors("white")),
         )
 
         self.shadow = ft.BoxShadow(
             spread_radius=1,
             blur_radius=15,
-            color=ft.colors("black"),
+            color=ft.Colors("black"),
             offset=ft.Offset(0, 0),
             blur_style=ft.ShadowBlurStyle.OUTER,
         )
@@ -543,20 +543,20 @@ class dragg_container_app(ft.Container):
         self.ink = True
         self.text_selection_widget = text_selection_widget
         self.left_menu = left_menu
-        self.bgcolor = ft.colors("white12")
+        self.bgcolor = ft.Colors("white12")
         self.alignment = ft.alignment.center
-        self.ink_color = ft.colors("yellow")
+        self.ink_color = ft.Colors("yellow")
         self.width = 360
         self.padding = ft.padding.only(left=0, right=0, bottom=0, top=0)
         self.margin = ft.margin.only(left=0, right=0, bottom=0, top=0)
         self.border_radius = ft.border_radius.only(
             top_left=32, top_right=32, bottom_left=32, bottom_right=32
         )
-        self.border = ft.border.all(width=2, color=ft.colors("grey900"))
+        self.border = ft.border.all(width=2, color=ft.Colors("grey900"))
         self.gradient = ft.LinearGradient(
             begin=ft.alignment.top_center,
             end=ft.alignment.bottom_center,
-            colors=[ft.colors("transparent"), ft.colors("black12")],
+            colors=[ft.Colors("transparent"), ft.Colors("black12")],
         )
         self.image = ft.DecorationImage(
             src="image136.jpeg",
@@ -566,7 +566,7 @@ class dragg_container_app(ft.Container):
         self.shadow = ft.BoxShadow(
             spread_radius=1,
             blur_radius=15,
-            color=ft.colors("black"),
+            color=ft.Colors("black"),
             offset=ft.Offset(0, 0),
             blur_style=ft.ShadowBlurStyle.OUTER,
         )

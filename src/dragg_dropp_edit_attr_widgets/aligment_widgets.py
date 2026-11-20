@@ -56,7 +56,7 @@ class get_aligment(ft.Row):
                     spacing=0,
                     horizontal_alignment=ft.CrossAxisAlignment.CENTER,
                     controls=[
-                        ft.Icon(name=start[1]),
+                        ft.Icon(start[1]),
                         ft.Text(
                             value=start[0],
                             size=8,
@@ -75,7 +75,7 @@ class get_aligment(ft.Row):
                     spacing=0,
                     horizontal_alignment=ft.CrossAxisAlignment.CENTER,
                     controls=[
-                        ft.Icon(name=end[1]),
+                        ft.Icon(end[1]),
                         ft.Text(
                             value=center[0],
                             size=8,
@@ -94,7 +94,7 @@ class get_aligment(ft.Row):
                     spacing=0,
                     horizontal_alignment=ft.CrossAxisAlignment.CENTER,
                     controls=[
-                        ft.Icon(name=center[1]),
+                        ft.Icon(center[1]),
                         ft.Text(
                             value=end[0],
                             size=8,
@@ -113,7 +113,7 @@ class get_aligment(ft.Row):
                     spacing=0,
                     horizontal_alignment=ft.CrossAxisAlignment.CENTER,
                     controls=[
-                        ft.Icon(name=space_between[1]),
+                        ft.Icon(space_between[1]),
                         ft.Text(
                             value=space_between[0],
                             size=8,
@@ -132,7 +132,7 @@ class get_aligment(ft.Row):
                     spacing=0,
                     horizontal_alignment=ft.CrossAxisAlignment.CENTER,
                     controls=[
-                        ft.Icon(name=space_around[1]),
+                        ft.Icon(space_around[1]),
                         ft.Text(
                             value=space_around[0],
                             size=8,
@@ -151,7 +151,7 @@ class get_aligment(ft.Row):
                     spacing=0,
                     horizontal_alignment=ft.CrossAxisAlignment.CENTER,
                     controls=[
-                        ft.Icon(name=space_evenly[1]),
+                        ft.Icon(space_evenly[1]),
                         ft.Text(
                             value=space_evenly[0],
                             size=8,
@@ -243,7 +243,7 @@ class get_aligment_container(ft.Row):
                         ft.Row(
                             controls=[
                                 ft.Radio(
-                                    value="center_left",
+                                    value="CENTER_LEFT",
                                     fill_color=ft.Colors.YELLOW_500,
                                     active_color=ft.Colors.RED,
                                 ),
@@ -253,7 +253,7 @@ class get_aligment_container(ft.Row):
                                     active_color=ft.Colors.BLACK,
                                 ),
                                 ft.Radio(
-                                    value="center_right",
+                                    value="CENTER_RIGHT",
                                     fill_color=ft.Colors.GREEN_500,
                                     active_color=ft.Colors.CYAN,
                                 ),
@@ -292,11 +292,11 @@ class get_aligment_container(ft.Row):
             self.widget_to_edit.alignment = ft.alignment.top_center
         elif aligment_widget == "top_right":
             self.widget_to_edit.alignment = ft.alignment.top_right
-        elif aligment_widget == "center_left":
+        elif aligment_widget == "CENTER_LEFT":
             self.widget_to_edit.alignment = ft.alignment.center_left
         elif aligment_widget == "center":
             self.widget_to_edit.alignment = ft.alignment.center
-        elif aligment_widget == "center_right":
+        elif aligment_widget == "CENTER_RIGHT":
             self.widget_to_edit.alignment = ft.alignment.center_right
         elif aligment_widget == "bottom_left":
             self.widget_to_edit.alignment = ft.alignment.bottom_left
@@ -362,7 +362,7 @@ class get_aligment_horizontal(ft.Row):
                     spacing=0,
                     horizontal_alignment=ft.CrossAxisAlignment.CENTER,
                     controls=[
-                        ft.Icon(name=start[1]),
+                        ft.Icon(start[1]),
                         ft.Text(
                             value=start[0],
                             size=8,
@@ -381,7 +381,7 @@ class get_aligment_horizontal(ft.Row):
                     spacing=0,
                     horizontal_alignment=ft.CrossAxisAlignment.CENTER,
                     controls=[
-                        ft.Icon(name=end[1]),
+                        ft.Icon(end[1]),
                         ft.Text(
                             value=center[0],
                             size=8,
@@ -400,7 +400,7 @@ class get_aligment_horizontal(ft.Row):
                     spacing=0,
                     horizontal_alignment=ft.CrossAxisAlignment.CENTER,
                     controls=[
-                        ft.Icon(name=center[1]),
+                        ft.Icon(center[1]),
                         ft.Text(
                             value=end[0],
                             size=8,

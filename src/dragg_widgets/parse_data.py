@@ -9,7 +9,7 @@ class UIFletBox(ft.Container):
         self.page = page
 
         self.expand = True
-        self.bgcolor = ft.colors('transparent')
+        self.bgcolor = ft.Colors('transparent')
         self.alignment = ft.alignment.top_center
         self.padding = ft.padding.only(left=0, right=0, bottom=0, top=0)
         self.margin = ft.margin.only(left=0, right=0, bottom=0, top=0)
@@ -25,13 +25,13 @@ class fletbox_ui_stream(ft.Container):
     # NONE CONTAIN COVER FILL FIT_HEIGHT FIT_WIDTH SCALE_DOWN
     def __init__(self, page: object = None, expand: bool = True,) -> None:
         super().__init__()
-        # self.shadow = ft.BoxShadow(spread_radius = 1, blur_radius  = 15, color = ft.colors('black'), offset = ft.Offset(0,0), blur_style = ft.ShadowBlurStyle.OUTER,)
+        # self.shadow = ft.BoxShadow(spread_radius = 1, blur_radius  = 15, color = ft.Colors('black'), offset = ft.Offset(0,0), blur_style = ft.ShadowBlurStyle.OUTER,)
         # self.image = ft.DecorationImage(src='logo.png',fit=ft.ImageFit.COVER,opacity=0.02)
         # self.margin = ft.margin.only(left=0, right=0, bottom=0, top=0)
         # self.padding = ft.padding.only(left=0, right=0, bottom=0, top=0)
 
         self.page = page
-        self.bgcolor = ft.colors('transparent')
+        self.bgcolor = ft.Colors('transparent')
         self.expand = expand
         # self.alignment = ft.alignment.top_center
 
@@ -46,13 +46,13 @@ class fletbox_ui(ft.Container):
     # NONE CONTAIN COVER FILL FIT_HEIGHT FIT_WIDTH SCALE_DOWN
     def __init__(self, page: object = None) -> None:
         super().__init__()
-        # self.shadow = ft.BoxShadow(spread_radius=1, blur_radius=15, color=ft.colors('black'), offset=ft.Offset(0,0), blur_style=ft.ShadowBlurStyle.OUTER,)
+        # self.shadow = ft.BoxShadow(spread_radius=1, blur_radius=15, color=ft.Colors('black'), offset=ft.Offset(0,0), blur_style=ft.ShadowBlurStyle.OUTER,)
         # self.image = ft.DecorationImage(src='logo.png',fit=ft.ImageFit.COVER,opacity=0.02)
         # self.margin = ft.margin.only(left=0, right=0, bottom=0, top=0)
         # self.padding = ft.padding.only(left=0, right=0, bottom=0, top=0)
 
         self.page = page
-        self.bgcolor = ft.colors('transparent')
+        self.bgcolor = ft.Colors('transparent')
         self.expand = True
         self.alignment = ft.alignment.top_center
 

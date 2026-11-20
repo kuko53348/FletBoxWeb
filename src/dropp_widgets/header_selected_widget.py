@@ -46,10 +46,10 @@ class icon_button_container(ft.Container):
         self.width = 40
         self.height = 40
         self.ink = True
-        self.ink_color = ft.colors("yellow")
+        self.ink_color = ft.Colors("yellow")
         self.footer_bar = footer_bar
-        self.bgcolor = ft.colors(bgcolor)
-        self.content = ft.Icon(name=icon_name, color=icon_color)
+        self.bgcolor = ft.Colors(bgcolor)
+        self.content = ft.Icon(icon_name, color=icon_color)
 
         self.on_click = lambda widget_name: self.setting_widget()
 

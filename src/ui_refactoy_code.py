@@ -52,32 +52,27 @@ class fletbox_ui_0(ft.Container):
                     vertical_alignment=ft.CrossAxisAlignment.CENTER,
                     visible=True,
                     controls=[
-                        ft.Icon(
-                            name='star_rounded',
+                        ft.Icon("star_rounded",
                             opacity=1.0,
                             size=12,
                             visible=True,
                         ),
-                        ft.Icon(
-                            name='star_rounded',
+                        ft.Icon("star_rounded",
                             opacity=1.0,
                             size=12,
                             visible=True,
                         ),
-                        ft.Icon(
-                            name='star_rounded',
+                        ft.Icon("star_rounded",
                             opacity=1.0,
                             size=12,
                             visible=True,
                         ),
-                        ft.Icon(
-                            name='star_rounded',
+                        ft.Icon("star_rounded",
                             opacity=1.0,
                             size=12,
                             visible=True,
                         ),
-                        ft.Icon(
-                            name='star_rounded',
+                        ft.Icon("star_rounded",
                             opacity=1.0,
                             size=12,
                             visible=True,

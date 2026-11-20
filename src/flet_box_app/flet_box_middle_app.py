@@ -17,7 +17,7 @@ class middle_fletbox_container(ft.Container):
         self.expand = True
         self.ink = True
         self.alignment = ft.alignment.center
-        self.ink_color = ft.colors("yellow")
+        self.ink_color = ft.Colors("yellow")
         self.padding = ft.padding.all(8)
         # self.image = ft.DecorationImage(
         #     src="wallpaper.jpeg",

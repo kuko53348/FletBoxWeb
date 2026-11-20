@@ -17,9 +17,9 @@ class left_menu_app_container(ft.Container):
         self.width = 60
         self.visible = True
         self.ink = True
-        self.bgcolor = ft.colors("white12")
+        self.bgcolor = ft.Colors("white12")
         self.alignment = ft.alignment.center
-        self.ink_color = ft.colors("yellow")
+        self.ink_color = ft.Colors("yellow")
 
         self.tooltip = "dragg_container_app"
         self.padding = ft.padding.only(left=0, right=0, bottom=0, top=16)
@@ -27,19 +27,19 @@ class left_menu_app_container(ft.Container):
         self.border_radius = ft.border_radius.only(
             top_left=32, top_right=32, bottom_left=32, bottom_right=32
         )
-        self.border = ft.border.all(width=2, color=ft.colors("grey900"))
+        self.border = ft.border.all(width=2, color=ft.Colors("grey900"))
         self.gradient = ft.LinearGradient(
             begin=ft.alignment.top_center,
             end=ft.alignment.bottom_center,
             colors=[
-                ft.colors("transparent"),
-                ft.colors("black12"),
+                ft.Colors("transparent"),
+                ft.Colors("black12"),
             ],
         )
         self.shadow = ft.BoxShadow(
             spread_radius=1,
             blur_radius=15,
-            color=ft.colors("black"),
+            color=ft.Colors("black"),
             offset=ft.Offset(0, 0),
             blur_style=ft.ShadowBlurStyle.OUTER,
         )
@@ -56,21 +56,21 @@ class left_menu_app_container(ft.Container):
                     border_radius=ft.border_radius.only(
                         top_left=32, top_right=32, bottom_left=32, bottom_right=32
                     ),
-                    border=ft.border.all(width=2, color=ft.colors("grey900")),
+                    border=ft.border.all(width=2, color=ft.Colors("grey900")),
                     shadow=ft.BoxShadow(
                         spread_radius=1,
                         blur_radius=15,
-                        color=ft.colors("black"),
+                        color=ft.Colors("black"),
                         offset=ft.Offset(0, 0),
                         blur_style=ft.ShadowBlurStyle.OUTER,
                     ),
                     height=48,
                     width=48,
                     ink=True,
-                    ink_color=ft.colors("yellow"),
-                    bgcolor=ft.colors("red"),
+                    ink_color=ft.Colors("yellow"),
+                    bgcolor=ft.Colors("red"),
                     alignment=ft.alignment.center,
-                    content=ft.Icon(name="save"),
+                    content=ft.Icon("save"),
                     on_click=lambda _: self.save_data(),
                 ),
             ],
