@@ -1,5 +1,7 @@
 import flet as ft
 
+from utils_safe_print import safe_print
+
 # categorie_navigations = widgets_by_categories.get("navigations")
 # categorie_alerts = widgets_by_categories.get("alerts")
 # categorie_text = widgets_by_categories.get("text")
@@ -281,7 +283,7 @@ def buttons_witgets(get_widget: str = "", keys=True):
         ),
         "SegmentedButton": ft.SegmentedButton(
             expand=True,
-            on_change=lambda e: print("MenuItemButton clicked!"),
+            on_change=lambda e: safe_print("MenuItemButton clicked!"),
             selected_icon=ft.Icon(ft.Icons.ONETWOTHREE),
             selected={"1", "4"},
             allow_multiple_selection=True,
@@ -339,7 +341,7 @@ def cupertino_witgets(get_widget: str = "", keys=True):
         ),
         "CupertinoSegmentedButton": ft.CupertinoSegmentedButton(
             expand=True,
-            on_change=lambda e: print("MenuItemButton clicked!"),
+            on_change=lambda e: safe_print("MenuItemButton clicked!"),
             selected_color=ft.Colors.RED,
             selected_index=0,
             controls=[

@@ -1,5 +1,7 @@
 import flet as ft
 
+from utils_safe_print import safe_print
+
 from dragg_dropp_edit_attr_widgets.bool_widget import bool_widget
 from dragg_dropp_edit_attr_widgets.one_number_widget import get_one_string
 from dragg_dropp_edit_attr_widgets.two_number_widget import get_two_numers
@@ -167,7 +169,7 @@ class icon_button_container(ft.Container):
         # widget_tab_0 = tabs_widgets.content.tabs[0].content.content.controls
         # widget_tab_container = tabs_widgets.content.tabs[1].content.content.controls
         # widget_tab_2 = tabs_widgets.content.tabs[2].content.content.controls
-        print(calss_widget_name)
+        safe_print(calss_widget_name)
         # clear specifyc tab
         bool_list = [
             "visible",
@@ -667,7 +669,7 @@ class icon_button_container(ft.Container):
             if not attr.startswith("_") and not callable(getattr(widget_to_edit, attr)):
                 # print(f"[+] > print attributes: {attr}")
                 if tag_edit_widget == attr:
-                    print(f"attr >>> {attr} - tag: {tag_edit_widget}")
+                    safe_print(f"attr >>> {attr} - tag: {tag_edit_widget}")
 
                     value = getattr(widget_to_edit, attr)
                     data_type = type(value)

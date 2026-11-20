@@ -2,6 +2,8 @@ import flet as ft
 import ast
 import os
 
+from utils_safe_print import safe_print
+
 image = "image97.jpeg"
 long_text = "Flet is a framework that allows building web, desktop and mobile applications in Python without prior experience in frontend development.\n\nYou can build a UI for your program with Flet controls which are based on Flutter by Google. Flet goes beyond merely wrapping Flutter widgets. It adds its own touch by combining smaller widgets, simplifying complexities, implementing UI best practices, and applying sensible defaults. This ensures that your applications look stylish and polished without requiring additional design efforts on your part."
 medium_text = "Flet is a framework that allows building web, desktop and mobile applications in Python without prior experience in frontend development."
@@ -444,7 +446,7 @@ widget_dict = {
                     ink=True,
                     ink_color=ft.Colors("yellow"),
                     content=ft.Icon("remove_rounded"),
-                    on_click=lambda arguments: print("hello"),
+                    on_click=lambda arguments: safe_print("hello"),
                 ),
                 ft.Text(
                     value="0",
@@ -459,7 +461,7 @@ widget_dict = {
                     ink=True,
                     ink_color=ft.Colors("yellow"),
                     content=ft.Icon("add_rounded"),
-                    on_click=lambda arguments: print("hello"),
+                    on_click=lambda arguments: safe_print("hello"),
                 ),
             ],
         ),

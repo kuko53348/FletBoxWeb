@@ -1,6 +1,8 @@
 import flet as ft
 from typing import Any, List, Dict, Set, Deque, Optional
 
+from utils_safe_print import safe_print
+
 
 def serialize_widget(widget, indent=0):
     """
@@ -125,7 +127,7 @@ def serialize_widget(widget, indent=0):
                         value = _format_value(value)
 
                         if isinstance(value, ft.Colors) or isinstance(value, ft.Colors):
-                            print(value)
+                            safe_print(value)
                             # ================================
                             # new_color = f"{value.name.lower()}"
                             # new_color = new_color.replace("_", "")

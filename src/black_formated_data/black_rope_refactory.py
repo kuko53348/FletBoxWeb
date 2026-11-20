@@ -4,6 +4,8 @@ import os
 import sys
 import ast
 
+from utils_safe_print import safe_print
+
 # pip install autopep8
 
 
@@ -101,7 +103,7 @@ class CodeFormatter:
 
         # Corregir indentación manualmente si la sintaxis no es válida
         if not self._validate_syntax():
-            print(
+            safe_print(
                 "El código tiene errores de sintaxis. Corrigiendo indentación manualmente..."
             )
             self._fix_indentation()
@@ -121,7 +123,7 @@ class CodeFormatter:
         self.code = self._read_file()
         self.fix_code()
         self._write_file(self.code)
-        print(f"El archivo {self.file_path} ha sido corregido y guardado.")
+        safe_print(f"El archivo {self.file_path} ha sido corregido y guardado.")
 
 
 if __name__ == "__main__":
@@ -144,8 +146,8 @@ value="hello",
     # Corrección de código en memoria
     formatter = CodeFormatter(code=codigo_desordenado)
     codigo_corregido = formatter.fix_code()
-    print("Código corregido:")
-    print(codigo_corregido)
+    safe_print("Código corregido:")
+    safe_print(codigo_corregido)
 
     # Corrección de un archivo
     if len(sys.argv) > 1:
@@ -153,4 +155,4 @@ value="hello",
         formatter = CodeFormatter(file_path=file_path)
         formatter.fix_file()
     else:
-        print("No se proporcionó un archivo para corregir.")
+        safe_print("No se proporcionó un archivo para corregir.")

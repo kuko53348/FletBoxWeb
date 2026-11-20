@@ -2,6 +2,8 @@ import flet as ft
 import ast
 import os
 
+from utils_safe_print import safe_print
+
 image = "image97.jpeg"
 
 medium_text = "Flet is a framework that allows building web, desktop and mobile applications in Python without prior experience in frontend development."
@@ -1046,7 +1048,7 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                                             ink=True,
                                             ink_color=ft.Colors("yellow"),
                                             content=ft.Icon("remove_rounded"),
-                                            on_click=lambda arguments: print("hello"),
+                                            on_click=lambda arguments: safe_print("hello"),
                                         ),
                                         ft.Text(
                                             value="0",
@@ -1066,7 +1068,7 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                                             ink=True,
                                             ink_color=ft.Colors("yellow"),
                                             content=ft.Icon("add_rounded"),
-                                            on_click=lambda arguments: print("hello"),
+                                            on_click=lambda arguments: safe_print("hello"),
                                         ),
                                     ],
                                 ),
@@ -1164,7 +1166,7 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                                             ink=True,
                                             ink_color=ft.Colors("yellow"),
                                             content=ft.Icon("remove_rounded"),
-                                            on_click=lambda arguments: print("hello"),
+                                            on_click=lambda arguments: safe_print("hello"),
                                         ),
                                         ft.Text(
                                             value="0",
@@ -1184,7 +1186,7 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                                             ink=True,
                                             ink_color=ft.Colors("yellow"),
                                             content=ft.Icon("add_rounded"),
-                                            on_click=lambda arguments: print("hello"),
+                                            on_click=lambda arguments: safe_print("hello"),
                                         ),
                                     ],
                                 ),
@@ -2102,7 +2104,7 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                                                                         "grey800"
                                                                     ),
                                                                 ),
-                                                                on_click=lambda arguments: print(
+                                                                on_click=lambda arguments: safe_print(
                                                                     "hello"
                                                                 ),
                                                             ),
@@ -2130,7 +2132,7 @@ def custom_cards_witgets(get_widget: str = "", keys=True):
                                                                         "grey800"
                                                                     ),
                                                                 ),
-                                                                on_click=lambda arguments: print(
+                                                                on_click=lambda arguments: safe_print(
                                                                     "hello"
                                                                 ),
                                                             ),

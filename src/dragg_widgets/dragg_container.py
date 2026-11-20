@@ -1,5 +1,7 @@
 import flet as ft
 
+from utils_safe_print import safe_print
+
 from markdown_code_editor.markdown_code_editor import code_editor
 from .custom_widgets import custom_widgets, custom_image_dict, parse_widget_to_string
 from .icons_widgets import icons_widgets
@@ -381,14 +383,14 @@ class dragg_box_container(ft.Container):
         return header_text_widget
 
     def modify_left_footer_bar(self):
-        print(f"[+] <<< selected on dragg_box {self.tooltip}")
+        safe_print(f"[+] <<< selected on dragg_box {self.tooltip}")
         header_text_widget = self.set_footer_selectd_widget(
             title="DRAGG BOX",
             icon_name="drag_indicator_rounded",
         )
 
     def set_widget_content(self, payload: object = None):
-        print(f"[+] >>> selected on droop_phone {self.tooltip}")
+        safe_print(f"[+] >>> selected on droop_phone {self.tooltip}")
         header_text_widget = self.set_footer_selectd_widget(
             title="PHONE BOX",
             icon_name="phone_iphone_rounded",
